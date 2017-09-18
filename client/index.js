@@ -1,5 +1,8 @@
 import { Meteor } from "meteor/meteor";
+import React from "react";
+import ReactDOM from "react-dom";
 
-export function sum(a, b) {
-  return a + b + 0;
-}
+Meteor.startup(() => {
+  console.log(root);
+  ReactDOM.render(<div>Hello, React!</div>, document.getElementById("root"));
+});

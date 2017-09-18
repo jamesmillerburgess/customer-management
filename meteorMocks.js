@@ -1,1 +1,3 @@
-export const Meteor = null;
+export const Meteor = {
+  startup: cb => cb()
+};

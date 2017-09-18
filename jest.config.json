@@ -1,10 +1,12 @@
 {
   "verbose": true,
+  "collectCoverageFrom": ["client/**/*.{js,jsx}", "!client/index.js"],
   "testPathIgnorePatterns": ["/node_modules/", "/.meteor/"],
   "transform": {
     "^.+\\.jsx?$": "babel-jest"
   },
   "moduleNameMapper": {
     "^meteor/(.*)": "<rootDir>/meteorMocks.js"
-  }
+  },
+  "coverageDirectory": ".coverage"
 }
