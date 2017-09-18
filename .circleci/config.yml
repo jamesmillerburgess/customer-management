@@ -5,6 +5,9 @@
 version: 2
 jobs:
   build:
+    environment:
+      CC_TEST_REPORTER_ID: e0b43cf94dece3dadef8107adf1da0a5baf2281ac7ba164a1571f35c28fa71dc
+
     docker:
       # specify the version you desire here
       - image: circleci/node:8.5
@@ -18,6 +21,14 @@ jobs:
 
     steps:
       - checkout
+      - run: sudo pecl channel-update pecl.php.net
+      - run: sudo pecl install xdebug && sudo docker-php-ext-enable xdebug
+      - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+      - run: chmod +x ./cc-test-reporter
+      - run: sudo mkdir -p $CIRCLE_TEST_REPORTS/phpunit
+      - run: ./cc-test-reporter before-build
+      - run: sudo vendor/bin/phpunit --coverage-clover clover.xml
+      - run: ./cc-test-reporter after-build -t clover --exit-code $?
 
       # Download and cache dependencies
       - restore_cache:
