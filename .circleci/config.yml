@@ -26,13 +26,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: 
-          - curl https://install.meteor.com
-          - meteor update --release 1.6-beta.27
-          - rm ./package-lock.json
-          - rm -r ./node_modules
-          - meteor npm cache clear --force
-          - meteor npm install
+      - run: npm install
 
       - save_cache:
           paths:
