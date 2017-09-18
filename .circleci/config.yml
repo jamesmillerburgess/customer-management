@@ -39,7 +39,7 @@ jobs:
 jobs:
   build:
     environment:
-      CC_TEST_REPORTER_ID: YOUR_CODE_CLIMATE_REPORTER_ID
+      CC_TEST_REPORTER_ID: e0b43cf94dece3dadef8107adf1da0a5baf2281ac7ba164a1571f35c28fa71dc
     docker:
       - image: notnoopci/php:7.1.5-browsers
     working_directory: ~/repo
