@@ -1,0 +1,19 @@
+.section-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+  margin: 0 48px;
+  height: 106px;
+  .header-content {
+    display: flex;
+    flex-direction: row;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: normal;
+    text-shadow: 0 0 1px transparent;
+    -webkit-font-smoothing: antialiased;
+    color: #333;
+  }
+}

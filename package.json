@@ -18,6 +18,7 @@
     "babel-preset-react": "^6.24.1",
     "codeclimate": "0.0.32",
     "codeclimate-test-reporter": "^0.5.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^21.1.0",
     "jsdom": "^11.2.0",
     "regenerator-runtime": "^0.11.0"
