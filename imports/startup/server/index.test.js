@@ -1,3 +1,3 @@
-import "./index";
+import './index';
 
-it("loads server deps without error", () => {});
+it('loads server deps without error', () => {});

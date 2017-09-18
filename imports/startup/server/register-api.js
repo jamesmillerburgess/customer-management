@@ -1,1 +1,1 @@
-import "../../api/contact/contact.js";
+import '../../api/contact/contact.js';

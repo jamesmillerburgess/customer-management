@@ -1,5 +1,5 @@
-import { Mongo } from "meteor/mongo";
+import { Mongo } from 'meteor/mongo';
 
-const Contacts = new Mongo.Collection("Contacts");
+const Contacts = new Mongo.Collection('Contacts');
 
 export default Contacts;

@@ -1,5 +1,5 @@
 export const Meteor = {
-  startup: cb => cb()
+  startup: cb => cb(),
 };
 
 export const Mongo = {
@@ -19,7 +19,7 @@ export const Mongo = {
       count: function() {
         return this.num;
       },
-      num: 0
+      num: 0,
     };
-  }
+  },
 };
