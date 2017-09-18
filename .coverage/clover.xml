@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1505741314817" clover="3.2.0">
-  <project timestamp="1505741314817" name="All files">
-    <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="2" coveredelements="2" complexity="0" loc="1" ncloc="1" packages="1" files="1" classes="1">
-      <file name="sum.js" path="C:\Users\jburgess\customer-management\client\sum.js">
+<coverage generated="1505742447231" clover="3.2.0">
+  <project timestamp="1505742447232" name="All files">
+    <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="2" coveredelements="2" complexity="0" loc="1" ncloc="1" packages="3" files="4" classes="4">
+      <package name="imports">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="2" type="stmt"/>
-      </file>
+        <file name="sum.js" path="C:\Users\jburgess\customer-management\imports\sum.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="1" count="2" type="stmt"/>
+        </file>
+      </package>
+      <package name="imports.startup.server">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="index.js" path="C:\Users\jburgess\customer-management\imports\startup\server\index.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="register-api.js" path="C:\Users\jburgess\customer-management\imports\startup\server\register-api.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+      </package>
+      <package name="imports.startup.server.fixtures">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="fixtures.js" path="C:\Users\jburgess\customer-management\imports\startup\server\fixtures\fixtures.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+      </package>
     </metrics>
   </project>
 </coverage>
