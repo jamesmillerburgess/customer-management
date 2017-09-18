@@ -8,6 +8,7 @@ describe('runFixtures', () => {
   it('populates contacts if the collection is empty', () => {
     expect(Contacts.find({}).count()).toBe(0);
     runFixtures();
+    expect(Contacts.find({}).count()).toBe(1);
   });
   it('does not populate contacts if the collection is not empty', () => {
     Contacts.insert();
