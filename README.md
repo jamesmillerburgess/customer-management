@@ -1,5 +1,5 @@
 # customer-management
 
 [![CircleCI](https://circleci.com/gh/jamesmillerburgess/customer-management.svg?style=svg)](https://circleci.com/gh/jamesmillerburgess/customer-management)
-+[![Code Climate](https://codeclimate.com/github/jamesmillerburgess/customer-management/badges/gpa.svg)](https://codeclimate.com/github/jamesmillerburgess/customer-management)
- +[![Test Coverage](https://codeclimate.com/github/jamesmillerburgess/customer-management/badges/coverage.svg)](https://codeclimate.com/github/jamesmillerburgess/customer-management)
+[![Code Climate](https://codeclimate.com/github/jamesmillerburgess/customer-management/badges/gpa.svg)](https://codeclimate.com/github/jamesmillerburgess/customer-management)
+[![Test Coverage](https://codeclimate.com/github/jamesmillerburgess/customer-management/badges/coverage.svg)](https://codeclimate.com/github/jamesmillerburgess/customer-management)
