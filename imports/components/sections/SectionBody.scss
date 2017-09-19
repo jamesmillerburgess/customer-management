@@ -1,5 +1,31 @@
 .section-body {
-  border-top: 1px solid #cbd6e2;
-  background-color: rgb(245, 248, 250);
-  padding-bottom: 48px;
+  display: flex;
+  flex-direction: row;
+  margin: 0 48px;
+  padding: 48px 0;
+  .sidebar {
+    width: 173px;
+    margin-right: 32px;
+  }
+  .sidebar-header {
+    background-color: #eaf0f6;
+    color: #33475b;
+    font-weight: 600;
+    padding: 12px 12px 12px 8px;
+    border-radius: 3px;
+  }
+  .content {
+    width: auto;
+  }
+  table {
+    width: 100%;
+  }
+  th {
+    text-align: left;
+    width: 33%;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
 }

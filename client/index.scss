@@ -4,3 +4,11 @@ body {
   margin: 0;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
+
+li,
+ul {
+  display: list-item;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}

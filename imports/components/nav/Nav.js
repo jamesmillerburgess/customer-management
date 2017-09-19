@@ -6,8 +6,7 @@ const Nav = () => (
     <div className="button-group">
       <div className="nav-button brand">Agility CM</div>
       <div className="nav-button">Dashboard</div>
-      <div className="nav-button">Contacts</div>
-      <div className="nav-button">Customers</div>
+      <div className="nav-button">Companies</div>
     </div>
   </div>
 );

@@ -4,7 +4,7 @@ import './SectionHeader.scss';
 const SectionHeader = () => (
   <section className="section-header">
     <div className="header-content">
-      <h1>Contacts</h1>
+      <h1>Companies</h1>
     </div>
   </section>
 );
