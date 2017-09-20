@@ -1,5 +1,6 @@
 .ReactTable {
   width: 100%;
+  max-width: 100%;
   .-header {
     background-color: rgba(0, 77, 128, 0.0392157);
     box-shadow: none !important;
@@ -37,5 +38,9 @@
     display: flex;
     align-items: center;
     padding-left: 24px;
+  }
+  .rt-noData {
+    background-color: transparent;
+    top: 80%;
   }
 }

@@ -1,0 +1,43 @@
+input.search {
+  background-color: rgb(245, 248, 250);
+  border: 1px solid rgb(203, 214, 226);
+  border-radius: 3px;
+  color: rgb(123, 152, 182);
+  font-size: 16px;
+  height: 40px;
+  line-height: 22px;
+  width: 215px;
+  transition: all 0.15s ease-out;
+  outline: none;
+  box-sizing: border-box;
+  padding: 9px 36px 9px 10px;
+}
+
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #7c98b6;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #7c98b6;
+  opacity: 1;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #7c98b6;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #7c98b6;
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #7c98b6;
+}
+
+input.search:focus {
+  border-color: rgba(0, 208, 228, 0.5);
+  box-shadow: rgba(0, 208, 228, 0.3) 0px 0px 4px 1px,
+    rgb(0, 208, 228) 0px 0px 0px 1px;
+}

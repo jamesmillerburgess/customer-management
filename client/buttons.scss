@@ -1,0 +1,18 @@
+button {
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.button-primary {
+  background-color: rgb(255, 122, 89);
+  color: white;
+}
+
+.button-secondary {
+  background-color: white;
+  border-color: rgb(255, 122, 89);
+  color: rgb(255, 122, 89);
+}

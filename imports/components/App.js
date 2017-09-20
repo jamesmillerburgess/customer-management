@@ -1,15 +1,19 @@
 import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
+import './App.scss';
 import Nav from './nav/Nav';
-import SectionHeader from './sections/SectionHeader';
-import SectionBody from './sections/SectionBody';
+import routes from '../api/routes';
 
-const App = () => (
-  <div>
-    <Nav />
-    <SectionHeader />
-    <SectionBody />
-  </div>
+const App = props => (
+  <BrowserRouter>
+    <div className={props.appClass}>
+      <Nav />
+      {routes.map(({ path, component, exact }, index) => (
+        <Route key={index} path={path} component={component} exact={exact} />
+      ))}
+    </div>
+  </BrowserRouter>
 );
 
 export default App;

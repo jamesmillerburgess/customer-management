@@ -10,9 +10,10 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "meteor-node-stubs": "~0.2.4",
+    "moment": "^2.18.1",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1",
     "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "react-table": "^6.5.3"
   },
   "devDependencies": {
@@ -21,9 +22,12 @@
     "babel-preset-react": "^6.24.1",
     "codeclimate": "0.0.32",
     "codeclimate-test-reporter": "^0.5.0",
+    "enzyme": "^2.9.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.1.0",
     "jsdom": "^11.2.0",
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1",
     "regenerator-runtime": "^0.11.0"
   }
 }
