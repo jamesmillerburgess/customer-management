@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactGridLayout from 'react-grid-layout';
+import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 
 import './Dashboard.scss';
 import SectionHeader from './sections/SectionHeader';
+
+const GridLayout = WidthProvider(ReactGridLayout);
 
 const headerProps = {
   title: 'Dashboard',
@@ -14,7 +16,7 @@ const Dashboard = () => (
   <div className="dashboard">
     <SectionHeader {...headerProps} />
     <div className="dashboard-grid">
-      <ReactGridLayout
+      <GridLayout
         layout={[
           { i: 'a', x: 0, y: 0, w: 1, h: 1 },
           { i: 'b', x: 1, y: 0, w: 1, h: 1 },
@@ -88,7 +90,7 @@ const Dashboard = () => (
             </div>
           </div>
         </div>
-      </ReactGridLayout>
+      </GridLayout>
     </div>
   </div>
 );
