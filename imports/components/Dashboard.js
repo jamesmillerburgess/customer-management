@@ -16,14 +16,14 @@ const Dashboard = () => (
     <div className="dashboard-grid">
       <ReactGridLayout
         layout={[
-          { i: 'a', x: 0, y: 0, w: 1, h: 2 },
-          { i: 'b', x: 1, y: 0, w: 1, h: 2 },
-          { i: 'c', x: 0, y: 1, w: 1, h: 2 },
-          { i: 'd', x: 1, y: 1, w: 1, h: 2 },
-          { i: 'e', x: 0, y: 2, w: 1, h: 2 },
+          { i: 'a', x: 0, y: 0, w: 1, h: 1 },
+          { i: 'b', x: 1, y: 0, w: 1, h: 1 },
+          { i: 'c', x: 0, y: 1, w: 1, h: 1 },
+          { i: 'd', x: 1, y: 1, w: 1, h: 1 },
+          { i: 'e', x: 0, y: 2, w: 1, h: 1 },
         ]}
         cols={2}
-        rowHeight={225}
+        rowHeight={450}
         width={1200}
         verticalCompact={false}
       >
