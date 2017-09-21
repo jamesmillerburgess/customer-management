@@ -5,7 +5,8 @@ engines:
     config:
       languages:
       - ruby
-      - javascript
+        javascript:
+          mass_threshold: 100
       - python
       - php
   eslint:
