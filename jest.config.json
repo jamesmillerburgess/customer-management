@@ -1,5 +1,6 @@
 {
   "verbose": true,
+  "setupFiles": ["<rootDir>/jestSetup.js"],
   "collectCoverageFrom": ["imports/**/*.{js,jsx}", "!client/index.js"],
   "testPathIgnorePatterns": ["/node_modules/", "/.meteor/"],
   "transform": {
