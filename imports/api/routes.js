@@ -6,14 +6,14 @@ const routes = [
   {
     path: '/',
     title: 'Agility CM',
-    component: null,
+    component: Dashboard,
     exact: true,
     className: 'brand',
   },
   {
     path: '/dashboard',
     title: 'Dashboard',
-    component: null,
+    component: Dashboard,
   },
   {
     path: '/contacts',

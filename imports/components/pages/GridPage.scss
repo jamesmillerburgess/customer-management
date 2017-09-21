@@ -18,32 +18,3 @@
     width: 100%;
   }
 }
-.section-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
-  margin: 0 48px;
-  height: 106px;
-  border-bottom: 1px solid #cbd6e2;
-  .header-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .header-title {
-    width: 20%;
-  }
-  h1 {
-    font-size: 28px;
-    font-weight: 300;
-    text-shadow: 0 0 1px transparent;
-    -webkit-font-smoothing: antialiased;
-    color: #333;
-  }
-  .search,
-  button {
-    margin-left: 12px;
-  }
-}
