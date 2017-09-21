@@ -2,7 +2,7 @@ import React from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 
 import './Dashboard.scss';
-import SectionHeader from './sections/SectionHeader';
+import PageHeader from './PageHeader';
 
 const GridLayout = WidthProvider(ReactGridLayout);
 
@@ -14,7 +14,7 @@ const headerProps = {
 
 const Dashboard = () => (
   <div className="dashboard">
-    <SectionHeader {...headerProps} />
+    <PageHeader {...headerProps} />
     <div className="dashboard-grid">
       <GridLayout
         layout={[

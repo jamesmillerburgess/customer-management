@@ -1,8 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 
-import SectionHeader from './sections/SectionHeader';
-import GridPage from './pages/GridPage';
+import PageHeader from './PageHeader';
+import GridPage from './GridPage';
 
 const headerProps = {
   title: 'Companies',
@@ -50,7 +50,7 @@ const gridPageProps = {
 
 const Companies = () => (
   <div>
-    <SectionHeader {...headerProps} />
+    <PageHeader {...headerProps} />
     <GridPage {...gridPageProps} />
   </div>
 );
