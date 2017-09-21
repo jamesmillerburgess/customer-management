@@ -162,7 +162,7 @@ rules:
   camelcase: off
   capitalized-comments: off
   comma-dangle:
-    - es5
+    - always-multiline
   comma-spacing: off
   comma-style: off
   computed-property-spacing: off
