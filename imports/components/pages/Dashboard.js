@@ -46,7 +46,7 @@ const Dashboard = () => (
             <div className="body-title">Spend less time on manual work</div>
             <div className="body-text">
               Make your sales process more efficient by turning your most used
-              emails into reusable template. Create a template and over time
+              emails into reusable templates. Create a template and over time
               you'll see productivity rise.
             </div>
             <button className="button-neutral">Create a template</button>
