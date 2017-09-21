@@ -5,7 +5,7 @@ import './GridPage.scss';
 import SearchInput from '../fields/SearchInput';
 import ObjectLink from '../nav/ObjectLink';
 
-const GridPage = ({ sidebarHeader, noRows, data }) => (
+const GridPage = ({ sidebarHeader, noRows, columns, data }) => (
   <div className="section-body">
     <div className="sidebar">
       <ul>
@@ -13,31 +13,7 @@ const GridPage = ({ sidebarHeader, noRows, data }) => (
       </ul>
     </div>
     <div className="content">
-      <Grid
-        data={data}
-        columns={[
-          {
-            width: 45,
-            resizable: false,
-            sortable: false,
-          },
-          {
-            Header: 'Name',
-            id: 'name',
-            accessor: 'name',
-          },
-          {
-            Header: 'Create Date (GMT+2)',
-            id: 'lastName',
-            accessor: 'createDate',
-          },
-          {
-            Header: 'First Contact Create Date (GMT+2)',
-            accessor: 'firstContactCreateDate',
-          },
-        ]}
-        noDataText={noRows}
-      />
+      <Grid data={data} columns={columns} noDataText={noRows} />
     </div>
   </div>
 );

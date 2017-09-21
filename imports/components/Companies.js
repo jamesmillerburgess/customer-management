@@ -13,18 +13,37 @@ const headerProps = {
 const gridPageProps = {
   sidebarHeader: 'All companies',
   noRows: 'No companies yet!',
+  columns: [
+    {
+      width: 45,
+      resizable: false,
+      sortable: false,
+    },
+    {
+      Header: 'Name',
+      id: 'name',
+      accessor: 'name',
+    },
+    {
+      Header: 'Create Date (GMT+2)',
+      id: 'lastName',
+      accessor: 'createDate',
+    },
+    {
+      Header: 'First Contact Create Date (GMT+2)',
+      accessor: 'firstContactCreateDate',
+    },
+  ],
   data: [
     {
       name: 'Name',
-      createDate: moment('September 20, 2017').format('MMM DD, YYYY'),
+      createDate: moment('2017-09-16').format('MMM DD, YYYY'),
       firstContactCreateDate: '-',
     },
     {
-      name: 'HubSpot',
-      createDate: moment('September 16, 2017').format('MMM DD, YYYY'),
-      firstContactCreateDate: moment('September 16, 2017').format(
-        'MMM DD, YYYY'
-      ),
+      name: 'ABC Widgets',
+      createDate: moment('2017-09-16').format('MMM DD, YYYY'),
+      firstContactCreateDate: moment('2017-09-16').format('MMM DD, YYYY'),
     },
   ],
 };
