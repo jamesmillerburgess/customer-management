@@ -1,6 +1,9 @@
 .ReactTable {
   width: 100%;
   max-width: 100%;
+  .rt-table {
+    flex-basis: auto !important;
+  }
   .-header {
     background-color: rgba(0, 77, 128, 0.0392157);
     box-shadow: none !important;
@@ -10,6 +13,7 @@
     text-align: left;
     font-size: 12px;
     font-weight: 500;
+    line-height: 18px !important;
     text-transform: uppercase;
     white-space: nowrap;
     padding: 14.5px 24px !important;
