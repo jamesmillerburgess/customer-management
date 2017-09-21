@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 
+import Panel from '../fields/Panel';
 import './Dashboard.scss';
 import PageHeader from './PageHeader';
 
@@ -29,8 +30,8 @@ const Dashboard = () => (
         width={1200}
         verticalCompact={false}
       >
-        <div key={'a'} className="dashboard-panel">
-          <div className="panel-inner">
+        <div key={'a'} className="panel">
+          <Panel>
             <div className="panel-header">
               <div className="panel-title">Team Activity</div>
               <div className="panel-menu">Actions</div>
@@ -44,10 +45,10 @@ const Dashboard = () => (
               </div>
               <button className="button-neutral">Create a task</button>
             </div>
-          </div>
+          </Panel>
         </div>
-        <div key={'b'} className="dashboard-panel">
-          <div className="panel-inner">
+        <div key={'b'} className="panel">
+          <Panel>
             <div className="panel-header">
               <div className="panel-title">Productivity</div>
               <div className="panel-menu">Actions</div>
@@ -61,34 +62,34 @@ const Dashboard = () => (
               </div>
               <button className="button-neutral">Create a template</button>
             </div>
-          </div>
+          </Panel>
         </div>
-        <div key={'c'} className="dashboard-panel">
-          <div className="panel-inner">
+        <div key={'c'} className="panel">
+          <Panel>
             <div className="panel-header">
               <div className="panel-title">Sales Performance</div>
               <div className="panel-menu">Actions</div>
             </div>
             <div className="panel-body" />
-          </div>
+          </Panel>
         </div>
-        <div key={'d'} className="dashboard-panel">
-          <div className="panel-inner">
+        <div key={'d'} className="panel">
+          <Panel>
             <div className="panel-header">
               <div className="panel-title">Deal Forecast</div>
               <div className="panel-menu">Actions</div>
             </div>
             <div className="panel-body" />
-          </div>
+          </Panel>
         </div>
-        <div key={'e'} className="dashboard-panel">
-          <div className="panel-inner">
+        <div key={'e'} className="panel">
+          <Panel>
             <div className="panel-header">
               <div className="panel-title">Deals Closed vs Goal</div>
               <div className="panel-menu">Actions</div>
             </div>
             <div className="panel-body" />
-          </div>
+          </Panel>
         </div>
       </GridLayout>
     </div>
