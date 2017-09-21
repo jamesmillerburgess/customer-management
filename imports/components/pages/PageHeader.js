@@ -1,9 +1,9 @@
 import React from 'react';
 import SearchInput from '../fields/SearchInput';
-import './SectionHeader.scss';
+import './PageHeader.scss';
 
-const SectionHeader = props => (
-  <section className="section-header">
+const PageHeader = props => (
+  <section className="page-header">
     <div className="header-content">
       <div className="header-title">
         <h1>{props.title}</h1>
@@ -18,4 +18,4 @@ const SectionHeader = props => (
   </section>
 );
 
-export default SectionHeader;
+export default PageHeader;

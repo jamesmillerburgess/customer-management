@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import SectionHeader from './SectionHeader';
+import Nav from './Nav';
 
-describe('SectionHeader', () => {
+describe('Nav', () => {
   let wrapper;
-  beforeEach(() => (wrapper = shallow(<SectionHeader />)));
+  beforeEach(() => (wrapper = shallow(<Nav />)));
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
 });

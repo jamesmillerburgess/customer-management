@@ -1,6 +1,6 @@
-import Dashboard from '../components/Dashboard';
-import Companies from '../components/Companies';
-import Contacts from '../components/Contacts';
+import Dashboard from '../components/pages/Dashboard';
+import Companies from '../components/pages/Companies';
+import Contacts from '../components/pages/Contacts';
 
 const routes = [
   {
