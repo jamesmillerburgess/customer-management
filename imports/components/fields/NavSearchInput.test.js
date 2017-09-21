@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import NavSearchinput from './NavSearchinput';
+import NavSearchInput from './NavSearchInput';
 
-describe('NavSearchinput', () => {
+describe('NavSearchInput', () => {
   let wrapper;
-  beforeEach(() => (wrapper = shallow(<NavSearchinput />)));
+  beforeEach(() => (wrapper = shallow(<NavSearchInput />)));
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
 });
