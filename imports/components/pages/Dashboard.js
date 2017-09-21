@@ -31,65 +31,35 @@ const Dashboard = () => (
         verticalCompact={false}
       >
         <div key={'a'} className="panel">
-          <Panel>
-            <div className="panel-header">
-              <div className="panel-title">Team Activity</div>
-              <div className="panel-menu">Actions</div>
+          <Panel title="Team Activity">
+            <div className="body-title">Work as a team</div>
+            <div className="body-text">
+              Gain insight into the tasks created, emails sent, calls placed,
+              and meetings booked from your sales team. Create a task and you'll
+              see it here.
             </div>
-            <div className="panel-body">
-              <div className="body-title">Work as a team</div>
-              <div className="body-text">
-                Gain insight into the tasks created, emails sent, calls placed,
-                and meetings booked from your sales team. Create a task and
-                you'll see it here.
-              </div>
-              <button className="button-neutral">Create a task</button>
-            </div>
+            <button className="button-neutral">Create a task</button>
           </Panel>
         </div>
         <div key={'b'} className="panel">
-          <Panel>
-            <div className="panel-header">
-              <div className="panel-title">Productivity</div>
-              <div className="panel-menu">Actions</div>
+          <Panel title="Productivity">
+            <div className="body-title">Spend less time on manual work</div>
+            <div className="body-text">
+              Make your sales process more efficient by turning your most used
+              emails into reusable template. Create a template and over time
+              you'll see productivity rise.
             </div>
-            <div className="panel-body">
-              <div className="body-title">Spend less time on manual work</div>
-              <div className="body-text">
-                Make your sales process more efficient by turning your most used
-                emails into reusable template. Create a template and over time
-                you'll see productivity rise.
-              </div>
-              <button className="button-neutral">Create a template</button>
-            </div>
+            <button className="button-neutral">Create a template</button>
           </Panel>
         </div>
         <div key={'c'} className="panel">
-          <Panel>
-            <div className="panel-header">
-              <div className="panel-title">Sales Performance</div>
-              <div className="panel-menu">Actions</div>
-            </div>
-            <div className="panel-body" />
-          </Panel>
+          <Panel title="Sales Performance" />
         </div>
         <div key={'d'} className="panel">
-          <Panel>
-            <div className="panel-header">
-              <div className="panel-title">Deal Forecast</div>
-              <div className="panel-menu">Actions</div>
-            </div>
-            <div className="panel-body" />
-          </Panel>
+          <Panel title="Deal Forecast" />
         </div>
         <div key={'e'} className="panel">
-          <Panel>
-            <div className="panel-header">
-              <div className="panel-title">Deals Closed vs Goal</div>
-              <div className="panel-menu">Actions</div>
-            </div>
-            <div className="panel-body" />
-          </Panel>
+          <Panel title="Deals Closed vs Goal" />
         </div>
       </GridLayout>
     </div>
