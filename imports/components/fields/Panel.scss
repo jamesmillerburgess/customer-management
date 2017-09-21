@@ -2,7 +2,7 @@
   border-radius: 3px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 1px 5px 0 rgba(45, 62, 80, 0.12);
-  transition: box-shadow 0.15s ease-in-out;
+  transition: box-shadow, transform 0.15s ease-in-out;
   cursor: -webkit-grab;
   cursor: grab;
 }
@@ -13,6 +13,7 @@
   z-index: 1000;
   cursor: -webkit-grabbing;
   cursor: grabbing;
+  transition: transform 0s linear;
 }
 .react-grid-placeholder {
   z-index: 999;
