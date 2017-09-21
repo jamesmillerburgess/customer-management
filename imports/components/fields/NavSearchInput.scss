@@ -1,0 +1,15 @@
+.nav-search {
+  padding: 5px 6px 3px 8px;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 18px;
+  height: 30px;
+  box-sizing: border-box;
+  border: 1px solid #2e2e2e;
+  background-color: #484848;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.nav-search:focus {
+  outline: none;
+}

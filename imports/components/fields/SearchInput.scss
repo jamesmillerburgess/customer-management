@@ -13,25 +13,26 @@ input.search {
   padding: 9px 36px 9px 10px;
 }
 
-::-webkit-input-placeholder {
+input.search::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #7c98b6;
 }
-:-moz-placeholder {
+input.search:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #7c98b6;
   opacity: 1;
 }
-::-moz-placeholder {
+/* Mozilla Firefox 19+ */
+input.search::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #7c98b6;
   opacity: 1;
 }
-:-ms-input-placeholder {
+input.search:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #7c98b6;
 }
-::-ms-input-placeholder {
+input.search::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #7c98b6;
 }

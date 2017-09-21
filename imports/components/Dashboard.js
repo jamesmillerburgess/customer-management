@@ -49,33 +49,6 @@ const Dashboard = () => (
         <div key={'b'} className="dashboard-panel">
           <div className="panel-inner">
             <div className="panel-header">
-              <div className="panel-title">Sales Performance</div>
-              <div className="panel-menu">Actions</div>
-            </div>
-            <div className="panel-body" />
-          </div>
-        </div>
-        <div key={'c'} className="dashboard-panel">
-          <div className="panel-inner">
-            <div className="panel-header">
-              <div className="panel-title">Deal Forecast</div>
-              <div className="panel-menu">Actions</div>
-            </div>
-            <div className="panel-body" />
-          </div>
-        </div>
-        <div key={'d'} className="dashboard-panel">
-          <div className="panel-inner">
-            <div className="panel-header">
-              <div className="panel-title">Deals Closed vs Goal</div>
-              <div className="panel-menu">Actions</div>
-            </div>
-            <div className="panel-body" />
-          </div>
-        </div>
-        <div key={'e'} className="dashboard-panel">
-          <div className="panel-inner">
-            <div className="panel-header">
               <div className="panel-title">Productivity</div>
               <div className="panel-menu">Actions</div>
             </div>
@@ -88,6 +61,33 @@ const Dashboard = () => (
               </div>
               <button className="button-neutral">Create a template</button>
             </div>
+          </div>
+        </div>
+        <div key={'c'} className="dashboard-panel">
+          <div className="panel-inner">
+            <div className="panel-header">
+              <div className="panel-title">Sales Performance</div>
+              <div className="panel-menu">Actions</div>
+            </div>
+            <div className="panel-body" />
+          </div>
+        </div>
+        <div key={'d'} className="dashboard-panel">
+          <div className="panel-inner">
+            <div className="panel-header">
+              <div className="panel-title">Deal Forecast</div>
+              <div className="panel-menu">Actions</div>
+            </div>
+            <div className="panel-body" />
+          </div>
+        </div>
+        <div key={'e'} className="dashboard-panel">
+          <div className="panel-inner">
+            <div className="panel-header">
+              <div className="panel-title">Deals Closed vs Goal</div>
+              <div className="panel-menu">Actions</div>
+            </div>
+            <div className="panel-body" />
           </div>
         </div>
       </GridLayout>
