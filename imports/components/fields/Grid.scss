@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 100%;
   .rt-table {
-    flex-basis: auto !important;
+    flex-basis: auto !important; // Prevent 0 height grid in IE11
   }
   .-header {
     background-color: rgba(0, 77, 128, 0.0392157);
@@ -13,7 +13,7 @@
     text-align: left;
     font-size: 12px;
     font-weight: 500;
-    line-height: 18px !important;
+    line-height: 18px !important; // Prevent text cut-off in IE11
     text-transform: uppercase;
     white-space: nowrap;
     padding: 14.5px 24px !important;
