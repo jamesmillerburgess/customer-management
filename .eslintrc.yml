@@ -162,6 +162,7 @@ rules:
   camelcase: off
   capitalized-comments: off
   comma-dangle:
+    - error
     - always-multiline
   comma-spacing: off
   comma-style: off
