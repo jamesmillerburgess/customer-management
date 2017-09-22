@@ -6,7 +6,22 @@ import './HomeDisplay.scss';
 const HomeDisplay = props => {
   return (
     <div className="home">
-      <div className="login-form">
+      <form
+        className="login-form"
+        onSubmit={e => {
+          e.preventDefault();
+          if (props.mode === LOGIN) {
+            props.tryLogin(props.username, props.password);
+          }
+          if (props.mode === REGISTER) {
+            props.tryRegister(
+              props.username,
+              props.password,
+              props.passwordAgain
+            );
+          }
+        }}
+      >
         <div className="login-title">Agility Customer Management</div>
         <div className="input-group">
           <div className="input-label">Username</div>
@@ -41,38 +56,34 @@ const HomeDisplay = props => {
         ) : null}
         {props.mode === LOGIN ? (
           <div className="button-group">
-            <button className="button-invis" onClick={props.setToRegisterMode}>
+            <button
+              type="button"
+              className="button-invis"
+              onClick={props.setToRegisterMode}
+            >
               Register
             </button>
-            <button
-              className="button-primary"
-              onClick={e => props.tryLogin(e, props.username, props.password)}
-            >
+            <button type="submit" className="button-primary">
               Login
             </button>
           </div>
         ) : null}
         {props.mode === REGISTER ? (
           <div className="button-group">
-            <button className="button-invis" onClick={props.setToLoginMode}>
+            <button
+              type="button"
+              className="button-invis"
+              onClick={props.setToLoginMode}
+            >
               Login
             </button>
-            <button
-              className="button-primary"
-              onClick={e =>
-                props.tryRegister(
-                  e,
-                  props.username,
-                  props.password,
-                  props.passwordAgain
-                )}
-            >
+            <button type="submit" className="button-primary">
               Register
             </button>
           </div>
         ) : null}
         <div className="error-message">{props.errorMessage}</div>
-      </div>
+      </form>
     </div>
   );
 };

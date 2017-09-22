@@ -23,8 +23,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   setErrorMessage: value => dispatch(setLoginProp('errorMessage', value)),
   setToRegisterMode: value => dispatch(setLoginProp('mode', REGISTER)),
   setToLoginMode: value => dispatch(setLoginProp('mode', LOGIN)),
-  tryLogin: (e, username, password) => {
-    e.preventDefault();
+  tryLogin: (username, password) => {
     Meteor.loginWithPassword(username, password, (err, res) => {
       if (err) {
         dispatch(setLoginProp('errorMessage', err.reason));
@@ -33,8 +32,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
       }
     });
   },
-  tryRegister: (e, username, password, passwordAgain) => {
-    e.preventDefault();
+  tryRegister: (username, password, passwordAgain) => {
     if (password !== passwordAgain) {
       dispatch(setLoginProp('errorMessage', 'Passwords do not match'));
       return;
