@@ -2,7 +2,7 @@ import { login } from './loginReducer';
 import * as AT from '../actions/actionTypes';
 
 describe('login reducer', () => {
-  it('returns state if the action type is not applicable', () => {
+  it('returns login state if the action type is not applicable', () => {
     const action = { type: 'NOT_APPLICABLE' };
     const state = { a: 'b' };
     expect(login(state, action)).toBe(state);

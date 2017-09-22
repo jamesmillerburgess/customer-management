@@ -2,7 +2,7 @@ import { nav } from './navReducer';
 import * as AT from '../actions/actionTypes';
 
 describe('nav reducer', () => {
-  it('returns state if the action type is not applicable', () => {
+  it('returns nav state if the action type is not applicable', () => {
     const action = { type: 'NOT_APPLICABLE' };
     const state = { a: 'b' };
     expect(nav(state, action)).toBe(state);

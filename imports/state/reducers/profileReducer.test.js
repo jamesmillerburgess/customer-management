@@ -2,7 +2,7 @@ import { profile } from './profileReducer';
 import * as AT from '../actions/actionTypes';
 
 describe('profile reducer', () => {
-  it('returns state if the action type is not applicable', () => {
+  it('returns profile state if the action type is not applicable', () => {
     const action = { type: 'NOT_APPLICABLE' };
     const state = { a: 'b' };
     expect(profile(state, action)).toBe(state);
