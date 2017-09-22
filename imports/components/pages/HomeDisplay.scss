@@ -6,7 +6,7 @@
   background-color: rgba(255, 122, 89, 0.03);
   .login-form {
     width: 500px;
-    height: 375px;
+    height: 460px;
     border: 3px solid rgb(255, 122, 89);
     box-shadow: 0 1px 5px 0 rgba(45, 62, 80, 0.12);
     background-color: white;
@@ -23,5 +23,12 @@
   }
   .input-group {
     margin-bottom: 24px;
+  }
+  .button-group {
+    margin-bottom: 18px;
+  }
+  .error-message {
+    color: rgb(255, 122, 89);
+    font-weight: 300;
   }
 }

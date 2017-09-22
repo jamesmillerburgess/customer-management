@@ -21,7 +21,7 @@ export const verifyAuth = (component, props) => {
   if (Meteor.user() || Meteor.loggingIn()) {
     return React.createElement(component, props);
   }
-  return <HomeConnect />;
+  return <HomeConnect {...props} />;
 };
 
 export const renderRoute = ({ path, component, exact }, index) => (
@@ -37,7 +37,7 @@ const App = props => (
   <Provider store={store}>
     <BrowserRouter>
       <div className={props.appClass}>
-        <Nav />
+        <Route path="/" component={Nav} />
         {routes.map(renderRoute)}
       </div>
     </BrowserRouter>

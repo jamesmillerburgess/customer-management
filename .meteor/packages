@@ -18,3 +18,4 @@ ecmascript@0.9.0-beta.27              # Enable ECMAScript2015+ syntax in app cod
 shell-server@0.3.0-beta.27            # Server-side component of the `meteor shell` command
 fourseven:scss
 accounts-password
+react-meteor-data
