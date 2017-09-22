@@ -13,7 +13,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   setIsProfileMenuOpen: value =>
     dispatch(setNavProp('isProfileMenuOpen', value)),
   goToProfile: () => ownProps.history.push('/profile'),
-  tryLogout: () => Meteor.logout((err, res) => ownProps.history.push('/')),
+  tryLogout: () => Meteor.logout(() => ownProps.history.push('/')),
 });
 
 const NavConnect = connect(mapStateToProps, mapDispatchToProps)(NavContainer);
