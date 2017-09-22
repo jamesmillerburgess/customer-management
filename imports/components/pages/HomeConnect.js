@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
+import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
 import HomeDisplay from './HomeDisplay';
 
-import { setLoginProp } from '../../state/actions/loginActionCreators';
+import { LOGIN, REGISTER } from './HomeConstants';
 
-export const REGISTER = 'REGISTER';
-export const LOGIN = 'LOGIN';
+import { setLoginProp } from '../../state/actions/loginActionCreators';
 
 export const mapStateToProps = ({ login }) => ({
   username: login.username || '',

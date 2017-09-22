@@ -3,11 +3,21 @@ export const Meteor = {
   user: function() {
     return this.loggedInUser;
   },
+  userId: function() {
+    return this._userId;
+  },
   loggingIn: function() {
     return this.isLoggingIn;
   },
   isLoggingIn: false,
   loggedInUser: null,
+  _userId: null,
+  methods: () => null,
+  call: () => null,
+  users: {
+    update: () => null,
+  },
+  loginWithPassword: () => null,
 };
 
 export const Mongo = {
@@ -32,4 +42,8 @@ export const Mongo = {
   },
 };
 
-export const createContainer = () => null;
+export const Accounts = {
+  createUser: () => null,
+};
+
+export const createContainer = (options, component) => component;

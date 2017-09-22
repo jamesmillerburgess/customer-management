@@ -5,22 +5,22 @@ import HomeDisplay from './HomeDisplay';
 
 describe('HomeDisplay', () => {
   let wrapper;
-  const dispatchers = {
+  const props = {
     setUsername: jest.fn(),
     setPassword: jest.fn(),
     setPasswordAgain: jest.fn(),
   };
   beforeEach(() => {
-    wrapper = shallow(<HomeDisplay dispatchers={dispatchers} />);
+    wrapper = shallow(<HomeDisplay {...props} />);
   });
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
   it('dispatches on change of username value', () => {
     wrapper.find('#username').simulate('change', { target: { value: 'a' } });
-    expect(dispatchers.setUsername).toHaveBeenCalled();
+    expect(props.setUsername).toHaveBeenCalled();
   });
   it('dispatches on change of password value', () => {
     wrapper.find('#password').simulate('change', { target: { value: 'a' } });
-    expect(dispatchers.setPassword).toHaveBeenCalled();
+    expect(props.setPassword).toHaveBeenCalled();
   });
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { REGISTER, LOGIN } from './HomeConnect';
+import { REGISTER, LOGIN } from './HomeConstants';
 import './HomeDisplay.scss';
 
 const HomeDisplay = props => {

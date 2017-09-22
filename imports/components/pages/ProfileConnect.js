@@ -7,10 +7,10 @@ import { setProfileProp } from '../../state/actions/profileActionCreators';
 
 export const mapStateToProps = ({ profile }) => ({
   username: profile.username || '',
-  hasLoaded: profile.hasLoaded || !Meteor.loggingIn(),
+  hasLoaded: profile.hasLoaded || false,
 });
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = dispatch => ({
   setUsername: value => dispatch(setProfileProp('username', value)),
   saveProfile: value =>
     Meteor.call('profile.save', Meteor.userId(), value, (err, res) => {}),

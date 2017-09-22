@@ -1,21 +1,24 @@
 import NavConnect, { mapStateToProps, mapDispatchToProps } from './NavConnect';
 
 describe('NavConnect Component', () => {
-  it('connects NavDisplay', () => {
-    expect(NavConnect.displayName).toBe('Connect(NavDisplay)');
+  it('connects NavInner', () => {
+    expect(NavConnect.displayName).toBe('Connect(NavInner)');
   });
 });
 describe('mapStateToProps Function', () => {
   it('maps login state', () => {
-    const state = { login: 'a', other: 'b' };
-    expect(mapStateToProps(state)).toEqual({ login: 'a' });
+    const state = { nav: {}, other: 'b' };
+    expect(mapStateToProps(state)).toEqual({ isProfileMenuOpen: false });
+    state.nav.isProfileMenuOpen = true;
+    expect(mapStateToProps(state)).toEqual({ isProfileMenuOpen: true });
   });
 });
 describe('mapDispatchToProps Function', () => {
   it('maps login dispatchers', () => {
-    const props = mapDispatchToProps(() => null);
-    expect(props.dispatchers.setUsername).not.toThrow();
-    expect(props.dispatchers.setPassword).not.toThrow();
-    expect(props.dispatchers.setPasswordAgain).not.toThrow();
+    const props = mapDispatchToProps(() => null, {
+      history: { push: jest.fn() },
+    });
+    expect(props.setIsProfileMenuOpen).not.toThrow();
+    expect(props.goToProfile).not.toThrow();
   });
 });

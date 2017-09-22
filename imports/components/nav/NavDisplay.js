@@ -20,6 +20,7 @@ const NavInner = props => (
     <div className="button-group">
       <NavSearchInput placeholder="Search" />
       <button
+        id="profile-button"
         className="nav-button"
         onClick={() => props.setIsProfileMenuOpen(!props.isProfileMenuOpen)}
       >
