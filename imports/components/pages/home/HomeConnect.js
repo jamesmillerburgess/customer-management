@@ -7,6 +7,7 @@ import HomeDisplay from './HomeDisplay';
 import { LOGIN, REGISTER } from './HomeConstants';
 
 import { setLoginProp } from '../../../state/actions/loginActionCreators';
+import { setProfileProp } from '../../../state/actions/profileActionCreators';
 
 export const mapStateToProps = ({ login }) => ({
   username: login.username || '',
@@ -21,6 +22,7 @@ export const tryLogin = (username, password, dispatch, history) => {
     if (err) {
       dispatch(setLoginProp('errorMessage', err.reason));
     } else {
+      dispatch(setProfileProp('username', Meteor.user().username));
       history.push('/');
     }
   });

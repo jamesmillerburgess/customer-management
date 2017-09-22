@@ -30,6 +30,7 @@ describe('mapDispatchToProps Function', () => {
   it('maps login dispatchers', () => {
     const ownProps = { history: { push: jest.fn() } };
     const props = mapDispatchToProps(() => null, ownProps);
+    Meteor.loggedInUser = { username: 'a' };
     expect(props.setUsername).not.toThrow();
     expect(props.setPassword).not.toThrow();
     expect(props.setPasswordAgain).not.toThrow();
@@ -47,10 +48,13 @@ describe('tryLogin Function', () => {
     tryLogin(null, null, dispatch);
     expect(dispatch).toHaveBeenCalled();
   });
-  it('calls history.push if it calls back without an error', () => {
+  it('calls dispatch and history.push if it calls back without an error', () => {
+    const dispatch = jest.fn();
     const history = { push: jest.fn() };
     Meteor.err = null;
-    tryLogin(null, null, null, history);
+    Meteor.loggedInUser = { username: 'a' };
+    tryLogin(null, null, dispatch, history);
+    expect(dispatch).toHaveBeenCalled();
     expect(history.push).toHaveBeenCalled();
   });
 });
