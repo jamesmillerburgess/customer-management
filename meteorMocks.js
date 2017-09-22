@@ -1,5 +1,13 @@
 export const Meteor = {
   startup: cb => cb(),
+  user: function() {
+    return this.loggedInUser;
+  },
+  loggingIn: function() {
+    return this.isLoggingIn;
+  },
+  isLoggingIn: false,
+  loggedInUser: null,
 };
 
 export const Mongo = {

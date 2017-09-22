@@ -1,0 +1,27 @@
+.home {
+  display: flex;
+  justify-content: space-around;
+  height: calc(100vh - 42px - 96px);
+  padding: 48px;
+  background-color: rgba(255, 122, 89, 0.15);
+  .login-form {
+    width: 500px;
+    height: 375px;
+    border: 3px solid rgb(255, 122, 89);
+    box-shadow: 0 1px 5px 0 rgba(45, 62, 80, 0.12);
+    background-color: white;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .login-title {
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 36px;
+    margin-top: 48px;
+  }
+  .input-group {
+    margin-bottom: 24px;
+  }
+}

@@ -21,3 +21,11 @@ button {
   background-color: #425b76;
   color: white;
 }
+
+.button-invis {
+  background-color: transparent;
+}
+
+.button-invis:hover {
+  text-decoration: underline;
+}
