@@ -1,7 +1,7 @@
 import { login } from './loginReducer';
 import * as AT from '../actions/actionTypes';
 
-describe('login reducer', () => {
+describe('login Reducer', () => {
   it('returns login state if the action type is not applicable', () => {
     const action = { type: 'NOT_APPLICABLE' };
     const state = { a: 'b' };

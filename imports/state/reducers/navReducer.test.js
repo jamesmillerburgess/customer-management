@@ -1,7 +1,7 @@
 import { nav } from './navReducer';
 import * as AT from '../actions/actionTypes';
 
-describe('nav reducer', () => {
+describe('nav Reducer', () => {
   it('returns nav state if the action type is not applicable', () => {
     const action = { type: 'NOT_APPLICABLE' };
     const state = { a: 'b' };
