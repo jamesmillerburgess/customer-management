@@ -12,8 +12,7 @@ export const mapStateToProps = ({ profile }) => ({
 
 export const mapDispatchToProps = dispatch => ({
   setUsername: value => dispatch(setProfileProp('username', value)),
-  saveProfile: value =>
-    Meteor.call('profile.save', Meteor.userId(), value, (err, res) => {}),
+  saveProfile: value => Meteor.call('profile.save', Meteor.userId(), value),
   setHasLoaded: value => dispatch(setProfileProp('hasLoaded', value)),
 });
 
