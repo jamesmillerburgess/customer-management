@@ -31,3 +31,5 @@ export const Mongo = {
     };
   },
 };
+
+export const createContainer = () => null;

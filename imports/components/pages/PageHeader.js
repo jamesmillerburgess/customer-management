@@ -8,12 +8,14 @@ const PageHeader = props => (
       <div className="header-title">
         <h1>{props.title}</h1>
       </div>
-      <div className="button-group">
-        <SearchInput placeholder={props.search} />
-        <button className="button-secondary">Customize</button>
-        <button className="button-secondary">Import</button>
-        <button className="button-primary">{props.add}</button>
-      </div>
+      {props.hideButtons ? null : (
+        <div className="button-group">
+          <SearchInput placeholder={props.search} />
+          <button className="button-secondary">Customize</button>
+          <button className="button-secondary">Import</button>
+          <button className="button-primary">{props.add}</button>
+        </div>
+      )}
     </div>
   </section>
 );

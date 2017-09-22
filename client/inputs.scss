@@ -15,3 +15,9 @@ input {
 input:focus {
   outline: none;
 }
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}

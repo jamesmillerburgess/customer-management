@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Nav from './Nav';
+import Profile from './Profile';
 
-describe('Nav', () => {
+describe('Profile', () => {
   let wrapper;
-  beforeEach(() => (wrapper = shallow(<Nav />)));
+  beforeEach(() => (wrapper = shallow(<Profile />)));
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
 });

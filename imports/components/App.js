@@ -6,7 +6,7 @@ import { createStore, compose } from 'redux';
 
 import app from '../state/appReducer';
 import './App.scss';
-import Nav from './nav/Nav';
+import NavConnect from './nav/NavConnect';
 import HomeConnect from '../components/pages/HomeConnect';
 import routes from '../api/routes';
 
@@ -37,7 +37,7 @@ const App = props => (
   <Provider store={store}>
     <BrowserRouter>
       <div className={props.appClass}>
-        <Route path="/" component={Nav} />
+        <Route path="/" component={NavConnect} />
         {routes.map(renderRoute)}
       </div>
     </BrowserRouter>
