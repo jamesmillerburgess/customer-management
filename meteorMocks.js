@@ -61,26 +61,6 @@ export const Accounts = {
   res: null,
 };
 
-const connect = ({ getMeteorData, pure = true }) => {
-  const BaseComponent = pure ? React.PureComponent : ReactComponent;
-  return WrappedComponent =>
-    class ReactMeteorDataComponent extends BaseComponent {
-      getMeteorData() {
-        return this.props;
-      }
-      render() {
-        return <WrappedComponent {...this.props} />;
-      }
-    };
-};
-
-export const createContainer = (options = {}, Component) => {
-  return props => <Component {...options(props)} />;
-  let expandedOptions = options;
-  if (typeof options === 'function') {
-    expandedOptions = {
-      getMeteorData: options,
-    };
-  }
-  return connect(expandedOptions)(Component);
-};
+export const createContainer = (options = {}, Component) => props => (
+  <Component {...options(props)} />
+);
