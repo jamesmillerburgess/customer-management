@@ -2,9 +2,9 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
-import PageHeader from './PageHeader';
+import PageHeader from '../PageHeader';
 
-const ProfileDisplayInner = props => (
+const ProfileDisplay = props => (
   <div>
     <PageHeader title="Profile" hideButtons />
     <div className="section-body">
@@ -18,6 +18,7 @@ const ProfileDisplayInner = props => (
         <div className="input-group">
           <div className="input-label">Username</div>
           <input
+            id="username"
             value={props.username}
             onChange={e => props.setUsername(e.target.value)}
           />
@@ -29,14 +30,5 @@ const ProfileDisplayInner = props => (
     </div>
   </div>
 );
-
-const ProfileDisplay = createContainer(props => {
-  const isLoggingIn = Meteor.loggingIn();
-  if (!Meteor.loggingIn() && !props.hasLoaded) {
-    props.setHasLoaded(true);
-    props.setUsername(Meteor.user().username);
-  }
-  return { ...props, isLoggingIn };
-}, ProfileDisplayInner);
 
 export default ProfileDisplay;

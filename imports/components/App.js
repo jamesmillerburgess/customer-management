@@ -6,8 +6,8 @@ import { createStore, compose } from 'redux';
 
 import app from '../state/appReducer';
 import './App.scss';
-import NavConnect from './nav/NavConnect';
-import HomeConnect from '../components/pages/HomeConnect';
+import NavConnect from './nav/nav/NavConnect';
+import HomeConnect from '../components/pages/home/HomeConnect';
 import routes from '../api/routes';
 
 export const hasReduxDevTools = () =>

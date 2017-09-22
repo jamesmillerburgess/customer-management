@@ -1,12 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { createContainer } from 'meteor/react-meteor-data';
-import { NavLink } from 'react-router-dom';
-import routes from '../../api/routes';
-import './NavDisplay.scss';
-import NavSearchInput from '../fields/NavSearchInput';
 
-const NavInner = props => (
+import { NavLink } from 'react-router-dom';
+import routes from '../../../api/routes';
+import './NavDisplay.scss';
+import NavSearchInput from '../../fields/NavSearchInput';
+
+const NavDisplay = props => (
   <div className="nav">
     <div className="button-group">
       {routes
@@ -26,6 +26,7 @@ const NavInner = props => (
       >
         {props.user ? props.user.username : 'Log in'}
         <div
+          id="profile-menu"
           className={`profile-menu ${props.isProfileMenuOpen ? 'open' : ''}`}
         >
           <div className="nav-name">
@@ -46,13 +47,5 @@ const NavInner = props => (
     </div>
   </div>
 );
-
-const NavDisplay = createContainer(props => {
-  const user = Meteor.user();
-  const tryLogout = () => {
-    Meteor.logout((err, res) => props.history.push('/'));
-  };
-  return { ...props, user, tryLogout };
-}, NavInner);
 
 export default NavDisplay;

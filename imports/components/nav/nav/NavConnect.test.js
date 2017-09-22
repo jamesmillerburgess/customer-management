@@ -2,7 +2,7 @@ import NavConnect, { mapStateToProps, mapDispatchToProps } from './NavConnect';
 
 describe('NavConnect Component', () => {
   it('connects NavInner', () => {
-    expect(NavConnect.displayName).toBe('Connect(NavInner)');
+    expect(NavConnect).toBeInstanceOf(Function);
   });
 });
 describe('mapStateToProps Function', () => {
@@ -20,5 +20,6 @@ describe('mapDispatchToProps Function', () => {
     });
     expect(props.setIsProfileMenuOpen).not.toThrow();
     expect(props.goToProfile).not.toThrow();
+    expect(props.tryLogout).not.toThrow();
   });
 });

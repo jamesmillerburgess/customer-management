@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import { Meteor } from '../../meteorMocks.js';
 
 import App, { verifyAuth, renderRoute, hasReduxDevTools } from './App.js';
-import HomeConnect from './pages/HomeConnect';
+import HomeConnect from './pages/home/HomeConnect';
 
 describe('App', () => {
   it('renders without crashing', () => {

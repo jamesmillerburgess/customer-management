@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 
 import ProfileDisplay from './ProfileDisplay';
 
-import { setProfileProp } from '../../state/actions/profileActionCreators';
+import { setProfileProp } from '../../../state/actions/profileActionCreators';
 
 export const mapStateToProps = ({ profile }) => ({
   username: profile.username || '',

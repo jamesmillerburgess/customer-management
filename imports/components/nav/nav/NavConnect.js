@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from 'meteor/meteor';
 
-import NavDisplay from './NavDisplay';
+import NavContainer from './NavContainer';
 
-import { setNavProp } from '../../state/actions/navActionCreators';
+import { setNavProp } from '../../../state/actions/navActionCreators';
 
 export const mapStateToProps = ({ nav }) => ({
   isProfileMenuOpen: nav.isProfileMenuOpen || false,
@@ -13,8 +13,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   setIsProfileMenuOpen: value =>
     dispatch(setNavProp('isProfileMenuOpen', value)),
   goToProfile: () => ownProps.history.push('/profile'),
+  tryLogout: () => Meteor.logout((err, res) => ownProps.history.push('/')),
 });
 
-const NavConnect = connect(mapStateToProps, mapDispatchToProps)(NavDisplay);
+const NavConnect = connect(mapStateToProps, mapDispatchToProps)(NavContainer);
 
 export default NavConnect;

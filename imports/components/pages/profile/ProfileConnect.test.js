@@ -3,11 +3,11 @@ import ProfileConnect, {
   mapDispatchToProps,
 } from './ProfileConnect';
 
-import { Meteor } from '../../../meteorMocks';
+import { Meteor } from 'meteor/meteor';
 
 describe('ProfileConnect Component', () => {
-  it('connects ProfileDisplayInner', () => {
-    expect(ProfileConnect.displayName).toBe('Connect(ProfileDisplayInner)');
+  it('returns a function', () => {
+    expect(ProfileConnect).toBeInstanceOf(Function);
   });
 });
 describe('mapStateToProps Function', () => {

@@ -1,7 +1,7 @@
 import Dashboard from '../components/pages/Dashboard';
 import Companies from '../components/pages/Companies';
 import Contacts from '../components/pages/Contacts';
-import ProfileConnect from '../components/pages/ProfileConnect';
+import ProfileConnect from '../components/pages/profile/ProfileConnect';
 
 const routes = [
   {

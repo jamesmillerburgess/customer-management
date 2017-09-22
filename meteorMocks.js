@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const Meteor = {
   startup: cb => cb(),
   user: function() {
@@ -11,13 +13,22 @@ export const Meteor = {
   },
   isLoggingIn: false,
   loggedInUser: null,
+  logout: cb => cb(),
   _userId: null,
   methods: () => null,
-  call: () => null,
+  call: function() {
+    if (arguments.length > 0) {
+      arguments[arguments.length - 1]();
+    }
+  },
   users: {
     update: () => null,
   },
-  loginWithPassword: () => null,
+  loginWithPassword: function(username, password, cb) {
+    return cb(this.err, this.res);
+  },
+  err: null,
+  res: null,
 };
 
 export const Mongo = {
@@ -43,7 +54,33 @@ export const Mongo = {
 };
 
 export const Accounts = {
-  createUser: () => null,
+  createUser: function(user, cb) {
+    return cb(this.err, this.res);
+  },
+  err: null,
+  res: null,
 };
 
-export const createContainer = (options, component) => component;
+const connect = ({ getMeteorData, pure = true }) => {
+  const BaseComponent = pure ? React.PureComponent : ReactComponent;
+  return WrappedComponent =>
+    class ReactMeteorDataComponent extends BaseComponent {
+      getMeteorData() {
+        return this.props;
+      }
+      render() {
+        return <WrappedComponent {...this.props} />;
+      }
+    };
+};
+
+export const createContainer = (options = {}, Component) => {
+  return props => <Component {...options(props)} />;
+  let expandedOptions = options;
+  if (typeof options === 'function') {
+    expandedOptions = {
+      getMeteorData: options,
+    };
+  }
+  return connect(expandedOptions)(Component);
+};
