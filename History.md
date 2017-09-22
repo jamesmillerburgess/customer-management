@@ -1,6 +1,6 @@
 ## v0.2.0 – Accounts
 
-
+* Placed menu items behind authorized routes
 
 ## v0.1.0 – Basic Navigation
 
