@@ -22,6 +22,9 @@ export const tryLogin = (username, password, dispatch, history) => {
     if (err) {
       dispatch(setLoginProp('errorMessage', err.reason));
     } else {
+      dispatch(setLoginProp('username', ''));
+      dispatch(setLoginProp('password', ''));
+      dispatch(setLoginProp('passwordAgain', ''));
       dispatch(setProfileProp('username', Meteor.user().username));
       history.push('/');
     }
