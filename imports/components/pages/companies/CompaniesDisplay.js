@@ -34,23 +34,14 @@ const gridPageProps = {
       accessor: 'firstContactCreateDate',
     },
   ],
-  data: [
-    {
-      name: 'Name',
-      createDate: moment('2017-09-16').format('MMM DD, YYYY'),
-      firstContactCreateDate: '-',
-    },
-    {
-      name: 'ABC Widgets',
-      createDate: moment('2017-09-16').format('MMM DD, YYYY'),
-      firstContactCreateDate: moment('2017-09-16').format('MMM DD, YYYY'),
-    },
-  ],
 };
 
 const CompaniesDisplay = props => (
   <div>
-    <PageHeader {...headerProps} />
+    <PageHeader
+      {...headerProps}
+      onClickAdd={() => props.setIsOverlayOpen(true)}
+    />
     <GridPage {...gridPageProps} data={props.loading ? [] : props.companies} />
   </div>
 );

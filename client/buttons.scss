@@ -29,3 +29,19 @@ button {
 .button-invis:hover {
   text-decoration: underline;
 }
+
+.button-dismiss-overlay {
+  border-radius: 100%;
+  height: 32px;
+  width: 32px;
+  padding: 0;
+}
+
+.dismiss-overlay-icon-wrapper {
+  height: 32px;
+  width: 32px;
+}
+
+.dismiss-overlay-icon {
+  color: white;
+}

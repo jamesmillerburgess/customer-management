@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import HomeConnect from './pages/home/HomeConnect';
 import NavConnect from './nav/nav/NavConnect';
+import AddCompanyConnect from './overlays/addCompany/AddCompanyConnect';
 import routes from '../api/routes';
 
 export const verifyAuth = (component, props) => {
@@ -25,9 +26,16 @@ export const renderRoute = ({ path, component, exact }, index) => (
 
 const AppDisplay = props => (
   <BrowserRouter>
-    <div className={props.isOverlayOpen ? 'blur' : ''}>
-      <Route path="/" component={NavConnect} />
-      {routes.map(renderRoute)}
+    <div>
+      <div className={`app ${props.isOverlayOpen ? 'blur' : ''}`}>
+        <Route path="/" component={NavConnect} />
+        {routes.map(renderRoute)}
+      </div>
+      <div
+        className={`overlay-background ${props.isOverlayOpen ? 'show' : ''}`}
+      >
+        <AddCompanyConnect />
+      </div>
     </div>
   </BrowserRouter>
 );
