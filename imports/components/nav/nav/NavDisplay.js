@@ -19,12 +19,14 @@ const NavDisplay = props => (
     </div>
     <div className="button-group">
       <NavSearchInput placeholder="Search" />
-      <button
-        id="profile-button"
-        className="nav-button"
-        onClick={() => props.setIsProfileMenuOpen(!props.isProfileMenuOpen)}
-      >
-        {props.user ? props.user.username : 'Log in'}
+      <div>
+        <button
+          id="profile-button"
+          className="nav-button"
+          onClick={() => props.setIsProfileMenuOpen(!props.isProfileMenuOpen)}
+        >
+          {props.user ? props.user.username : 'Log in'}
+        </button>
         <div
           id="profile-menu"
           className={`profile-menu ${props.isProfileMenuOpen ? 'open' : ''}`}
@@ -43,7 +45,7 @@ const NavDisplay = props => (
             </li>
           </ul>
         </div>
-      </button>
+      </div>
     </div>
   </div>
 );

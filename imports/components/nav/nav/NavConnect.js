@@ -14,12 +14,17 @@ export const mapStateToProps = ({ nav }) => ({
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   setIsProfileMenuOpen: value =>
     dispatch(setNavProp('isProfileMenuOpen', value)),
-  goToProfile: () => ownProps.history.push('/profile'),
-  tryLogout: () =>
+  goToProfile: () => {
+    dispatch(setNavProp('isProfileMenuOpen', false));
+    ownProps.history.push('/profile');
+  },
+  tryLogout: () => {
     Meteor.logout(() => {
+      dispatch(setNavProp('isProfileMenuOpen', false));
       dispatch(setLoginProp('mode', LOGIN));
       ownProps.history.push('/');
-    }),
+    });
+  },
 });
 
 const NavConnect = connect(mapStateToProps, mapDispatchToProps)(NavContainer);
