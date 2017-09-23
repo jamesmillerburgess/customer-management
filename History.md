@@ -1,3 +1,6 @@
+## v0.3.0 – Companies
+
+
 ## v0.2.0 – Accounts
 
 * Placed menu items behind authorized routes
