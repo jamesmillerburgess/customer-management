@@ -12,7 +12,6 @@
   height: 0px;
   transition: background-color 0.3s ease-in-out, height 0s linear 0.3s,
     width 0s linear 0.3s;
-  overflow: hidden;
 }
 .overlay-background.show {
   position: fixed;
@@ -37,7 +36,7 @@
   right: 0px;
 }
 .overlay-header {
-  height: 68px;
+  min-height: 68px;
   background-image: linear-gradient(-303deg, #00a4bd, #00afb2 56%, #00bda5);
   display: flex;
   flex-direction: row;
@@ -50,16 +49,19 @@
 }
 .overlay-body {
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+  flex-shrink: 1;
+  display: block;
   padding: 36px 36px 36px 24px;
+  overflow: auto;
 }
 .overlay-footer {
-  height: 88px;
+  min-height: 88px;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-left: 24px;
+  background-color: #f5f8fa;
+  border-top: 1px solid #cbd6e2;
 }
 .overlay-footer button {
   margin-right: 8px;
