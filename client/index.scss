@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700');
 
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+  min-height: 100%;
 }
 
 li,

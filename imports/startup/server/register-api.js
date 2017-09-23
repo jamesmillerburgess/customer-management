@@ -1,1 +1,2 @@
-import '../../api/contact/contact.js';
+import '../../api/contact/contact';
+import '../../api/user/userMethods';
