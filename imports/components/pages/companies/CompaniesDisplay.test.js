@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Companies from './Companies';
+import CompaniesDisplay from './CompaniesDisplay';
 
-describe('Companies', () => {
+describe('CompaniesDisplay', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<Companies />);
+    wrapper = shallow(<CompaniesDisplay />);
   });
   afterEach(() => {
     wrapper.unmount();

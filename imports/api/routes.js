@@ -1,5 +1,5 @@
 import Dashboard from '../components/pages/Dashboard';
-import Companies from '../components/pages/Companies';
+import Companies from '../components/pages/companies/CompaniesConnect';
 import Contacts from '../components/pages/Contacts';
 import ProfileConnect from '../components/pages/profile/ProfileConnect';
 

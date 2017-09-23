@@ -1,8 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 
-import PageHeader from './PageHeader';
-import GridPage from './GridPage';
+import PageHeader from '../PageHeader';
+import GridPage from '../GridPage';
 
 const headerProps = {
   title: 'Companies',
@@ -48,11 +48,11 @@ const gridPageProps = {
   ],
 };
 
-const Companies = () => (
+const CompaniesDisplay = props => (
   <div>
     <PageHeader {...headerProps} />
-    <GridPage {...gridPageProps} />
+    <GridPage {...gridPageProps} data={props.loading ? [] : props.companies} />
   </div>
 );
 
-export default Companies;
+export default CompaniesDisplay;
