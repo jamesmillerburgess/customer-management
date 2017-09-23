@@ -38,10 +38,14 @@ const NavDisplay = props => (
           <hr />
           <ul>
             <li>
-              <a onClick={props.goToProfile}>Edit profile</a>
+              <a href="#" onClick={props.goToProfile}>
+                Edit profile
+              </a>
             </li>
             <li>
-              <a onClick={props.tryLogout}>Log out</a>
+              <a href="#" onClick={props.tryLogout}>
+                Log out
+              </a>
             </li>
           </ul>
         </div>
