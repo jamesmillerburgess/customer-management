@@ -15,11 +15,12 @@ describe('mapStateToProps Function', () => {
 });
 describe('mapDispatchToProps Function', () => {
   it('maps login dispatchers', () => {
+    const e = { preventDefault: jest.fn() };
     const props = mapDispatchToProps(() => null, {
       history: { push: jest.fn() },
     });
     expect(props.setIsProfileMenuOpen).not.toThrow();
-    expect(props.goToProfile).not.toThrow();
-    expect(props.tryLogout).not.toThrow();
+    expect(() => props.goToProfile(e)).not.toThrow();
+    expect(() => props.tryLogout(e)).not.toThrow();
   });
 });
