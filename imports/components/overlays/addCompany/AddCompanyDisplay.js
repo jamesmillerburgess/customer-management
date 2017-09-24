@@ -12,11 +12,17 @@ const AddCompanyDisplay = props => (
       <div className="overlay-content">
         <div className="input-group">
           <div className="input-label">Name</div>
-          <input />
+          <input
+            value={props.name}
+            onChange={e => props.setName(e.target.value)}
+          />
         </div>
         <div className="input-group">
           <div className="input-label">Website</div>
-          <input />
+          <input
+            value={props.website}
+            onChange={e => props.setWebsite(e.target.value)}
+          />
         </div>
       </div>
     </div>
