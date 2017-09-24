@@ -12,6 +12,16 @@ const CompanyDisplay = props => (
         <div className="panel">
           <div className="title">{props.company.name}</div>
         </div>
+        <div className="panel">
+          <div className="input-group">
+            <div className="input-label">Name</div>
+            <input value={props.company.name} />
+          </div>
+          <div className="input-group">
+            <div className="input-label">Website</div>
+            <input value={props.company.website} />
+          </div>
+        </div>
       </div>
       <div className="content">
         <div className="panel">New note</div>
