@@ -37,3 +37,51 @@
   margin-bottom: 15px;
   padding: 8px;
 }
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+.timeline-entry {
+  display: flex;
+  flex-direction: row;
+}
+.timeline-icon {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(81, 111, 144);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 36px;
+  font-weight: 300;
+  padding-left: 1px;
+  padding-bottom: 1px;
+  margin: 8px 16px;
+}
+.timeline-details.panel {
+  flex-grow: 1;
+  padding: 16px;
+  display: flex;
+}
+.timeline-message {
+  font-weight: 300;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+.keyword {
+  font-weight: 400;
+}
+.timestamp {
+  font-weight: 400;
+  opacity: 0.75;
+  font-size: 12px;
+  color: #7c98b6;
+}
+.timeline-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  margin-right: 16px;
+}
