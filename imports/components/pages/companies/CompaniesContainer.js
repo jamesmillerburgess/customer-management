@@ -9,7 +9,10 @@ const CompaniesContainer = createContainer(props => {
     return { ...props, companies: [], loading: true };
   }
   const loading = !Meteor.subscribe('company.user').ready();
-  const companies = Companies.find({ users: Meteor.userId() }).fetch();
+  const companies = Companies.find({
+    users: Meteor.userId(),
+    isArchived: false,
+  }).fetch();
   return { ...props, companies, loading };
 }, CompaniesDisplay);
 

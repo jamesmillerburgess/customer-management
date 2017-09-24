@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import PageHeader from '../PageHeader';
 import GridPage from '../GridPage';
@@ -10,7 +11,7 @@ const headerProps = {
   add: 'Add company',
 };
 
-const gridPageProps = {
+const gridPageProps = companies => ({
   sidebarHeader: 'All companies',
   noRows: 'No companies yet!',
   columns: [
@@ -23,6 +24,11 @@ const gridPageProps = {
       Header: 'Name',
       id: 'name',
       accessor: 'name',
+      Cell: props => (
+        <Link to={`/companies/${companies[props.index]._id}`}>
+          {props.value}
+        </Link>
+      ),
     },
     {
       Header: 'Create Date (GMT+2)',
@@ -34,7 +40,7 @@ const gridPageProps = {
       accessor: 'firstContactCreateDate',
     },
   ],
-};
+});
 
 const CompaniesDisplay = props => (
   <div>
@@ -42,7 +48,11 @@ const CompaniesDisplay = props => (
       {...headerProps}
       onClickAdd={() => props.setIsOverlayOpen(true)}
     />
-    <GridPage {...gridPageProps} data={props.loading ? [] : props.companies} />
+    <GridPage
+      {...gridPageProps(props.companies)}
+      data={props.loading ? [] : props.companies}
+      match={props.match}
+    />
   </div>
 );
 

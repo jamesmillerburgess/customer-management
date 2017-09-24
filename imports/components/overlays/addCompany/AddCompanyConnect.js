@@ -16,6 +16,11 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   setName: value => dispatch(setOverlayProp('name', value)),
   setWebsite: value => dispatch(setOverlayProp('website', value)),
   closeOverlay: () => dispatch(setAppProp('isOverlayOpen', false)),
+  create: company =>
+    Meteor.call('company.create', company, Meteor.userId(), (err, res) => {
+      dispatch(setAppProp('isOverlayOpen', false));
+      ownProps.history.push(`/companies/${res}`);
+    }),
 });
 
 const AddCompanyConnect = connect(mapStateToProps, mapDispatchToProps)(

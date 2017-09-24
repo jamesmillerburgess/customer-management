@@ -34,7 +34,7 @@ const AppDisplay = props => (
       <div
         className={`overlay-background ${props.isOverlayOpen ? 'show' : ''}`}
       >
-        <AddCompanyConnect />
+        <Route path="/" component={AddCompanyConnect} />
       </div>
     </div>
   </BrowserRouter>

@@ -27,7 +27,13 @@ const AddCompanyDisplay = props => (
       </div>
     </div>
     <footer className="overlay-footer">
-      <button className="button-primary">Create company</button>
+      <button
+        className="button-primary"
+        onClick={() =>
+          props.create({ name: props.name, website: props.website })}
+      >
+        Create company
+      </button>
       <button className="button-primary">Create and add another</button>
       <button className="button-secondary" onClick={props.closeOverlay}>
         Cancel
