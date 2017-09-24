@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 const CompanyDisplay = props => (
   <div className="object-editor">
@@ -31,19 +32,23 @@ const CompanyDisplay = props => (
       <div className="content">
         <div className="panel">New note</div>
         <div className="timeline">
-          <div className="timeline-entry">
-            <div className="timeline-icon">+</div>
-            <div className="timeline-details panel">
-              <img className="timeline-avatar" src="/empty-company-pic.png" />
-              <div className="timeline-details-body">
-                <div className="timeline-message">
-                  <span className="keyword">{props.company.name}</span> was
-                  created
+          {props.company.timeline.map(entry => (
+            <div className="timeline-entry" key={entry.id}>
+              <div className="timeline-icon">+</div>
+              <div className="timeline-details panel">
+                <img className="timeline-avatar" src="/empty-company-pic.png" />
+                <div className="timeline-details-body">
+                  <div className="timeline-message">
+                    <span className="keyword">{props.company.name}</span> was
+                    created
+                  </div>
+                  <div className="timestamp">
+                    {moment(entry.timestamp).format('MMMM Do [at] h:mm a')}
+                  </div>
                 </div>
-                <div className="timestamp">September 23rd at 10:42 pm</div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

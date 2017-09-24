@@ -6,11 +6,12 @@ import CompanyDisplay from './CompanyDisplay';
 
 const CompanyContainer = createContainer(props => {
   if (!Meteor.userId()) {
-    return { ...props, company: {}, loading: true };
+    return { ...props, company: { timeline: [] }, loading: true };
   }
   const companyId = props.match.params.companyId;
   const loading = !Meteor.subscribe('company.single', companyId).ready();
-  const company = Companies.findOne(companyId) || {};
+  const company = Companies.findOne(companyId) || { name: '', timeline: [] };
+  console.log(company);
   return { ...props, company, loading };
 }, CompanyDisplay);
 
