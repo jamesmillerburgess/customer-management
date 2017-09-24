@@ -30,9 +30,16 @@ const CompanyDisplay = props => (
         </div>
       </div>
       <div className="content">
-        <div className="panel">New note</div>
+        <div className="panel">
+          <div className="interaction-menu">
+            <div className="interaction-item">New note</div>
+            <div className="interaction-item">Log activity</div>
+            <div className="interaction-item">Create task</div>
+          </div>
+          <textarea />
+        </div>
         <div className="timeline">
-          {props.company.timeline.map(entry => (
+          {props.company.timeline.reverse().map(entry => (
             <div className="timeline-entry" key={entry.id}>
               <div className="timeline-icon">+</div>
               <div className="timeline-details panel">
