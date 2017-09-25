@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 
 import { COMPANY_FIELDS } from './CompanyConnect';
+import Timeline from '../../sections/Timeline';
 
 const CompanyDisplay = props => (
   <div className="object-editor-wrapper">
@@ -63,7 +63,7 @@ const CompanyDisplay = props => (
           </div>
         </div>
         <div className="content">
-          <div className="panel">
+          <div className="panel menu-panel">
             <div className="interaction-menu">
               <div className="interaction-item active">
                 <div className="fa fa-fw fa-pencil icon" />
@@ -93,6 +93,7 @@ const CompanyDisplay = props => (
             >
               <button
                 className="button-primary"
+                style={{ display: props.isWritingNote ? '' : 'none' }}
                 onClick={() => props.addNote(props.note)}
               >
                 Save note
@@ -102,53 +103,7 @@ const CompanyDisplay = props => (
               </button>
             </div>
           </div>
-          <div className="timeline">
-            {props.company.timeline.reverse().map(entry => (
-              <div className="timeline-entry" key={entry.id}>
-                <div className="timeline-icon">
-                  {entry.type === 'NOTE' ? (
-                    <div className="fa fa-fw fa-pencil" />
-                  ) : null}
-                  {entry.type === 'CREATION' ? (
-                    <div className="fa fa-fw fa-plus" />
-                  ) : null}
-                </div>
-                <div className="timeline-details panel">
-                  <img
-                    className="timeline-avatar"
-                    src={
-                      entry.type === 'CREATION' ? (
-                        '/empty-company-pic.png'
-                      ) : (
-                        '/empty-profile-pic.png'
-                      )
-                    }
-                  />
-                  <div className="timeline-details-body">
-                    {entry.type === 'NOTE' ? (
-                      <div className="timeline-message">
-                        <span className="keyword">{entry.username}</span> left a
-                        note
-                      </div>
-                    ) : (
-                      <div className="timeline-message">
-                        <span className="keyword">
-                          {props.company.name}
-                        </span>{' '}
-                        was created
-                      </div>
-                    )}
-                    <div className="timestamp">
-                      {moment(entry.timestamp).format('MMMM Do [at] h:mm a')}
-                    </div>
-                    {entry.type === 'NOTE' ? (
-                      <div className="note">{entry.note}</div>
-                    ) : null}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <Timeline timeline={props.company.timeline} />
         </div>
       </div>
     </div>

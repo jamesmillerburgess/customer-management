@@ -19,6 +19,7 @@ const create = function(company, userId) {
         type: CREATION,
         timestamp: new Date(),
         userId: this.userId,
+        keyword: company.name,
       },
     ],
   });
@@ -37,7 +38,7 @@ export const addNote = function(companyId, note) {
         type: NOTE,
         timestamp: new Date(),
         userId: this.userId,
-        username: Meteor.users.findOne(this.userId).username,
+        keyword: Meteor.users.findOne(this.userId).username,
         note,
       },
     },
