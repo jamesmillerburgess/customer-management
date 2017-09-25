@@ -49,16 +49,14 @@
 .timeline-icon {
   width: 30px;
   height: 30px;
-  background-color: rgb(81, 111, 144);
   border-radius: 100%;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: rgb(81, 111, 144);
   font-size: 36px;
   font-weight: 300;
-  padding-left: 1px;
-  padding-bottom: 1px;
   margin: 8px 16px;
 }
 .timeline-details.panel {
@@ -69,7 +67,6 @@
 .timeline-message {
   font-weight: 300;
   margin-bottom: 6px;
-  font-size: 14px;
 }
 .keyword {
   font-weight: 400;

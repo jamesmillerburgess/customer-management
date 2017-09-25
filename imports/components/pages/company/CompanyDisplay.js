@@ -41,7 +41,9 @@ const CompanyDisplay = props => (
         <div className="timeline">
           {props.company.timeline.reverse().map(entry => (
             <div className="timeline-entry" key={entry.id}>
-              <div className="timeline-icon">+</div>
+              <div className="timeline-icon">
+                <span className="fa fa-fw fa-plus-circle" />
+              </div>
               <div className="timeline-details panel">
                 <img className="timeline-avatar" src="/empty-company-pic.png" />
                 <div className="timeline-details-body">
