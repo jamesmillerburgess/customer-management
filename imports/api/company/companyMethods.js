@@ -3,7 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import _ from 'lodash/fp';
 
 import Companies from './companyCollection';
-import { COMPANY_FIELDS } from '../../components/pages/company/CompanyConnect';
+import { COMPANY_FIELDS } from '../../components/pages/company/CompanyConstants';
 
 const CREATION = 'CREATION';
 const NOTE = 'NOTE';
