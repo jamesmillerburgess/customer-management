@@ -52,4 +52,6 @@ const Timeline = props => (
   </div>
 );
 
+Timeline.defaultProps = { timeline: [] };
+
 export default Timeline;

@@ -1,4 +1,4 @@
-import * as AC from './profileActionCreators';
+import * as AC from './overlayActionCreators';
 import * as AT from './actionTypes';
 
 describe('setOverlayProp Action Creator', () => {

@@ -29,9 +29,11 @@ export const Meteor = {
   },
   err: null,
   res: null,
+  publish: jest.fn(),
 };
 
 export const Mongo = {
+  ObjectID: () => ({ _str: 'str' }),
   Collection: name => {
     return {
       insert: function() {
@@ -48,6 +50,9 @@ export const Mongo = {
       count: function() {
         return this.num;
       },
+      update: function () {
+        return this;
+      }
       num: 0,
     };
   },

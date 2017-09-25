@@ -2,83 +2,29 @@ import { connect } from 'react-redux';
 
 import CompanyContainer from './CompanyContainer';
 import { setCompanyProp } from '../../../state/actions/companyActionCreators';
-
-export const COMPANY_FIELDS = [
-  {
-    property: 'name',
-    label: 'Name',
-    type: 'text',
-  },
-  {
-    property: 'website',
-    label: 'Website',
-    type: 'text',
-  },
-  {
-    property: 'industry',
-    label: 'Industry',
-    type: 'text',
-  },
-  {
-    property: 'phoneNumber',
-    label: 'Phone Number',
-    type: 'text',
-  },
-  {
-    property: 'streetAddress',
-    label: 'Street Address',
-    type: 'text',
-  },
-  {
-    property: 'city',
-    label: 'City',
-    type: 'text',
-  },
-  {
-    property: 'stateRegion',
-    label: 'State/Region',
-    type: 'text',
-  },
-  {
-    property: 'postalCode',
-    label: 'Postal Code',
-    type: 'text',
-  },
-  {
-    property: 'numberOfEmployees',
-    label: 'Number of Employees',
-    type: 'text',
-  },
-  {
-    property: 'annualRevenue',
-    label: 'Annual Revenue',
-    type: 'text',
-  },
-  {
-    property: 'timeZone',
-    label: 'Time Zone',
-    type: 'text',
-  },
-  {
-    property: 'description',
-    label: 'Description',
-    type: 'text',
-  },
-];
+import { COMPANY_FIELDS } from './CompanyConstants';
 
 export const mapStateToProps = ({ company }) => {
   const props = {};
   COMPANY_FIELDS.forEach(
     (field, index) => (props[field.property] = company[field.property] || '')
   );
+  props.numEditedProperties = 0;
   props.isEditingCompany =
     company.hasLoaded &&
-    COMPANY_FIELDS.reduce(
-      (prev, field) =>
-        prev ||
-        props[field.property] !== (company.loadedValues[field.property] || ''),
-      false
-    );
+    COMPANY_FIELDS.reduce((prev, field) => {
+      let diff = false;
+      if (
+        props[field.property] !== (company.loadedValues[field.property] || '')
+      ) {
+        diff = true;
+        props.numEditedProperties += 1;
+      }
+      if (prev || diff) {
+        return true;
+      }
+      return false;
+    }, false);
   props.note = company.note || '';
   props.isWritingNote = company.note ? true : false;
   props.hasLoaded = company.hasLoaded || false;
@@ -121,7 +67,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     );
   },
   cancelEditCompany: () => {
-    dispatch(setCompanyProp('name'));
+    dispatch(setCompanyProp('hasLoaded', false));
   },
 });
 

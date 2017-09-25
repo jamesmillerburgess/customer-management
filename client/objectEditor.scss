@@ -12,6 +12,14 @@
   align-items: center;
   width: 100%;
   max-width: 1200px;
+  a {
+    text-decoration: none;
+    font-weight: 400;
+    color: #0091ae;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 }
 .object-editor .header {
   height: 64px;
@@ -24,6 +32,7 @@
   box-sizing: border-box;
 }
 .object-editor .header .left-arrow {
+  color: #0091ae;
   text-decoration: none;
   font-size: 12px;
 }
@@ -64,6 +73,7 @@
   padding: 8px;
   font-weight: 300;
   margin-bottom: -2px;
+  cursor: pointer;
 }
 .interaction-item.active {
   border-bottom: 3px solid #33475b;
@@ -110,4 +120,20 @@
 }
 .sidebar-properties input:focus {
   border-bottom: 1px solid rgba(0, 208, 228, 0.5);
+}
+.button-footer {
+  position: fixed;
+  bottom: -48px;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background-color: #f5f8fa;
+  padding: 16px 52px;
+  z-index: 1000;
+  border-top: 1px solid #cbd6e2;
+  box-shadow: 0 1px 24px 0 rgba(0, 0, 0, 0.08);
+}
+.edited-properties {
+  color: #33475b;
+  font-weight: 300;
 }

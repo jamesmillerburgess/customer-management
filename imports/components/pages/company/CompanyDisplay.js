@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { COMPANY_FIELDS } from './CompanyConnect';
+import { COMPANY_FIELDS } from './CompanyConstants';
 import Timeline from '../../sections/Timeline';
 
 const CompanyDisplay = props => (
@@ -30,35 +30,40 @@ const CompanyDisplay = props => (
               </div>
             ))}
             <div
-              className={`button-group ${props.isEditingCompany
+              className={`button-footer ${props.isEditingCompany
                 ? 'expanded'
                 : 'expandable'}`}
               style={{
-                height: props.isEditingCompany ? '43px' : '0px',
-                opacity: props.isEditingCompany ? '1' : '0',
+                height: props.isEditingCompany ? '90px' : '0px',
               }}
             >
-              <button
-                className="button-primary"
-                onClick={() =>
-                  props.saveCompany(
-                    COMPANY_FIELDS.reduce(
-                      (prev, field) => ({
-                        ...prev,
-                        [field.property]: props[field.property],
-                      }),
-                      {}
-                    )
-                  )}
-              >
-                Save
-              </button>
-              <button
-                className="button-secondary"
-                onClick={props.cancelEditCompany}
-              >
-                Cancel
-              </button>
+              <div className="button-group">
+                <button
+                  className="button-primary"
+                  onClick={() =>
+                    props.saveCompany(
+                      COMPANY_FIELDS.reduce(
+                        (prev, field) => ({
+                          ...prev,
+                          [field.property]: props[field.property],
+                        }),
+                        {}
+                      )
+                    )}
+                >
+                  Save
+                </button>
+                <button
+                  className="button-secondary"
+                  onClick={props.cancelEditCompany}
+                >
+                  Cancel
+                </button>
+                <div className="edited-properties">
+                  You've changed {props.numEditedProperties} company{' '}
+                  {props.numEditedProperties === 1 ? 'property' : 'properties'}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -93,12 +98,18 @@ const CompanyDisplay = props => (
             >
               <button
                 className="button-primary"
-                style={{ display: props.isWritingNote ? '' : 'none' }}
-                onClick={() => props.addNote(props.note)}
+                style={props.isWritingNote ? {} : { cursor: 'auto' }}
+                onClick={
+                  props.isWritingNote ? () => props.addNote(props.note) : null
+                }
               >
                 Save note
               </button>
-              <button className="button-secondary" onClick={props.cancelNote}>
+              <button
+                className="button-secondary"
+                style={props.isWritingNote ? {} : { cursor: 'auto' }}
+                onClick={props.isWritingNote ? props.cancelNote : null}
+              >
                 Cancel
               </button>
             </div>
@@ -109,5 +120,7 @@ const CompanyDisplay = props => (
     </div>
   </div>
 );
+
+CompanyDisplay.defaultProps = { company: {} };
 
 export default CompanyDisplay;

@@ -18,19 +18,19 @@ textarea:focus {
   outline: none;
 }
 
-::-webkit-input-placeholder {
+textarea::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: rgba(#33475b, 0.5);
 }
-::-moz-placeholder {
+textarea::-moz-placeholder {
   /* Firefox 19+ */
   color: rgba(#33475b, 0.5);
 }
-:-ms-input-placeholder {
+textarea:-ms-input-placeholder {
   /* IE 10+ */
   color: rgba(#33475b, 0.5);
 }
-:-moz-placeholder {
+textarea:-moz-placeholder {
   /* Firefox 18- */
   color: rgba(#33475b, 0.5);
 }

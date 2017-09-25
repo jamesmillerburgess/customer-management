@@ -1,4 +1,4 @@
-import * as AC from './loginActionCreators';
+import * as AC from './companyActionCreators';
 import * as AT from './actionTypes';
 
 describe('setCompanyProp Action Creator', () => {

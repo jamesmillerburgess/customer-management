@@ -50,6 +50,10 @@ button:hover {
 .button-dismiss-overlay:hover {
   background-color: rgba(white, 0.2);
 }
+.button-group {
+  display: flex;
+  align-items: center;
+}
 
 .button-group button {
   margin-right: 8px;

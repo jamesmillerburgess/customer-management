@@ -1,7 +1,13 @@
 import React from 'react';
 
 const AddCompanyDisplay = props => (
-  <div className="overlay-right">
+  <form
+    className="overlay-right"
+    onSubmit={e => {
+      e.preventDefault();
+      props.create({ name: props.name, website: props.website });
+    }}
+  >
     <header className="overlay-header">
       Add a company
       <button className="button-dismiss-overlay" onClick={props.closeOverlay}>
@@ -27,18 +33,14 @@ const AddCompanyDisplay = props => (
       </div>
     </div>
     <footer className="overlay-footer">
-      <button
-        className="button-primary"
-        onClick={() =>
-          props.create({ name: props.name, website: props.website })}
-      >
+      <button className="button-primary" type="submit">
         Create company
       </button>
       <button className="button-secondary" onClick={props.closeOverlay}>
         Cancel
       </button>
     </footer>
-  </div>
+  </form>
 );
 
 export default AddCompanyDisplay;

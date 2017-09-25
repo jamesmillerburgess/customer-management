@@ -17,4 +17,12 @@
   .content {
     width: 100%;
   }
+  .content a {
+    text-decoration: none;
+    font-weight: 400;
+    color: #0091ae;
+  }
+  .content a:hover {
+    text-decoration: underline;
+  }
 }

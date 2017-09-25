@@ -8,10 +8,13 @@ import { COMPANY_FIELDS } from '../../components/pages/company/CompanyConnect';
 const CREATION = 'CREATION';
 const NOTE = 'NOTE';
 
-const create = function(company, userId) {
+export const create = function(company) {
+  if (!company || !company.name) {
+    throw new Error();
+  }
   return Companies.insert({
     ...company,
-    users: [userId],
+    users: [this.userId],
     isArchived: false,
     timeline: [
       {

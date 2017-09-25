@@ -3,7 +3,7 @@ import { Accounts } from 'meteor/accounts-base';
 import AddCompanyConnect, {
   mapStateToProps,
   mapDispatchToProps,
-} from './AddCompany';
+} from './AddCompanyConnect';
 
 describe('AddCompanyConnect Component', () => {
   it('connects AddCompanyDisplay', () => {
@@ -12,7 +12,7 @@ describe('AddCompanyConnect Component', () => {
 });
 describe('mapStateToProps Function', () => {
   it('maps login state', () => {
-    const state = { overlay: 'a', other: 'b' };
+    const state = { overlay: {}, other: 'b' };
     expect(mapStateToProps(state)).toEqual({
       name: '',
       website: '',

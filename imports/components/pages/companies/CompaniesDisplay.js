@@ -34,6 +34,9 @@ const gridPageProps = companies => ({
       Header: 'Create Date (GMT+2)',
       id: 'lastName',
       accessor: 'createDate',
+      Cell: props => (
+        <span>{moment(props.value).format('MMM DD[,] YYYY')}</span>
+      ),
     },
     {
       Header: 'First Contact Create Date (GMT+2)',
@@ -49,11 +52,13 @@ const CompaniesDisplay = props => (
       onClickAdd={() => props.setIsOverlayOpen(true)}
     />
     <GridPage
-      {...gridPageProps(props.companies)}
+      {...gridPageProps(props.companies.reverse())}
       data={props.loading ? [] : props.companies}
       match={props.match}
     />
   </div>
 );
+
+CompaniesDisplay.defaultProps = { companies: [] };
 
 export default CompaniesDisplay;

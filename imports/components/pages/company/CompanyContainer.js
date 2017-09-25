@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
-import { COMPANY_FIELDS } from './CompanyConnect';
+import { COMPANY_FIELDS } from './CompanyConstants';
 import Companies from '../../../api/company/companyCollection';
 import CompanyDisplay from './CompanyDisplay';
 
