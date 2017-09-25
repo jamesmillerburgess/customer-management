@@ -50,9 +50,9 @@ export const Mongo = {
       count: function() {
         return this.num;
       },
-      update: function () {
+      update: function() {
         return this;
-      }
+      },
       num: 0,
     };
   },
