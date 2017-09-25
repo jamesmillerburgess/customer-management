@@ -23,7 +23,10 @@ const NavDisplay = props => (
         <button
           id="profile-button"
           className="nav-button"
-          onClick={() => props.setIsProfileMenuOpen(!props.isProfileMenuOpen)}
+          onClick={() =>
+            props.user
+              ? props.setIsProfileMenuOpen(!props.isProfileMenuOpen)
+              : null}
         >
           {props.user ? props.user.username : 'Log in'}
         </button>
