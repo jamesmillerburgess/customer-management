@@ -14,12 +14,6 @@ const routes = [
     isNavLink: true,
   },
   {
-    path: '/dashboard',
-    title: 'Dashboard',
-    component: Dashboard,
-    isNavLink: true,
-  },
-  {
     path: '/contacts',
     title: 'Contacts',
     component: Contacts,
