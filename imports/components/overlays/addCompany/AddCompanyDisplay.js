@@ -34,7 +34,6 @@ const AddCompanyDisplay = props => (
       >
         Create company
       </button>
-      <button className="button-primary">Create and add another</button>
       <button className="button-secondary" onClick={props.closeOverlay}>
         Cancel
       </button>
