@@ -20,7 +20,7 @@ const CompanyDisplay = props => (
           <div className="panel sidebar-properties">
             <div className="title">About {props.company.name}</div>
             {COMPANY_FIELDS.map(field => (
-              <div className="input-group">
+              <div className="input-group" key={field.property}>
                 <div className="input-label">{field.label}</div>
                 <input
                   value={props[field.property]}
@@ -41,10 +41,15 @@ const CompanyDisplay = props => (
               <button
                 className="button-primary"
                 onClick={() =>
-                  props.saveCompany({
-                    name: props.name,
-                    website: props.website,
-                  })}
+                  props.saveCompany(
+                    COMPANY_FIELDS.reduce(
+                      (prev, field) => ({
+                        ...prev,
+                        [field.property]: props[field.property],
+                      }),
+                      {}
+                    )
+                  )}
               >
                 Save
               </button>

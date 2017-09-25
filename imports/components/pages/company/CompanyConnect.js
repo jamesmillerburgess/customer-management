@@ -34,6 +34,36 @@ export const COMPANY_FIELDS = [
     label: 'City',
     type: 'text',
   },
+  {
+    property: 'stateRegion',
+    label: 'State/Region',
+    type: 'text',
+  },
+  {
+    property: 'postalCode',
+    label: 'Postal Code',
+    type: 'text',
+  },
+  {
+    property: 'numberOfEmployees',
+    label: 'Number of Employees',
+    type: 'text',
+  },
+  {
+    property: 'annualRevenue',
+    label: 'Annual Revenue',
+    type: 'text',
+  },
+  {
+    property: 'timeZone',
+    label: 'Time Zone',
+    type: 'text',
+  },
+  {
+    property: 'description',
+    label: 'Description',
+    type: 'text',
+  },
 ];
 
 export const mapStateToProps = ({ company }) => {
@@ -45,7 +75,8 @@ export const mapStateToProps = ({ company }) => {
     company.hasLoaded &&
     COMPANY_FIELDS.reduce(
       (prev, field) =>
-        prev || props[field.property] !== company.loadedValues[field.property],
+        prev ||
+        props[field.property] !== (company.loadedValues[field.property] || ''),
       false
     );
   props.note = company.note || '';

@@ -3,6 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import _ from 'lodash/fp';
 
 import Companies from './companyCollection';
+import { COMPANY_FIELDS } from '../../components/pages/company/CompanyConnect';
 
 const CREATION = 'CREATION';
 const NOTE = 'NOTE';
@@ -24,7 +25,7 @@ const create = function(company, userId) {
 };
 
 export const save = function(companyId, company) {
-  const fields = _.pick(['name', 'website'], company);
+  const fields = _.pick(COMPANY_FIELDS.map(field => field.property), company);
   Companies.update(companyId, { $set: fields });
 };
 

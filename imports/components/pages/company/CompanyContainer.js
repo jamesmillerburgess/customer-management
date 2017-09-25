@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
+import { COMPANY_FIELDS } from './CompanyConnect';
 import Companies from '../../../api/company/companyCollection';
 import CompanyDisplay from './CompanyDisplay';
 
@@ -15,6 +16,9 @@ const CompanyContainer = createContainer(props => {
     props.setHasLoaded(true);
     props.setName(company.name);
     props.setWebsite(company.website);
+    COMPANY_FIELDS.forEach(field =>
+      props.setProperty(field.property, company[field.property])
+    );
     props.setLoadedValues(company);
   }
   return { ...props, company, loading };
