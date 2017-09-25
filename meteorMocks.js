@@ -1,5 +1,34 @@
 import React from 'react';
 
+export const Mongo = {
+  ObjectID: () => ({ _str: 'str' }),
+  Collection: name => {
+    return {
+      insert: function() {
+        this.num += 1;
+        return this;
+      },
+      remove: function() {
+        this.num = 0;
+        return this;
+      },
+      find: function() {
+        return this;
+      },
+      findOne: function() {
+        return this;
+      },
+      count: function() {
+        return this.num;
+      },
+      update: function() {
+        return this;
+      },
+      num: 0,
+    };
+  },
+};
+
 export const Meteor = {
   startup: cb => cb(),
   user: function() {
@@ -30,32 +59,7 @@ export const Meteor = {
   err: null,
   res: null,
   publish: jest.fn(),
-};
-
-export const Mongo = {
-  ObjectID: () => ({ _str: 'str' }),
-  Collection: name => {
-    return {
-      insert: function() {
-        this.num += 1;
-        return this;
-      },
-      remove: function() {
-        this.num = 0;
-        return this;
-      },
-      find: function() {
-        return this;
-      },
-      count: function() {
-        return this.num;
-      },
-      update: function() {
-        return this;
-      },
-      num: 0,
-    };
-  },
+  users: new Mongo.Collection(),
 };
 
 export const Accounts = {
