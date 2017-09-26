@@ -15,6 +15,7 @@ export const create = function(company) {
   return Companies.insert({
     ...company,
     users: [this.userId],
+    createDate: new Date(),
     isArchived: false,
     timeline: [
       {

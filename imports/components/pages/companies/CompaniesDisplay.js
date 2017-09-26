@@ -52,8 +52,16 @@ const CompaniesDisplay = props => (
       onClickAdd={() => props.setIsOverlayOpen(true)}
     />
     <GridPage
-      {...gridPageProps(props.companies.reverse())}
-      data={props.loading ? [] : props.companies}
+      {...gridPageProps(
+        props.companies.sort((a, b) => b.createDate - a.createDate)
+      )}
+      data={
+        props.loading ? (
+          []
+        ) : (
+          props.companies.sort((a, b) => b.createDate - a.createDate)
+        )
+      }
       match={props.match}
     />
   </div>
