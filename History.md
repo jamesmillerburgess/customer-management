@@ -1,3 +1,7 @@
+## v0.4.0 – Opportunities
+
+
+
 ## v0.3.0 – Companies
 
 * Company creation overlay form
