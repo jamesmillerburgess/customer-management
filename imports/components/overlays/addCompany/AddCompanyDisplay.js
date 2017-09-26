@@ -10,7 +10,11 @@ const AddCompanyDisplay = props => (
   >
     <header className="overlay-header">
       Add a company
-      <button className="button-dismiss-overlay" onClick={props.closeOverlay}>
+      <button
+        type="button"
+        className="button-dismiss-overlay"
+        onClick={props.closeOverlay}
+      >
         X
       </button>
     </header>
@@ -38,7 +42,11 @@ const AddCompanyDisplay = props => (
       <button className="button-primary" type="submit">
         Create company
       </button>
-      <button className="button-secondary" onClick={props.closeOverlay}>
+      <button
+        type="button"
+        className="button-secondary"
+        onClick={props.closeOverlay}
+      >
         Cancel
       </button>
     </footer>
