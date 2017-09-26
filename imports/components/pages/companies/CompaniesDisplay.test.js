@@ -29,6 +29,16 @@ describe('CompaniesDisplay Component', () => {
     wrapper.setProps({ loading: false, companies: ['a'] });
     expect(wrapper.find('GridPage').props().data).toEqual(['a']);
   });
+  it('sorts the data by createDate', () => {
+    wrapper.setProps({
+      loading: false,
+      companies: [{ createDate: 1 }, { createDate: 2 }],
+    });
+    expect(wrapper.find('GridPage').props().data).toEqual([
+      { createDate: 2 },
+      { createDate: 1 },
+    ]);
+  });
 });
 describe('gridPageProps Function', () => {
   it('renders a link in the name cells', () => {
