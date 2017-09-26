@@ -1,0 +1,58 @@
+.opportunities-board {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: #f5f8fa;
+  height: calc(100vh - 149px);
+  overflow-x: scroll;
+}
+.status-group {
+  min-width: 260px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.status-group .header {
+  padding: 16px 8px;
+  border: 1px solid #dfe3eb;
+}
+.status-group .header-text {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.status-group .probability-bar {
+  display: flex;
+}
+.probability-bar .bar {
+  flex-grow: 1;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #eaf0f6;
+  margin-right: 4px;
+}
+.probability-bar .bar.filled {
+  background-color: #fb9d95;
+}
+.status-group .list {
+  flex-grow: 1;
+  border: 1px solid #dfe3eb;
+}
+.status-group .list .panel {
+  margin: 8px;
+  padding: 8px;
+  cursor: -webkit-grab;
+  cursor: grab;
+  transition: box-shadow 0.3s ease-in-out, transform 0.15s ease-in-out;
+}
+.status-group .list .panel:hover {
+  box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.1);
+}
+.status-group .footer {
+  text-align: center;
+  padding: 16px 8px;
+  border: 1px solid #dfe3eb;
+  background-color: white;
+  font-size: 14px;
+  font-weight: 300;
+}

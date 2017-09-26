@@ -2,6 +2,7 @@ import Dashboard from '../components/pages/Dashboard';
 import CompaniesConnect from '../components/pages/companies/CompaniesConnect';
 import CompanyConnect from '../components/pages/company/CompanyConnect';
 import Contacts from '../components/pages/Contacts';
+import OpportunitiesConnect from '../components/pages/opportunities/OpportunitiesConnect';
 import ProfileConnect from '../components/pages/profile/ProfileConnect';
 
 const routes = [
@@ -24,6 +25,13 @@ const routes = [
     exact: true,
     title: 'Companies',
     component: CompaniesConnect,
+    isNavLink: true,
+  },
+  {
+    path: '/opportunities',
+    exact: true,
+    title: 'Opportunities',
+    component: OpportunitiesConnect,
     isNavLink: true,
   },
   {
