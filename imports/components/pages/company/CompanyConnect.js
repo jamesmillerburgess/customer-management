@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Meteor } from 'meteor/meteor';
 
 import CompanyContainer from './CompanyContainer';
 import { setCompanyProp } from '../../../state/actions/companyActionCreators';
@@ -13,6 +14,8 @@ export const mapStateToProps = ({ company }) => {
   props.isEditingCompany =
     company.hasLoaded &&
     COMPANY_FIELDS.reduce((prev, field) => {
+      console.log(prev);
+      console.log(field);
       let diff = false;
       if (
         props[field.property] !== (company.loadedValues[field.property] || '')
@@ -33,8 +36,6 @@ export const mapStateToProps = ({ company }) => {
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   setProperty: (property, value) => dispatch(setCompanyProp(property, value)),
-  setName: value => dispatch(setCompanyProp('name', value)),
-  setWebsite: value => dispatch(setCompanyProp('website', value)),
   setNote: value => dispatch(setCompanyProp('note', value)),
   addNote: value => {
     Meteor.call(
@@ -62,7 +63,11 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
       ownProps.match.params.companyId,
       value,
       (err, res) => {
-        dispatch(setCompanyProp('hasLoaded', false));
+        if (!err) {
+          dispatch(setCompanyProp('hasLoaded', false));
+        } else {
+          console.log(err);
+        }
       }
     );
   },

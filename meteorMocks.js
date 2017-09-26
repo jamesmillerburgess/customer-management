@@ -16,7 +16,7 @@ export const Mongo = {
         return this;
       },
       findOne: function() {
-        return this;
+        return this.docs[0];
       },
       count: function() {
         return this.num;

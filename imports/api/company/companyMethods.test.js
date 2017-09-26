@@ -1,4 +1,5 @@
 import { Mongo } from 'meteor/mongo';
+import { Meteor } from 'meteor/meteor';
 import Companies from './companyCollection';
 import * as company from './companyMethods';
 
@@ -23,6 +24,7 @@ describe('company.save Meteor Method', () => {
 
 describe('company.addNote Meteor Method', () => {
   it('does not throw', () => {
+    Meteor.users.docs = [{}];
     expect(() => company.addNote({})).not.toThrow();
   });
 });

@@ -6,18 +6,28 @@ import NavDisplay from './NavDisplay';
 describe('NavDisplay', () => {
   const props = {
     user: { username: 'username' },
-    setIsProfileMenuOpen: jest.fn(),
   };
   let wrapper;
   beforeEach(() => (wrapper = shallow(<NavDisplay {...props} />)));
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
-  it('opens and closes the profile menu', () => {
+  it('calls setIsProfileMenuOpen on click of profile button if there is a user', () => {
+    const setIsProfileMenuOpen = jest.fn();
+    wrapper.setProps({ user: { username: 'username' }, setIsProfileMenuOpen });
     wrapper
       .find('#profile-button')
       .first()
       .simulate('click');
-    expect(props.setIsProfileMenuOpen).toHaveBeenCalled();
+    expect(setIsProfileMenuOpen).toHaveBeenCalled();
+  });
+  it('does not call setIsProfileMenuOpen on click of profile button if there is not a user', () => {
+    const setIsProfileMenuOpen = jest.fn();
+    wrapper.setProps({ user: null, setIsProfileMenuOpen });
+    wrapper
+      .find('#profile-button')
+      .first()
+      .simulate('click');
+    expect(setIsProfileMenuOpen).not.toHaveBeenCalled();
   });
   it("displays 'Log in' if there is no user", () => {
     wrapper.setProps({ user: null });

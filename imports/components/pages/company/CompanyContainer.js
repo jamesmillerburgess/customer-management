@@ -14,8 +14,6 @@ const CompanyContainer = createContainer(props => {
   const company = Companies.findOne(companyId) || { name: '', timeline: [] };
   if (company._id && !props.hasLoaded) {
     props.setHasLoaded(true);
-    props.setName(company.name);
-    props.setWebsite(company.website);
     COMPANY_FIELDS.forEach(field =>
       props.setProperty(field.property, company[field.property])
     );

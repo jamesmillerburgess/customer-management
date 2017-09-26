@@ -13,6 +13,18 @@ describe('AppDisplay Component', () => {
   });
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
+  it('sets the class to blur if isOverlayOpen is true', () => {
+    wrapper.setProps({ isOverlayOpen: true });
+    expect(wrapper.find('.app').hasClass('blur')).toBe(true);
+    wrapper.setProps({ isOverlayOpen: false });
+    expect(wrapper.find('.app').hasClass('blur')).toBe(false);
+  });
+  it('sets the overlay background colass to show if isOverlayOpen is true', () => {
+    wrapper.setProps({ isOverlayOpen: true });
+    expect(wrapper.find('.overlay-background').hasClass('show')).toBe(true);
+    wrapper.setProps({ isOverlayOpen: false });
+    expect(wrapper.find('.overlay-background').hasClass('show')).toBe(false);
+  });
 });
 describe('renderRoute Function', () => {
   it('renders the route', () => {

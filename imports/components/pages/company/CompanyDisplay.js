@@ -23,6 +23,7 @@ const CompanyDisplay = props => (
               <div className="input-group" key={field.property}>
                 <div className="input-label">{field.label}</div>
                 <input
+                  id={field.property}
                   value={props[field.property]}
                   onChange={e =>
                     props.setProperty(field.property, e.target.value)}
@@ -74,15 +75,9 @@ const CompanyDisplay = props => (
                 <div className="fa fa-fw fa-pencil icon" />
                 New note
               </div>
-              {/* <div className="interaction-item">
-                <div className="fa fa-fw fa-plus icon" />
-                Log activity
-              </div>
-              <div className="interaction-item">
-                <div className="fa fa-fw fa-calendar-plus-o icon" />Create task
-              </div> */}
             </div>
             <textarea
+              id="note"
               value={props.note}
               onChange={e => props.setNote(e.target.value)}
               placeholder="Start typing to leave a note..."
