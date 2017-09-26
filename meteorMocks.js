@@ -54,9 +54,6 @@ export const Meteor = {
       arguments[arguments.length - 1](this.err, this.res);
     }
   },
-  users: {
-    update: () => null,
-  },
   loginWithPassword: function(username, password, cb) {
     return cb(this.err, this.res);
   },
