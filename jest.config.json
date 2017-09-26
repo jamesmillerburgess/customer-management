@@ -6,7 +6,7 @@
     "^.+\\.jsx?$": "babel-jest"
   },
   "moduleNameMapper": {
-    "^meteor/(.*)": "<rootDir>/meteorMocks.js",
+    "^meteor/(.*)": "<rootDir>/tests/meteorMocks.js",
     "\\.(scss|css|less)$": "identity-obj-proxy"
   },
   "coverageDirectory": ".coverage"
