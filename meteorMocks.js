@@ -24,7 +24,11 @@ export const Mongo = {
       update: function() {
         return this;
       },
+      fetch: function() {
+        return this.docs;
+      },
       num: 0,
+      docs: [],
     };
   },
 };
@@ -47,7 +51,7 @@ export const Meteor = {
   methods: () => null,
   call: function() {
     if (arguments.length > 0) {
-      arguments[arguments.length - 1]();
+      arguments[arguments.length - 1](this.err, this.res);
     }
   },
   users: {
@@ -60,6 +64,14 @@ export const Meteor = {
   res: null,
   publish: jest.fn(),
   users: new Mongo.Collection(),
+  subscribe: function() {
+    return {
+      ready: () => {
+        return this.ready;
+      },
+    };
+  },
+  ready: false,
 };
 
 export const Accounts = {

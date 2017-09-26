@@ -3,6 +3,7 @@ import { Accounts } from 'meteor/accounts-base';
 import AddCompanyConnect, {
   mapStateToProps,
   mapDispatchToProps,
+  create,
 } from './AddCompanyConnect';
 
 describe('AddCompanyConnect Component', () => {
@@ -29,8 +30,16 @@ describe('mapDispatchToProps Function', () => {
   it('maps login dispatchers', () => {
     const ownProps = { history: { push: jest.fn() } };
     const props = mapDispatchToProps(() => null, ownProps);
+    Meteor.err = null;
     expect(props.setName).not.toThrow();
     expect(props.setWebsite).not.toThrow();
     expect(props.closeOverlay).not.toThrow();
+    expect(props.create).not.toThrow();
+  });
+  it('handles errors', () => {
+    const ownProps = { history: { push: jest.fn() } };
+    const props = mapDispatchToProps(() => null, ownProps);
+    Meteor.err = 'err';
+    expect(props.create).not.toThrow();
   });
 });

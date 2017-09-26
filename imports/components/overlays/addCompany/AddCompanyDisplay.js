@@ -19,6 +19,7 @@ const AddCompanyDisplay = props => (
         <div className="input-group">
           <div className="input-label">Name</div>
           <input
+            id="name"
             value={props.name}
             onChange={e => props.setName(e.target.value)}
           />
@@ -26,6 +27,7 @@ const AddCompanyDisplay = props => (
         <div className="input-group">
           <div className="input-label">Website</div>
           <input
+            id="website"
             value={props.website}
             onChange={e => props.setWebsite(e.target.value)}
           />

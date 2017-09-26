@@ -11,7 +11,7 @@ const headerProps = {
   add: 'Add company',
 };
 
-const gridPageProps = companies => ({
+export const gridPageProps = companies => ({
   sidebarHeader: 'All companies',
   noRows: 'No companies yet!',
   columns: [

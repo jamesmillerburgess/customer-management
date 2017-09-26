@@ -18,6 +18,10 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   closeOverlay: () => dispatch(setAppProp('isOverlayOpen', false)),
   create: company =>
     Meteor.call('company.create', company, Meteor.userId(), (err, res) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
       dispatch(setAppProp('isOverlayOpen', false));
       ownProps.history.push(`/companies/${res}`);
     }),
