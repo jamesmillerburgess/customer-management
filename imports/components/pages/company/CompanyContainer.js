@@ -12,8 +12,12 @@ const CompanyContainer = createContainer(props => {
   const companyId = props.match.params.companyId;
   const loading = !Meteor.subscribe('company.single', companyId).ready();
   const company = Companies.findOne(companyId) || { name: '', timeline: [] };
-  if (company._id && !props.hasLoaded) {
+  if (
+    company._id &&
+    (!props.hasLoaded || company._id !== props.loadedValues._id)
+  ) {
     props.setHasLoaded(true);
+    props.setNote('');
     COMPANY_FIELDS.forEach(field =>
       props.setProperty(field.property, company[field.property])
     );

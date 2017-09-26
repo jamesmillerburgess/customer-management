@@ -10,6 +10,7 @@ export const mapStateToProps = ({ company }) => {
   COMPANY_FIELDS.forEach(
     (field, index) => (props[field.property] = company[field.property] || '')
   );
+  props.loadedValues = company.loadedValues;
   props.numEditedProperties = 0;
   props.isEditingCompany =
     company.hasLoaded &&

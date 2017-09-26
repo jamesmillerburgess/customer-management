@@ -9,9 +9,11 @@ describe('CompanyContainer Component', () => {
   let wrapper;
   const props = {
     match: { params: { companyId: null } },
+    loadedValues: {},
     setHasLoaded: jest.fn(),
     setProperty: jest.fn(),
     setLoadedValues: jest.fn(),
+    setNote: jest.fn(),
   };
   beforeEach(() => (wrapper = shallow(<CompanyContainer {...props} />)));
   afterEach(() => wrapper.unmount());
@@ -51,11 +53,29 @@ describe('CompanyContainer Component', () => {
       setHasLoaded: jest.fn(),
       setProperty: jest.fn(),
       setLoadedValues: jest.fn(),
+      setNote: jest.fn(),
     };
-    wrapper.setProps({ hasLoaded: false, ...fns });
+    wrapper.setProps({ hasLoaded: false, loadedValues: {}, ...fns });
     expect(fns.setHasLoaded).toHaveBeenCalled();
     expect(fns.setProperty).toHaveBeenCalled();
     expect(fns.setLoadedValues).toHaveBeenCalled();
+    expect(fns.setNote).toHaveBeenCalled();
+  });
+  it('sets up the data if it finds a company and the _id is different than the loaded value', () => {
+    Meteor._userId = 'a';
+    Meteor.ready = true;
+    Companies.docs = [{ _id: 'a' }];
+    const fns = {
+      setHasLoaded: jest.fn(),
+      setProperty: jest.fn(),
+      setLoadedValues: jest.fn(),
+      setNote: jest.fn(),
+    };
+    wrapper.setProps({ hasLoaded: true, loadedValues: { _id: 'b' }, ...fns });
+    expect(fns.setHasLoaded).toHaveBeenCalled();
+    expect(fns.setProperty).toHaveBeenCalled();
+    expect(fns.setLoadedValues).toHaveBeenCalled();
+    expect(fns.setNote).toHaveBeenCalled();
   });
   it('does not set up the data if it finds a company and has already loaded', () => {
     Meteor._userId = 'a';
@@ -65,10 +85,12 @@ describe('CompanyContainer Component', () => {
       setHasLoaded: jest.fn(),
       setProperty: jest.fn(),
       setLoadedValues: jest.fn(),
+      setNote: jest.fn(),
     };
-    wrapper.setProps({ hasLoaded: true, ...fns });
+    wrapper.setProps({ hasLoaded: true, loadedValues: { _id: 'a' }, ...fns });
     expect(fns.setHasLoaded).not.toHaveBeenCalled();
     expect(fns.setProperty).not.toHaveBeenCalled();
     expect(fns.setLoadedValues).not.toHaveBeenCalled();
+    expect(fns.setNote).not.toHaveBeenCalled();
   });
 });
