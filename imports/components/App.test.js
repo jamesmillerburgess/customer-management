@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { shallow } from 'enzyme';
-import { Meteor } from '../../meteorMocks.js';
+import { Meteor } from 'meteor/meteor ';
 
-import App, { verifyAuth, renderRoute, hasReduxDevTools } from './App.js';
+import App, { hasReduxDevTools } from './App.js';
 import HomeConnect from './pages/home/HomeConnect';
 
 describe('App', () => {
@@ -25,32 +25,5 @@ describe('hasReduxDevTools Function', () => {
   it('returns the function result otherwise', () => {
     window.__REDUX_DEVTOOLS_EXTENSION__ = () => 1;
     expect(hasReduxDevTools()).toBe(1);
-  });
-});
-describe('renderRoute', () => {
-  it('renders the route', () => {
-    const route = <BrowserRouter>{renderRoute({})}</BrowserRouter>;
-    expect(shallow(route).exists()).toBe(true);
-  });
-  it('passes in a render function', () => {
-    const route = <BrowserRouter>{renderRoute({})}</BrowserRouter>;
-    expect(route.props.children.props.render).not.toThrow();
-  });
-});
-describe('verifyAuth', () => {
-  it('renders HomeConnect if auth fails', () => {
-    expect(verifyAuth().type.WrappedComponent.name).toBe('HomeDisplay');
-  });
-  it('renders the component if the user is logged in', () => {
-    const component = () => <div className="a" />;
-    Meteor.loggedInUser = 'james';
-    Meteor.isLoggingIn = false;
-    expect(shallow(verifyAuth(component)).hasClass('a')).toBe(true);
-  });
-  it('renders the component if the user is logging in', () => {
-    const component = () => <div className="a" />;
-    Meteor.loggedInUser = null;
-    Meteor.isLoggingIn = true;
-    expect(shallow(verifyAuth(component)).hasClass('a')).toBe(true);
   });
 });

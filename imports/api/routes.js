@@ -1,21 +1,16 @@
 import Dashboard from '../components/pages/Dashboard';
-import Companies from '../components/pages/Companies';
+import CompaniesConnect from '../components/pages/companies/CompaniesConnect';
+import CompanyConnect from '../components/pages/company/CompanyConnect';
 import Contacts from '../components/pages/Contacts';
 import ProfileConnect from '../components/pages/profile/ProfileConnect';
 
 const routes = [
   {
     path: '/',
+    exact: true,
     title: 'Agility CM',
     component: Dashboard,
-    exact: true,
     className: 'brand',
-    isNavLink: true,
-  },
-  {
-    path: '/dashboard',
-    title: 'Dashboard',
-    component: Dashboard,
     isNavLink: true,
   },
   {
@@ -26,13 +21,19 @@ const routes = [
   },
   {
     path: '/companies',
+    exact: true,
     title: 'Companies',
-    component: Companies,
+    component: CompaniesConnect,
     isNavLink: true,
   },
   {
     path: '/profile',
     component: ProfileConnect,
+    isNavLink: false,
+  },
+  {
+    path: '/companies/:companyId',
+    component: CompanyConnect,
     isNavLink: false,
   },
 ];

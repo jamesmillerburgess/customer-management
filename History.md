@@ -1,3 +1,11 @@
+## v0.3.0 – Companies
+
+* Company creation overlay form
+* Company properties editor
+* Add notes to company
+* Company timeline display
+* Link between companies grid and individual company pages
+
 ## v0.2.0 – Accounts
 
 * Placed menu items behind authorized routes

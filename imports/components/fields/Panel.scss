@@ -2,23 +2,6 @@
   border-radius: 3px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 1px 5px 0 rgba(45, 62, 80, 0.12);
-  transition: box-shadow, transform 0.15s ease-in-out;
-  cursor: -webkit-grab;
-  cursor: grab;
-}
-.panel:hover {
-  box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.1);
-}
-.react-draggable-dragging {
-  z-index: 1000;
-  cursor: -webkit-grabbing;
-  cursor: grabbing;
-  transition: transform 0s linear;
-}
-.react-grid-placeholder {
-  z-index: 999;
-  border: 3px dashed rgb(255, 122, 89);
-  border-radius: 3px;
 }
 .panel-inner {
   display: flex;

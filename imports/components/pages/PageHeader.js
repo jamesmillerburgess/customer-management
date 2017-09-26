@@ -11,9 +11,9 @@ const PageHeader = props => (
       {props.hideButtons ? null : (
         <div className="button-group">
           <SearchInput placeholder={props.search} />
-          <button className="button-secondary">Customize</button>
-          <button className="button-secondary">Import</button>
-          <button className="button-primary">{props.add}</button>
+          <button className="button-primary" onClick={props.onClickAdd}>
+            {props.add}
+          </button>
         </div>
       )}
     </div>
