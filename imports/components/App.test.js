@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { shallow } from 'enzyme';
-import { Meteor } from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor ';
 
 import App, { hasReduxDevTools } from './App.js';
 import HomeConnect from './pages/home/HomeConnect';
