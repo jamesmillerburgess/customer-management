@@ -14,8 +14,6 @@ export const mapStateToProps = ({ company }) => {
   props.isEditingCompany =
     company.hasLoaded &&
     COMPANY_FIELDS.reduce((prev, field) => {
-      console.log(prev);
-      console.log(field);
       let diff = false;
       if (
         props[field.property] !== (company.loadedValues[field.property] || '')
