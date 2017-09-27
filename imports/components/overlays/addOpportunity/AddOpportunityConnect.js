@@ -10,29 +10,17 @@ import { setAppProp } from '../../../state/actions/appActionCreators';
 import { addOpportunityFields } from './AddOpportunityConstants';
 
 export const mapStateToProps = ({ overlay }) => {
-  if (overlay.isNewForm) {
-    return addOpportunityFields.reduce(
-      (prev, field) => ({
-        ...prev,
-        [field.prop]: field.default,
-      }),
-      {}
-    );
-  }
   return addOpportunityFields.reduce(
-    (prev, { prop }) => ({
+    (prev, field) => ({
       ...prev,
-      [prop]: overlay[prop] || '',
+      [field.prop]: overlay[field.prop] || field.default,
     }),
     {}
   );
 };
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  setProp: (prop, value) => {
-    dispatch(setOverlayProp('isNewForm', false));
-    dispatch(setOverlayProp(prop, value));
-  },
+  setProp: (prop, value) => dispatch(setOverlayProp(prop, value)),
   closeOverlay: () => dispatch(setAppProp('isOverlayOpen', false)),
   create: opportunity =>
     Meteor.call('opportunity.create', opportunity, (err, res) => {
