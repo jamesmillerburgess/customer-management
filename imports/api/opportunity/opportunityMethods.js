@@ -1,10 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 
 import Opportunities from './opportunityCollection';
+import Companies from '../company/companyCollection';
+
+import { STATUS_VALUES } from '../../components/fields/statusField/StatusField';
 
 const CREATION = 'CREATION';
 const NOTE = 'NOTE';
-const STATUS_CHANGE = 'STATUS_CHANGE';
+const STATUS_CHANGE_FORWARD = 'STATUS_CHANGE_FORWARD';
+const STATUS_CHANGE_BACKWARD = 'STATUS_CHANGE_BACKWARD';
 
 export const create = function(opportunity) {
   if (!opportunity || !opportunity.name) {
@@ -38,29 +42,27 @@ export const setStatus = function(opportunityId, status) {
   if (status === opportunity.status) {
     return;
   }
+  const type =
+    STATUS_VALUES.indexOf(opportunity.status) < STATUS_VALUES.indexOf(status)
+      ? STATUS_CHANGE_FORWARD
+      : STATUS_CHANGE_BACKWARD;
+  const entry = {
+    id: new Mongo.ObjectID()._str,
+    type,
+    timestamp: new Date(),
+    userId: this.userId,
+    from: opportunity.status,
+    to: status,
+    opportunityId: opportunityId,
+    opportunityName: opportunity.name,
+  };
   Opportunities.update(opportunityId, {
     $set: { status },
-    $push: {
-      timeline: {
-        id: new Mongo.ObjectID()._str,
-        type: STATUS_CHANGE,
-        timestamp: new Date(),
-        userId: this.userId,
-        keyword: status,
-      },
-    },
+    $push: { timeline: entry },
   });
   if (opportunity.company && opportunity.company._id) {
     Companies.update(opportunity.company._id, {
-      $push: {
-        timeline: {
-          id: new Mongo.ObjectID()._str,
-          type: STATUS_CHANGE,
-          timestamp: new Date(),
-          userId: this.userId,
-          keyword: status,
-        },
-      },
+      $push: { timeline: entry },
     });
   }
 };

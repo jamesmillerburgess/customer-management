@@ -13,7 +13,8 @@ const CompanyField = props => {
   return (
     <Select.Async
       value={props.value}
-      onChange={option => props.onChange({ id: option._id, name: option.name })}
+      onChange={option =>
+        props.onChange({ _id: option._id, name: option.name })}
       valueKey="_id"
       loadOptions={loadOptions}
       optionRenderer={renderStakeholder}
