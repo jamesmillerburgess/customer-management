@@ -1,5 +1,8 @@
 import React from 'react';
 import { DragSource } from 'react-dnd';
+import { Link } from 'react-router-dom';
+
+import './OpportunityCard.scss';
 
 const panelTypes = {
   PANEL: 'PANEL',
@@ -7,8 +10,16 @@ const panelTypes = {
 
 const opportunitySource = {
   beginDrag(props) {
-    console.log('beginDrag');
     return { id: props.id };
+  },
+  endDrag(props, monitor) {
+    const opportunityId = props._id;
+    const { status } = monitor.getDropResult();
+    Meteor.call('opportunity.setStatus', opportunityId, status, (err, res) => {
+      if (err) {
+        console.log(err);
+      }
+    });
   },
 };
 
@@ -21,10 +32,18 @@ function collect(connect, monitor) {
 
 class OpportunityCard extends React.Component {
   render() {
-    console.log(this.props);
     const { connectDragSource, isDragging } = this.props;
     return connectDragSource(
-      <div>{isDragging ? null : <div className="panel">Hello!</div>}</div>
+      <div>
+        {isDragging ? null : (
+          <div className="panel card">
+            <Link to="#" className="title">
+              {this.props.name}
+            </Link>
+            <div className="icons" />
+          </div>
+        )}
+      </div>
     );
   }
 }

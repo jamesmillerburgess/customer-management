@@ -4,6 +4,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 import OpportunityList from './OpportunityList';
 import OpportunityCard from './OpportunityCard';
+import { STATUS_VALUES } from '../../fields/statusField/StatusField';
 
 const statuses = [
   { title: 'APPOINTMENT SCHEDULED', color: '#fb9d95' },
@@ -17,7 +18,6 @@ const statuses = [
 
 class Board extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <div className="opportunities-board">
         {statuses.map((status, i) => (
@@ -25,7 +25,13 @@ class Board extends React.Component {
             <div className="header">
               <div className="header-text">
                 <div className="title">{status.title}</div>
-                <div className="count">1</div>
+                <div className="count">
+                  {
+                    this.props.cards.filter(
+                      card => card.status === STATUS_VALUES[i]
+                    ).length
+                  }
+                </div>
               </div>
               <div className="probability-bar">
                 {statuses.map(({ color }, j) => (
@@ -37,8 +43,10 @@ class Board extends React.Component {
                 ))}
               </div>
             </div>
-            <OpportunityList>
-              <OpportunityCard />
+            <OpportunityList status={STATUS_VALUES[i]}>
+              {this.props.cards
+                .filter(card => card.status === STATUS_VALUES[i])
+                .map(card => <OpportunityCard {...card} key={card._id} />)}
             </OpportunityList>
             <div className="footer">Total: $0</div>
           </div>

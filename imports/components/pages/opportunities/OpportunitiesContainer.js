@@ -8,7 +8,7 @@ const OpportunitiesContainer = createContainer(props => {
   if (!Meteor.userId()) {
     return { ...props, opportunities: [], loading: true };
   }
-  const loading = !Meteor.subscribe('opportunities.user').ready();
+  const loading = !Meteor.subscribe('opportunity.user').ready();
   const opportunities = Opportunities.find({
     users: Meteor.userId(),
     isArchived: false,

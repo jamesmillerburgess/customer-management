@@ -15,7 +15,7 @@ const OpportunitiesDisplay = props => (
       {...headerProps}
       onClickAdd={() => props.setIsOverlayOpen(true)}
     />
-    <Board />
+    <Board cards={props.opportunities} />
   </div>
 );
 

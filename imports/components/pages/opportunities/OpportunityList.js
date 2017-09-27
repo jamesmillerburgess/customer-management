@@ -2,17 +2,12 @@ import React from 'react';
 import { DropTarget } from 'react-dnd';
 
 const listTarget = {
-  drop(props, monitor) {
-    console.log('listTarget');
-    console.log(props);
-    // Meteor.call('opportunity.setStatus', opportunity.id, props.status, (err, res) => {
-    //
-    // });
+  drop(props, monitor, component) {
+    return { status: props.status };
   },
 };
 
 function collect(connect, monitor) {
-  console.log('OpportunityList collect');
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
@@ -21,12 +16,14 @@ function collect(connect, monitor) {
 
 class OpportunityList extends React.Component {
   render() {
-    console.log('OpportunityList');
-    console.log(this.props);
     const { connectDropTarget, isOver } = this.props;
     return connectDropTarget(
       <div className="list">
-        {isOver && <div className="panel">Dummy</div>}
+        {isOver && (
+          <div className="panel card">
+            <div className="dummy-title" />
+          </div>
+        )}
         {this.props.children}
       </div>
     );

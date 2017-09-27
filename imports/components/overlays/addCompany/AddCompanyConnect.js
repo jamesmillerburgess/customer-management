@@ -17,7 +17,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   setWebsite: value => dispatch(setOverlayProp('website', value)),
   closeOverlay: () => dispatch(setAppProp('isOverlayOpen', false)),
   create: company =>
-    Meteor.call('company.create', company, Meteor.userId(), (err, res) => {
+    Meteor.call('company.create', company, (err, res) => {
       if (err) {
         console.log(err);
         return;

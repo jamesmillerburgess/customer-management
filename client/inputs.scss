@@ -1,6 +1,5 @@
 input {
   padding: 9px 10px;
-  margin-top: 6px;
   font-size: 13px;
   line-height: 18px;
   height: 40px;
@@ -20,4 +19,8 @@ input:focus {
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
+}
+
+.input-group .input-label {
+  margin-bottom: 5px;
 }

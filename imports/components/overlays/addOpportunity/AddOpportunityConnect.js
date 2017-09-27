@@ -7,23 +7,28 @@ import AddOpportunityDisplay from './AddOpportunityDisplay';
 import { setOverlayProp } from '../../../state/actions/overlayActionCreators';
 import { setAppProp } from '../../../state/actions/appActionCreators';
 
-export const mapStateToProps = ({ overlay }) => ({
-  name: overlay.name || '',
-  website: overlay.website || '',
-});
+import { addOpportunityFields } from './AddOpportunityConstants';
+
+export const mapStateToProps = ({ overlay }) =>
+  addOpportunityFields.reduce(
+    (prev, { prop }) => ({
+      ...prev,
+      [prop]: overlay[prop] || '',
+    }),
+    {}
+  );
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  setName: value => dispatch(setOverlayProp('name', value)),
-  setWebsite: value => dispatch(setOverlayProp('website', value)),
+  setProp: (prop, value) => dispatch(setOverlayProp(prop, value)),
   closeOverlay: () => dispatch(setAppProp('isOverlayOpen', false)),
-  create: company =>
-    Meteor.call('company.create', company, Meteor.userId(), (err, res) => {
+  create: opportunity =>
+    Meteor.call('opportunity.create', opportunity, (err, res) => {
       if (err) {
         console.log(err);
         return;
       }
       dispatch(setAppProp('isOverlayOpen', false));
-      ownProps.history.push(`/companies/${res}`);
+      // ownProps.history.push(`/companies/${res}`);
     }),
 });
 

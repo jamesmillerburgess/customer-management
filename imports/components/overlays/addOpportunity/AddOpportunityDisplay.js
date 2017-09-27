@@ -1,19 +1,20 @@
 import React from 'react';
 
-const addOpportunityFields = [
-  { prop: 'name', label: 'Name' },
-  { prop: 'status', label: 'Status' },
-  { prop: 'amount', label: 'Amount' },
-  { prop: 'closeDate', label: 'Close Date' },
-  { prop: 'company', label: 'Company' },
-];
+import { addOpportunityFields } from './AddOpportunityConstants';
 
 const AddOpportunityDisplay = props => (
   <form
     className={`overlay-right ${props.show ? 'show' : ''}`}
     onSubmit={e => {
       e.preventDefault();
-      props.create({ name: props.name, website: props.website });
+      props.create(
+        addOpportunityFields.reduce((prev, { prop }) => {
+          return {
+            ...prev,
+            [prop]: props[prop],
+          };
+        }, {})
+      );
     }}
   >
     <header className="overlay-header">
@@ -28,21 +29,20 @@ const AddOpportunityDisplay = props => (
     </header>
     <div className="overlay-body">
       <div className="overlay-content">
-        {addOpportunityFields.map(({ prop, label }) => (
+        {addOpportunityFields.map(({ prop, label, component }) => (
           <div className="input-group" key={prop}>
             <div className="input-label">{label}</div>
-            <input
-              id={prop}
-              value={props[prop]}
-              onChange={e => props.setName(e.target.value)}
-            />
+            {component({
+              value: props[prop],
+              onChange: val => props.setProp(prop, val),
+            })}
           </div>
         ))}
       </div>
     </div>
     <footer className="overlay-footer">
       <button className="button-primary" type="submit">
-        Create company
+        Create opportunity
       </button>
       <button
         type="button"

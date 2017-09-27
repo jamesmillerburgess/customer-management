@@ -1,0 +1,18 @@
+.card {
+  opacity: 1;
+}
+.card .title {
+  color: #0091ae;
+  font-weight: 400;
+  text-decoration: none;
+  font-size: 16px;
+}
+.card .title:hover {
+  text-decoration: underline;
+}
+.card .dummy-title {
+  width: 150px;
+  height: 18px;
+  background-color: #eee;
+  border-radius: 3px;
+}
