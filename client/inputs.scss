@@ -9,6 +9,7 @@ input {
   color: #33475b;
   font-size: 16px;
   border-radius: 0.1875rem;
+  font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 input:focus {
@@ -23,4 +24,21 @@ input:focus {
 
 .input-group .input-label {
   margin-bottom: 5px;
+}
+
+input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+input::-moz-placeholder {
+  /* Firefox 19+ */
+  font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+input:-ms-input-placeholder {
+  /* IE 10+ */
+  font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+input:-moz-placeholder {
+  /* Firefox 18- */
+  font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
 }

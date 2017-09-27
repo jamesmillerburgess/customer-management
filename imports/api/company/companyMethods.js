@@ -4,6 +4,7 @@ import _ from 'lodash/fp';
 
 import Companies from './companyCollection';
 import { COMPANY_FIELDS } from '../../components/pages/company/CompanyConstants';
+import { buildSearchRegExp } from '../searchUtils';
 
 const CREATION = 'CREATION';
 const NOTE = 'NOTE';
@@ -49,8 +50,14 @@ export const addNote = function(companyId, note) {
   });
 };
 
+const search = function(search) {
+  const query = { name: { $regex: buildSearchRegExp(search) } };
+  return Companies.find(query).fetch();
+};
+
 Meteor.methods({
   'company.create': create,
   'company.save': save,
   'company.addNote': addNote,
+  'company.search': search,
 });
