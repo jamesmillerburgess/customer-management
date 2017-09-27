@@ -50,6 +50,19 @@ export const setStatus = function(opportunityId, status) {
       },
     },
   });
+  if (opportunity.company && opportunity.company._id) {
+    Companies.update(opportunity.company._id, {
+      $push: {
+        timeline: {
+          id: new Mongo.ObjectID()._str,
+          type: STATUS_CHANGE,
+          timestamp: new Date(),
+          userId: this.userId,
+          keyword: status,
+        },
+      },
+    });
+  }
 };
 
 Meteor.methods({
