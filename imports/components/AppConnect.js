@@ -4,6 +4,7 @@ import AppDisplay from './AppDisplay';
 
 export const mapStateToProps = ({ app }) => ({
   isOverlayOpen: app.isOverlayOpen || false,
+  overlay: app.overlay || '',
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({});

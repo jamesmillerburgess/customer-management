@@ -1,6 +1,14 @@
 import React from 'react';
 
-const AddCompanyDisplay = props => (
+const addOpportunityFields = [
+  { prop: 'name', label: 'Name' },
+  { prop: 'status', label: 'Status' },
+  { prop: 'amount', label: 'Amount' },
+  { prop: 'closeDate', label: 'Close Date' },
+  { prop: 'company', label: 'Company' },
+];
+
+const AddOpportunityDisplay = props => (
   <form
     className={`overlay-right ${props.show ? 'show' : ''}`}
     onSubmit={e => {
@@ -9,7 +17,7 @@ const AddCompanyDisplay = props => (
     }}
   >
     <header className="overlay-header">
-      Add a company
+      Add an opportunity
       <button
         type="button"
         className="button-dismiss-overlay"
@@ -20,22 +28,16 @@ const AddCompanyDisplay = props => (
     </header>
     <div className="overlay-body">
       <div className="overlay-content">
-        <div className="input-group">
-          <div className="input-label">Name</div>
-          <input
-            id="name"
-            value={props.name}
-            onChange={e => props.setName(e.target.value)}
-          />
-        </div>
-        <div className="input-group">
-          <div className="input-label">Website</div>
-          <input
-            id="website"
-            value={props.website}
-            onChange={e => props.setWebsite(e.target.value)}
-          />
-        </div>
+        {addOpportunityFields.map(({ prop, label }) => (
+          <div className="input-group" key={prop}>
+            <div className="input-label">{label}</div>
+            <input
+              id={prop}
+              value={props[prop]}
+              onChange={e => props.setName(e.target.value)}
+            />
+          </div>
+        ))}
       </div>
     </div>
     <footer className="overlay-footer">
@@ -53,4 +55,4 @@ const AddCompanyDisplay = props => (
   </form>
 );
 
-export default AddCompanyDisplay;
+export default AddOpportunityDisplay;

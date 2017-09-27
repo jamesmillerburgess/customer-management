@@ -11,6 +11,7 @@ export const mapStateToProps = ({ app }) => ({
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   setIsOverlayOpen: value => {
     dispatch(setAppProp('isOverlayOpen', value));
+    dispatch(setAppProp('overlay', 'ADD_OPPORTUNITY'));
     dispatch(setOverlayProp('name', ''));
     dispatch(setOverlayProp('website', ''));
   },
