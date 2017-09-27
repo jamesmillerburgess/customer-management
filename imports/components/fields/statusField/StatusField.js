@@ -1,7 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
-import '../ReactSelect.scss';
+// import 'react-select/dist/react-select.css';
 
 const APPOINTMENT_SCHEDULED = 'APPOINTMENT_SCHEDULED';
 const QUALIFIED_TO_BUY = 'QUALIFIED_TO_BUY';
@@ -46,6 +45,8 @@ const StatusField = props => (
     value={props.value}
     options={options}
     onChange={option => props.onChange(option.value)}
+    clearable={false}
+    arrowRenderer={() => null}
   />
 );
 

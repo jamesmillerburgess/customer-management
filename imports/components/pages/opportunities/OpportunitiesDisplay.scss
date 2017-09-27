@@ -37,7 +37,7 @@
 .status-group .list {
   flex-grow: 1;
   border: 1px solid #dfe3eb;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .status-group .list .panel {
   margin: 8px;

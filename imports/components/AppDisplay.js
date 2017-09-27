@@ -32,8 +32,21 @@ const OT = {
 
 const Overlays = ({ open, type }) => (
   <div className={`overlay-background ${open ? 'show' : ''}`}>
-    <AddCompanyConnect show={type === OT.ADD_COMPANY} />
-    <AddOpportunityConnect show={type === OT.ADD_OPPORTUNITY} />
+    <Route
+      path="/"
+      render={routeProps => (
+        <AddCompanyConnect {...routeProps} show={type === OT.ADD_COMPANY} />
+      )}
+    />
+    <Route
+      path="/"
+      render={routeProps => (
+        <AddOpportunityConnect
+          {...routeProps}
+          show={type === OT.ADD_OPPORTUNITY}
+        />
+      )}
+    />
   </div>
 );
 

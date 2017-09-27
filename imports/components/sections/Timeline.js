@@ -13,7 +13,8 @@ const TIMELINE_MESSAGES = {
       <Link to="#" className="keyword">
         {entry.opportunityName}
       </Link>{' '}
-      moved from <span className="keyword">{STATUS_LABELS[entry.from]}</span> to{' '}
+      moved forward from{' '}
+      <span className="keyword">{STATUS_LABELS[entry.from]}</span> to{' '}
       <span className="keyword">{STATUS_LABELS[entry.to]}</span>
     </span>
   ),
@@ -23,7 +24,8 @@ const TIMELINE_MESSAGES = {
       <Link to="#" className="keyword">
         {entry.opportunityName}
       </Link>{' '}
-      moved from <span className="keyword">{STATUS_LABELS[entry.from]}</span> to{' '}
+      moved backward from{' '}
+      <span className="keyword">{STATUS_LABELS[entry.from]}</span> to{' '}
       <span className="keyword">{STATUS_LABELS[entry.to]}</span>
     </span>
   ),
