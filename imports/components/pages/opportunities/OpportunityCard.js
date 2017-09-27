@@ -7,6 +7,7 @@ const panelTypes = {
 
 const opportunitySource = {
   beginDrag(props) {
+    console.log('beginDrag');
     return { id: props.id };
   },
 };
@@ -22,7 +23,9 @@ class OpportunityCard extends React.Component {
   render() {
     console.log(this.props);
     const { connectDragSource, isDragging } = this.props;
-    return connectDragSource(<div className="panel">Hello!</div>);
+    return connectDragSource(
+      <div>{isDragging ? null : <div className="panel">Hello!</div>}</div>
+    );
   }
 }
 
