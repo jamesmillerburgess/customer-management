@@ -4,31 +4,23 @@ import { Link } from 'react-router-dom';
 
 import { STATUS_LABELS } from '../fields/statusField/StatusField';
 
+const StatusChangeMessage = (entry, direction) => (
+  <span>
+    Opportunity{' '}
+    <Link to="#" className="keyword">
+      {entry.opportunityName}
+    </Link>{' '}
+    moved {direction} from{' '}
+    <span className="keyword">{STATUS_LABELS[entry.from]}</span> to{' '}
+    <span className="keyword">{STATUS_LABELS[entry.to]}</span>
+  </span>
+);
+
 export const TIMELINE_MESSAGES = {
   CREATION: () => 'was created',
   NOTE: () => 'left a note',
-  STATUS_CHANGE_FORWARD: entry => (
-    <span>
-      Opportunity{' '}
-      <Link to="#" className="keyword">
-        {entry.opportunityName}
-      </Link>{' '}
-      moved forward from{' '}
-      <span className="keyword">{STATUS_LABELS[entry.from]}</span> to{' '}
-      <span className="keyword">{STATUS_LABELS[entry.to]}</span>
-    </span>
-  ),
-  STATUS_CHANGE_BACKWARD: entry => (
-    <span>
-      Opportunity{' '}
-      <Link to="#" className="keyword">
-        {entry.opportunityName}
-      </Link>{' '}
-      moved backward from{' '}
-      <span className="keyword">{STATUS_LABELS[entry.from]}</span> to{' '}
-      <span className="keyword">{STATUS_LABELS[entry.to]}</span>
-    </span>
-  ),
+  STATUS_CHANGE_FORWARD: entry => StatusChangeMessage(entry, 'forward'),
+  STATUS_CHANGE_BACKWARD: entry => StatusChangeMessage(entry, 'backward'),
 };
 
 const TIMELINE_ICONS = {
