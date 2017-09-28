@@ -1,18 +1,16 @@
 import React from 'react';
 import { DropTarget } from 'react-dnd';
 
-const listTarget = {
+export const listTarget = {
   drop(props, monitor, component) {
     return { status: props.status };
   },
 };
 
-function collect(connect, monitor) {
-  return {
-    connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
-  };
-}
+export const collect = (connect, monitor) => ({
+  connectDropTarget: connect.dropTarget(),
+  isOver: monitor.isOver(),
+});
 
 class OpportunityList extends React.Component {
   render() {
@@ -29,5 +27,7 @@ class OpportunityList extends React.Component {
     );
   }
 }
+
+export const OpportunityListNoContext = OpportunityList;
 
 export default DropTarget('PANEL', listTarget, collect)(OpportunityList);

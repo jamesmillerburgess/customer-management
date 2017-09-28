@@ -6,7 +6,7 @@ import { STATUS_VALUES } from '../../fields/statusField/StatusField';
 
 const cardsSelector = props => props.cards;
 
-const cardListsSelector = createSelector(cardsSelector, cards =>
+export const cardListsSelector = createSelector(cardsSelector, cards =>
   cards.reduce(
     (prev, card) => {
       prev[STATUS_VALUES.indexOf(card.status)].push(card);
@@ -16,7 +16,7 @@ const cardListsSelector = createSelector(cardsSelector, cards =>
   )
 );
 
-const listTotalsSelector = createSelector(cardListsSelector, cardLists =>
+export const listTotalsSelector = createSelector(cardListsSelector, cardLists =>
   cardLists.map(cardList =>
     cardList.reduce((prev, card) => prev + +card.amount, 0)
   )
@@ -40,5 +40,7 @@ const OpportunityBoardConnect = props => (
     probabilityColors={probabilityColors}
   />
 );
+
+OpportunityBoardConnect.defaultProps = { cards: [] };
 
 export default OpportunityBoardConnect;

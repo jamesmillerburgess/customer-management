@@ -12,14 +12,14 @@ describe('CompaniesDisplay Component', () => {
     wrapper.unmount();
   });
   it('renders without error', () => {});
-  it('calls setIsOverlayOpen on click add in header', () => {
-    const setIsOverlayOpen = jest.fn();
-    wrapper.setProps({ setIsOverlayOpen });
+  it('calls openOverlay on click add in header', () => {
+    const openOverlay = jest.fn();
+    wrapper.setProps({ openOverlay });
     wrapper
       .find('PageHeader')
       .props()
       .onClickAdd();
-    expect(setIsOverlayOpen).toHaveBeenCalled();
+    expect(openOverlay).toHaveBeenCalled();
   });
   it('passes empty data to GridPage if still loading', () => {
     wrapper.setProps({ loading: true, companies: ['a'] });
@@ -28,16 +28,6 @@ describe('CompaniesDisplay Component', () => {
   it('passes companies to GridPage if not still loading', () => {
     wrapper.setProps({ loading: false, companies: ['a'] });
     expect(wrapper.find('GridPage').props().data).toEqual(['a']);
-  });
-  it('sorts the data by createDate', () => {
-    wrapper.setProps({
-      loading: false,
-      companies: [{ createDate: 1 }, { createDate: 2 }],
-    });
-    expect(wrapper.find('GridPage').props().data).toEqual([
-      { createDate: 2 },
-      { createDate: 1 },
-    ]);
   });
 });
 describe('gridPageProps Function', () => {

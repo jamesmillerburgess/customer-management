@@ -11,9 +11,9 @@ describe('CompaniesConnect Component', () => {
 describe('mapStateToProps Function', () => {
   it('maps login state', () => {
     const state = { app: {}, other: 'b' };
-    expect(mapStateToProps(state)).toEqual({ isOverlayOpen: false });
+    expect(mapStateToProps(state)).toEqual({});
     state.app.isOverlayOpen = true;
-    expect(mapStateToProps(state)).toEqual({ isOverlayOpen: true });
+    expect(mapStateToProps(state)).toEqual({});
   });
 });
 describe('mapDispatchToProps Function', () => {

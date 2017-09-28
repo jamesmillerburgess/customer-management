@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { STATUS_LABELS } from '../fields/statusField/StatusField';
 
-const TIMELINE_MESSAGES = {
+export const TIMELINE_MESSAGES = {
   CREATION: () => 'was created',
   NOTE: () => 'left a note',
   STATUS_CHANGE_FORWARD: entry => (

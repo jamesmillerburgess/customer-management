@@ -15,4 +15,8 @@ describe('overlay Reducer', () => {
     const action = { type: AT.SET_OVERLAY_PROP, prop: 'a', value: 'b' };
     expect(overlay({}, action).a).toBe('b');
   });
+  it('returns an empty object when clearing the props', () => {
+    const action = { type: AT.CLEAR_OVERLAY_PROPS };
+    expect(overlay({ a: 'b' }, action)).toEqual({});
+  });
 });
