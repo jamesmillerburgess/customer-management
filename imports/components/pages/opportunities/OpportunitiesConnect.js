@@ -1,24 +1,5 @@
-import { connect } from 'react-redux';
-
+import React from 'react';
+import PageConnect from '../PageConnect';
 import OpportunitiesContainer from './OpportunitiesContainer';
-import { setAppProp } from '../../../state/actions/appActionCreators';
-import {
-  setOverlayProp,
-  clearOverlayProps,
-} from '../../../state/actions/overlayActionCreators';
-
-export const mapStateToProps = () => ({});
-
-export const mapDispatchToProps = (dispatch, ownProps) => ({
-  openOverlay: () => {
-    dispatch(setAppProp('isOverlayOpen', true));
-    dispatch(setAppProp('overlay', 'ADD_OPPORTUNITY'));
-    dispatch(clearOverlayProps());
-  },
-});
-
-const OpportunitiesConnect = connect(mapStateToProps, mapDispatchToProps)(
-  OpportunitiesContainer
-);
-
+const OpportunitiesConnect = PageConnect(OpportunitiesContainer);
 export default OpportunitiesConnect;

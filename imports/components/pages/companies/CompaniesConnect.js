@@ -1,24 +1,5 @@
-import { connect } from 'react-redux';
-
+import React from 'react';
+import PageConnect from '../PageConnect';
 import CompaniesContainer from './CompaniesContainer';
-import { setAppProp } from '../../../state/actions/appActionCreators';
-import {
-  setOverlayProp,
-  clearOverlayProps,
-} from '../../../state/actions/overlayActionCreators';
-
-export const mapStateToProps = () => ({});
-
-export const mapDispatchToProps = (dispatch, ownProps) => ({
-  openOverlay: () => {
-    dispatch(setAppProp('isOverlayOpen', true));
-    dispatch(setAppProp('overlay', 'ADD_COMPANY'));
-    dispatch(clearOverlayProps());
-  },
-});
-
-const CompaniesConnect = connect(mapStateToProps, mapDispatchToProps)(
-  CompaniesContainer
-);
-
+const CompaniesConnect = PageConnect(CompaniesContainer);
 export default CompaniesConnect;

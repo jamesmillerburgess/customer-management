@@ -16,12 +16,12 @@ export const verifyAuth = (component, props) => {
   return <HomeConnect {...props} />;
 };
 
-export const renderRoute = ({ path, component, exact }, index) => (
+export const renderRoute = ({ path, component, exact, overlay }, index) => (
   <Route
     key={index}
     path={path}
     exact={exact}
-    render={routeProps => verifyAuth(component, routeProps)}
+    render={routeProps => verifyAuth(component, { ...routeProps, overlay })}
   />
 );
 

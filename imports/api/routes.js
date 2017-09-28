@@ -25,6 +25,7 @@ const routes = [
     exact: true,
     title: 'Companies',
     component: CompaniesConnect,
+    overlay: 'ADD_COMPANY',
     isNavLink: true,
   },
   {
@@ -32,6 +33,7 @@ const routes = [
     exact: true,
     title: 'Opportunities',
     component: OpportunitiesConnect,
+    overlay: 'ADD_OPPORTUNITY',
     isNavLink: true,
   },
   {
