@@ -7,8 +7,8 @@ import AddCompanyConnect, {
 } from './AddCompanyConnect';
 
 describe('AddCompanyConnect Component', () => {
-  it('connects AddCompanyDisplay', () => {
-    expect(AddCompanyConnect.displayName).toBe('Connect(AddCompanyDisplay)');
+  it('connects AddObjectDisplay', () => {
+    expect(AddCompanyConnect.displayName).toBe('Connect(AddObjectDisplay)');
   });
 });
 describe('mapStateToProps Function', () => {
@@ -31,8 +31,8 @@ describe('mapDispatchToProps Function', () => {
     const ownProps = { history: { push: jest.fn() } };
     const props = mapDispatchToProps(() => null, ownProps);
     Meteor.err = null;
-    expect(props.setName).not.toThrow();
-    expect(props.setWebsite).not.toThrow();
+    Meteor._methods['company.create'] = jest.fn();
+    expect(props.setProp).not.toThrow();
     expect(props.closeOverlay).not.toThrow();
     expect(props.create).not.toThrow();
   });

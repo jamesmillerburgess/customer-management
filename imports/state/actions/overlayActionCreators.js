@@ -6,3 +6,5 @@ export const setOverlayProp = makeActionCreator(
   'prop',
   'value'
 );
+
+export const clearOverlayProps = () => ({ type: AT.CLEAR_OVERLAY_PROPS });

@@ -6,7 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 import HomeConnect from './pages/home/HomeConnect';
 import NavConnect from './nav/nav/NavConnect';
 import AddCompanyConnect from './overlays/addCompany/AddCompanyConnect';
+import AddOpportunityConnect from './overlays/addOpportunity/AddOpportunityConnect';
 import routes from '../api/routes';
+import * as fields from './overlays/AddObjectConstants';
 
 export const verifyAuth = (component, props) => {
   if (Meteor.user() || Meteor.loggingIn()) {
@@ -15,13 +17,45 @@ export const verifyAuth = (component, props) => {
   return <HomeConnect {...props} />;
 };
 
-export const renderRoute = ({ path, component, exact }, index) => (
+export const renderRoute = ({ path, component, exact, overlay }, index) => (
   <Route
     key={index}
     path={path}
     exact={exact}
-    render={routeProps => verifyAuth(component, routeProps)}
+    render={routeProps => verifyAuth(component, { ...routeProps, overlay })}
   />
+);
+
+export const OT = {
+  ADD_COMPANY: 'ADD_COMPANY',
+  ADD_OPPORTUNITY: 'ADD_OPPORTUNITY',
+};
+
+export const Overlays = ({ open, type }) => (
+  <div className={`overlay-background ${open ? 'show' : ''}`}>
+    <Route
+      path="/"
+      render={routeProps => (
+        <AddCompanyConnect
+          {...routeProps}
+          show={type === OT.ADD_COMPANY}
+          fields={fields.addCompanyFields}
+          label="company"
+        />
+      )}
+    />
+    <Route
+      path="/"
+      render={routeProps => (
+        <AddOpportunityConnect
+          {...routeProps}
+          show={type === OT.ADD_OPPORTUNITY}
+          fields={fields.addOpportunityFields}
+          label="opportunity"
+        />
+      )}
+    />
+  </div>
 );
 
 const AppDisplay = props => (
@@ -31,11 +65,7 @@ const AppDisplay = props => (
         <Route path="/" component={NavConnect} />
         {routes.map(renderRoute)}
       </div>
-      <div
-        className={`overlay-background ${props.isOverlayOpen ? 'show' : ''}`}
-      >
-        <Route path="/" component={AddCompanyConnect} />
-      </div>
+      <Overlays type={props.overlay} open={props.isOverlayOpen} />
     </div>
   </BrowserRouter>
 );

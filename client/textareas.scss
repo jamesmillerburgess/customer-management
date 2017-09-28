@@ -12,6 +12,8 @@ textarea {
   border-radius: 0.1875rem;
   resize: none;
   width: 100%;
+  font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+  overflow-y: auto;
 }
 
 textarea:focus {
@@ -21,16 +23,20 @@ textarea:focus {
 textarea::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: rgba(#33475b, 0.5);
+  font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 textarea::-moz-placeholder {
   /* Firefox 19+ */
   color: rgba(#33475b, 0.5);
+  font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 textarea:-ms-input-placeholder {
   /* IE 10+ */
   color: rgba(#33475b, 0.5);
+  font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 textarea:-moz-placeholder {
   /* Firefox 18- */
   color: rgba(#33475b, 0.5);
+  font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
 }

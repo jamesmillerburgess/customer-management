@@ -4,6 +4,8 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Companies from '../../../api/company/companyCollection';
 import CompaniesDisplay from './CompaniesDisplay';
 
+export const sortCompanies = (a, b) => b.createDate - a.createDate;
+
 const CompaniesContainer = createContainer(props => {
   if (!Meteor.userId()) {
     return { ...props, companies: [], loading: true };
@@ -12,7 +14,9 @@ const CompaniesContainer = createContainer(props => {
   const companies = Companies.find({
     users: Meteor.userId(),
     isArchived: false,
-  }).fetch();
+  })
+    .fetch()
+    .sort(sortCompanies);
   return { ...props, companies, loading };
 }, CompaniesDisplay);
 

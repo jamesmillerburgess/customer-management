@@ -48,8 +48,12 @@ export const Meteor = {
   loggedInUser: null,
   logout: cb => cb(),
   _userId: null,
+  _methods: {},
   methods: () => null,
   call: function() {
+    if (typeof arguments[0] === 'string' && this._methods[arguments[0]]) {
+      this._methods[arguments[0]]();
+    }
     if (arguments.length > 0) {
       arguments[arguments.length - 1](this.err, this.res);
     }
@@ -59,7 +63,10 @@ export const Meteor = {
   },
   err: null,
   res: null,
-  publish: jest.fn(),
+  publications: {},
+  publish: function(publications) {
+    this.publications = publications;
+  },
   users: new Mongo.Collection(),
   subscribe: function() {
     return {

@@ -21,10 +21,20 @@ describe('company.save Meteor Method', () => {
     expect(() => company.save({})).not.toThrow();
   });
 });
-
 describe('company.addNote Meteor Method', () => {
   it('does not throw', () => {
     Meteor.users.docs = [{}];
-    expect(() => company.addNote({})).not.toThrow();
+    expect(() => company.addNote('a', {})).not.toThrow();
+  });
+  it('throws if companyId is not a string', () => {
+    expect(() => company.addNote(1, {})).toThrow();
+  });
+});
+describe('company.search Meteor Method', () => {
+  it('does not throw', () => {
+    expect(company.search).not.toThrow();
+  });
+  it('throws if search is not a string', () => {
+    expect(() => company.search(1)).toThrow();
   });
 });
