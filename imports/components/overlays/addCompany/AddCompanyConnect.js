@@ -6,7 +6,7 @@ import AddObjectDisplay from '../AddObjectDisplay';
 
 import { setOverlayProp } from '../../../state/actions/overlayActionCreators';
 import { setAppProp } from '../../../state/actions/appActionCreators';
-import { addCompanyFields } from './AddCompanyConstants';
+import { addCompanyFields } from '../AddObjectConstants';
 
 export const mapStateToProps = ({ overlay }) => {
   return addCompanyFields.reduce(
