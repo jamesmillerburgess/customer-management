@@ -63,7 +63,10 @@ export const Meteor = {
   },
   err: null,
   res: null,
-  publish: jest.fn(),
+  publications: {},
+  publish: function(publications) {
+    this.publications = publications;
+  },
   users: new Mongo.Collection(),
   subscribe: function() {
     return {
