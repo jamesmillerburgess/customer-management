@@ -25,12 +25,12 @@ export const renderRoute = ({ path, component, exact }, index) => (
   />
 );
 
-const OT = {
+export const OT = {
   ADD_COMPANY: 'ADD_COMPANY',
   ADD_OPPORTUNITY: 'ADD_OPPORTUNITY',
 };
 
-const Overlays = ({ open, type }) => (
+export const Overlays = ({ open, type }) => (
   <div className={`overlay-background ${open ? 'show' : ''}`}>
     <Route
       path="/"

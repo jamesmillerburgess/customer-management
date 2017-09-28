@@ -40,13 +40,15 @@ const options = [
   { value: 'CLOSED_LOST', label: 'Closed Lost' },
 ];
 
+export const noop = () => null;
+
 const StatusField = props => (
   <Select
     value={props.value}
     options={options}
     onChange={option => props.onChange(option.value)}
     clearable={false}
-    arrowRenderer={() => null}
+    arrowRenderer={noop}
   />
 );
 

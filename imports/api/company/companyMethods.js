@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import _ from 'lodash/fp';
+import validate from 'validate.js';
 
 import Companies from './companyCollection';
 import { COMPANY_FIELDS } from '../../components/pages/company/CompanyConstants';
@@ -35,6 +36,9 @@ export const save = function(companyId, company) {
 };
 
 export const addNote = function(companyId, note) {
+  if (!validate.isString(companyId)) {
+    throw new Error('Parameter companyId must be a string');
+  }
   Companies.update(companyId, {
     $push: {
       timeline: {
@@ -49,7 +53,8 @@ export const addNote = function(companyId, note) {
   });
 };
 
-const search = function(search) {
+export const search = function(search) {
+  validate.isString(search);
   const query = { name: { $regex: buildSearchRegExp(search) } };
   return Companies.find(query).fetch();
 };

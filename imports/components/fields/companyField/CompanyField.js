@@ -9,6 +9,9 @@ export const loadOptions = (search, cb) =>
     cb(null, { options });
   });
 
+export const filterOption = () => true;
+export const noop = () => null;
+
 const CompanyField = props => (
   <Select.Async
     value={props.value}
@@ -17,10 +20,10 @@ const CompanyField = props => (
     loadOptions={loadOptions}
     optionRenderer={renderStakeholder}
     valueRenderer={renderStakeholder}
-    filterOption={() => true}
+    filterOption={filterOption}
     autoload
-    clearRenderer={() => null}
-    arrowRenderer={() => null}
+    clearRenderer={noop}
+    arrowRenderer={noop}
     placeholder=""
   />
 );

@@ -1,25 +1,24 @@
-import CompaniesConnect, {
+import OpportunitiesConnect, {
   mapStateToProps,
   mapDispatchToProps,
-} from './CompaniesConnect';
+} from './OpportunitiesConnect';
 
-describe('CompaniesConnect Component', () => {
+describe('OpportunitiesConnect Component', () => {
   it('connects CompaniesContainer', () => {
-    expect(CompaniesConnect).toBeInstanceOf(Function);
+    expect(OpportunitiesConnect).toBeInstanceOf(Function);
   });
 });
 describe('mapStateToProps Function', () => {
-  it('maps login state', () => {
-    const state = { app: {}, other: 'b' };
-    expect(mapStateToProps(state)).toEqual({ isOverlayOpen: false });
-    state.app.isOverlayOpen = true;
-    expect(mapStateToProps(state)).toEqual({ isOverlayOpen: true });
+  it('maps state to props', () => {
+    const state = { other: 'b' };
+    expect(mapStateToProps(state)).toEqual({});
   });
 });
 describe('mapDispatchToProps Function', () => {
-  it('maps login dispatchers', () => {
+  it('maps dispatchers to props', () => {
     const dispatch = jest.fn();
     const props = mapDispatchToProps(dispatch);
-    expect(props.setIsOverlayOpen).not.toThrow();
+    expect(props.openOverlay).not.toThrow();
+    expect(dispatch).toHaveBeenCalledTimes(3);
   });
 });

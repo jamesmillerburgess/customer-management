@@ -20,6 +20,6 @@ describe('mapDispatchToProps Function', () => {
   it('maps login dispatchers', () => {
     const dispatch = jest.fn();
     const props = mapDispatchToProps(dispatch);
-    expect(props.setIsOverlayOpen).not.toThrow();
+    expect(props.openOverlay).not.toThrow();
   });
 });
