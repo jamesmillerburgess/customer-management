@@ -13,6 +13,7 @@ textarea {
   resize: none;
   width: 100%;
   font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+  overflow-y: auto;
 }
 
 textarea:focus {
