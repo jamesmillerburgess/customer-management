@@ -13,6 +13,7 @@ export const STATUS_CHANGE_FORWARD = 'STATUS_CHANGE_FORWARD';
 export const STATUS_CHANGE_BACKWARD = 'STATUS_CHANGE_BACKWARD';
 
 export const create = function(opportunity) {
+  console.log(opportunity);
   if (!opportunity || !opportunity.name) {
     throw new Error();
   }

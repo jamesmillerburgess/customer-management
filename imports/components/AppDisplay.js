@@ -8,6 +8,7 @@ import NavConnect from './nav/nav/NavConnect';
 import AddCompanyConnect from './overlays/addCompany/AddCompanyConnect';
 import AddOpportunityConnect from './overlays/addOpportunity/AddOpportunityConnect';
 import routes from '../api/routes';
+import * as fields from './overlays/AddObjectConstants';
 
 export const verifyAuth = (component, props) => {
   if (Meteor.user() || Meteor.loggingIn()) {
@@ -35,7 +36,12 @@ export const Overlays = ({ open, type }) => (
     <Route
       path="/"
       render={routeProps => (
-        <AddCompanyConnect {...routeProps} show={type === OT.ADD_COMPANY} />
+        <AddCompanyConnect
+          {...routeProps}
+          show={type === OT.ADD_COMPANY}
+          fields={fields.addCompanyFields}
+          label="company"
+        />
       )}
     />
     <Route
@@ -44,6 +50,8 @@ export const Overlays = ({ open, type }) => (
         <AddOpportunityConnect
           {...routeProps}
           show={type === OT.ADD_OPPORTUNITY}
+          fields={fields.addOpportunityFields}
+          label="opportunity"
         />
       )}
     />

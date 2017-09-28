@@ -7,8 +7,8 @@ import AddCompanyConnect, {
 } from './AddCompanyConnect';
 
 describe('AddCompanyConnect Component', () => {
-  it('connects AddCompanyDisplay', () => {
-    expect(AddCompanyConnect.displayName).toBe('Connect(AddCompanyDisplay)');
+  it('connects AddObjectDisplay', () => {
+    expect(AddCompanyConnect.displayName).toBe('Connect(AddObjectDisplay)');
   });
 });
 describe('mapStateToProps Function', () => {

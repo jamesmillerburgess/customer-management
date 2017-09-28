@@ -1,14 +1,12 @@
 import React from 'react';
 
-import { addOpportunityFields } from './AddOpportunityConstants';
-
-const AddOpportunityDisplay = props => (
+const AddObjectDisplay = props => (
   <form
     className={`overlay-right ${props.show ? 'show' : ''}`}
     onSubmit={e => {
       e.preventDefault();
       props.create(
-        addOpportunityFields.reduce((prev, { prop }) => {
+        props.fields.reduce((prev, { prop }) => {
           return {
             ...prev,
             [prop]: props[prop],
@@ -18,7 +16,7 @@ const AddOpportunityDisplay = props => (
     }}
   >
     <header className="overlay-header">
-      Add an opportunity
+      Add {props.label}
       <button
         type="button"
         className="button-dismiss-overlay"
@@ -29,7 +27,7 @@ const AddOpportunityDisplay = props => (
     </header>
     <div className="overlay-body">
       <div className="overlay-content">
-        {addOpportunityFields.map(({ prop, label, component }) => (
+        {props.fields.map(({ prop, label, component }) => (
           <div className="input-group" key={prop}>
             <div className="input-label">{label}</div>
             {component({
@@ -42,7 +40,7 @@ const AddOpportunityDisplay = props => (
     </div>
     <footer className="overlay-footer">
       <button className="button-primary" type="submit">
-        Create opportunity
+        Create {props.label}
       </button>
       <button
         type="button"
@@ -55,4 +53,4 @@ const AddOpportunityDisplay = props => (
   </form>
 );
 
-export default AddOpportunityDisplay;
+export default AddObjectDisplay;

@@ -6,10 +6,8 @@ import AddOpportunityConnect, {
 } from './AddOpportunityConnect';
 
 describe('AddOpportunityConnect Component', () => {
-  it('connects AddOpportunityDisplay', () => {
-    expect(AddOpportunityConnect.displayName).toBe(
-      'Connect(AddOpportunityDisplay)'
-    );
+  it('connects AddObjectDisplay', () => {
+    expect(AddOpportunityConnect.displayName).toBe('Connect(AddObjectDisplay)');
   });
 });
 describe('mapStateToProps Function', () => {

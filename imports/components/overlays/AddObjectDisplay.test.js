@@ -1,12 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import TextField from '../fields/textField/TextField';
 
-import AddOpportunityDisplay from './AddOpportunityDisplay';
+import AddObjectDisplay from './AddObjectDisplay';
 
-describe('AddOpportunityDisplay', () => {
+describe('AddObjectDisplay', () => {
   let wrapper;
+  const props = {
+    fields: [
+      { prop: 'name', label: 'Name', component: TextField, default: '' },
+    ],
+  };
   beforeEach(() => {
-    wrapper = shallow(<AddOpportunityDisplay />);
+    wrapper = shallow(<AddObjectDisplay {...props} />);
   });
   afterEach(() => {
     wrapper.unmount();

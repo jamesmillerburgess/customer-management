@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
-import AddCompanyDisplay from './AddCompanyDisplay';
+import AddObjectDisplay from '../AddObjectDisplay';
 
 import { setOverlayProp } from '../../../state/actions/overlayActionCreators';
 import { setAppProp } from '../../../state/actions/appActionCreators';
@@ -33,7 +33,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 const AddCompanyConnect = connect(mapStateToProps, mapDispatchToProps)(
-  AddCompanyDisplay
+  AddObjectDisplay
 );
 
 export default AddCompanyConnect;
