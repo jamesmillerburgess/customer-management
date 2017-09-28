@@ -38,6 +38,10 @@ describe('loadOptions Function', () => {
     loadOptions('a', cb);
     expect(cb).toHaveBeenCalledTimes(1);
   });
+  it('handles errors', () => {
+    Meteor.err = 'err';
+    expect(() => loadOptions('a', () => null)).not.toThrow();
+  });
 });
 describe('filterOption function', () => {
   it('always returns true', () => {

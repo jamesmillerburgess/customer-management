@@ -6,6 +6,9 @@ export const renderStakeholder = stakeholder => <div>{stakeholder.name}</div>;
 
 export const loadOptions = (search, cb) =>
   Meteor.call('company.search', search, (err, options) => {
+    if (err) {
+      console.log(err);
+    }
     cb(null, { options });
   });
 
