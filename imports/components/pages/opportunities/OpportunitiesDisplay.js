@@ -1,7 +1,7 @@
 import React from 'react';
 import './OpportunitiesDisplay.scss';
 import PageHeader from '../PageHeader';
-import Board from './Board.js';
+import OpportunityBoardConnect from './OpportunityBoardConnect';
 
 const headerProps = {
   title: 'Opportunities',
@@ -15,7 +15,7 @@ const OpportunitiesDisplay = props => (
       {...headerProps}
       onClickAdd={() => props.setIsOverlayOpen(true)}
     />
-    <Board cards={props.opportunities} />
+    <OpportunityBoardConnect cards={props.opportunities} />
   </div>
 );
 

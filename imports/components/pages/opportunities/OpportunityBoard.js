@@ -16,7 +16,7 @@ const statuses = [
   { title: 'CLOSED LOST', color: '#516f90' },
 ];
 
-class Board extends React.Component {
+class OpportunityBoard extends React.Component {
   render() {
     return (
       <div className="opportunities-board">
@@ -25,13 +25,7 @@ class Board extends React.Component {
             <div className="header">
               <div className="header-text">
                 <div className="title">{status.title}</div>
-                <div className="count">
-                  {
-                    this.props.cards.filter(
-                      card => card.status === STATUS_VALUES[i]
-                    ).length
-                  }
-                </div>
+                <div className="count">{this.props.cardLists[i].length}</div>
               </div>
               <div className="probability-bar">
                 {statuses.map(({ color }, j) => (
@@ -39,25 +33,20 @@ class Board extends React.Component {
                     key={`${i}${j}`}
                     className="bar"
                     style={{
-                      backgroundColor:
-                        j <= i && (i !== 6 || (i === 6 && j === 6))
-                          ? color
-                          : '',
+                      backgroundColor: this.props.probabilityColors[i][j]
+                        ? color
+                        : '',
                     }}
                   />
                 ))}
               </div>
             </div>
             <OpportunityList status={STATUS_VALUES[i]}>
-              {this.props.cards
-                .filter(card => card.status === STATUS_VALUES[i])
-                .map(card => <OpportunityCard {...card} key={card._id} />)}
+              {this.props.cardLists[i].map(card => (
+                <OpportunityCard {...card} key={card._id} />
+              ))}
             </OpportunityList>
-            <div className="footer">
-              Total: ${this.props.cards
-                .filter(card => card.status === STATUS_VALUES[i])
-                .reduce((prev, card) => prev + +card.amount, 0)}
-            </div>
+            <div className="footer">Total: ${this.props.listTotals[i]}</div>
           </div>
         ))}
       </div>
@@ -65,4 +54,4 @@ class Board extends React.Component {
   }
 }
 
-export default DragDropContext(HTML5Backend)(Board);
+export default DragDropContext(HTML5Backend)(OpportunityBoard);

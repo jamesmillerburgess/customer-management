@@ -13,20 +13,19 @@ export const create = function(company) {
   if (!company || !company.name) {
     throw new Error();
   }
+  const entry = {
+    id: new Mongo.ObjectID()._str,
+    type: CREATION,
+    timestamp: new Date(),
+    userId: this.userId,
+    keyword: company.name,
+  };
   return Companies.insert({
     ...company,
     users: [this.userId],
     createDate: new Date(),
     isArchived: false,
-    timeline: [
-      {
-        id: new Mongo.ObjectID()._str,
-        type: CREATION,
-        timestamp: new Date(),
-        userId: this.userId,
-        keyword: company.name,
-      },
-    ],
+    timeline: [entry],
   });
 };
 
