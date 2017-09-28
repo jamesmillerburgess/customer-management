@@ -398,7 +398,7 @@
 .Select-control {
   height: 40px;
   background-color: #f5f8fa;
-  border: 1px solid #cbd6e2;
+  border: 1px solid #cbd6e2 !important;
 }
 .Select-placeholder {
   padding: 4px 10px;

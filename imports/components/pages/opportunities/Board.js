@@ -38,7 +38,12 @@ class Board extends React.Component {
                   <div
                     key={`${i}${j}`}
                     className="bar"
-                    style={{ backgroundColor: j <= i ? color : '' }}
+                    style={{
+                      backgroundColor:
+                        j <= i && (i !== 6 || (i === 6 && j === 6))
+                          ? color
+                          : '',
+                    }}
                   />
                 ))}
               </div>
@@ -48,7 +53,11 @@ class Board extends React.Component {
                 .filter(card => card.status === STATUS_VALUES[i])
                 .map(card => <OpportunityCard {...card} key={card._id} />)}
             </OpportunityList>
-            <div className="footer">Total: $0</div>
+            <div className="footer">
+              Total: ${this.props.cards
+                .filter(card => card.status === STATUS_VALUES[i])
+                .reduce((prev, card) => prev + +card.amount, 0)}
+            </div>
           </div>
         ))}
       </div>
