@@ -1,6 +1,8 @@
 ## v0.4.0 – Opportunities
 
-
+* Opportunities page with drag and drop workflow
+* Opportunity creation overlay form
+* Status change on opportunities adds to the timeline of associated companies
 
 ## v0.3.0 – Companies
 
