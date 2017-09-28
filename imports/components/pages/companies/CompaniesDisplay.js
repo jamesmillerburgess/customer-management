@@ -47,21 +47,10 @@ export const gridPageProps = companies => ({
 
 const CompaniesDisplay = props => (
   <div>
-    <PageHeader
-      {...headerProps}
-      onClickAdd={() => props.setIsOverlayOpen(true)}
-    />
+    <PageHeader {...headerProps} onClickAdd={props.openOverlay} />
     <GridPage
-      {...gridPageProps(
-        props.companies.sort((a, b) => b.createDate - a.createDate)
-      )}
-      data={
-        props.loading ? (
-          []
-        ) : (
-          props.companies.sort((a, b) => b.createDate - a.createDate)
-        )
-      }
+      {...gridPageProps(props.companies)}
+      data={props.loading ? [] : props.companies}
       match={props.match}
     />
   </div>

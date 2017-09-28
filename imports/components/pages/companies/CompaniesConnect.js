@@ -2,18 +2,18 @@ import { connect } from 'react-redux';
 
 import CompaniesContainer from './CompaniesContainer';
 import { setAppProp } from '../../../state/actions/appActionCreators';
-import { setOverlayProp } from '../../../state/actions/overlayActionCreators';
+import {
+  setOverlayProp,
+  clearOverlayProps,
+} from '../../../state/actions/overlayActionCreators';
 
-export const mapStateToProps = ({ app }) => ({
-  isOverlayOpen: app.isOverlayOpen || false,
-});
+export const mapStateToProps = () => ({});
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  setIsOverlayOpen: value => {
-    dispatch(setAppProp('isOverlayOpen', value));
+  openOverlay: () => {
+    dispatch(setAppProp('isOverlayOpen', true));
     dispatch(setAppProp('overlay', 'ADD_COMPANY'));
-    dispatch(setOverlayProp('name', ''));
-    dispatch(setOverlayProp('website', ''));
+    dispatch(clearOverlayProps());
   },
 });
 

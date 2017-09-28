@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { addCompanyFields } from './AddCompanyConstants';
+
 const AddCompanyDisplay = props => (
   <form
     className={`overlay-right ${props.show ? 'show' : ''}`}
@@ -20,22 +22,15 @@ const AddCompanyDisplay = props => (
     </header>
     <div className="overlay-body">
       <div className="overlay-content">
-        <div className="input-group">
-          <div className="input-label">Name</div>
-          <input
-            id="name"
-            value={props.name}
-            onChange={e => props.setName(e.target.value)}
-          />
-        </div>
-        <div className="input-group">
-          <div className="input-label">Website</div>
-          <input
-            id="website"
-            value={props.website}
-            onChange={e => props.setWebsite(e.target.value)}
-          />
-        </div>
+        {addCompanyFields.map(({ prop, label, component }) => (
+          <div className="input-group" key={prop}>
+            <div className="input-label">{label}</div>
+            {component({
+              value: props[prop],
+              onChange: val => props.setProp(prop, val),
+            })}
+          </div>
+        ))}
       </div>
     </div>
     <footer className="overlay-footer">

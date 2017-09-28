@@ -7,13 +7,11 @@ import {
   clearOverlayProps,
 } from '../../../state/actions/overlayActionCreators';
 
-export const mapStateToProps = ({ app }) => ({
-  isOverlayOpen: app.isOverlayOpen || false,
-});
+export const mapStateToProps = () => ({});
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  setIsOverlayOpen: value => {
-    dispatch(setAppProp('isOverlayOpen', value));
+  openOverlay: () => {
+    dispatch(setAppProp('isOverlayOpen', true));
     dispatch(setAppProp('overlay', 'ADD_OPPORTUNITY'));
     dispatch(clearOverlayProps());
   },

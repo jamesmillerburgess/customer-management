@@ -11,10 +11,7 @@ const headerProps = {
 
 const OpportunitiesDisplay = props => (
   <div>
-    <PageHeader
-      {...headerProps}
-      onClickAdd={() => props.setIsOverlayOpen(true)}
-    />
+    <PageHeader {...headerProps} onClickAdd={props.openOverlay} />
     <OpportunityBoardConnect cards={props.opportunities} />
   </div>
 );

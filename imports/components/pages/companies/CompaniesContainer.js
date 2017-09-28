@@ -12,7 +12,9 @@ const CompaniesContainer = createContainer(props => {
   const companies = Companies.find({
     users: Meteor.userId(),
     isArchived: false,
-  }).fetch();
+  })
+    .fetch()
+    .sort((a, b) => b.createDate - a.createDate);
   return { ...props, companies, loading };
 }, CompaniesDisplay);
 
