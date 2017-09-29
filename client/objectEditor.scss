@@ -107,8 +107,14 @@
   padding: 16px 0;
   color: #33475b;
 }
+.sidebar-properties .input-group {
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #dfe3eb;
+}
 .sidebar-properties .input-label {
   font-size: 12px;
+  margin-bottom: 0;
 }
 .sidebar-properties input {
   border: 0;
