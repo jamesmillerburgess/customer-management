@@ -32,18 +32,18 @@ const CompanyDisplay = props => (
               </div>
             ))}
             <div
-              className={`button-footer ${props.isEditingCompany
+              className={`button-footer ${props.isEditingProperties
                 ? 'expanded'
                 : 'expandable'}`}
               style={{
-                height: props.isEditingCompany ? '90px' : '0px',
+                height: props.isEditingProperties ? '90px' : '0px',
               }}
             >
               <div className="button-group">
                 <button
                   className="button-primary"
                   onClick={() =>
-                    props.saveCompany(
+                    props.save(
                       COMPANY_FIELDS.reduce(
                         (prev, field) => ({
                           ...prev,

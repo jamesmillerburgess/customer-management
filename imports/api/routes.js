@@ -1,6 +1,7 @@
 import Dashboard from '../components/pages/Dashboard';
 import CompaniesConnect from '../components/pages/companies/CompaniesConnect';
-import CompanyConnect from '../components/pages/company/CompanyConnect';
+import Company from '../components/pages/company/Company';
+import { COMPANY_FIELDS } from '../components/pages/company/CompanyConstants';
 import Contacts from '../components/pages/Contacts';
 import OpportunitiesConnect from '../components/pages/opportunities/OpportunitiesConnect';
 import ProfileConnect from '../components/pages/profile/ProfileConnect';
@@ -43,8 +44,14 @@ const routes = [
   },
   {
     path: '/companies/:companyId',
-    component: CompanyConnect,
+    component: Company,
     isNavLink: false,
+    props: {
+      saveMethod: 'company.save',
+      addNoteMethod: 'company.addNote',
+      fields: COMPANY_FIELDS,
+      uriID: 'companyId',
+    },
   },
 ];
 
