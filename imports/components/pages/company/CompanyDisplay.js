@@ -57,7 +57,7 @@ const CompanyDisplay = props => (
                 </button>
                 <button
                   className="button-secondary"
-                  onClick={props.cancelEditCompany}
+                  onClick={props.cancelEditProperties}
                 >
                   Cancel
                 </button>

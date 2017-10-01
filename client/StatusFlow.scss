@@ -1,0 +1,49 @@
+.status-flow {
+  display: flex;
+  flex-direction: space-around;
+  margin-bottom: 25px;
+  .status-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 150px;
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  .status-node:focus {
+    outline: none;
+  }
+  .status-node .status-label,
+  .status-node .move-to-label {
+    font-size: 14px;
+    position: absolute;
+    line-height: 12px;
+    opacity: 0;
+    white-space: nowrap;
+  }
+  .status-node .status-label {
+    transition: transform 0.3s ease-in-out;
+    transform: translate(0px, 60px);
+    top: 0;
+  }
+  .status-node.active .status-label {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+  .status-node:hover .move-to-label {
+    opacity: 1;
+  }
+  .status-node.active:hover .move-to-label {
+    opacity: 0;
+  }
+  .status-node .move-to-label {
+    bottom: 0;
+  }
+  .status-node .icon {
+    font-size: 30px;
+    font-weight: 100;
+  }
+}

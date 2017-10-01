@@ -38,7 +38,7 @@ class OpportunityCard extends React.Component {
       <div>
         {isDragging ? null : (
           <div className="panel card">
-            <Link to="#" className="title">
+            <Link to={`/opportunities/${this.props._id}`} className="title">
               {this.props.name}
             </Link>
             <div className="icons" />

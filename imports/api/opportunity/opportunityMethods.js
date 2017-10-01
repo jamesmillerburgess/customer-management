@@ -1,11 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import _ from 'lodash/fp';
 import validate from 'validate.js';
 
 import Opportunities from './opportunityCollection';
 import Companies from '../company/companyCollection';
 
 import { STATUS_VALUES } from '../../components/fields/statusField/StatusField';
+import { opportunityProps } from '../../components/pages/opportunity/Opportunity';
 
 const CREATION = 'CREATION';
 const NOTE = 'NOTE';
@@ -38,7 +40,7 @@ export const getStatusDirection = (from, to) =>
     ? STATUS_CHANGE_FORWARD
     : STATUS_CHANGE_BACKWARD;
 
-export const setStatus = function(opportunityId, status) {
+export const updateStatus = function(opportunityId, status) {
   if (!validate.isString(opportunityId)) {
     throw new Error('No opportunityId passed');
   }
@@ -71,7 +73,17 @@ export const setStatus = function(opportunityId, status) {
   }
 };
 
+export const saveProperties = function(opportunityId, opportunity) {
+  console.log(opportunityId);
+  const fields = _.pick(
+    opportunityProps.properties.map(property => property.name),
+    opportunity
+  );
+  Opportunities.update(opportunityId, { $set: fields });
+};
+
 Meteor.methods({
   'opportunity.create': create,
-  'opportunity.setStatus': setStatus,
+  'opportunity.updateStatus': updateStatus,
+  'opportunity.saveProperties': saveProperties,
 });
