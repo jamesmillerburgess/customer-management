@@ -21,7 +21,11 @@
     margin-bottom: 4px;
     color: #7c98b6;
   }
-  .field .value {
+  .field .value,
+  .field .placeholder {
     font-size: 22px;
+  }
+  .field .placeholder {
+    color: #7c98b6;
   }
 }

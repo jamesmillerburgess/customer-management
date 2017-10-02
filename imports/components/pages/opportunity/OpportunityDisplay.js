@@ -28,7 +28,9 @@ const OpportunityDisplay = props => (
           savePropertiesMethod={props.savePropertiesMethod}
           uriID={props.uriID}
         />
-        {/* <PropertiesEditor properties={companyProps} /> */}
+        {props.companyProps ? (
+          <PropertiesEditor properties={props.companyProps} />
+        ) : null}
       </div>
       <div className="content">
         <InteractionMenu

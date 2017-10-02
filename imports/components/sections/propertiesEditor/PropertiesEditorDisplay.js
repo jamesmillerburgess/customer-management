@@ -2,7 +2,21 @@ import React from 'react';
 import Field from '../../fields/field/Field';
 
 const PropertiesEditorDisplay = props => (
-  <div className="panel sidebar-properties">
+  <form
+    className="panel sidebar-properties"
+    onSubmit={e => {
+      e.preventDefault();
+      props.save(
+        props.properties.reduce(
+          (prev, property) => ({
+            ...prev,
+            [property.name]: props[property.name],
+          }),
+          {}
+        )
+      );
+    }}
+  >
     <div className="title">About {props.loadedValues.name}</div>
     {props.properties.map(property => (
       <div className="input-group" key={property.name}>
@@ -24,19 +38,7 @@ const PropertiesEditorDisplay = props => (
       }}
     >
       <div className="button-group">
-        <button
-          className="button-primary"
-          onClick={() =>
-            props.save(
-              props.properties.reduce(
-                (prev, property) => ({
-                  ...prev,
-                  [property.name]: props[property.name],
-                }),
-                {}
-              )
-            )}
-        >
+        <button className="button-primary" type="submit">
           Save
         </button>
         <button className="button-secondary" onClick={props.cancelEdit}>
@@ -48,7 +50,7 @@ const PropertiesEditorDisplay = props => (
         </div>
       </div>
     </div>
-  </div>
+  </form>
 );
 
 export default PropertiesEditorDisplay;

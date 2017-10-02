@@ -7,21 +7,26 @@ const OpportunityHeader = props => (
     <div className="field-group">
       <div className="field">
         <div className="label">Amount</div>
-        <div className="value">
-          {props.opportunity.amount ? (
-            `${props.opportunity.amount.toLocaleString(undefined, {
+        {props.opportunity.amount ? (
+          <div className="value">
+            {props.opportunity.amount.toLocaleString(undefined, {
               maximumFractionDigits: 0,
-            })} USD`
-          ) : (
-            ''
-          )}
-        </div>
+            })}{' '}
+            USD
+          </div>
+        ) : (
+          <div className="placeholder">Opportunity Amount</div>
+        )}
       </div>
       <div className="field">
         <div className="label">Close Date</div>
-        <div className="value">
-          {moment(props.opportunity.closeDate).format('DD MMM[,] YYYY')}
-        </div>
+        {props.opportunity.closeDate ? (
+          <div className="value">
+            {moment(props.opportunity.closeDate).format('DD MMM[,] YYYY')}
+          </div>
+        ) : (
+          <div className="placeholder">Opportunity Close Date</div>
+        )}
       </div>
     </div>
   </div>
