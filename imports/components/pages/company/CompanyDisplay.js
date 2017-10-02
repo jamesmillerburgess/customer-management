@@ -13,24 +13,24 @@ const CompanyDisplay = props => (
       <div className="sidebar">
         <div className="panel sidebar-header">
           <img className="avatar" src="/empty-company-pic.png" />
-          <div className="title">{props.company.name}</div>
+          <div className="title">{props.object.name}</div>
         </div>
         <PropertiesEditor
           properties={props.properties}
           setProperty={props.setProperty}
-          loadedValues={props.company}
+          loadedValues={props.object}
           savePropertiesMethod={props.savePropertiesMethod}
           uriID={props.uriID}
         />
       </div>
       <div className="content">
         <InteractionMenu {...props} />
-        <Timeline timeline={props.company.timeline} />
+        <Timeline timeline={props.object.timeline} />
       </div>
     </div>
   </ObjectEditor>
 );
 
-CompanyDisplay.defaultProps = { company: {} };
+CompanyDisplay.defaultProps = { object: {} };
 
 export default CompanyDisplay;

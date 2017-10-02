@@ -11,10 +11,10 @@ import Timeline from '../../sections/timeline/Timeline';
 
 const OpportunityDisplay = props => (
   <ObjectEditor {...props.parentPage}>
-    <OpportunityHeader opportunity={props.opportunity} />
+    <OpportunityHeader opportunity={props.object} />
     <StatusFlow
       statuses={props.statuses}
-      status={props.opportunity.status}
+      status={props.object.status}
       statusIndex={props.statusIndex}
       updateStatusMethod={props.updateStatusMethod}
       uriID={props.uriID}
@@ -24,7 +24,7 @@ const OpportunityDisplay = props => (
         <PropertiesEditor
           properties={props.properties}
           setProperty={props.setProperty}
-          loadedValues={props.opportunity}
+          loadedValues={props.object}
           savePropertiesMethod={props.savePropertiesMethod}
           uriID={props.uriID}
         />
@@ -34,12 +34,12 @@ const OpportunityDisplay = props => (
           addNoteMethod={props.addNoteMethod}
           uriID={props.uriID}
         />
-        <Timeline timeline={props.opportunity.timeline} />
+        <Timeline timeline={props.object.timeline} />
       </div>
     </div>
   </ObjectEditor>
 );
 
-OpportunityDisplay.defaultProps = { company: {} };
+OpportunityDisplay.defaultProps = { object: {} };
 
 export default OpportunityDisplay;

@@ -45,25 +45,25 @@ const routes = [
     isNavLink: false,
   },
   {
-    path: '/companies/:companyId',
+    path: '/companies/:objectId',
     component: Company,
     isNavLink: false,
     props: {
       saveMethod: 'company.save',
       addNoteMethod: 'company.addNote',
       fields: COMPANY_FIELDS,
-      uriID: 'companyId',
+      uriID: 'objectId',
     },
   },
   {
-    path: '/opportunities/:opportunityId',
+    path: '/opportunities/:objectId',
     component: Opportunity,
     isNavLink: false,
     props: {
       saveMethod: 'opportunity.save',
       addNoteMethod: 'opportunity.addNote',
       fields: OPPORTUNITY_FIELDS,
-      uriID: 'opportunityId',
+      uriID: 'objectId',
     },
   },
 ];

@@ -1,8 +1,12 @@
 import React from 'react';
-import OpportunityContainer from './OpportunityContainer';
 import ObjectEditorConnect from '../ObjectEditorConnect';
+import ObjectEditorContainer from '../ObjectEditorContainer';
+import OpportunityDisplay from './OpportunityDisplay';
+import Opportunities from '../../../api/opportunity/opportunityCollection';
 
 export const opportunityProps = {
+  collection: Opportunities,
+  subscription: 'opportunity.single',
   parentPage: {
     label: 'Opportunities',
     path: '/opportunities',
@@ -50,7 +54,9 @@ export const opportunityProps = {
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
 };
 
-const OpportunityConnect = ObjectEditorConnect(OpportunityContainer);
+const OpportunityConnect = ObjectEditorConnect(
+  ObjectEditorContainer(OpportunityDisplay)
+);
 
 const Opportunity = props => (
   <OpportunityConnect {...props} {...opportunityProps} />

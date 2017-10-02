@@ -1,8 +1,12 @@
 import React from 'react';
 import ObjectEditorConnect from '../ObjectEditorConnect';
-import CompanyContainer from './CompanyContainer';
+import ObjectEditorContainer from '../ObjectEditorContainer';
+import CompanyDisplay from './CompanyDisplay';
+import Companies from '../../../api/company/companyCollection';
 
 export const companyProps = {
+  collection: Companies,
+  subscription: 'company.single',
   parentPage: {
     label: 'Companies',
     path: '/companies',
@@ -68,7 +72,9 @@ export const companyProps = {
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
 };
 
-const CompanyConnect = ObjectEditorConnect(CompanyContainer);
+const CompanyConnect = ObjectEditorConnect(
+  ObjectEditorContainer(CompanyDisplay)
+);
 
 const Opportunity = props => <CompanyConnect {...props} {...companyProps} />;
 
