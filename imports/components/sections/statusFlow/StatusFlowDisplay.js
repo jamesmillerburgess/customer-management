@@ -19,7 +19,7 @@ const StatusFlowDisplay = props => (
         {index <= props.statusIndex ? (
           <div
             className="icon-inner fa fa-fw fa-check"
-            style={{ color: index <= props.statusIndex ? status.color : '' }}
+            style={{ color: status.color }}
           />
         ) : null}
         <div

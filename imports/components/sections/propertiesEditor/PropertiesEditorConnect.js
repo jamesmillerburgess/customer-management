@@ -52,7 +52,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   cancelEdit: () => {
     ownProps.properties.forEach(property =>
-      ownProps.setProperty(property.name, ownProps.loadedValues[property.name])
+      dispatch(
+        setObjectEditorProp(property.name, ownProps.loadedValues[property.name])
+      )
     );
   },
 });
