@@ -16,11 +16,16 @@ export const opportunitySource = {
   endDrag(props, monitor) {
     const opportunityId = props._id;
     const { status } = monitor.getDropResult();
-    Meteor.call('opportunity.setStatus', opportunityId, status, (err, res) => {
-      if (err) {
-        console.log(err);
+    Meteor.call(
+      'opportunity.updateStatus',
+      opportunityId,
+      status,
+      (err, res) => {
+        if (err) {
+          console.log(err);
+        }
       }
-    });
+    );
   },
 };
 
