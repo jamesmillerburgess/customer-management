@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { COMPANY_FIELDS } from './CompanyConstants';
 import ObjectEditor from '../../sections/objectEditor/ObjectEditor';
 import PropertiesEditor from '../../sections/propertiesEditor/PropertiesEditor';
 import InteractionMenu from '../../sections/interactionMenu/InteractionMenu';

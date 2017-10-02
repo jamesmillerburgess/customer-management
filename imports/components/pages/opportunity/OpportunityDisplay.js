@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { OPPORTUNITY_FIELDS } from './OpportunityConstants';
 import ObjectEditor from '../../sections/objectEditor/ObjectEditor';
 import OpportunityHeader from './OpportunityHeader';
 import StatusFlow from '../../sections/statusFlow/StatusFlow';
