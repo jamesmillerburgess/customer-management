@@ -9,38 +9,30 @@ import Companies from '../company/companyCollection';
 import { STATUS_VALUES } from '../../components/fields/statusField/StatusField';
 import { opportunityProps } from '../../components/pages/opportunity/Opportunity';
 
-const CREATION = 'CREATION';
-const NOTE = 'NOTE';
+import * as GM from '../genericMethods';
+
+// Generic Methods
+export const create = opportunity => GM.create(Opportunities, opportunity);
+export const saveProperties = (opportunityId, opportunity) =>
+  GM.saveProperties(
+    Opportunities,
+    opportunityProps,
+    opportunityId,
+    opportunity
+  );
+export const addNote = (opportunityId, note) =>
+  GM.addNote(Opportunities, opportunityId, note);
+
+// Opportunity-specific Methods
 export const STATUS_CHANGE_FORWARD = 'STATUS_CHANGE_FORWARD';
 export const STATUS_CHANGE_BACKWARD = 'STATUS_CHANGE_BACKWARD';
-
-export const create = function(opportunity) {
-  if (!opportunity || !opportunity.name) {
-    throw new Error();
-  }
-  return Opportunities.insert({
-    ...opportunity,
-    users: [this.userId],
-    createDate: new Date(),
-    isArchived: false,
-    timeline: [
-      {
-        id: new Mongo.ObjectID()._str,
-        type: CREATION,
-        timestamp: new Date(),
-        userId: this.userId,
-        keyword: opportunity.name,
-      },
-    ],
-  });
-};
 
 export const getStatusDirection = (from, to) =>
   STATUS_VALUES.indexOf(from) < STATUS_VALUES.indexOf(to)
     ? STATUS_CHANGE_FORWARD
     : STATUS_CHANGE_BACKWARD;
 
-export const updateStatus = function(opportunityId, status) {
+export const updateStatus = (opportunityId, status) => {
   if (!validate.isString(opportunityId)) {
     throw new Error('No opportunityId passed');
   }
@@ -56,7 +48,7 @@ export const updateStatus = function(opportunityId, status) {
     id: new Mongo.ObjectID()._str,
     type,
     timestamp: new Date(),
-    userId: this.userId,
+    userId: Meteor.userId(),
     from: opportunity.status,
     to: status,
     opportunityId: opportunityId,
@@ -73,41 +65,9 @@ export const updateStatus = function(opportunityId, status) {
   }
 };
 
-export const saveProperties = function(opportunityId, opportunity) {
-  if (!validate.isString(opportunityId)) {
-    throw new Error('OpportunityId must be a string');
-  }
-  if (!Opportunities.findOne(opportunityId)) {
-    throw new Error('No opportunity with the given opportunityId');
-  }
-  const fields = _.pick(
-    opportunityProps.properties.map(property => property.name),
-    opportunity
-  );
-  Opportunities.update(opportunityId, { $set: fields });
-};
-
-export const addNote = function(opportunityId, note) {
-  if (!validate.isString(opportunityId)) {
-    throw new Error('Parameter opportunityId must be a string');
-  }
-  Opportunities.update(opportunityId, {
-    $push: {
-      timeline: {
-        id: new Mongo.ObjectID()._str,
-        type: NOTE,
-        timestamp: new Date(),
-        userId: this.userId,
-        keyword: Meteor.users.findOne(this.userId).username,
-        note,
-      },
-    },
-  });
-};
-
 Meteor.methods({
   'opportunity.create': create,
-  'opportunity.updateStatus': updateStatus,
   'opportunity.saveProperties': saveProperties,
   'opportunity.addNote': addNote,
+  'opportunity.updateStatus': updateStatus,
 });
