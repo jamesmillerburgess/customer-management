@@ -48,7 +48,7 @@ const Timeline = props => (
     <ReactCSSTransitionGroup
       transitionName="timeline-entry"
       transitionAppear={false}
-      transitionAppearTimeout={500}
+      transitionEnterTimeout={500}
       transitionEnter={true}
       transitionLeave={false}
     >

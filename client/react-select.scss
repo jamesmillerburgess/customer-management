@@ -208,17 +208,7 @@
   position: relative;
   text-align: center;
   vertical-align: middle;
-  width: 25px;
   padding-right: 5px;
-}
-.Select-arrow {
-  border-color: #999 transparent transparent;
-  border-style: solid;
-  border-width: 5px 5px 2.5px;
-  display: inline-block;
-  height: 0;
-  width: 0;
-  position: relative;
 }
 .is-open .Select-arrow,
 .Select-arrow-zone:hover > .Select-arrow {
@@ -420,6 +410,11 @@
   .Select-option-label {
     color: #33475b !important;
   }
+}
+.Select-arrow-zone {
+  height: 1px !important;
+  width: 0px !important;
+  padding: 0;
 }
 .sidebar-properties {
   .Select-control {
