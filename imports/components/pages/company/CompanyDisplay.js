@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { COMPANY_FIELDS } from './CompanyConstants';
-import InteractionMenu from '../../sections/InteractionMenu';
-import Timeline from '../../sections/Timeline';
+import InteractionMenu from '../../sections/interactionMenu/InteractionMenu';
+import Timeline from '../../sections/timeline/Timeline';
 
 const CompanyDisplay = props => (
   <div className="object-editor-wrapper">

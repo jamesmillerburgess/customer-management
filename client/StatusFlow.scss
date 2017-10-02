@@ -45,5 +45,23 @@
   .status-node .icon {
     font-size: 30px;
     font-weight: 100;
+    color: rgb(203, 214, 226);
+    z-index: 2;
+  }
+  .status-node .icon-inner {
+    font-size: 18px;
+    position: absolute;
+    color: rgb(203, 214, 226);
+    z-index: 2;
+    transform: translate(0px, 1px);
+  }
+  .status-node-connector {
+    position: absolute;
+    width: 128px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: rgb(203, 214, 226);
+    transform: translate(75px, 0px);
+    z-index: 1;
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-import { STATUS_LABELS } from '../fields/statusField/StatusField';
+import { STATUS_LABELS } from '../../fields/statusField/StatusField';
 
 const StatusChangeMessage = (entry, direction) => (
   <span>

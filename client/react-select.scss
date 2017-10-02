@@ -395,27 +395,72 @@
     -webkit-transform: rotate(1turn);
   }
 }
-.Select-control {
-  height: 40px;
-  background-color: #f5f8fa;
-  border: 1px solid #cbd6e2 !important;
+.overlay {
+  .Select-control {
+    height: 40px;
+    background-color: #f5f8fa;
+    border: 1px solid #cbd6e2 !important;
+  }
+  .Select-placeholder {
+    padding: 4px 10px;
+  }
+  .Select-value {
+    padding: 4px 10px;
+  }
+  .Select-value-label {
+    color: #33475b !important;
+  }
+  .Select-input input {
+    padding: 0;
+    color: #33475b;
+  }
+  .Select-option {
+    padding: 10px 10px;
+  }
+  .Select-option-label {
+    color: #33475b !important;
+  }
 }
-.Select-placeholder {
-  padding: 4px 10px;
-}
-.Select-value {
-  padding: 4px 10px;
-}
-.Select-value-label {
-  color: #33475b !important;
-}
-.Select-input input {
-  padding: 0;
-  color: #33475b;
-}
-.Select-option {
-  padding: 10px 10px;
-}
-.Select-option-label {
-  color: #33475b !important;
+.sidebar-properties {
+  .Select-control {
+    height: 26px;
+    background-color: transparent;
+    border: none;
+    box-shadow: none !important;
+    transition: border 0.3s ease-in-out;
+  }
+  .Select.is-open .Select-control,
+  .Select.is-focused .Select-control {
+    border-bottom: 1px solid rgba(0, 208, 228, 0.5);
+  }
+  .Select-placeholder {
+    padding: 0;
+  }
+  .Select-value {
+    padding: 0 !important;
+  }
+  .Select-value-label {
+    color: #33475b !important;
+  }
+  .Select-input {
+    padding: 9px 0 !important;
+  }
+  .Select-input input {
+    padding: 0 !important;
+    color: #33475b;
+    width: 100%;
+    border: none;
+  }
+  .Select-input input:focus {
+    outline: none;
+  }
+  .Select-option {
+    padding: 10px 10px;
+  }
+  .Select-option-label {
+    color: #33475b !important;
+  }
+  .Select-menu-outer {
+    transform: translate(0px, 1px) !important;
+  }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InteractionMenu = props => {
+const InteractionMenuDisplay = props => {
   const note = {};
   if (props.isWritingNote) {
     note.buttonGroupClass = 'expanded';
@@ -58,4 +58,4 @@ const InteractionMenu = props => {
   );
 };
 
-export default InteractionMenu;
+export default InteractionMenuDisplay;

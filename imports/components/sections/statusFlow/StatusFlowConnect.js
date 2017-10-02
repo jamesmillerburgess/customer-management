@@ -1,9 +1,16 @@
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
+import _ from 'lodash/fp';
 
 import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCreators';
 
-export const mapStateToProps = () => ({});
+export const mapStateToProps = (state, ownProps) => {
+  const statusIndex = _.findIndex(
+    o => o.value === ownProps.status,
+    ownProps.statuses
+  );
+  return { statusIndex };
+};
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   updateStatus: status =>

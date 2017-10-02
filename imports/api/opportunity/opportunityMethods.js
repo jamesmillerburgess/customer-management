@@ -74,7 +74,6 @@ export const updateStatus = function(opportunityId, status) {
 };
 
 export const saveProperties = function(opportunityId, opportunity) {
-  console.log(opportunityId);
   const fields = _.pick(
     opportunityProps.properties.map(property => property.name),
     opportunity
@@ -82,8 +81,27 @@ export const saveProperties = function(opportunityId, opportunity) {
   Opportunities.update(opportunityId, { $set: fields });
 };
 
+export const addNote = function(opportunityId, note) {
+  if (!validate.isString(opportunityId)) {
+    throw new Error('Parameter opportunityId must be a string');
+  }
+  Opportunities.update(opportunityId, {
+    $push: {
+      timeline: {
+        id: new Mongo.ObjectID()._str,
+        type: NOTE,
+        timestamp: new Date(),
+        userId: this.userId,
+        keyword: Meteor.users.findOne(this.userId).username,
+        note,
+      },
+    },
+  });
+};
+
 Meteor.methods({
   'opportunity.create': create,
   'opportunity.updateStatus': updateStatus,
   'opportunity.saveProperties': saveProperties,
+  'opportunity.addNote': addNote,
 });

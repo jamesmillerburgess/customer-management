@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import InteractionMenu from './InteractionMenu';
+import InteractionMenuDisplay from './InteractionMenuDisplay';
 
-describe('InteractionMenu Component', () => {
+describe('InteractionMenuDisplay Component', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<InteractionMenu />);
+    wrapper = shallow(<InteractionMenuDisplay />);
   });
   afterEach(() => {
     wrapper.unmount();
