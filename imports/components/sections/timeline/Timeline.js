@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import { STATUS_LABELS } from '../../fields/statusField/StatusField';
 
@@ -44,32 +45,43 @@ const Timeline = props => (
         <div className="timeline-icon-pre-line first" />
       </div>
     </div>
-    {props.timeline.reverse().map((entry, index) => (
-      <div className="timeline-entry" key={entry.id}>
-        <div className="timeline-icon-container">
-          <div className="timeline-icon-pre-line" />
-          <div className="timeline-icon">
-            <div className={`fa fa-fw ${TIMELINE_ICONS[entry.type]}`} />
-          </div>
-          {index !== props.timeline.length - 1 ? (
-            <div className="timeline-icon-post-line" />
-          ) : null}
-        </div>
-        <div className="timeline-details panel">
-          <img className="timeline-avatar" src={TIMELINE_AVATARS[entry.type]} />
-          <div className="timeline-details-body">
-            <div className="timeline-message">
-              <span className="keyword">{entry.keyword}</span>{' '}
-              {TIMELINE_MESSAGES[entry.type](entry)}
+    <ReactCSSTransitionGroup
+      transitionName="timeline-entry"
+      transitionAppear={false}
+      transitionAppearTimeout={500}
+      transitionEnter={true}
+      transitionLeave={false}
+    >
+      {props.timeline.reverse().map((entry, index) => (
+        <div className="timeline-entry" key={entry.id}>
+          <div className="timeline-icon-container">
+            <div className="timeline-icon-pre-line" />
+            <div className="timeline-icon">
+              <div className={`fa fa-fw ${TIMELINE_ICONS[entry.type]}`} />
             </div>
-            <div className="timestamp">
-              {moment(entry.timestamp).format('MMMM Do [at] h:mm a')}
+            {index !== props.timeline.length - 1 ? (
+              <div className="timeline-icon-post-line" />
+            ) : null}
+          </div>
+          <div className="timeline-details panel">
+            <img
+              className="timeline-avatar"
+              src={TIMELINE_AVATARS[entry.type]}
+            />
+            <div className="timeline-details-body">
+              <div className="timeline-message">
+                <span className="keyword">{entry.keyword}</span>{' '}
+                {TIMELINE_MESSAGES[entry.type](entry)}
+              </div>
+              <div className="timestamp">
+                {moment(entry.timestamp).format('MMMM Do [at] h:mm a')}
+              </div>
+              {entry.note ? <div className="note">{entry.note}</div> : null}
             </div>
-            {entry.note ? <div className="note">{entry.note}</div> : null}
           </div>
         </div>
-      </div>
-    ))}
+      ))}
+    </ReactCSSTransitionGroup>
   </div>
 );
 
