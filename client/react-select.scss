@@ -428,6 +428,7 @@
     border: none;
     box-shadow: none !important;
     transition: border 0.3s ease-in-out;
+    border-bottom: 1px solid transparent;
   }
   .Select.is-open .Select-control,
   .Select.is-focused .Select-control {
@@ -461,6 +462,6 @@
     color: #33475b !important;
   }
   .Select-menu-outer {
-    transform: translate(0px, 1px) !important;
+    transform: translate(0px, 2px) !important;
   }
 }
