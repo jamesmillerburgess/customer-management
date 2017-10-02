@@ -17,7 +17,8 @@ describe('CompanyField Component', () => {
   it('calls onChange when the value changes', () => {
     const onChange = jest.fn();
     wrapper.setProps({ onChange });
-    wrapper.simulate('change', {});
+    const async = shallow(wrapper.props().render()).find('Async');
+    async.simulate('change', {});
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 });

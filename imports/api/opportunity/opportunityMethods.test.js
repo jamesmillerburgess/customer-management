@@ -30,25 +30,25 @@ describe('getStatusDirection Function', () => {
     ).toBe(opportunity.STATUS_CHANGE_BACKWARD);
   });
 });
-describe('opportunity.setStatus Meteor Method', () => {
+describe('opportunity.updateStatus Meteor Method', () => {
   it('does not throw with a valid opportunityId and status', () => {
     Opportunities.docs = [{}];
-    expect(() => opportunity.setStatus('a', 'b')).not.toThrow();
+    expect(() => opportunity.updateStatus('a', 'b')).not.toThrow();
   });
   it('throws if opportunityId is not a string', () => {
     Opportunities.docs = [{ _id: 'a' }];
-    expect(() => opportunity.setStatus(1, 'b')).toThrow();
+    expect(() => opportunity.updateStatus(1, 'b')).toThrow();
   });
   it('throws if there is no opportunity with the given id', () => {
     Opportunities.docs = [];
-    expect(() => opportunity.setStatus('a', 'b')).toThrow();
+    expect(() => opportunity.updateStatus('a', 'b')).toThrow();
   });
   it('throws if the from and to statuses are the same', () => {
     Opportunities.docs = [{ status: 'b' }];
-    expect(() => opportunity.setStatus('a', 'b')).toThrow();
+    expect(() => opportunity.updateStatus('a', 'b')).toThrow();
   });
   it('updates the company if there is one on the opportunity', () => {
     Opportunities.docs = [{ company: { _id: 'a' } }];
-    expect(() => opportunity.setStatus('a', 'b')).not.toThrow();
+    expect(() => opportunity.updateStatus('a', 'b')).not.toThrow();
   });
 });
