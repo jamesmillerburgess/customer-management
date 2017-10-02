@@ -1,5 +1,6 @@
 import React from 'react';
-import OpportunityContainerConnect from './OpportunityContainerConnect';
+import OpportunityContainer from './OpportunityContainer';
+import ObjectEditorConnect from '../ObjectEditorConnect';
 
 export const opportunityProps = {
   parentPage: {
@@ -49,8 +50,10 @@ export const opportunityProps = {
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
 };
 
+const OpportunityConnect = ObjectEditorConnect(OpportunityContainer);
+
 const Opportunity = props => (
-  <OpportunityContainerConnect {...props} {...opportunityProps} />
+  <OpportunityConnect {...props} {...opportunityProps} />
 );
 
 export default Opportunity;

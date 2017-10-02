@@ -30,7 +30,7 @@ export const create = function(company) {
   });
 };
 
-export const save = function(companyId, company) {
+export const saveProperties = function(companyId, company) {
   const fields = _.pick(COMPANY_FIELDS.map(field => field.property), company);
   Companies.update(companyId, { $set: fields });
 };
@@ -61,7 +61,7 @@ export const search = function(search) {
 
 Meteor.methods({
   'company.create': create,
-  'company.save': save,
+  'company.saveProperties': saveProperties,
   'company.addNote': addNote,
   'company.search': search,
 });

@@ -74,6 +74,12 @@ export const updateStatus = function(opportunityId, status) {
 };
 
 export const saveProperties = function(opportunityId, opportunity) {
+  if (!validate.isString(opportunityId)) {
+    throw new Error('OpportunityId must be a string');
+  }
+  if (!Opportunities.findOne(opportunityId)) {
+    throw new Error('No opportunity with the given opportunityId');
+  }
   const fields = _.pick(
     opportunityProps.properties.map(property => property.name),
     opportunity

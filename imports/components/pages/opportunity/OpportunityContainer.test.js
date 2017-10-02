@@ -2,10 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Meteor } from 'meteor/meteor';
 
-import CompanyContainer from './CompanyContainer';
-import Companies from '../../../api/company/companyCollection';
+import OpportunityContainer from './OpportunityContainer';
+import Opportunities from '../../../api/opportunity/opportunityCollection';
 
-describe('CompanyContainer Component', () => {
+describe('OpportunityContainer Component', () => {
   let wrapper;
   const props = {
     match: { params: { companyId: null } },
@@ -16,10 +16,10 @@ describe('CompanyContainer Component', () => {
     setNote: jest.fn(),
     properties: [{ name: 'a' }],
   };
-  beforeEach(() => (wrapper = shallow(<CompanyContainer {...props} />)));
+  beforeEach(() => (wrapper = shallow(<OpportunityContainer {...props} />)));
   afterEach(() => wrapper.unmount());
-  it('wraps the CompanyDisplay component', () => {
-    expect(wrapper.name()).toBe('CompanyDisplay');
+  it('wraps the OpportunityDisplay component', () => {
+    expect(wrapper.name()).toBe('OpportunityDisplay');
   });
   it('sets loading to true if there is no userId', () => {
     Meteor._userId = null;
@@ -38,18 +38,18 @@ describe('CompanyContainer Component', () => {
     wrapper.setProps({});
     expect(wrapper.props().loading).toBe(false);
   });
-  it('passes an empty company if none is found', () => {
+  it('passes an empty opportunity if none is found', () => {
     Meteor._userId = 'a';
     Meteor.ready = true;
-    Companies.docs = [];
+    Opportunities.docs = [];
     wrapper.setProps();
-    expect(wrapper.props().company.name).toBe('');
-    expect(wrapper.props().company.timeline).toEqual([]);
+    expect(wrapper.props().opportunity.name).toBe('');
+    expect(wrapper.props().opportunity.timeline).toEqual([]);
   });
   it('sets up the data if it finds a company and has not already loaded', () => {
     Meteor._userId = 'a';
     Meteor.ready = true;
-    Companies.docs = [{ _id: 'a' }];
+    Opportunities.docs = [{ _id: 'a' }];
     const fns = {
       setHasLoaded: jest.fn(),
       setProperty: jest.fn(),
@@ -67,7 +67,7 @@ describe('CompanyContainer Component', () => {
   it('sets up the data if it finds a company and the _id is different than the loaded value', () => {
     Meteor._userId = 'a';
     Meteor.ready = true;
-    Companies.docs = [{ _id: 'a' }];
+    Opportunities.docs = [{ _id: 'a' }];
     const fns = {
       setHasLoaded: jest.fn(),
       setProperty: jest.fn(),
@@ -86,7 +86,7 @@ describe('CompanyContainer Component', () => {
   it('does not set up the data if it finds a company and has already loaded', () => {
     Meteor._userId = 'a';
     Meteor.ready = true;
-    Companies.docs = [{ _id: 'a' }];
+    Opportunities.docs = [{ _id: 'a' }];
     const fns = {
       setHasLoaded: jest.fn(),
       setProperty: jest.fn(),

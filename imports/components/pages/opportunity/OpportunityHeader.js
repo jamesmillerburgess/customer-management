@@ -22,7 +22,7 @@ const OpportunityHeader = props => (
         <div className="label">Close Date</div>
         {props.opportunity.closeDate ? (
           <div className="value">
-            {moment(props.opportunity.closeDate).format('DD MMM[,] YYYY')}
+            {moment(props.opportunity.closeDate).format('D MMM[,] YYYY')}
           </div>
         ) : (
           <div className="placeholder">Opportunity Close Date</div>
