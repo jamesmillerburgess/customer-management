@@ -12,6 +12,7 @@
     position: relative;
     cursor: pointer;
     background-color: transparent;
+    overflow: visible;
   }
   .status-node:focus {
     outline: none;
