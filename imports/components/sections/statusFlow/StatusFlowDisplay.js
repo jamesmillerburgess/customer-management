@@ -12,16 +12,14 @@ const StatusFlowDisplay = props => (
       >
         <div className="status-label">{status.label}</div>
         <div className="move-to-label">Move to: {status.label}</div>
-        <div
-          className="icon fa fa-fw fa-circle-thin"
-          style={{ color: index <= props.statusIndex ? status.color : '' }}
-        />
-        {index <= props.statusIndex ? (
+        <div className="icons">
           <div
-            className="icon-inner fa fa-fw fa-check"
-            style={{ color: status.color }}
+            className={`icon fa fa-fw ${index <= props.statusIndex
+              ? 'fa-check-circle'
+              : 'fa-circle-thin'}`}
+            style={{ color: index <= props.statusIndex ? status.color : '' }}
           />
-        ) : null}
+        </div>
         <div
           className="status-node-connector"
           style={{
