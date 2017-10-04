@@ -18,20 +18,20 @@
   }
   .status-node .status-label,
   .status-node .move-to-label {
+    width: 300px;
     font-size: 14px;
-    position: absolute;
-    line-height: 12px;
+    line-height: 14px;
     opacity: 0;
     white-space: nowrap;
   }
   .status-node .status-label {
     transition: transform 0.3s ease-in-out;
     transform: translate(0px, 60px);
-    top: 0;
+    // top: 0;
   }
   .status-node.active .status-label {
     opacity: 1;
-    transform: translate(0px, 0px);
+    transform: translate(0px, -12px);
   }
   .status-node:hover .move-to-label {
     opacity: 1;
@@ -41,6 +41,7 @@
   }
   .status-node .move-to-label {
     bottom: 0;
+    transform: translate(0px, 12px);
   }
   .status-node .icon {
     font-size: 30px;
@@ -48,12 +49,22 @@
     color: rgb(203, 214, 226);
     z-index: 2;
   }
-  .status-node .icon-inner {
-    font-size: 18px;
-    position: absolute;
-    color: rgb(203, 214, 226);
-    z-index: 2;
-    transform: translate(0px, 1px);
+  .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bar {
+    width: 64px;
+    height: 2px;
+    background-color: rgb(203, 214, 226);
+    z-index: 1;
+  }
+  .bar.left {
+    margin-right: -7px;
+  }
+  .bar.right {
+    margin-left: -7px;
   }
   .status-node-connector {
     position: absolute;
