@@ -6,10 +6,12 @@ const StatusFlowDisplay = props => (
       const activeClass = status.value === props.status ? 'active' : '';
       let leftColor = '';
       let iconColor = '';
+      let iconClass = 'fa-circle-thin';
       let rightColor = '';
       if (index <= props.statusIndex) {
         leftColor = status.color;
         iconColor = status.color;
+        iconClass = 'fa-check-circle';
       }
       if (index < props.statusIndex) {
         rightColor = status.color;
@@ -29,12 +31,8 @@ const StatusFlowDisplay = props => (
               }}
             />
             <div
-              className={`icon fa fa-fw ${index <= props.statusIndex
-                ? 'fa-check-circle'
-                : 'fa-circle-thin'}`}
-              style={{
-                color: iconColor,
-              }}
+              className={`icon fa fa-fw ${iconClass}`}
+              style={{ color: iconColor }}
             />
             <div
               className="bar right"
