@@ -38,31 +38,21 @@ describe('StatusFlowDisplay Component', () => {
         { value: 'c', color: 'green' },
       ],
     });
-    const circles = wrapper.find('.fa-circle-thin');
+    const circles = wrapper.find('.icon');
     expect(circles.at(0).props().style.color).toBe('red');
     expect(circles.at(1).props().style.color).toBe('blue');
     expect(circles.at(2).props().style.color).toBe('');
-    const checks = wrapper.find('.fa-check');
+    const checks = wrapper.find('.fa-check-circle');
     expect(checks.length).toBe(2);
     expect(checks.at(0).props().style.color).toBe('red');
     expect(checks.at(1).props().style.color).toBe('blue');
-    const connectors = wrapper.find('.status-node-connector');
-    expect(connectors.at(0).props().style.background).not.toBe('');
-    expect(connectors.at(1).props().style.background).toBe('');
-    expect(connectors.at(2).props().style.background).toBe('');
-  });
-  it('hides only the last connector', () => {
-    wrapper.setProps({
-      statusIndex: 1,
-      statuses: [
-        { value: 'a', color: 'red' },
-        { value: 'b', color: 'blue' },
-        { value: 'c', color: 'green' },
-      ],
-    });
-    const connectors = wrapper.find('.status-node-connector');
-    expect(connectors.at(0).props().style.opacity).toBe('1');
-    expect(connectors.at(1).props().style.opacity).toBe('1');
-    expect(connectors.at(2).props().style.opacity).toBe('0');
+    const lefts = wrapper.find('.left');
+    expect(lefts.at(0).props().style.backgroundColor).toBe('transparent');
+    expect(lefts.at(1).props().style.backgroundColor).toBe('blue');
+    expect(lefts.at(2).props().style.backgroundColor).toBe('');
+    const rights = wrapper.find('.right');
+    expect(rights.at(0).props().style.backgroundColor).toBe('red');
+    expect(rights.at(1).props().style.backgroundColor).toBe('');
+    expect(rights.at(2).props().style.backgroundColor).toBe('transparent');
   });
 });
