@@ -22,7 +22,7 @@ export const listTotalsSelector = createSelector(cardListsSelector, cardLists =>
   )
 );
 
-const probabilityColors = [
+export const probabilityColors = [
   [true],
   [true, true],
   [true, true, true],

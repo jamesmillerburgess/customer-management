@@ -54,7 +54,10 @@ export const Meteor = {
     if (typeof arguments[0] === 'string' && this._methods[arguments[0]]) {
       this._methods[arguments[0]]();
     }
-    if (arguments.length > 0) {
+    if (
+      arguments.length > 0 &&
+      typeof arguments[arguments.length - 1] === 'function'
+    ) {
       arguments[arguments.length - 1](this.err, this.res);
     }
   },

@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import NumericField from './NumericField';
+import NumberField from './NumberField';
 
-describe('NumericField Component', () => {
+describe('NumberField Component', () => {
   let wrapper;
-  beforeEach(() => (wrapper = shallow(<NumericField />)));
+  beforeEach(() => (wrapper = shallow(<NumberField />)));
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
   it('calls onChange when the value changes', () => {

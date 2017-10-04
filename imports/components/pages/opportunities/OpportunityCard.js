@@ -16,11 +16,16 @@ export const opportunitySource = {
   endDrag(props, monitor) {
     const opportunityId = props._id;
     const { status } = monitor.getDropResult();
-    Meteor.call('opportunity.setStatus', opportunityId, status, (err, res) => {
-      if (err) {
-        console.log(err);
+    Meteor.call(
+      'opportunity.updateStatus',
+      opportunityId,
+      status,
+      (err, res) => {
+        if (err) {
+          console.log(err);
+        }
       }
-    });
+    );
   },
 };
 
@@ -38,7 +43,7 @@ class OpportunityCard extends React.Component {
       <div>
         {isDragging ? null : (
           <div className="panel card">
-            <Link to="#" className="title">
+            <Link to={`/opportunities/${this.props._id}`} className="title">
               {this.props.name}
             </Link>
             <div className="icons" />

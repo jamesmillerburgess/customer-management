@@ -1,6 +1,7 @@
 import Dashboard from '../components/pages/Dashboard';
 import CompaniesConnect from '../components/pages/companies/CompaniesConnect';
-import CompanyConnect from '../components/pages/company/CompanyConnect';
+import Company from '../components/pages/company/Company';
+import Opportunity from '../components/pages/opportunity/Opportunity';
 import Contacts from '../components/pages/Contacts';
 import OpportunitiesConnect from '../components/pages/opportunities/OpportunitiesConnect';
 import ProfileConnect from '../components/pages/profile/ProfileConnect';
@@ -42,9 +43,24 @@ const routes = [
     isNavLink: false,
   },
   {
-    path: '/companies/:companyId',
-    component: CompanyConnect,
+    path: '/companies/:objectId',
+    component: Company,
     isNavLink: false,
+    props: {
+      saveMethod: 'company.save',
+      addNoteMethod: 'company.addNote',
+      uriID: 'objectId',
+    },
+  },
+  {
+    path: '/opportunities/:objectId',
+    component: Opportunity,
+    isNavLink: false,
+    props: {
+      saveMethod: 'opportunity.save',
+      addNoteMethod: 'opportunity.addNote',
+      uriID: 'objectId',
+    },
   },
 ];
 

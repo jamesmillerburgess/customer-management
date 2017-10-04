@@ -1,0 +1,21 @@
+.company-field {
+  display: flex;
+  .Select {
+    width: calc(100% - 25px);
+  }
+  .icon {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    background-color: transparent;
+    padding: 8px;
+  }
+  .icon:hover {
+    color: #33475b;
+  }
+  .icon:focus {
+    outline: none;
+  }
+}
+.company-field:hover .icon {
+  opacity: 1;
+}

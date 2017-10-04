@@ -1,0 +1,78 @@
+.status-flow {
+  display: flex;
+  flex-direction: space-around;
+  margin-bottom: 25px;
+  .status-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 150px;
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  .status-node:focus {
+    outline: none;
+  }
+  .status-node .status-label,
+  .status-node .move-to-label {
+    width: 260px;
+    font-size: 14px;
+    line-height: 14px;
+    opacity: 0;
+    white-space: nowrap;
+  }
+  .status-node .status-label {
+    transition: transform 0.3s ease-in-out;
+    transform: translate(0px, 60px);
+    // top: 0;
+  }
+  .status-node.active .status-label {
+    opacity: 1;
+    transform: translate(0px, -12px);
+  }
+  .status-node:hover .move-to-label {
+    opacity: 1;
+  }
+  .status-node.active:hover .move-to-label {
+    opacity: 0;
+  }
+  .status-node .move-to-label {
+    bottom: 0;
+    transform: translate(0px, 12px);
+  }
+  .status-node .icon {
+    font-size: 30px;
+    font-weight: 100;
+    color: rgb(203, 214, 226);
+    z-index: 2;
+  }
+  .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bar {
+    width: 64px;
+    height: 2px;
+    background-color: rgb(203, 214, 226);
+    z-index: 1;
+  }
+  .bar.left {
+    margin-right: -7px;
+  }
+  .bar.right {
+    margin-left: -7px;
+  }
+  .status-node-connector {
+    position: absolute;
+    width: 128px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: rgb(203, 214, 226);
+    transform: translate(75px, 0px);
+    z-index: 1;
+  }
+}

@@ -31,16 +31,12 @@ export const gridPageProps = companies => ({
       ),
     },
     {
-      Header: 'Create Date (GMT+2)',
+      Header: 'Create Date',
       id: 'lastName',
       accessor: 'createDate',
       Cell: props => (
         <span>{moment(props.value).format('MMM DD[,] YYYY')}</span>
       ),
-    },
-    {
-      Header: 'First Contact Create Date (GMT+2)',
-      accessor: 'firstContactCreateDate',
     },
   ],
 });

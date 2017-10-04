@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextField = props => (
+const NumberField = props => (
   <input
     type="number"
     value={props.value}
@@ -8,4 +8,4 @@ const TextField = props => (
   />
 );
 
-export default TextField;
+export default NumberField;

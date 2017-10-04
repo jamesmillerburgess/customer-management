@@ -1,44 +1,38 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import _ from 'lodash/fp';
 import validate from 'validate.js';
 
 import Opportunities from './opportunityCollection';
 import Companies from '../company/companyCollection';
 
 import { STATUS_VALUES } from '../../components/fields/statusField/StatusField';
+import { opportunityProps } from '../../components/pages/opportunity/Opportunity';
 
-const CREATION = 'CREATION';
-const NOTE = 'NOTE';
+import * as GM from '../genericMethods';
+
+// Generic Methods
+export const create = opportunity => GM.create(Opportunities, opportunity);
+export const saveProperties = (opportunityId, opportunity) =>
+  GM.saveProperties(
+    Opportunities,
+    opportunityProps,
+    opportunityId,
+    opportunity
+  );
+export const addNote = (opportunityId, note) =>
+  GM.addNote(Opportunities, opportunityId, note);
+
+// Opportunity-specific Methods
 export const STATUS_CHANGE_FORWARD = 'STATUS_CHANGE_FORWARD';
 export const STATUS_CHANGE_BACKWARD = 'STATUS_CHANGE_BACKWARD';
-
-export const create = function(opportunity) {
-  if (!opportunity || !opportunity.name) {
-    throw new Error();
-  }
-  return Opportunities.insert({
-    ...opportunity,
-    users: [this.userId],
-    createDate: new Date(),
-    isArchived: false,
-    timeline: [
-      {
-        id: new Mongo.ObjectID()._str,
-        type: CREATION,
-        timestamp: new Date(),
-        userId: this.userId,
-        keyword: opportunity.name,
-      },
-    ],
-  });
-};
 
 export const getStatusDirection = (from, to) =>
   STATUS_VALUES.indexOf(from) < STATUS_VALUES.indexOf(to)
     ? STATUS_CHANGE_FORWARD
     : STATUS_CHANGE_BACKWARD;
 
-export const setStatus = function(opportunityId, status) {
+export const updateStatus = (opportunityId, status) => {
   if (!validate.isString(opportunityId)) {
     throw new Error('No opportunityId passed');
   }
@@ -54,7 +48,7 @@ export const setStatus = function(opportunityId, status) {
     id: new Mongo.ObjectID()._str,
     type,
     timestamp: new Date(),
-    userId: this.userId,
+    userId: Meteor.userId(),
     from: opportunity.status,
     to: status,
     opportunityId: opportunityId,
@@ -73,5 +67,7 @@ export const setStatus = function(opportunityId, status) {
 
 Meteor.methods({
   'opportunity.create': create,
-  'opportunity.setStatus': setStatus,
+  'opportunity.saveProperties': saveProperties,
+  'opportunity.addNote': addNote,
+  'opportunity.updateStatus': updateStatus,
 });

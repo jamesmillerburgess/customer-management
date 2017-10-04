@@ -32,15 +32,15 @@ describe('opportunitySource Object', () => {
     });
   });
   describe('endDrag Function', () => {
-    it('calls opportunity.setStatus Meteor Method', () => {
-      const setStatus = jest.fn();
-      Meteor._methods['opportunity.setStatus'] = setStatus;
-      expect(setStatus).toHaveBeenCalledTimes(0);
+    it('calls opportunity.updateStatus Meteor Method', () => {
+      const updateStatus = jest.fn();
+      Meteor._methods['opportunity.updateStatus'] = updateStatus;
+      expect(updateStatus).toHaveBeenCalledTimes(0);
       opportunitySource.endDrag(
         { id: 'a' },
         { getDropResult: () => ({ status: 'b' }) }
       );
-      expect(setStatus).toHaveBeenCalledTimes(1);
+      expect(updateStatus).toHaveBeenCalledTimes(1);
     });
     it('handles errors', () => {
       Meteor.err = 'err';

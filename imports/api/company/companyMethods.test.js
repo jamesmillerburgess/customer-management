@@ -16,9 +16,10 @@ describe('company.create Meteor Method', () => {
     expect(() => company.create({ name: '' })).toThrow();
   });
 });
-describe('company.save Meteor Method', () => {
+describe('company.saveProperties Meteor Method', () => {
   it('does not throw', () => {
-    expect(() => company.save({})).not.toThrow();
+    Companies.docs = [{}];
+    expect(() => company.saveProperties('a', {})).not.toThrow();
   });
 });
 describe('company.addNote Meteor Method', () => {

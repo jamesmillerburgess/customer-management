@@ -1,3 +1,9 @@
+## v0.5.0 – Opportunities 2
+
+* Opportunity page with visual status flow bar
+* Add notes to opportunity and edit properties
+* Link to associated company from opportunity page
+
 ## v0.4.0 – Opportunities
 
 * Opportunities page with drag and drop workflow

@@ -208,17 +208,7 @@
   position: relative;
   text-align: center;
   vertical-align: middle;
-  width: 25px;
   padding-right: 5px;
-}
-.Select-arrow {
-  border-color: #999 transparent transparent;
-  border-style: solid;
-  border-width: 5px 5px 2.5px;
-  display: inline-block;
-  height: 0;
-  width: 0;
-  position: relative;
 }
 .is-open .Select-arrow,
 .Select-arrow-zone:hover > .Select-arrow {
@@ -395,27 +385,78 @@
     -webkit-transform: rotate(1turn);
   }
 }
-.Select-control {
-  height: 40px;
-  background-color: #f5f8fa;
-  border: 1px solid #cbd6e2 !important;
+.overlay-body {
+  .Select-control {
+    height: 40px;
+    background-color: #f5f8fa;
+    border: 1px solid #cbd6e2 !important;
+  }
+  .Select-placeholder {
+    padding: 4px 10px;
+  }
+  .Select-value {
+    padding: 4px 10px;
+  }
+  .Select-value-label {
+    color: #33475b !important;
+  }
+  .Select-input input {
+    padding: 0;
+    color: #33475b;
+  }
+  .Select-option {
+    padding: 10px 10px;
+  }
+  .Select-option-label {
+    color: #33475b !important;
+  }
 }
-.Select-placeholder {
-  padding: 4px 10px;
-}
-.Select-value {
-  padding: 4px 10px;
-}
-.Select-value-label {
-  color: #33475b !important;
-}
-.Select-input input {
+.Select-arrow-zone {
+  height: 1px !important;
+  width: 0px !important;
   padding: 0;
-  color: #33475b;
 }
-.Select-option {
-  padding: 10px 10px;
-}
-.Select-option-label {
-  color: #33475b !important;
+.sidebar-properties {
+  .Select-control {
+    height: 26px;
+    background-color: transparent;
+    border: none;
+    box-shadow: none !important;
+    transition: border 0.3s ease-in-out;
+    border-bottom: 1px solid transparent;
+  }
+  .Select.is-open .Select-control,
+  .Select.is-focused .Select-control {
+    border-bottom: 1px solid rgba(0, 208, 228, 0.5);
+  }
+  .Select-placeholder {
+    padding: 0;
+  }
+  .Select-value {
+    padding: 0 !important;
+  }
+  .Select-value-label {
+    color: #33475b !important;
+  }
+  .Select-input {
+    padding: 9px 0 !important;
+  }
+  .Select-input input {
+    padding: 0 !important;
+    color: #33475b;
+    width: 100%;
+    border: none;
+  }
+  .Select-input input:focus {
+    outline: none;
+  }
+  .Select-option {
+    padding: 10px 10px;
+  }
+  .Select-option-label {
+    color: #33475b !important;
+  }
+  .Select-menu-outer {
+    transform: translate(0px, 2px) !important;
+  }
 }
