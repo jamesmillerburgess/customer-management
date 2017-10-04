@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80px;
+    height: 100px;
     width: 150px;
     position: relative;
     cursor: pointer;
@@ -23,6 +23,7 @@
     line-height: 14px;
     opacity: 0;
     white-space: nowrap;
+    text-align: center;
   }
   .status-node .status-label {
     transition: transform 0.3s ease-in-out;
