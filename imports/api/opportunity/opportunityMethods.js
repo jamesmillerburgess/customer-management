@@ -32,7 +32,7 @@ export const getStatusDirection = (from, to) =>
     ? STATUS_CHANGE_FORWARD
     : STATUS_CHANGE_BACKWARD;
 
-export const updateStatus = (opportunityId, status) => {
+export const updateStatus = (opportunityId, { status, id }) => {
   if (!validate.isString(opportunityId)) {
     throw new Error('No opportunityId passed');
   }
@@ -45,7 +45,7 @@ export const updateStatus = (opportunityId, status) => {
   }
   const type = getStatusDirection(opportunity.status, status);
   const entry = {
-    id: new Mongo.ObjectID()._str,
+    id,
     type,
     timestamp: new Date(),
     userId: Meteor.userId(),

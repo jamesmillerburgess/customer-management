@@ -33,23 +33,33 @@ describe('getStatusDirection Function', () => {
 describe('opportunity.updateStatus Meteor Method', () => {
   it('does not throw with a valid opportunityId and status', () => {
     Opportunities.docs = [{}];
-    expect(() => opportunity.updateStatus('a', 'b')).not.toThrow();
+    expect(() =>
+      opportunity.updateStatus('a', { status: 'b', id: 'c' })
+    ).not.toThrow();
   });
   it('throws if opportunityId is not a string', () => {
     Opportunities.docs = [{ _id: 'a' }];
-    expect(() => opportunity.updateStatus(1, 'b')).toThrow();
+    expect(() =>
+      opportunity.updateStatus(1, { status: 'b', id: 'c' })
+    ).toThrow();
   });
   it('throws if there is no opportunity with the given id', () => {
     Opportunities.docs = [];
-    expect(() => opportunity.updateStatus('a', 'b')).toThrow();
+    expect(() =>
+      opportunity.updateStatus('a', { status: 'b', id: 'c' })
+    ).toThrow();
   });
   it('throws if the from and to statuses are the same', () => {
     Opportunities.docs = [{ status: 'b' }];
-    expect(() => opportunity.updateStatus('a', 'b')).toThrow();
+    expect(() =>
+      opportunity.updateStatus('a', { status: 'b', id: 'c' })
+    ).toThrow();
   });
   it('updates the company if there is one on the opportunity', () => {
     Opportunities.docs = [{ company: { _id: 'a' } }];
-    expect(() => opportunity.updateStatus('a', 'b')).not.toThrow();
+    expect(() =>
+      opportunity.updateStatus('a', { status: 'b', id: 'c' })
+    ).not.toThrow();
   });
 });
 describe('opportunity.saveProperties Meteor Method', () => {
