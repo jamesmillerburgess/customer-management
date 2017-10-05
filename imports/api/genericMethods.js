@@ -48,12 +48,12 @@ export const addNote = (collection, objectId, note) => {
   collection.update(objectId, {
     $push: {
       timeline: {
-        id: new Mongo.ObjectID()._str,
+        id: note.id,
         type: NOTE,
         timestamp: new Date(),
         userId: Meteor.userId(),
         keyword: Meteor.users.findOne(Meteor.userId()).username,
-        note,
+        note: note.note,
       },
     },
   });
