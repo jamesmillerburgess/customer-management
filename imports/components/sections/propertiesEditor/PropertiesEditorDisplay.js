@@ -35,6 +35,7 @@ const PropertiesEditorDisplay = props => (
         : 'expandable'}`}
       style={{
         height: props.isEditingProperties ? '90px' : '0px',
+        opacity: props.isEditingProperties ? '1' : '0',
       }}
     >
       <div className="button-group">
