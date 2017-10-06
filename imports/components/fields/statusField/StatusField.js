@@ -1,6 +1,5 @@
 import React from 'react';
 import Select from 'react-select';
-// import 'react-select/dist/react-select.css';
 
 const APPOINTMENT_SCHEDULED = 'APPOINTMENT_SCHEDULED';
 const QUALIFIED_TO_BUY = 'QUALIFIED_TO_BUY';

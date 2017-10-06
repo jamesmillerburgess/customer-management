@@ -1,6 +1,4 @@
-import '../../api/contact/contact';
-import '../../api/company/companyCollection';
+import '../../api/contact/contactMethods';
 import '../../api/company/companyMethods';
-import '../../api/opportunity/opportunityCollection';
 import '../../api/opportunity/opportunityMethods';
 import '../../api/user/userMethods';

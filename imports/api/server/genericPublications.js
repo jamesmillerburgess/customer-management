@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 
+import Contacts from '../contact/contactCollection';
 import Companies from '../company/companyCollection';
 import Opportunities from '../opportunity/opportunityCollection';
 
@@ -18,8 +19,10 @@ export const single = function(collection, companyId) {
 };
 
 Meteor.publish({
+  'contact.user': () => user(Contacts),
   'company.user': () => user(Companies),
   'opportunity.user': () => user(Opportunities),
+  'contact.single': contactId => single(Contacts, contactId),
   'company.single': companyId => single(Companies, companyId),
   'opportunity.single': companyId => single(Opportunities, companyId),
 });

@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import HomeConnect from './pages/home/HomeConnect';
 import NavConnect from './nav/nav/NavConnect';
+import AddContactConnect from './overlays/addContact/AddContactConnect';
 import AddCompanyConnect from './overlays/addCompany/AddCompanyConnect';
 import AddOpportunityConnect from './overlays/addOpportunity/AddOpportunityConnect';
 import routes from '../api/routes';
@@ -31,6 +32,7 @@ export const renderRoute = (
 );
 
 export const OT = {
+  ADD_CONTACT: 'ADD_CONTACT',
   ADD_COMPANY: 'ADD_COMPANY',
   ADD_OPPORTUNITY: 'ADD_OPPORTUNITY',
 };
@@ -56,6 +58,17 @@ export const Overlays = ({ open, type }) => (
           show={type === OT.ADD_OPPORTUNITY}
           fields={fields.addOpportunityFields}
           label="opportunity"
+        />
+      )}
+    />
+    <Route
+      path="/"
+      render={routeProps => (
+        <AddContactConnect
+          {...routeProps}
+          show={type === OT.ADD_CONTACT}
+          fields={fields.addContactFields}
+          label="contact"
         />
       )}
     />

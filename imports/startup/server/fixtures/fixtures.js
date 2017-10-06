@@ -1,9 +1,5 @@
-import Contacts from '../../../api/contact/contact.js';
+import Contacts from '../../../api/contact/contactCollection.js';
 
-const runFixtures = () => {
-  if (Contacts.find({}).count() === 0) {
-    Contacts.insert({ name: 'James Burgess' });
-  }
-};
+const runFixtures = () => {};
 
 export default runFixtures;

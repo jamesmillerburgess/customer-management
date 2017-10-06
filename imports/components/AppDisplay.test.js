@@ -48,6 +48,22 @@ describe('Overlays Component', () => {
         .hasClass('show')
     ).toBe(false);
   });
+  it('shows the AddContactConnect component if the type matches', () => {
+    wrapper.setProps({ type: OT.ADD_CONTACT });
+    let addContactConnect = wrapper
+      .find('Route')
+      .at(2)
+      .props()
+      .render();
+    expect(addContactConnect.props.show).toBe(true);
+    wrapper.setProps({ type: OT.ADD_OPPORTUNITY });
+    addContactConnect = wrapper
+      .find('Route')
+      .at(2)
+      .props()
+      .render();
+    expect(addContactConnect.props.show).toBe(false);
+  });
   it('shows the AddCompanyConnect component if the type matches', () => {
     wrapper.setProps({ type: OT.ADD_COMPANY });
     let addCompanyConnect = wrapper

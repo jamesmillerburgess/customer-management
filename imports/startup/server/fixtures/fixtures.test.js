@@ -1,19 +1,8 @@
-import Contacts from '../../../api/contact/contact.js';
+import Contacts from '../../../api/contact/contactCollection.js';
 import runFixtures from './fixtures.js';
 
 describe('runFixtures', () => {
-  beforeEach(() => {
-    Contacts.remove();
-  });
-  it('populates contacts if the collection is empty', () => {
-    expect(Contacts.find({}).count()).toBe(0);
-    runFixtures();
-    expect(Contacts.find({}).count()).toBe(1);
-  });
-  it('does not populate contacts if the collection is not empty', () => {
-    Contacts.insert();
-    expect(Contacts.find({}).count()).toBe(1);
-    runFixtures();
-    expect(Contacts.find({}).count()).toBe(1);
+  it('does not throw', () => {
+    expect(runFixtures).not.toThrow();
   });
 });
