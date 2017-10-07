@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
 
+import ObjectEditorContainer from './ObjectEditorContainer';
 import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCreators';
 
 export const generateObjectEditorProps = (singular, plural) => ({
@@ -26,9 +27,7 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(setObjectEditorProp('loadedValues', value)),
 });
 
-const OpportunityContainerConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
+const ObjectEditorConnect = display =>
+  connect(mapStateToProps, mapDispatchToProps)(ObjectEditorContainer(display));
 
-export default OpportunityContainerConnect;
+export default ObjectEditorConnect;

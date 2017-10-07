@@ -44,9 +44,7 @@ export const properties = () =>
     ? FieldLists.findOne({ page: 'OPPORTUNITY_PROPERTIES' }).fields
     : [];
 
-const OpportunityConnect = ObjectEditorConnect(
-  ObjectEditorContainer(OpportunityDisplay)
-);
+const OpportunityConnect = ObjectEditorConnect(OpportunityDisplay);
 
 const Opportunity = props => (
   <OpportunityConnect

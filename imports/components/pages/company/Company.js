@@ -19,9 +19,7 @@ export const properties = () =>
     ? FieldLists.findOne({ page: 'COMPANY_PROPERTIES' }).fields
     : [];
 
-const CompanyConnect = ObjectEditorConnect(
-  ObjectEditorContainer(ObjectEditorDisplay)
-);
+const CompanyConnect = ObjectEditorConnect(ObjectEditorDisplay);
 
 const Company = props => (
   <CompanyConnect {...props} {...companyProps} properties={properties()} />
