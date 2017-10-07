@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import moment from 'moment';
 
-import OptionField from './OptionField';
+import OptionField, { noop } from './OptionField';
 
 describe('OptionField Component', () => {
   let wrapper;
@@ -15,5 +15,10 @@ describe('OptionField Component', () => {
     expect(onChange).toHaveBeenCalledTimes(0);
     wrapper.props().onChange('a');
     expect(onChange).toHaveBeenCalledTimes(1);
+  });
+});
+describe('noop Function', () => {
+  it('does nothing', () => {
+    expect(noop()).toBe(null);
   });
 });
