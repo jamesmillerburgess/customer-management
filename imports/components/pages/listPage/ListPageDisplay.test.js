@@ -1,12 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ListPageDisplay, { gridPageProps } from './ListPageDisplay';
+import ListPageDisplay from './ListPageDisplay';
 
 describe('ListPageDisplay Component', () => {
   let wrapper;
+  const props = { gridPageProps: jest.fn() };
   beforeEach(() => {
-    wrapper = shallow(<ListPageDisplay />);
+    wrapper = shallow(<ListPageDisplay {...props} />);
   });
   afterEach(() => {
     wrapper.unmount();
@@ -22,21 +23,11 @@ describe('ListPageDisplay Component', () => {
     expect(openOverlay).toHaveBeenCalled();
   });
   it('passes empty data to GridPage if still loading', () => {
-    wrapper.setProps({ loading: true, companies: ['a'] });
+    wrapper.setProps({ loading: true, items: ['a'] });
     expect(wrapper.find('GridPage').props().data).toEqual([]);
   });
-  it('passes companies to GridPage if not still loading', () => {
-    wrapper.setProps({ loading: false, companies: ['a'] });
+  it('passes items to GridPage if not still loading', () => {
+    wrapper.setProps({ loading: false, items: ['a'] });
     expect(wrapper.find('GridPage').props().data).toEqual(['a']);
-  });
-});
-describe('gridPageProps Function', () => {
-  it('renders a link in the name cells', () => {
-    const Cell = gridPageProps([{ _id: 'a' }]).columns[1].Cell({ index: 0 });
-    expect(Cell.props.to).toBe('/companies/a');
-  });
-  it('renders a date in the create date cells', () => {
-    const Cell = gridPageProps().columns[2].Cell({ value: '20111031' });
-    expect(Cell.props.children).toBe('Oct 31, 2011');
   });
 });

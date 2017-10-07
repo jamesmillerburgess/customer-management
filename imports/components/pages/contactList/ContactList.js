@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import ListPageConnect from '../listPage/ListPageConnect';
 import Contacts from '../../../api/contact/contactCollection';
 
-const contactProps = {
+export const contactListProps = {
   subscription: 'contact.user',
   collection: Contacts,
   title: 'Contacts',
@@ -42,6 +42,8 @@ const contactProps = {
   }),
 };
 
-const ContactList = props => <ListPageConnect {...props} {...contactProps} />;
+const ContactList = props => (
+  <ListPageConnect {...props} {...contactListProps} />
+);
 
 export default ContactList;

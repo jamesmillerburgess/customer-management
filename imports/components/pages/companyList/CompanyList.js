@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import ListPageConnect from '../listPage/ListPageConnect';
 import Companies from '../../../api/company/companyCollection';
 
-const companyListProps = {
+export const companyListProps = {
   subscription: 'company.user',
   collection: Companies,
   title: 'Companies',

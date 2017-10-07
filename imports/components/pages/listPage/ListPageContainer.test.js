@@ -1,15 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 
 import ListPageContainer, { sort } from './ListPageContainer';
 
 describe('ListPageContainer Component', () => {
   let wrapper;
-  beforeEach(() => (wrapper = shallow(<ListPageContainer />)));
+  const props = { collection: new Mongo.Collection() };
+  beforeEach(() => (wrapper = shallow(<ListPageContainer {...props} />)));
   afterEach(() => wrapper.unmount());
-  it('wraps the CompaniesDisplay component', () => {
-    expect(wrapper.name()).toBe('CompaniesDisplay');
+  it('wraps the ListPageDisplay component', () => {
+    expect(wrapper.name()).toBe('ListPageDisplay');
   });
   it('is loading if subscription is not ready', () => {
     Meteor._userId = 'a';
