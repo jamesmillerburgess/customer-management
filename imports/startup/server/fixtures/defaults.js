@@ -14,14 +14,25 @@ export const FIELD_OPTIONS = [
   {
     type: 'CONTACT_LEAD_STATUS',
     options: [
+      { value: 'SUBSCRIBER', label: 'Subscriber' },
       { value: 'LEAD', label: 'Lead' },
       { value: 'MARKETING_QUALIFIED', label: 'Marketing Qualified' },
       { value: 'SALES_QUALIFIED', label: 'Sales Qualified' },
+      { value: 'OPPORTUNITY', label: 'Opportunity' },
+      { value: 'CUSTOMER', label: 'Customer' },
+      { value: 'EVANGELIST', label: 'Evangelist' },
+      { value: 'OTHER', label: 'Other' },
     ],
   },
   {
     type: 'CONTACT_LIFECYCLE_STAGE',
-    options: [],
+    options: [
+      { value: 'NEW', label: 'New' },
+      { value: 'OPEN', label: 'Open' },
+      { value: 'IN_PROGRESS', label: 'In Progress' },
+      { value: 'OPEN_DEAL', label: 'Open Deal' },
+      { value: 'UNQUALIFIED', label: 'Unqualified' },
+    ],
   },
 ];
 
