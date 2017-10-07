@@ -1,10 +1,14 @@
+// List pages
 import Dashboard from '../components/pages/Dashboard';
 import CompanyList from '../components/pages/companyList/CompanyList';
 import ContactList from '../components/pages/contactList/ContactList';
+import OpportunitiesConnect from '../components/pages/opportunities/OpportunitiesConnect';
+
+// Object Editiors
+import Contact from '../components/pages/contact/Contact';
 import Company from '../components/pages/company/Company';
 import Opportunity from '../components/pages/opportunity/Opportunity';
-import Contact from '../components/pages/contact/Contact';
-import OpportunitiesConnect from '../components/pages/opportunities/OpportunitiesConnect';
+
 import ProfileConnect from '../components/pages/profile/ProfileConnect';
 
 const routes = [

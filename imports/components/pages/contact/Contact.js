@@ -1,27 +1,2 @@
-import React from 'react';
-import ObjectEditorConnect, {
-  generateObjectEditorProps,
-} from '../objectEditor/ObjectEditorConnect';
-import ObjectEditorDisplay from '../objectEditor/ObjectEditorDisplay';
-import Contacts from '../../../api/contact/contactCollection';
-import FieldLists from '../../../api/fieldList/fieldListCollection';
-
-export const contactProps = {
-  ...generateObjectEditorProps('contact', 'contacts'),
-  collection: Contacts,
-  avatarPath: '/empty-profile-pic.png',
-  interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
-};
-
-export const properties = () =>
-  FieldLists.findOne({ page: 'CONTACT_PROPERTIES' })
-    ? FieldLists.findOne({ page: 'CONTACT_PROPERTIES' }).fields
-    : [];
-
-const ContactConnect = ObjectEditorConnect(ObjectEditorDisplay);
-
-const Contact = props => (
-  <ContactConnect {...props} {...contactProps} properties={properties()} />
-);
-
+import { Contact } from '../objectEditor/ObjectEditors';
 export default Contact;

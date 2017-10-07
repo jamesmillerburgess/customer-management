@@ -5,10 +5,13 @@ import validate from 'validate.js';
 
 import Opportunities from './opportunityCollection';
 import Companies from '../company/companyCollection';
-
-import { properties } from '../../components/pages/opportunity/Opportunity';
+import FieldLists from '../fieldList/fieldListCollection';
 
 import * as GM from '../genericMethods';
+const properties = () =>
+  FieldLists.findOne({ page: 'COMPANY_PROPERTIES' })
+    ? FieldLists.findOne({ page: 'COMPANY_PROPERTIES' }).fields
+    : [];
 
 const APPOINTMENT_SCHEDULED = 'APPOINTMENT_SCHEDULED';
 const QUALIFIED_TO_BUY = 'QUALIFIED_TO_BUY';
@@ -41,7 +44,7 @@ export const STATUS_LABELS = {
 // Generic Methods
 export const create = opportunity => GM.create(Opportunities, opportunity);
 export const saveProperties = (opportunityId, opportunity) =>
-  GM.saveProperties(Opportunities, properties, opportunityId, opportunity);
+  GM.saveProperties(Opportunities, properties(), opportunityId, opportunity);
 export const addNote = (opportunityId, note) =>
   GM.addNote(Opportunities, opportunityId, note);
 

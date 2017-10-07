@@ -4,16 +4,6 @@ import { Meteor } from 'meteor/meteor';
 import ObjectEditorContainer from './ObjectEditorContainer';
 import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCreators';
 
-export const generateObjectEditorProps = (singular, plural) => ({
-  subscription: `${singular}.single`,
-  parentPage: {
-    label: plural[0].toUpperCase() + plural.slice(1),
-    path: `/${plural}`,
-  },
-  savePropertiesMethod: `${singular}.saveProperties`,
-  addInteractionMethod: `${singular}.addInteraction`,
-});
-
 export const mapStateToProps = ({ objectEditor }) => ({
   hasLoaded: objectEditor.hasLoaded || false,
   loadedValues: objectEditor.loadedValues || {},
