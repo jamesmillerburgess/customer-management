@@ -7,6 +7,10 @@ import OptionField from '../optionField/OptionField';
 import FieldOptions from '../../../api/fieldOptions/fieldOptionsCollection';
 
 const Field = props => {
+  const options = FieldOptions.findOne({ type: props.type });
+  if (options) {
+    return <OptionField {...props} options={options.options} />;
+  }
   switch (props.type) {
     case 'TEXT':
       return <TextField {...props} />;
@@ -17,10 +21,6 @@ const Field = props => {
     case 'COMPANY':
       return <CompanyField {...props} />;
     default:
-      const options = FieldOptions.findOne({ type: props.type });
-      if (options) {
-        return <OptionField {...props} options={options.options} />;
-      }
       return <TextField {...props} />;
   }
 };
