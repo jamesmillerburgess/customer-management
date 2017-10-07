@@ -1,28 +1,31 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import AddOpportunityConnect, {
+import AddObjectConnect, {
   mapStateToProps,
   mapDispatchToProps,
-} from './AddOpportunityConnect';
-import FieldLists from '../../../api/fieldList/fieldListCollection';
+  create,
+} from './AddObjectConnect';
+import FieldLists from '../../api/fieldList/fieldListCollection';
 
-describe('AddOpportunityConnect Component', () => {
+describe('AddObjectConnect Component', () => {
   it('connects AddObjectDisplay', () => {
-    expect(AddOpportunityConnect.displayName).toBe('Connect(AddObjectDisplay)');
+    expect(AddObjectConnect.displayName).toBe('Connect(AddObjectDisplay)');
   });
 });
 describe('mapStateToProps Function', () => {
   it('maps login state', () => {
     FieldLists.docs = [{ page: '', fields: [{ name: 'a', default: '' }] }];
     const state = { overlay: {}, other: 'b' };
-    expect(mapStateToProps(state).fields[0].value).toBe('');
+    const ownProps = {};
+    expect(mapStateToProps(state, ownProps).fields[0].value).toBe('');
     state.overlay.a = 'b';
-    expect(mapStateToProps(state).fields[0].value).toBe('b');
+    expect(mapStateToProps(state, ownProps).fields[0].value).toBe('b');
   });
   it('assumes no fields if no FieldList is found', () => {
     FieldLists.docs = [];
     const state = { overlay: {}, other: 'b' };
-    expect(mapStateToProps(state).fields.length).toBe(0);
+    const ownProps = {};
+    expect(mapStateToProps(state, ownProps).fields.length).toBe(0);
   });
 });
 describe('mapDispatchToProps Function', () => {

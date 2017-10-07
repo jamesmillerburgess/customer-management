@@ -52,14 +52,14 @@ describe('Overlays Component', () => {
     wrapper.setProps({ type: OT.ADD_CONTACT });
     let addContactConnect = wrapper
       .find('Route')
-      .at(2)
+      .at(0)
       .props()
       .render();
     expect(addContactConnect.props.show).toBe(true);
     wrapper.setProps({ type: OT.ADD_OPPORTUNITY });
     addContactConnect = wrapper
       .find('Route')
-      .at(2)
+      .at(0)
       .props()
       .render();
     expect(addContactConnect.props.show).toBe(false);
@@ -68,14 +68,14 @@ describe('Overlays Component', () => {
     wrapper.setProps({ type: OT.ADD_COMPANY });
     let addCompanyConnect = wrapper
       .find('Route')
-      .at(0)
+      .at(1)
       .props()
       .render();
     expect(addCompanyConnect.props.show).toBe(true);
     wrapper.setProps({ type: OT.ADD_OPPORTUNITY });
     addCompanyConnect = wrapper
       .find('Route')
-      .at(0)
+      .at(1)
       .props()
       .render();
     expect(addCompanyConnect.props.show).toBe(false);
@@ -84,14 +84,14 @@ describe('Overlays Component', () => {
     wrapper.setProps({ type: OT.ADD_OPPORTUNITY });
     let addOpportunityConnect = wrapper
       .find('Route')
-      .at(1)
+      .at(2)
       .props()
       .render();
     expect(addOpportunityConnect.props.show).toBe(true);
     wrapper.setProps({ type: OT.ADD_COMPANY });
     addOpportunityConnect = wrapper
       .find('Route')
-      .at(1)
+      .at(2)
       .props()
       .render();
     expect(addOpportunityConnect.props.show).toBe(false);

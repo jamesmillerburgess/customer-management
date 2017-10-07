@@ -77,4 +77,22 @@ const routes = [
   },
 ];
 
+export const overlayRoutes = [
+  {
+    pathPrefix: 'contacts',
+    createMethod: 'contact.create',
+    page: 'ADD_CONTACT',
+  },
+  {
+    pathPrefix: 'companies',
+    createMethod: 'company.create',
+    page: 'ADD_COMPANY',
+  },
+  {
+    pathPrefix: 'opportunities',
+    createMethod: 'opportunity.create',
+    page: 'ADD_OPPORTUNITY',
+  },
+];
+
 export default routes;

@@ -5,10 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import HomeConnect from './pages/home/HomeConnect';
 import NavConnect from './nav/nav/NavConnect';
-import AddContactConnect from './overlays/addContact/AddContactConnect';
-import AddCompanyConnect from './overlays/addCompany/AddCompanyConnect';
-import AddOpportunityConnect from './overlays/addOpportunity/AddOpportunityConnect';
-import routes from '../api/routes';
+import AddObjectConnect from './overlays/AddObjectConnect';
+import routes, { overlayRoutes } from '../api/routes';
 import * as fields from './overlays/AddObjectConstants';
 
 export const verifyAuth = (component, props) => {
@@ -39,7 +37,21 @@ export const OT = {
 
 export const Overlays = ({ open, type }) => (
   <div className={`overlay-background ${open ? 'show' : ''}`}>
-    <Route
+    {overlayRoutes.map(overlayRoute => (
+      <Route
+        key={overlayRoute.pathPrefix}
+        path="/"
+        render={routeProps => (
+          <AddObjectConnect
+            {...routeProps}
+            {...overlayRoute}
+            show={type === overlayRoute.page}
+            label={overlayRoute.pathPrefix}
+          />
+        )}
+      />
+    ))}
+    {/* <Route
       path="/"
       render={routeProps => (
         <AddCompanyConnect
@@ -69,7 +81,7 @@ export const Overlays = ({ open, type }) => (
           label="contact"
         />
       )}
-    />
+    /> */}
   </div>
 );
 
