@@ -20,6 +20,11 @@ describe('mapStateToProps Function', () => {
     state.overlay.a = 'b';
     expect(mapStateToProps(state).fields[0].value).toBe('b');
   });
+  it('assumes no fields if no FieldList is found', () => {
+    FieldLists.docs = [];
+    const state = { overlay: {}, other: 'b' };
+    expect(mapStateToProps(state).fields.length).toBe(0);
+  });
 });
 describe('mapDispatchToProps Function', () => {
   it('maps login dispatchers', () => {
