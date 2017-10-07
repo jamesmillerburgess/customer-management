@@ -4,6 +4,9 @@ describe('ContactList Component', () => {
   it('connects CompaniesContainer', () => {
     expect(ContactList).toBeInstanceOf(Function);
   });
+  it('does not throw', () => {
+    expect(ContactList).not.toThrow();
+  });
 });
 describe('gridPageProps Function', () => {
   it('renders a link in the name cells', () => {
