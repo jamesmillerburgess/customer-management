@@ -2,11 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Meteor } from 'meteor/meteor';
 
-import CompaniesContainer, { sortCompanies } from './CompaniesContainer';
+import ListPageContainer, { sort } from './ListPageContainer';
 
-describe('CompaniesContainer Component', () => {
+describe('ListPageContainer Component', () => {
   let wrapper;
-  beforeEach(() => (wrapper = shallow(<CompaniesContainer />)));
+  beforeEach(() => (wrapper = shallow(<ListPageContainer />)));
   afterEach(() => wrapper.unmount());
   it('wraps the CompaniesDisplay component', () => {
     expect(wrapper.name()).toBe('CompaniesDisplay');
@@ -24,12 +24,12 @@ describe('CompaniesContainer Component', () => {
     expect(wrapper.props().loading).toBe(false);
   });
 });
-describe('sortCompanies Function', () => {
+describe('sort Function', () => {
   it('sorts by createdDate', () => {
     const a = { createDate: new Date('January 1, 2017') };
     const b = { createDate: new Date('January 2, 2017') };
-    expect(sortCompanies(a, b) > 0).toEqual(true);
-    expect(sortCompanies(b, a) < 0).toEqual(true);
-    expect(sortCompanies(a, a) === 0).toEqual(true);
+    expect(sort(a, b) > 0).toEqual(true);
+    expect(sort(b, a) < 0).toEqual(true);
+    expect(sort(a, a) === 0).toEqual(true);
   });
 });

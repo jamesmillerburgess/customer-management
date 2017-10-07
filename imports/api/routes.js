@@ -1,9 +1,9 @@
 import Dashboard from '../components/pages/Dashboard';
-import CompaniesConnect from '../components/pages/companies/CompaniesConnect';
-import Contact from '../components/pages/contact/Contact';
+import CompanyList from '../components/pages/companyList/CompanyList';
+import ContactList from '../components/pages/contactList/ContactList';
 import Company from '../components/pages/company/Company';
 import Opportunity from '../components/pages/opportunity/Opportunity';
-import Contacts from '../components/pages/contacts/Contacts';
+import Contact from '../components/pages/contact/Contact';
 import OpportunitiesConnect from '../components/pages/opportunities/OpportunitiesConnect';
 import ProfileConnect from '../components/pages/profile/ProfileConnect';
 
@@ -20,7 +20,7 @@ const routes = [
     path: '/contacts',
     exact: true,
     title: 'Contacts',
-    component: Contacts,
+    component: ContactList,
     overlay: 'ADD_CONTACT',
     isNavLink: true,
   },
@@ -28,7 +28,7 @@ const routes = [
     path: '/companies',
     exact: true,
     title: 'Companies',
-    component: CompaniesConnect,
+    component: CompanyList,
     overlay: 'ADD_COMPANY',
     isNavLink: true,
   },

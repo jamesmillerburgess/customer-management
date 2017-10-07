@@ -1,8 +1,6 @@
-import React from 'react';
 import { connect } from 'react-redux';
 
-import OpportunitiesContainer from './OpportunitiesContainer';
-
+import ListPageContainer from './ListPageContainer';
 import { setAppProp } from '../../../state/actions/appActionCreators';
 import { clearOverlayProps } from '../../../state/actions/overlayActionCreators';
 
@@ -16,8 +14,8 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   },
 });
 
-const OpportunitiesConnect = connect(mapStateToProps, mapDispatchToProps)(
-  OpportunitiesContainer
+const ListPageConnect = connect(mapStateToProps, mapDispatchToProps)(
+  ListPageContainer
 );
 
-export default OpportunitiesConnect;
+export default ListPageConnect;

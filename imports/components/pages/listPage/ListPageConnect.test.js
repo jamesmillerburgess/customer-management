@@ -1,11 +1,11 @@
-import PageConnect, {
+import ListPageConnect, {
   mapStateToProps,
   mapDispatchToProps,
-} from './PageConnect';
+} from './ListPageConnect';
 
-describe('PageConnect Component', () => {
+describe('ListPageConnect Component', () => {
   it('connects CompaniesContainer', () => {
-    expect(PageConnect).toBeInstanceOf(Function);
+    expect(ListPageConnect).toBeInstanceOf(Function);
   });
 });
 describe('mapStateToProps Function', () => {

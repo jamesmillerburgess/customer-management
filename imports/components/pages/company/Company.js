@@ -25,6 +25,6 @@ const CompanyConnect = ObjectEditorConnect(
   ObjectEditorContainer(ObjectEditorDisplay)
 );
 
-const Opportunity = props => <CompanyConnect {...props} {...companyProps()} />;
+const Company = props => <CompanyConnect {...props} {...companyProps()} />;
 
-export default Opportunity;
+export default Company;
