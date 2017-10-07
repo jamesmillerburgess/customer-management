@@ -1,7 +1,7 @@
 import React from 'react';
-import ObjectEditorConnect from '../ObjectEditorConnect';
-import ObjectEditorContainer from '../ObjectEditorContainer';
-import GridPageDisplay from '../gridPage/GridPageDisplay';
+import ObjectEditorConnect from '../objectEditor/ObjectEditorConnect';
+import ObjectEditorContainer from '../objectEditor/ObjectEditorContainer';
+import ObjectEditorDisplay from '../objectEditor/ObjectEditorDisplay';
 import Companies from '../../../api/company/companyCollection';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
@@ -22,7 +22,7 @@ export const companyProps = () => ({
 });
 
 const CompanyConnect = ObjectEditorConnect(
-  ObjectEditorContainer(GridPageDisplay)
+  ObjectEditorContainer(ObjectEditorDisplay)
 );
 
 const Opportunity = props => <CompanyConnect {...props} {...companyProps()} />;

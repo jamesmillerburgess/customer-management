@@ -7,7 +7,7 @@ import PropertiesEditor from '../../sections/propertiesEditor/PropertiesEditor';
 import InteractionMenu from '../../sections/interactionMenu/InteractionMenu';
 import Timeline from '../../sections/timeline/Timeline';
 
-const GridPageDisplay = props => (
+const ObjectEditorDisplay = props => (
   <ObjectEditor {...props.parentPage}>
     <div className="body">
       <div className="sidebar">
@@ -28,6 +28,6 @@ const GridPageDisplay = props => (
   </ObjectEditor>
 );
 
-GridPageDisplay.defaultProps = { object: {} };
+ObjectEditorDisplay.defaultProps = { object: {} };
 
-export default GridPageDisplay;
+export default ObjectEditorDisplay;

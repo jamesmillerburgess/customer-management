@@ -1,7 +1,7 @@
 import React from 'react';
-import ObjectEditorConnect from '../ObjectEditorConnect';
-import ObjectEditorContainer from '../ObjectEditorContainer';
-import GridPageDisplay from '../gridPage/GridPageDisplay';
+import ObjectEditorConnect from '../objectEditor/ObjectEditorConnect';
+import ObjectEditorContainer from '../objectEditor/ObjectEditorContainer';
+import ObjectEditorDisplay from '../objectEditor/ObjectEditorDisplay';
 import Contacts from '../../../api/contact/contactCollection';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
@@ -22,7 +22,7 @@ export const contactProps = () => ({
 });
 
 const ContactConnect = ObjectEditorConnect(
-  ObjectEditorContainer(GridPageDisplay)
+  ObjectEditorContainer(ObjectEditorDisplay)
 );
 
 const Contact = props => <ContactConnect {...props} {...contactProps()} />;

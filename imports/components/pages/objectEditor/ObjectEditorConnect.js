@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
 
-import { setObjectEditorProp } from '../../state/actions/objectEditorActionCreators';
+import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCreators';
 
 export const mapStateToProps = ({ objectEditor }) => ({
   hasLoaded: objectEditor.hasLoaded || false,

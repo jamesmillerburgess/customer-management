@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import GridPageDisplay from './GridPageDisplay';
+import ObjectEditorDisplay from './ObjectEditorDisplay';
 
-describe('GridPageDisplay', () => {
+describe('ObjectEditorDisplay', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<GridPageDisplay />);
+    wrapper = shallow(<ObjectEditorDisplay />);
   });
   afterEach(() => {
     wrapper.unmount();
