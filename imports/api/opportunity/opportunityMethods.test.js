@@ -3,7 +3,6 @@ import { Meteor } from 'meteor/meteor';
 import Opportunities from './opportunityCollection';
 import Companies from '../company/companyCollection';
 import * as opportunity from './opportunityMethods';
-import { STATUS_VALUES } from '../../components/fields/statusField/StatusField';
 
 describe('opportunity.create Meteor Method', () => {
   it('inserts a document', () => {
@@ -21,12 +20,18 @@ describe('opportunity.create Meteor Method', () => {
 describe('getStatusDirection Function', () => {
   it('returns STATUS_CHANGE_FORWARD if the status moves forward in sequence', () => {
     expect(
-      opportunity.getStatusDirection(STATUS_VALUES[0], STATUS_VALUES[1])
+      opportunity.getStatusDirection(
+        opportunity.STATUS_VALUES[0],
+        opportunity.STATUS_VALUES[1]
+      )
     ).toBe(opportunity.STATUS_CHANGE_FORWARD);
   });
   it('returns STATUS_CHANGE_BACKWARD if the status moves backward in sequence', () => {
     expect(
-      opportunity.getStatusDirection(STATUS_VALUES[1], STATUS_VALUES[0])
+      opportunity.getStatusDirection(
+        opportunity.STATUS_VALUES[1],
+        opportunity.STATUS_VALUES[0]
+      )
     ).toBe(opportunity.STATUS_CHANGE_BACKWARD);
   });
 });

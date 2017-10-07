@@ -3,8 +3,9 @@ import ObjectEditorConnect from '../ObjectEditorConnect';
 import ObjectEditorContainer from '../ObjectEditorContainer';
 import ContactDisplay from './ContactDisplay';
 import Contacts from '../../../api/contact/contactCollection';
+import FieldLists from '../../../api/fieldList/fieldListCollection';
 
-export const contactProps = {
+export const contactProps = () => ({
   collection: Contacts,
   subscription: 'contact.single',
   parentPage: {
@@ -13,41 +14,16 @@ export const contactProps = {
   },
   savePropertiesMethod: 'contact.saveProperties',
   addInteractionMethod: 'contact.addInteraction',
-  properties: [
-    { name: 'name', label: 'Name', fieldType: 'TEXT', default: '' },
-    { name: 'email', label: 'Email', fieldType: 'TEXT', default: '' },
-    {
-      name: 'company',
-      label: 'Company',
-      fieldType: 'COMPANY',
-      default: null,
-    },
-    {
-      name: 'phoneNumber',
-      label: 'Phone Number',
-      fieldType: 'TEXT',
-      default: '',
-    },
-    {
-      name: 'lifecycleStage',
-      label: 'Lifecycle Stage',
-      fieldType: 'TEXT',
-      default: '',
-    },
-    {
-      name: 'leadStatus',
-      label: 'Lead Status',
-      type: 'TEXT',
-      default: '',
-    },
-  ],
+  properties: FieldLists.findOne({ page: 'CONTACT_PROPERTIES' })
+    ? FieldLists.findOne({ page: 'CONTACT_PROPERTIES' }).fields
+    : [],
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
-};
+});
 
 const ContactConnect = ObjectEditorConnect(
   ObjectEditorContainer(ContactDisplay)
 );
 
-const Contact = props => <ContactConnect {...props} {...contactProps} />;
+const Contact = props => <ContactConnect {...props} {...contactProps()} />;
 
 export default Contact;

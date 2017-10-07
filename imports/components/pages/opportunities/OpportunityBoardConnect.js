@@ -2,7 +2,24 @@ import React from 'react';
 import { createSelector } from 'reselect';
 
 import OpportunityBoard from './OpportunityBoard';
-import { STATUS_VALUES } from '../../fields/statusField/StatusField';
+
+const APPOINTMENT_SCHEDULED = 'APPOINTMENT_SCHEDULED';
+const QUALIFIED_TO_BUY = 'QUALIFIED_TO_BUY';
+const PRESENTATION_SCHEDULED = 'PRESENTATION_SCHEDULED';
+const DECISION_MAKER_BOUGHT_IN = 'DECISION_MAKER_BOUGHT_IN';
+const CONTRACT_SENT = 'CONTRACT_SENT';
+const CLOSED_WON = 'CLOSED_WON';
+const CLOSED_LOST = 'CLOSED_LOST';
+
+export const STATUS_VALUES = [
+  APPOINTMENT_SCHEDULED,
+  QUALIFIED_TO_BUY,
+  PRESENTATION_SCHEDULED,
+  DECISION_MAKER_BOUGHT_IN,
+  CONTRACT_SENT,
+  CLOSED_WON,
+  CLOSED_LOST,
+];
 
 const cardsSelector = props => props.cards;
 

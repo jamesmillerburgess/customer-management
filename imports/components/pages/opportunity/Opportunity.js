@@ -3,8 +3,9 @@ import ObjectEditorConnect from '../ObjectEditorConnect';
 import ObjectEditorContainer from '../ObjectEditorContainer';
 import OpportunityDisplay from './OpportunityDisplay';
 import Opportunities from '../../../api/opportunity/opportunityCollection';
+import FieldLists from '../../../api/fieldList/fieldListCollection';
 
-export const opportunityProps = {
+export const opportunityProps = () => ({
   collection: Opportunities,
   subscription: 'opportunity.single',
   parentPage: {
@@ -35,31 +36,18 @@ export const opportunityProps = {
   updateStatusMethod: 'opportunity.updateStatus',
   savePropertiesMethod: 'opportunity.saveProperties',
   addInteractionMethod: 'opportunity.addInteraction',
-  properties: [
-    { name: 'name', label: 'Name', fieldType: 'TEXT', default: '' },
-    { name: 'amount', label: 'Amount', fieldType: 'NUMBER', default: '' },
-    {
-      name: 'closeDate',
-      label: 'Close Date',
-      fieldType: 'DATE',
-      default: '',
-    },
-    {
-      name: 'company',
-      label: 'Company',
-      fieldType: 'COMPANY',
-      default: null,
-    },
-  ],
+  properties: FieldLists.findOne({ page: 'OPPORTUNITY_PROPERTIES' })
+    ? FieldLists.findOne({ page: 'OPPORTUNITY_PROPERTIES' }).fields
+    : [],
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
-};
+});
 
 const OpportunityConnect = ObjectEditorConnect(
   ObjectEditorContainer(OpportunityDisplay)
 );
 
 const Opportunity = props => (
-  <OpportunityConnect {...props} {...opportunityProps} />
+  <OpportunityConnect {...props} {...opportunityProps()} />
 );
 
 export default Opportunity;

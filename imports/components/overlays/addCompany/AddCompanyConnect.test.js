@@ -5,6 +5,7 @@ import AddCompanyConnect, {
   mapDispatchToProps,
   create,
 } from './AddCompanyConnect';
+import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 describe('AddCompanyConnect Component', () => {
   it('connects AddObjectDisplay', () => {
@@ -13,17 +14,11 @@ describe('AddCompanyConnect Component', () => {
 });
 describe('mapStateToProps Function', () => {
   it('maps login state', () => {
+    FieldLists.docs = [{ page: '', fields: [{ name: 'a', default: '' }] }];
     const state = { overlay: {}, other: 'b' };
-    expect(mapStateToProps(state)).toEqual({
-      name: '',
-      website: '',
-    });
-    state.overlay.name = 'c';
-    state.overlay.website = 'd';
-    expect(mapStateToProps(state)).toEqual({
-      name: 'c',
-      website: 'd',
-    });
+    expect(mapStateToProps(state).fields[0].value).toBe('');
+    state.overlay.a = 'b';
+    expect(mapStateToProps(state).fields[0].value).toBe('b');
   });
 });
 describe('mapDispatchToProps Function', () => {

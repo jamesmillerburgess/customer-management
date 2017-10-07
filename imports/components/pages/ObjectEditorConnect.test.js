@@ -10,9 +10,12 @@ describe('ObjectEditorConnect Component', () => {
   });
 });
 describe('mapStateToProps Function', () => {
-  it('returns an empty object', () => {
-    const state = { a: 'b' };
-    expect(mapStateToProps(state)).toEqual({});
+  it('pulls in objectEditor properties', () => {
+    const state = { objectEditor: { hasLoaded: true, loadedValues: {} } };
+    expect(mapStateToProps(state)).toEqual({
+      hasLoaded: true,
+      loadedValues: {},
+    });
   });
 });
 describe('mapDispatchToProps Function', () => {

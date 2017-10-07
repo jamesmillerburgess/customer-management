@@ -5,6 +5,7 @@ import AddContactConnect, {
   mapDispatchToProps,
   create,
 } from './AddContactConnect';
+import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 describe('AddContactConnect Component', () => {
   it('connects AddObjectDisplay', () => {
@@ -13,20 +14,11 @@ describe('AddContactConnect Component', () => {
 });
 describe('mapStateToProps Function', () => {
   it('maps login state', () => {
+    FieldLists.docs = [{ page: '', fields: [{ name: 'a', default: '' }] }];
     const state = { overlay: {}, other: 'b' };
-    expect(mapStateToProps(state)).toEqual({
-      company: null,
-      email: '',
-      name: '',
-    });
-    state.overlay.company = 'a';
-    state.overlay.email = 'b';
-    state.overlay.name = 'c';
-    expect(mapStateToProps(state)).toEqual({
-      company: 'a',
-      email: 'b',
-      name: 'c',
-    });
+    expect(mapStateToProps(state).fields[0].value).toBe('');
+    state.overlay.a = 'b';
+    expect(mapStateToProps(state).fields[0].value).toBe('b');
   });
 });
 describe('mapDispatchToProps Function', () => {

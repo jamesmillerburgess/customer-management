@@ -12,7 +12,7 @@ describe('saveProperties Function', () => {
   it('does not throw', () => {
     const collection = new Mongo.Collection();
     collection.docs = [{}];
-    const objectProps = { properties: [{ name: 'name' }] };
+    const objectProps = () => ({ properties: [{ name: 'name' }] });
     expect(() =>
       GM.saveProperties(collection, objectProps, 'a', { name: 'a' })
     ).not.toThrow();

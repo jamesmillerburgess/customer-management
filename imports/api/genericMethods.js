@@ -35,7 +35,7 @@ export const saveProperties = (collection, objectProps, objectId, object) => {
     throw new Error('No document with the given objectId');
   }
   const fields = _.pick(
-    objectProps.properties.map(property => property.name),
+    objectProps().properties.map(property => property.name),
     object
   );
   collection.update(objectId, { $set: fields });

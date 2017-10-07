@@ -3,7 +3,10 @@ import { Meteor } from 'meteor/meteor';
 
 import { setObjectEditorProp } from '../../state/actions/objectEditorActionCreators';
 
-export const mapStateToProps = () => ({});
+export const mapStateToProps = ({ objectEditor }) => ({
+  hasLoaded: objectEditor.hasLoaded || false,
+  loadedValues: objectEditor.loadedValues || {},
+});
 
 export const mapDispatchToProps = dispatch => ({
   setProperty: (property, value) =>

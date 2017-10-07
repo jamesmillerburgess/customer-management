@@ -4,8 +4,8 @@ import { shallow } from 'enzyme';
 import OpportunityBoardConnect, {
   cardListsSelector,
   listTotalsSelector,
+  STATUS_VALUES,
 } from './OpportunityBoardConnect';
-import { STATUS_VALUES } from '../../fields/statusField/StatusField';
 
 describe('OpportunityBoardConnect Component', () => {
   let wrapper;

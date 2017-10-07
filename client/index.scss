@@ -18,7 +18,7 @@ ul {
   margin: 0;
 }
 .expandable {
-  transition: height 0.3s ease-in-out 0.1s, opacity 0.1s ease-in-out;
+  transition: height 0.3s ease-in-out, opacity 0.1s ease-in-out;
 }
 .expanded {
   transition: height 0.3s ease-in-out, opacity 0.1s ease-in-out 0.3s;

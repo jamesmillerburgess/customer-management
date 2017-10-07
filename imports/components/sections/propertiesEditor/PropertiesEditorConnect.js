@@ -1,22 +1,23 @@
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
+import deepEqual from 'deep-equal';
 
 import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCreators';
 
 export const mapStateToProps = ({ objectEditor }, ownProps) => {
   const props = {};
-  ownProps.properties.forEach(
-    (property, index) =>
-      (props[property.name] = objectEditor[property.name] || '')
-  );
+  props.fields = ownProps.properties.map((property, index) => ({
+    ...property,
+    value: objectEditor[property.name] || '',
+  }));
   props.loadedValues = ownProps.loadedValues;
   props.numEditedProperties = 0;
   props.isEditingProperties =
     objectEditor.hasLoaded &&
-    ownProps.properties.reduce((prev, property) => {
+    props.fields.reduce((prev, property) => {
       let diff = false;
       if (
-        props[property.name] !== (ownProps.loadedValues[property.name] || '')
+        !deepEqual(property.value, ownProps.loadedValues[property.name] || '')
       ) {
         diff = true;
         props.numEditedProperties += 1;

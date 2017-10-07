@@ -3,19 +3,21 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
 import AddObjectDisplay from '../AddObjectDisplay';
+import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 import { setOverlayProp } from '../../../state/actions/overlayActionCreators';
 import { setAppProp } from '../../../state/actions/appActionCreators';
-import { addContactFields } from '../AddObjectConstants';
 
 export const mapStateToProps = ({ overlay }) => {
-  return addContactFields.reduce(
-    (prev, field) => ({
-      ...prev,
-      [field.prop]: overlay[field.prop] || field.default,
-    }),
-    {}
-  );
+  const { fields } = FieldLists.findOne({ page: 'ADD_CONTACT' }) || {
+    fields: [],
+  };
+  return {
+    fields: fields.map(
+      field => ({ ...field, value: overlay[field.name] || field.default }),
+      {}
+    ),
+  };
 };
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({

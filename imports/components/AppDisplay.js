@@ -45,7 +45,6 @@ export const Overlays = ({ open, type }) => (
         <AddCompanyConnect
           {...routeProps}
           show={type === OT.ADD_COMPANY}
-          fields={fields.addCompanyFields}
           label="company"
         />
       )}
@@ -67,7 +66,6 @@ export const Overlays = ({ open, type }) => (
         <AddContactConnect
           {...routeProps}
           show={type === OT.ADD_CONTACT}
-          fields={fields.addContactFields}
           label="contact"
         />
       )}

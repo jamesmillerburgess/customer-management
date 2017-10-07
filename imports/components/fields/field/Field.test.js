@@ -1,34 +1,36 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Field from './Field';
+import FieldOptions from '../../../api/fieldOptions/fieldOptionsCollection';
 
 describe('Field Component', () => {
   let wrapper;
   beforeEach(() => (wrapper = shallow(<Field />)));
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
-  it('returns TextField if fieldType is TEXT', () => {
-    wrapper.setProps({ fieldType: 'TEXT' });
+  it('returns TextField if type is TEXT', () => {
+    wrapper.setProps({ type: 'TEXT' });
     expect(wrapper.name()).toBe('TextField');
   });
-  it('returns NumberField if fieldType is NUMBER', () => {
-    wrapper.setProps({ fieldType: 'NUMBER' });
+  it('returns NumberField if type is NUMBER', () => {
+    wrapper.setProps({ type: 'NUMBER' });
     expect(wrapper.name()).toBe('NumberField');
   });
-  it('returns DateField if fieldType is DATE', () => {
-    wrapper.setProps({ fieldType: 'DATE' });
+  it('returns DateField if type is DATE', () => {
+    wrapper.setProps({ type: 'DATE' });
     expect(wrapper.name()).toBe('DateField');
   });
-  it('returns CompanyField if fieldType is COMPANY', () => {
-    wrapper.setProps({ fieldType: 'COMPANY' });
+  it('returns CompanyField if type is COMPANY', () => {
+    wrapper.setProps({ type: 'COMPANY' });
     expect(wrapper.name()).toBe('withRouter(CompanyField)');
   });
-  it('returns StatusField if fieldType is STATUS', () => {
-    wrapper.setProps({ fieldType: 'STATUS' });
-    expect(wrapper.name()).toBe('StatusField');
-  });
-  it('returns TextField if fieldType is anything else', () => {
-    wrapper.setProps({ fieldType: 'SOMETHING_ELSE' });
+  it('returns TextField if type is anything else', () => {
+    wrapper.setProps({ type: 'SOMETHING_ELSE' });
     expect(wrapper.name()).toBe('TextField');
+  });
+  it('returns OptionField if there is a matching set of options', () => {
+    FieldOptions.docs = [{}];
+    wrapper.setProps({ type: 'SOMETHING_ELSE' });
+    expect(wrapper.name()).toBe('OptionField');
   });
 });

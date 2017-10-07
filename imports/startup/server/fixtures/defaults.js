@@ -12,12 +12,13 @@ export const FIELD_OPTIONS = [
     ],
   },
   {
-    type: 'CONTACT_LEAD_STATUS',
+    type: 'CONTACT_LIFECYCLE_STAGE',
     options: [
+      { value: '', label: '' },
       { value: 'SUBSCRIBER', label: 'Subscriber' },
       { value: 'LEAD', label: 'Lead' },
-      { value: 'MARKETING_QUALIFIED', label: 'Marketing Qualified' },
-      { value: 'SALES_QUALIFIED', label: 'Sales Qualified' },
+      { value: 'MARKETING_QUALIFIED_LEAD', label: 'Marketing Qualified Lead' },
+      { value: 'SALES_QUALIFIED_LEAD', label: 'Sales Qualified Lead' },
       { value: 'OPPORTUNITY', label: 'Opportunity' },
       { value: 'CUSTOMER', label: 'Customer' },
       { value: 'EVANGELIST', label: 'Evangelist' },
@@ -25,13 +26,22 @@ export const FIELD_OPTIONS = [
     ],
   },
   {
-    type: 'CONTACT_LIFECYCLE_STAGE',
+    type: 'CONTACT_LEAD_STATUS',
     options: [
+      { value: '', label: '' },
       { value: 'NEW', label: 'New' },
       { value: 'OPEN', label: 'Open' },
       { value: 'IN_PROGRESS', label: 'In Progress' },
       { value: 'OPEN_DEAL', label: 'Open Deal' },
       { value: 'UNQUALIFIED', label: 'Unqualified' },
+    ],
+  },
+  {
+    type: 'OPPORTUNITY_TYPE',
+    options: [
+      { value: '', label: '' },
+      { value: 'NEW_BUSINESS', label: 'New Business' },
+      { value: 'EXISTING_BUSINESS', label: 'Existing Business' },
     ],
   },
 ];
@@ -40,10 +50,10 @@ export const FIELD_LISTS = [
   {
     page: 'ADD_CONTACT',
     fields: [
-      { prop: 'name', label: 'Name', type: 'TEXT', default: '' },
-      { prop: 'email', label: 'Email', type: 'TEXT', default: '' },
+      { name: 'name', label: 'Name', type: 'TEXT', default: '' },
+      { name: 'email', label: 'Email', type: 'TEXT', default: '' },
       {
-        prop: 'company',
+        name: 'company',
         label: 'Company',
         type: 'COMPANY',
         default: null,
@@ -51,32 +61,138 @@ export const FIELD_LISTS = [
     ],
   },
   {
+    page: 'ADD_COMPANY',
+    fields: [
+      { name: 'name', label: 'Name', type: 'TEXT', default: '' },
+      { name: 'website', label: 'Website', type: 'TEXT', default: '' },
+    ],
+  },
+  {
+    page: 'ADD_OPPORTUNITY',
+    fields: [
+      { name: 'name', label: 'Name', type: 'TEXT', default: '' },
+      {
+        name: 'status',
+        label: 'Status',
+        type: 'OPPORTUNITY_STATUS',
+        default: 'APPOINTMENT_SCHEDULED',
+      },
+      { name: 'amount', label: 'Amount', type: 'NUMBER', default: '' },
+      { name: 'closeDate', label: 'Close Date', type: 'DATE', default: '' },
+      { name: 'company', label: 'Company', type: 'COMPANY', default: null },
+    ],
+  },
+  {
     page: 'CONTACT_PROPERTIES',
     fields: [
-      { name: 'name', label: 'Name', fieldType: 'TEXT', default: '' },
-      { name: 'email', label: 'Email', fieldType: 'TEXT', default: '' },
+      { name: 'name', label: 'Name', type: 'TEXT', default: '' },
+      { name: 'email', label: 'Email', type: 'TEXT', default: '' },
       {
         name: 'company',
         label: 'Company',
-        fieldType: 'COMPANY',
+        type: 'COMPANY',
         default: null,
       },
       {
         name: 'phoneNumber',
         label: 'Phone Number',
-        fieldType: 'TEXT',
+        type: 'TEXT',
         default: '',
       },
       {
         name: 'lifecycleStage',
         label: 'Lifecycle Stage',
-        fieldType: 'TEXT',
+        type: 'CONTACT_LIFECYCLE_STAGE',
         default: '',
       },
       {
         name: 'leadStatus',
         label: 'Lead Status',
+        type: 'CONTACT_LEAD_STATUS',
+        default: '',
+      },
+    ],
+  },
+  {
+    page: 'COMPANY_PROPERTIES',
+    fields: [
+      { name: 'name', label: 'Name', type: 'TEXT', default: '' },
+      { name: 'website', label: 'Website', type: 'TEXT', default: '' },
+      {
+        name: 'industry',
+        label: 'Industry',
         type: 'TEXT',
+        default: '',
+      },
+      {
+        name: 'phoneNumber',
+        label: 'Phone Number',
+        type: 'TEXT',
+        default: '',
+      },
+      {
+        name: 'streetAddress',
+        label: 'Street Address',
+        type: 'text',
+      },
+      {
+        name: 'city',
+        label: 'City',
+        type: 'TEXT',
+      },
+      {
+        name: 'stateRegion',
+        label: 'State/Region',
+        type: 'TEXT',
+      },
+      {
+        name: 'postalCode',
+        label: 'Postal Code',
+        type: 'TEXT',
+      },
+      {
+        name: 'numberOfEmployees',
+        label: 'Number of Employees',
+        type: 'TEXT',
+      },
+      {
+        name: 'annualRevenue',
+        label: 'Annual Revenue',
+        type: 'TEXT',
+      },
+      {
+        name: 'timeZone',
+        label: 'Time Zone',
+        type: 'TEXT',
+      },
+      {
+        name: 'description',
+        label: 'Description',
+        type: 'TEXT',
+      },
+    ],
+  },
+  {
+    page: 'OPPORTUNITY_PROPERTIES',
+    fields: [
+      { name: 'name', label: 'Name', type: 'TEXT', default: '' },
+      { name: 'amount', label: 'Amount', type: 'NUMBER', default: '' },
+      {
+        name: 'closeDate',
+        label: 'Close Date',
+        type: 'DATE',
+        default: '',
+      },
+      {
+        name: 'company',
+        label: 'Company',
+        type: 'COMPANY',
+        default: null,
+      },
+      {
+        name: 'opportunityType',
+        label: 'Opportunity Type',
+        type: 'OPPORTUNITY_TYPE',
         default: '',
       },
     ],
