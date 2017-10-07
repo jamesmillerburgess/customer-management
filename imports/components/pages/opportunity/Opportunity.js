@@ -1,6 +1,5 @@
 import React from 'react';
 import ObjectEditorConnect from '../objectEditor/ObjectEditorConnect';
-import ObjectEditorContainer from '../objectEditor/ObjectEditorContainer';
 import OpportunityDisplay from './OpportunityDisplay';
 import Opportunities from '../../../api/opportunity/opportunityCollection';
 import FieldLists from '../../../api/fieldList/fieldListCollection';

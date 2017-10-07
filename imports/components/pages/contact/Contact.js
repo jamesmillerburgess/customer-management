@@ -2,7 +2,6 @@ import React from 'react';
 import ObjectEditorConnect, {
   generateObjectEditorProps,
 } from '../objectEditor/ObjectEditorConnect';
-import ObjectEditorContainer from '../objectEditor/ObjectEditorContainer';
 import ObjectEditorDisplay from '../objectEditor/ObjectEditorDisplay';
 import Contacts from '../../../api/contact/contactCollection';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
