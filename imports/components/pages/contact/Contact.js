@@ -1,20 +1,16 @@
 import React from 'react';
-import ObjectEditorConnect from '../objectEditor/ObjectEditorConnect';
+import ObjectEditorConnect, {
+  generateObjectEditorProps,
+} from '../objectEditor/ObjectEditorConnect';
 import ObjectEditorContainer from '../objectEditor/ObjectEditorContainer';
 import ObjectEditorDisplay from '../objectEditor/ObjectEditorDisplay';
 import Contacts from '../../../api/contact/contactCollection';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 export const contactProps = {
+  ...generateObjectEditorProps('contact', 'contacts'),
   collection: Contacts,
-  subscription: 'contact.single',
   avatarPath: '/empty-profile-pic.png',
-  parentPage: {
-    label: 'Contacts',
-    path: '/contacts',
-  },
-  savePropertiesMethod: 'contact.saveProperties',
-  addInteractionMethod: 'contact.addInteraction',
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
 };
 

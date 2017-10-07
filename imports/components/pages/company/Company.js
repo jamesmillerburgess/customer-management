@@ -1,20 +1,16 @@
 import React from 'react';
-import ObjectEditorConnect from '../objectEditor/ObjectEditorConnect';
+import ObjectEditorConnect, {
+  generateObjectEditorProps,
+} from '../objectEditor/ObjectEditorConnect';
 import ObjectEditorContainer from '../objectEditor/ObjectEditorContainer';
 import ObjectEditorDisplay from '../objectEditor/ObjectEditorDisplay';
 import Companies from '../../../api/company/companyCollection';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 export const companyProps = {
+  ...generateObjectEditorProps('company', 'companies'),
   collection: Companies,
-  subscription: 'company.single',
   avatarPath: '/empty-company-pic.png',
-  parentPage: {
-    label: 'Companies',
-    path: '/companies',
-  },
-  savePropertiesMethod: 'company.saveProperties',
-  addInteractionMethod: 'company.addInteraction',
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
 };
 
