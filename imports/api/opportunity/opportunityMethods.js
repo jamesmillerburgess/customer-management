@@ -6,7 +6,7 @@ import validate from 'validate.js';
 import Opportunities from './opportunityCollection';
 import Companies from '../company/companyCollection';
 
-import { opportunityProps } from '../../components/pages/opportunity/Opportunity';
+import { properties } from '../../components/pages/opportunity/Opportunity';
 
 import * as GM from '../genericMethods';
 
@@ -41,12 +41,7 @@ export const STATUS_LABELS = {
 // Generic Methods
 export const create = opportunity => GM.create(Opportunities, opportunity);
 export const saveProperties = (opportunityId, opportunity) =>
-  GM.saveProperties(
-    Opportunities,
-    opportunityProps,
-    opportunityId,
-    opportunity
-  );
+  GM.saveProperties(Opportunities, properties, opportunityId, opportunity);
 export const addNote = (opportunityId, note) =>
   GM.addNote(Opportunities, opportunityId, note);
 

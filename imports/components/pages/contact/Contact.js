@@ -5,7 +5,7 @@ import ObjectEditorDisplay from '../objectEditor/ObjectEditorDisplay';
 import Contacts from '../../../api/contact/contactCollection';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
-export const contactProps = () => ({
+export const contactProps = {
   collection: Contacts,
   subscription: 'contact.single',
   avatarPath: '/empty-profile-pic.png',
@@ -15,16 +15,20 @@ export const contactProps = () => ({
   },
   savePropertiesMethod: 'contact.saveProperties',
   addInteractionMethod: 'contact.addInteraction',
-  properties: FieldLists.findOne({ page: 'CONTACT_PROPERTIES' })
-    ? FieldLists.findOne({ page: 'CONTACT_PROPERTIES' }).fields
-    : [],
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
-});
+};
+
+export const properties = () =>
+  FieldLists.findOne({ page: 'CONTACT_PROPERTIES' })
+    ? FieldLists.findOne({ page: 'CONTACT_PROPERTIES' }).fields
+    : [];
 
 const ContactConnect = ObjectEditorConnect(
   ObjectEditorContainer(ObjectEditorDisplay)
 );
 
-const Contact = props => <ContactConnect {...props} {...contactProps()} />;
+const Contact = props => (
+  <ContactConnect {...props} {...contactProps} properties={properties()} />
+);
 
 export default Contact;

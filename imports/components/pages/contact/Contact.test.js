@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Contact, { contactProps } from './Contact';
+import Contact, { properties } from './Contact';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 describe('Contact Component', () => {
@@ -15,10 +15,10 @@ describe('Contact Component', () => {
   });
   it('renders without error', () => {});
 });
-describe('contactProps Function', () => {
+describe('properties Function', () => {
   it('uses the fieldList document if it finds one', () => {
     const fieldList = { fields: { a: 'a' } };
     FieldLists.docs = [fieldList];
-    expect(contactProps().properties).toEqual(fieldList.fields);
+    expect(properties()).toEqual(fieldList.fields);
   });
 });

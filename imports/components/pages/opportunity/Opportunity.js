@@ -5,7 +5,7 @@ import OpportunityDisplay from './OpportunityDisplay';
 import Opportunities from '../../../api/opportunity/opportunityCollection';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
-export const opportunityProps = () => ({
+export const opportunityProps = {
   collection: Opportunities,
   subscription: 'opportunity.single',
   parentPage: {
@@ -36,18 +36,24 @@ export const opportunityProps = () => ({
   updateStatusMethod: 'opportunity.updateStatus',
   savePropertiesMethod: 'opportunity.saveProperties',
   addInteractionMethod: 'opportunity.addInteraction',
-  properties: FieldLists.findOne({ page: 'OPPORTUNITY_PROPERTIES' })
-    ? FieldLists.findOne({ page: 'OPPORTUNITY_PROPERTIES' }).fields
-    : [],
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
-});
+};
+
+export const properties = () =>
+  FieldLists.findOne({ page: 'OPPORTUNITY_PROPERTIES' })
+    ? FieldLists.findOne({ page: 'OPPORTUNITY_PROPERTIES' }).fields
+    : [];
 
 const OpportunityConnect = ObjectEditorConnect(
   ObjectEditorContainer(OpportunityDisplay)
 );
 
 const Opportunity = props => (
-  <OpportunityConnect {...props} {...opportunityProps()} />
+  <OpportunityConnect
+    {...props}
+    {...opportunityProps}
+    properties={properties()}
+  />
 );
 
 export default Opportunity;

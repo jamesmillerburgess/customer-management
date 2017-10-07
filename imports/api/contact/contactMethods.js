@@ -3,7 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import validate from 'validate.js';
 
 import Contacts from './contactCollection';
-import { contactProps } from '../../components/pages/contact/Contact';
+import { properties } from '../../components/pages/contact/Contact';
 import { buildSearchRegExp } from '../searchUtils';
 
 import * as GM from '../genericMethods';
@@ -11,7 +11,7 @@ import * as GM from '../genericMethods';
 // Generic Methods
 export const create = contact => GM.create(Contacts, contact);
 export const saveProperties = (contactId, contact) =>
-  GM.saveProperties(Contacts, contactProps, contactId, contact);
+  GM.saveProperties(Contacts, properties, contactId, contact);
 export const addNote = (contactId, note) =>
   GM.addNote(Contacts, contactId, note);
 

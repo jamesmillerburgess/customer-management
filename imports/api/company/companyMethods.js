@@ -3,7 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import validate from 'validate.js';
 
 import Companies from './companyCollection';
-import { companyProps } from '../../components/pages/company/Company';
+import { properties } from '../../components/pages/company/Company';
 import { buildSearchRegExp } from '../searchUtils';
 
 const CREATION = 'CREATION';
@@ -14,7 +14,7 @@ import * as GM from '../genericMethods';
 // Generic Methods
 export const create = company => GM.create(Companies, company);
 export const saveProperties = (companyId, company) =>
-  GM.saveProperties(Companies, companyProps, companyId, company);
+  GM.saveProperties(Companies, properties, companyId, company);
 export const addNote = (companyId, note) =>
   GM.addNote(Companies, companyId, note);
 

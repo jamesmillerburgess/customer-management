@@ -5,7 +5,7 @@ import ObjectEditorDisplay from '../objectEditor/ObjectEditorDisplay';
 import Companies from '../../../api/company/companyCollection';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
-export const companyProps = () => ({
+export const companyProps = {
   collection: Companies,
   subscription: 'company.single',
   avatarPath: '/empty-company-pic.png',
@@ -15,16 +15,20 @@ export const companyProps = () => ({
   },
   savePropertiesMethod: 'company.saveProperties',
   addInteractionMethod: 'company.addInteraction',
-  properties: FieldLists.findOne({ page: 'COMPANY_PROPERTIES' })
-    ? FieldLists.findOne({ page: 'COMPANY_PROPERTIES' }).fields
-    : [],
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
-});
+};
+
+export const properties = () =>
+  FieldLists.findOne({ page: 'COMPANY_PROPERTIES' })
+    ? FieldLists.findOne({ page: 'COMPANY_PROPERTIES' }).fields
+    : [];
 
 const CompanyConnect = ObjectEditorConnect(
   ObjectEditorContainer(ObjectEditorDisplay)
 );
 
-const Company = props => <CompanyConnect {...props} {...companyProps()} />;
+const Company = props => (
+  <CompanyConnect {...props} {...companyProps} properties={properties()} />
+);
 
 export default Company;

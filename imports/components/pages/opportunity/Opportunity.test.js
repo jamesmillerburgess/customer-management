@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Opportunity, { opportunityProps } from './Opportunity';
+import Opportunity, { properties } from './Opportunity';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 describe('Opportunity Component', () => {
@@ -15,10 +15,10 @@ describe('Opportunity Component', () => {
   });
   it('renders without error', () => {});
 });
-describe('opportunityProps Function', () => {
+describe('properties Function', () => {
   it('uses the fieldList document if it finds one', () => {
     const fieldList = { fields: { a: 'a' } };
     FieldLists.docs = [fieldList];
-    expect(opportunityProps().properties).toEqual(fieldList.fields);
+    expect(properties()).toEqual(fieldList.fields);
   });
 });
