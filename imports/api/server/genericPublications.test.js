@@ -2,6 +2,16 @@ import * as pubs from './genericPublications';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
+describe('configurations.all Meteor Publication', () => {
+  it('throws without a user', () => {
+    Meteor._userId = null;
+    expect(Meteor.publications['configurations.all']).toThrow();
+  });
+  it('does not throw if there is a user', () => {
+    Meteor._userId = 'a';
+    expect(Meteor.publications['configurations.all']).not.toThrow();
+  });
+});
 describe('contact.user Meteor Publication', () => {
   it('throws without a user', () => {
     Meteor._userId = null;
