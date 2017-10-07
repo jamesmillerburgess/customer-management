@@ -1,13 +1,14 @@
 import React from 'react';
 import ObjectEditorConnect from '../ObjectEditorConnect';
 import ObjectEditorContainer from '../ObjectEditorContainer';
-import CompanyDisplay from './CompanyDisplay';
+import GridPageDisplay from '../gridPage/GridPageDisplay';
 import Companies from '../../../api/company/companyCollection';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 export const companyProps = () => ({
   collection: Companies,
   subscription: 'company.single',
+  avatarPath: '/empty-company-pic.png',
   parentPage: {
     label: 'Companies',
     path: '/companies',
@@ -21,7 +22,7 @@ export const companyProps = () => ({
 });
 
 const CompanyConnect = ObjectEditorConnect(
-  ObjectEditorContainer(CompanyDisplay)
+  ObjectEditorContainer(GridPageDisplay)
 );
 
 const Opportunity = props => <CompanyConnect {...props} {...companyProps()} />;

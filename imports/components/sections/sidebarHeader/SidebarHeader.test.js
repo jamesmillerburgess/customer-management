@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import CompanyDisplay from './CompanyDisplay';
+import SidebarHeader from './SidebarHeader';
 
-describe('CompanyDisplay', () => {
+describe('SidebarHeader', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<CompanyDisplay />);
+    wrapper = shallow(<SidebarHeader />);
   });
   afterEach(() => {
     wrapper.unmount();

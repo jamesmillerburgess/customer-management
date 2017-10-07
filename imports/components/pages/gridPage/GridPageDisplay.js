@@ -2,18 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import ObjectEditor from '../../sections/objectEditor/ObjectEditor';
+import SidebarHeader from '../../sections/sidebarHeader/SidebarHeader';
 import PropertiesEditor from '../../sections/propertiesEditor/PropertiesEditor';
 import InteractionMenu from '../../sections/interactionMenu/InteractionMenu';
 import Timeline from '../../sections/timeline/Timeline';
 
-const ContactDisplay = props => (
+const GridPageDisplay = props => (
   <ObjectEditor {...props.parentPage}>
     <div className="body">
       <div className="sidebar">
-        <div className="panel sidebar-header">
-          <img className="avatar" src="/empty-profile-pic.png" />
-          <div className="title">{props.object.name}</div>
-        </div>
+        <SidebarHeader name={props.object.name} avatarPath={props.avatarPath} />
         <PropertiesEditor
           properties={props.properties}
           setProperty={props.setProperty}
@@ -30,6 +28,6 @@ const ContactDisplay = props => (
   </ObjectEditor>
 );
 
-ContactDisplay.defaultProps = { object: {} };
+GridPageDisplay.defaultProps = { object: {} };
 
-export default ContactDisplay;
+export default GridPageDisplay;

@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ContactDisplay from './ContactDisplay';
+import GridPageDisplay from './GridPageDisplay';
 
-describe('ContactDisplay', () => {
+describe('GridPageDisplay', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<ContactDisplay />);
+    wrapper = shallow(<GridPageDisplay />);
   });
   afterEach(() => {
     wrapper.unmount();
