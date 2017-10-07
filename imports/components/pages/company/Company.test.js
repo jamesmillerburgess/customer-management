@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Company from './Company';
+import Company, { companyProps } from './Company';
+import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 describe('Company Component', () => {
   let wrapper;
@@ -13,4 +14,11 @@ describe('Company Component', () => {
     wrapper = shallow(<Company {...props} />, options);
   });
   it('renders without error', () => {});
+});
+describe('companyProps Function', () => {
+  it('uses the fieldList document if it finds one', () => {
+    const fieldList = { fields: { a: 'a' } };
+    FieldLists.docs = [fieldList];
+    expect(companyProps().properties).toEqual(fieldList.fields);
+  });
 });
