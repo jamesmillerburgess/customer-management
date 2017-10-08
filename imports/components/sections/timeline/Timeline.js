@@ -31,6 +31,15 @@ export const STATUS_LABELS = {
   [STATUS_VALUES[6]]: 'Closed Lost',
 };
 
+export const OUTCOME_LABELS = {
+  NO_ANSWER: 'No answer',
+  BUSY: 'Busy',
+  WRONG_NUMBER: 'Wrong number',
+  LEFT_LIVE_MESSAGE: 'Left live message',
+  LEFT_VOICEMAIL: 'Left voicemail',
+  CONNECTED: 'Connected',
+};
+
 const StatusChangeMessage = (entry, direction) => (
   <span>
     Opportunity{' '}
@@ -46,9 +55,9 @@ const StatusChangeMessage = (entry, direction) => (
 export const TIMELINE_MESSAGES = {
   CREATION: () => 'was created',
   NOTE: () => 'left a note',
-  CALL: () => 'called',
-  EMAIL: () => 'emailed',
-  MEETING: () => 'met',
+  CALL: () => 'made a call',
+  EMAIL: () => 'sent an email',
+  MEETING: () => 'had a meeting',
   STATUS_CHANGE_FORWARD: entry => StatusChangeMessage(entry, 'forward'),
   STATUS_CHANGE_BACKWARD: entry => StatusChangeMessage(entry, 'backward'),
 };
@@ -73,6 +82,12 @@ const TIMELINE_AVATARS = {
   STATUS_CHANGE_BACKWARD: '/empty-profile-pic.png',
 };
 
+const sort = (a, b) => {
+  const aTime = a.time || a.timestamp;
+  const bTime = b.time || b.timestamp;
+  return bTime - aTime;
+};
+
 const Timeline = props => (
   <div className="timeline">
     <div className="timeline-entry">
@@ -87,7 +102,7 @@ const Timeline = props => (
       transitionEnter={true}
       transitionLeave={false}
     >
-      {props.timeline.reverse().map((entry, index) => (
+      {props.timeline.sort(sort).map((entry, index) => (
         <div className="timeline-entry" key={entry.id}>
           <div className="timeline-icon-container">
             <div className="timeline-icon-pre-line" />
@@ -109,10 +124,20 @@ const Timeline = props => (
                 {TIMELINE_MESSAGES[entry.type](entry)}
               </div>
               <div className="timestamp">
-                {moment(entry.timestamp).format('MMMM Do [at] h:mm a')}
+                {moment(entry.time || entry.timestamp).format(
+                  'MMMM Do [at] h:mm a'
+                )}
               </div>
-              {entry.note ? <div className="note">{entry.note}</div> : null}
-              {entry.text ? <div className="note">{entry.text}</div> : null}
+              <div className="note">
+                {entry.outcome && (
+                  <div className="outcome">
+                    <span className="keyword">Call outcome: </span>
+                    {OUTCOME_LABELS[entry.outcome]}
+                  </div>
+                )}
+                {entry.note && <div>{entry.note}</div>}
+                {entry.text && <div>{entry.text}</div>}
+              </div>
             </div>
           </div>
         </div>
