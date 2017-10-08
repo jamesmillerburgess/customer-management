@@ -19,7 +19,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     Meteor.call(
       ownProps.addNoteMethod,
       ownProps.match.params[ownProps.uriID],
-      { note, id: new Mongo.ObjectID()._str },
+      { text: note, id: new Mongo.ObjectID()._str },
       (err, res) => {
         if (err) {
           console.log(err);

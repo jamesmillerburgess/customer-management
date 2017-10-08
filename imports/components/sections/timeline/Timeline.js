@@ -112,6 +112,7 @@ const Timeline = props => (
                 {moment(entry.timestamp).format('MMMM Do [at] h:mm a')}
               </div>
               {entry.note ? <div className="note">{entry.note}</div> : null}
+              {entry.text ? <div className="note">{entry.text}</div> : null}
             </div>
           </div>
         </div>

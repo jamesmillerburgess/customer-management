@@ -48,9 +48,9 @@ const LogCallDisplay = props => {
         confirmText="Log call"
         onConfirm={() =>
           props.logCall({
-            callTime: props.callTime,
-            callOutcome: props.callOutcome,
-            callText: props.callText,
+            time: props.callTime,
+            outcome: props.callOutcome,
+            text: props.callText,
           })}
         onCancel={props.cancelCall}
       />

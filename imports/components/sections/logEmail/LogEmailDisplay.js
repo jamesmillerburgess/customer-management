@@ -31,8 +31,8 @@ const LogEmailDisplay = props => {
         confirmText="Log email"
         onConfirm={() =>
           props.logEmail({
-            emailTime: props.emailTime,
-            emailText: props.emailText,
+            time: props.emailTime,
+            text: props.emailText,
           })}
         onCancel={props.cancelEmail}
       />

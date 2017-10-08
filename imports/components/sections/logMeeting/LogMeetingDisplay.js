@@ -31,8 +31,8 @@ const LogMeetingDisplay = props => {
         confirmText="Log meeting"
         onConfirm={() =>
           props.logMeeting({
-            meetingTime: props.meetingTime,
-            meetingText: props.meetingText,
+            time: props.meetingTime,
+            text: props.meetingText,
           })}
         onCancel={props.cancelMeeting}
       />
