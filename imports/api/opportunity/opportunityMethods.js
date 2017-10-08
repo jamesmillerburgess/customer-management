@@ -1,27 +1,40 @@
 import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
-import _ from 'lodash/fp';
 import validate from 'validate.js';
 
 import Opportunities from './opportunityCollection';
 import Companies from '../company/companyCollection';
 
-import { STATUS_VALUES } from '../../components/fields/statusField/StatusField';
-import { opportunityProps } from '../../components/pages/opportunity/Opportunity';
+import registerGenericMethods from '../genericMethods';
 
-import * as GM from '../genericMethods';
+registerGenericMethods('opportunity', Opportunities, 'OPPORTUNITY_PROPERTIES');
 
-// Generic Methods
-export const create = opportunity => GM.create(Opportunities, opportunity);
-export const saveProperties = (opportunityId, opportunity) =>
-  GM.saveProperties(
-    Opportunities,
-    opportunityProps,
-    opportunityId,
-    opportunity
-  );
-export const addNote = (opportunityId, note) =>
-  GM.addNote(Opportunities, opportunityId, note);
+const APPOINTMENT_SCHEDULED = 'APPOINTMENT_SCHEDULED';
+const QUALIFIED_TO_BUY = 'QUALIFIED_TO_BUY';
+const PRESENTATION_SCHEDULED = 'PRESENTATION_SCHEDULED';
+const DECISION_MAKER_BOUGHT_IN = 'DECISION_MAKER_BOUGHT_IN';
+const CONTRACT_SENT = 'CONTRACT_SENT';
+const CLOSED_WON = 'CLOSED_WON';
+const CLOSED_LOST = 'CLOSED_LOST';
+
+export const STATUS_VALUES = [
+  APPOINTMENT_SCHEDULED,
+  QUALIFIED_TO_BUY,
+  PRESENTATION_SCHEDULED,
+  DECISION_MAKER_BOUGHT_IN,
+  CONTRACT_SENT,
+  CLOSED_WON,
+  CLOSED_LOST,
+];
+
+export const STATUS_LABELS = {
+  [STATUS_VALUES[0]]: 'Appointment Scheduled',
+  [STATUS_VALUES[1]]: 'Qualified to Buy',
+  [STATUS_VALUES[2]]: 'Presentation Scheduled',
+  [STATUS_VALUES[3]]: 'Decision Maker Bought-In',
+  [STATUS_VALUES[4]]: 'Contract Sent',
+  [STATUS_VALUES[5]]: 'Closed Won',
+  [STATUS_VALUES[6]]: 'Closed Lost',
+};
 
 // Opportunity-specific Methods
 export const STATUS_CHANGE_FORWARD = 'STATUS_CHANGE_FORWARD';
@@ -32,7 +45,7 @@ export const getStatusDirection = (from, to) =>
     ? STATUS_CHANGE_FORWARD
     : STATUS_CHANGE_BACKWARD;
 
-export const updateStatus = (opportunityId, status) => {
+export const updateStatus = (opportunityId, { status, id }) => {
   if (!validate.isString(opportunityId)) {
     throw new Error('No opportunityId passed');
   }
@@ -45,7 +58,7 @@ export const updateStatus = (opportunityId, status) => {
   }
   const type = getStatusDirection(opportunity.status, status);
   const entry = {
-    id: new Mongo.ObjectID()._str,
+    id,
     type,
     timestamp: new Date(),
     userId: Meteor.userId(),
@@ -65,9 +78,4 @@ export const updateStatus = (opportunityId, status) => {
   }
 };
 
-Meteor.methods({
-  'opportunity.create': create,
-  'opportunity.saveProperties': saveProperties,
-  'opportunity.addNote': addNote,
-  'opportunity.updateStatus': updateStatus,
-});
+Meteor.methods({ 'opportunity.updateStatus': updateStatus });

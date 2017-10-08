@@ -1,8 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Timeline, { TIMELINE_MESSAGES } from './Timeline';
-import { STATUS_VALUES } from '../../fields/statusField/StatusField';
+import Timeline, { TIMELINE_MESSAGES, STATUS_VALUES } from './Timeline';
 
 describe('Timeline', () => {
   let wrapper;

@@ -13,12 +13,12 @@ describe('mapStateToProps Function', () => {
   it('copies in the objectEditor properties if present', () => {
     const state = { objectEditor: { name: 'a' } };
     const ownProps = { properties: [{ name: 'name' }] };
-    expect(mapStateToProps(state, ownProps).name).toBe('a');
+    expect(mapStateToProps(state, ownProps).fields[0].value).toBe('a');
   });
   it('defaults any missing properties in the state to blank', () => {
     const state = { objectEditor: {} };
     const ownProps = { properties: [{ name: 'name' }] };
-    expect(mapStateToProps(state, ownProps).name).toBe('');
+    expect(mapStateToProps(state, ownProps).fields[0].value).toBe('');
   });
   it('copies loadedValues from ownProps', () => {
     const state = { objectEditor: {} };

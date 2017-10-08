@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 import _ from 'lodash/fp';
 
 import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCreators';
@@ -15,7 +16,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     Meteor.call(
       ownProps.addNoteMethod,
       ownProps.match.params[ownProps.uriID],
-      note,
+      { note, id: new Mongo.ObjectID()._str },
       (err, res) => {
         if (err) {
           console.log(err);

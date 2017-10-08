@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 import _ from 'lodash/fp';
 
 import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCreators';
@@ -17,7 +18,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     Meteor.call(
       ownProps.updateStatusMethod,
       ownProps.match.params[ownProps.uriID],
-      status
+      { status, id: new Mongo.ObjectID()._str }
     ),
 });
 

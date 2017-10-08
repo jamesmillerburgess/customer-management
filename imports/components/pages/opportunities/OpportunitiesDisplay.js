@@ -5,8 +5,8 @@ import OpportunityBoardConnect from './OpportunityBoardConnect';
 
 const headerProps = {
   title: 'Opportunities',
-  search: 'Search for an opportunity',
-  add: 'Add opportunity',
+  searchPlaceholder: 'Search for an opportunity',
+  addButtonText: 'Add opportunity',
 };
 
 const OpportunitiesDisplay = props => (

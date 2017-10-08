@@ -3,10 +3,15 @@ import TextField from '../textField/TextField';
 import NumberField from '../numberField/NumberField';
 import DateField from '../dateField/DateField';
 import CompanyField from '../companyField/CompanyField';
-import StatusField from '../statusField/StatusField';
+import OptionField from '../optionField/OptionField';
+import FieldOptions from '../../../api/fieldOptions/fieldOptionsCollection';
 
 const Field = props => {
-  switch (props.fieldType) {
+  const options = FieldOptions.findOne({ type: props.type });
+  if (options) {
+    return <OptionField {...props} options={options.options} />;
+  }
+  switch (props.type) {
     case 'TEXT':
       return <TextField {...props} />;
     case 'NUMBER':
@@ -15,8 +20,6 @@ const Field = props => {
       return <DateField {...props} />;
     case 'COMPANY':
       return <CompanyField {...props} />;
-    case 'STATUS':
-      return <StatusField {...props} />;
     default:
       return <TextField {...props} />;
   }

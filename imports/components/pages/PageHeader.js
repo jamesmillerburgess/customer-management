@@ -10,9 +10,9 @@ const PageHeader = props => (
       </div>
       {props.hideButtons ? null : (
         <div className="button-group">
-          <SearchInput placeholder={props.search} />
+          <SearchInput placeholder={props.searchPlaceholder} />
           <button className="button-primary" onClick={props.onClickAdd}>
-            {props.add}
+            {props.addButtonText}
           </button>
         </div>
       )}

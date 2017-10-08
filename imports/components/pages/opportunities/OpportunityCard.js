@@ -2,6 +2,7 @@ import React from 'react';
 import { DragSource } from 'react-dnd';
 import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 
 import './OpportunityCard.scss';
 
@@ -19,7 +20,7 @@ export const opportunitySource = {
     Meteor.call(
       'opportunity.updateStatus',
       opportunityId,
-      status,
+      { status, id: new Mongo.ObjectID()._str },
       (err, res) => {
         if (err) {
           console.log(err);

@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Company from './Company';
+import Company, { properties } from './Company';
+import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 describe('Company Component', () => {
   let wrapper;

@@ -7,10 +7,10 @@ const PropertiesEditorDisplay = props => (
     onSubmit={e => {
       e.preventDefault();
       props.save(
-        props.properties.reduce(
-          (prev, property) => ({
+        props.fields.reduce(
+          (prev, field) => ({
             ...prev,
-            [property.name]: props[property.name],
+            [field.name]: field.value,
           }),
           {}
         )
@@ -18,14 +18,13 @@ const PropertiesEditorDisplay = props => (
     }}
   >
     <div className="title">About {props.loadedValues.name}</div>
-    {props.properties.map(property => (
-      <div className="input-group" key={property.name}>
-        <div className="input-label">{property.label}</div>
+    {props.fields.map(field => (
+      <div className="input-group" key={field.name}>
+        <div className="input-label">{field.label}</div>
         <Field
-          fieldType={property.fieldType}
-          id={property.name}
-          value={props[property.name]}
-          onChange={value => props.setProperty(property.name, value)}
+          id={field.name}
+          {...field}
+          onChange={value => props.setProperty(field.name, value)}
         />
       </div>
     ))}

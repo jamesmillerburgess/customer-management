@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import AppDisplay from './AppDisplay';
+import AppContainer from './AppContainer';
 
 export const mapStateToProps = ({ app }) => ({
   isOverlayOpen: app.isOverlayOpen || false,
@@ -9,6 +9,6 @@ export const mapStateToProps = ({ app }) => ({
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({});
 
-const AppConnect = connect(mapStateToProps, mapDispatchToProps)(AppDisplay);
+const AppConnect = connect(mapStateToProps, mapDispatchToProps)(AppContainer);
 
 export default AppConnect;

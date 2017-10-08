@@ -1,4 +1,5 @@
 import React from 'react';
+import Field from '../fields/field/Field';
 
 const AddObjectDisplay = props => (
   <form
@@ -6,10 +7,10 @@ const AddObjectDisplay = props => (
     onSubmit={e => {
       e.preventDefault();
       props.create(
-        props.fields.reduce((prev, { prop }) => {
+        props.fields.reduce((prev, { name, value }) => {
           return {
             ...prev,
-            [prop]: props[prop],
+            [name]: value,
           };
         }, {})
       );
@@ -27,13 +28,13 @@ const AddObjectDisplay = props => (
     </header>
     <div className="overlay-body">
       <div className="overlay-content">
-        {props.fields.map(({ prop, label, component }) => (
-          <div className="input-group" key={prop}>
-            <div className="input-label">{label}</div>
-            {component({
-              value: props[prop],
-              onChange: val => props.setProp(prop, val),
-            })}
+        {props.fields.map(field => (
+          <div className="input-group" key={field.name}>
+            <div className="input-label">{field.label}</div>
+            <Field
+              {...field}
+              onChange={val => props.setProp(field.name, val)}
+            />
           </div>
         ))}
       </div>

@@ -16,4 +16,11 @@ describe('DateField Component', () => {
     wrapper.props().onChange(moment('20170101'));
     expect(onChange).toHaveBeenCalledTimes(1);
   });
+  it('does not call onChange if a date is not chosen', () => {
+    const onChange = jest.fn();
+    wrapper.setProps({ onChange });
+    expect(onChange).toHaveBeenCalledTimes(0);
+    wrapper.props().onChange('a');
+    expect(onChange).toHaveBeenCalledTimes(0);
+  });
 });

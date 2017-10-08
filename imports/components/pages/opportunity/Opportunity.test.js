@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Opportunity from './Opportunity';
+import Opportunity, { properties } from './Opportunity';
+import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 describe('Opportunity Component', () => {
   let wrapper;

@@ -1,9 +1,14 @@
+// List pages
 import Dashboard from '../components/pages/Dashboard';
-import CompaniesConnect from '../components/pages/companies/CompaniesConnect';
+import CompanyList from '../components/pages/companyList/CompanyList';
+import ContactList from '../components/pages/contactList/ContactList';
+import OpportunitiesConnect from '../components/pages/opportunities/OpportunitiesConnect';
+
+// Object Editiors
+import Contact from '../components/pages/contact/Contact';
 import Company from '../components/pages/company/Company';
 import Opportunity from '../components/pages/opportunity/Opportunity';
-import Contacts from '../components/pages/Contacts';
-import OpportunitiesConnect from '../components/pages/opportunities/OpportunitiesConnect';
+
 import ProfileConnect from '../components/pages/profile/ProfileConnect';
 
 const routes = [
@@ -17,15 +22,17 @@ const routes = [
   },
   {
     path: '/contacts',
+    exact: true,
     title: 'Contacts',
-    component: Contacts,
+    component: ContactList,
+    overlay: 'ADD_CONTACT',
     isNavLink: true,
   },
   {
     path: '/companies',
     exact: true,
     title: 'Companies',
-    component: CompaniesConnect,
+    component: CompanyList,
     overlay: 'ADD_COMPANY',
     isNavLink: true,
   },
@@ -41,6 +48,16 @@ const routes = [
     path: '/profile',
     component: ProfileConnect,
     isNavLink: false,
+  },
+  {
+    path: '/contacts/:objectId',
+    component: Contact,
+    isNavLink: false,
+    props: {
+      saveMethod: 'contact.save',
+      addNoteMethod: 'contact.addNote',
+      uriID: 'objectId',
+    },
   },
   {
     path: '/companies/:objectId',
@@ -61,6 +78,24 @@ const routes = [
       addNoteMethod: 'opportunity.addNote',
       uriID: 'objectId',
     },
+  },
+];
+
+export const overlayRoutes = [
+  {
+    pathPrefix: 'contacts',
+    createMethod: 'contact.create',
+    page: 'ADD_CONTACT',
+  },
+  {
+    pathPrefix: 'companies',
+    createMethod: 'company.create',
+    page: 'ADD_COMPANY',
+  },
+  {
+    pathPrefix: 'opportunities',
+    createMethod: 'opportunity.create',
+    page: 'ADD_OPPORTUNITY',
   },
 ];
 

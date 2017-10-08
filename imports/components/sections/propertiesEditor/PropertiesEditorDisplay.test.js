@@ -7,7 +7,7 @@ describe('PropertiesEditorDisplay', () => {
   let wrapper;
   let props = {
     loadedValues: {},
-    properties: [{ name: 'name' }],
+    fields: [{ name: 'name' }],
   };
   beforeEach(() => {
     wrapper = shallow(<PropertiesEditorDisplay {...props} />);
