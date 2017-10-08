@@ -3,8 +3,6 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-// import { STATUS_LABELS } from '../../fields/statusField/StatusField';
-
 const APPOINTMENT_SCHEDULED = 'APPOINTMENT_SCHEDULED';
 const QUALIFIED_TO_BUY = 'QUALIFIED_TO_BUY';
 const PRESENTATION_SCHEDULED = 'PRESENTATION_SCHEDULED';
@@ -48,6 +46,7 @@ const StatusChangeMessage = (entry, direction) => (
 export const TIMELINE_MESSAGES = {
   CREATION: () => 'was created',
   NOTE: () => 'left a note',
+  CALL: () => 'called',
   STATUS_CHANGE_FORWARD: entry => StatusChangeMessage(entry, 'forward'),
   STATUS_CHANGE_BACKWARD: entry => StatusChangeMessage(entry, 'backward'),
 };
@@ -55,6 +54,7 @@ export const TIMELINE_MESSAGES = {
 const TIMELINE_ICONS = {
   CREATION: 'fa-plus',
   NOTE: 'fa-pencil',
+  CALL: 'fa-phone',
   STATUS_CHANGE_FORWARD: 'fa-angle-double-right',
   STATUS_CHANGE_BACKWARD: 'fa-angle-double-left',
 };
@@ -62,6 +62,7 @@ const TIMELINE_ICONS = {
 const TIMELINE_AVATARS = {
   CREATION: '/empty-company-pic.png',
   NOTE: '/empty-profile-pic.png',
+  CALL: '/empty-profile-pic.png',
   STATUS_CHANGE_FORWARD: '/empty-profile-pic.png',
   STATUS_CHANGE_BACKWARD: '/empty-profile-pic.png',
 };

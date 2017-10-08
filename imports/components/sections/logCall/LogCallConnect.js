@@ -17,11 +17,11 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   setCallText: value => dispatch(setObjectEditorProp('callText', value)),
   setCallTime: value => dispatch(setObjectEditorProp('callTime', value)),
   setCallOutcome: value => dispatch(setObjectEditorProp('callOutcome', value)),
-  addCall: note =>
+  logCall: call =>
     Meteor.call(
-      ownProps.addCallMethod,
+      ownProps.logCallMethod,
       ownProps.match.params[ownProps.uriID],
-      { note, id: new Mongo.ObjectID()._str },
+      { ...call, id: new Mongo.ObjectID()._str },
       (err, res) => {
         if (err) {
           console.log(err);

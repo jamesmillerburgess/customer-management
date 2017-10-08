@@ -4,8 +4,8 @@ import DateTime from 'react-datetime';
 const DateField = props => (
   <DateTime
     className="date-field"
-    timeFormat={false}
-    dateFormat={'DD MMM[,] YYYY'}
+    timeFormat={props.timeFormat}
+    dateFormat={props.timeFormat ? 'DD MMM YYYY' : 'DD MMM YYYY'}
     closeOnSelect
     value={props.value}
     onChange={value => {
@@ -16,5 +16,7 @@ const DateField = props => (
     }}
   />
 );
+
+DateField.defaultProps = { timeFormat: false };
 
 export default DateField;

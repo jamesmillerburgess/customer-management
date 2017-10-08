@@ -8,6 +8,7 @@ import { buildSearchRegExp } from './searchUtils';
 
 const CREATION = 'CREATION';
 const NOTE = 'NOTE';
+const CALL = 'CALL';
 
 export const create = (collection, object) => {
   if (!object || !object.name) {
@@ -65,6 +66,26 @@ export const addNote = (collection, objectId, note) => {
   });
 };
 
+export const logCall = (collection, objectId, call) => {
+  if (!validate.isString(objectId)) {
+    throw new Error('Parameter objectId must be a string');
+  }
+  collection.update(objectId, {
+    $push: {
+      timeline: {
+        id: call.id,
+        type: CALL,
+        timestamp: new Date(),
+        userId: Meteor.userId(),
+        keyword: Meteor.users.findOne(Meteor.userId()).username,
+        callTime: call.callTime,
+        callOutcome: call.callOutcome,
+        callText: call.callText,
+      },
+    },
+  });
+};
+
 export const search = (collection, searchText) => {
   validate.isString(searchText);
   const query = { name: { $regex: buildSearchRegExp(searchText) } };
@@ -81,6 +102,8 @@ export const buildGenericMethods = (
     saveProperties(collection, propertiesPage, objectId, object),
   [`${collectionName}.addNote`]: (objectId, note) =>
     addNote(collection, objectId, note),
+  [`${collectionName}.logCall`]: (objectId, call) =>
+    logCall(collection, objectId, call),
   [`${collectionName}.search`]: searchText => search(collection, searchText),
 });
 

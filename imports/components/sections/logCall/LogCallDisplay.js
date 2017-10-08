@@ -11,7 +11,12 @@ const LogCallDisplay = props => {
     call.buttonGroupHeight = '43px';
     call.buttonGroupOpacity = '1';
     call.buttonCursor = 'auto';
-    call.primaryButtonOnClick = () => props.addCall(props.call);
+    call.primaryButtonOnClick = () =>
+      props.logCall({
+        callTime: props.callTime,
+        callOutcome: props.callOutcome,
+        callText: props.callText,
+      });
     call.secondaryButtonOnClick = props.cancelCall;
   } else {
     call.buttonGroupClass = 'expandable';
@@ -26,7 +31,11 @@ const LogCallDisplay = props => {
       <div className="input-row">
         <div className="input-group">
           <span className="label">Date and time</span>
-          <DateField value={props.callTime} onChange={props.setCallTime} />
+          <DateField
+            timeFormat
+            value={props.callTime}
+            onChange={props.setCallTime}
+          />
         </div>
         <div className="input-group">
           <span className="label">Outcome</span>
