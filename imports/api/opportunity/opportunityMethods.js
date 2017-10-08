@@ -1,17 +1,12 @@
 import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
-import _ from 'lodash/fp';
 import validate from 'validate.js';
 
 import Opportunities from './opportunityCollection';
 import Companies from '../company/companyCollection';
-import FieldLists from '../fieldList/fieldListCollection';
 
-import * as GM from '../genericMethods';
-const properties = () =>
-  FieldLists.findOne({ page: 'COMPANY_PROPERTIES' })
-    ? FieldLists.findOne({ page: 'COMPANY_PROPERTIES' }).fields
-    : [];
+import registerGenericMethods from '../genericMethods';
+
+registerGenericMethods('opportunity', Opportunities, 'OPPORTUNITY_PROPERTIES');
 
 const APPOINTMENT_SCHEDULED = 'APPOINTMENT_SCHEDULED';
 const QUALIFIED_TO_BUY = 'QUALIFIED_TO_BUY';
@@ -40,13 +35,6 @@ export const STATUS_LABELS = {
   [STATUS_VALUES[5]]: 'Closed Won',
   [STATUS_VALUES[6]]: 'Closed Lost',
 };
-
-// Generic Methods
-export const create = opportunity => GM.create(Opportunities, opportunity);
-export const saveProperties = (opportunityId, opportunity) =>
-  GM.saveProperties(Opportunities, properties(), opportunityId, opportunity);
-export const addNote = (opportunityId, note) =>
-  GM.addNote(Opportunities, opportunityId, note);
 
 // Opportunity-specific Methods
 export const STATUS_CHANGE_FORWARD = 'STATUS_CHANGE_FORWARD';
@@ -90,9 +78,4 @@ export const updateStatus = (opportunityId, { status, id }) => {
   }
 };
 
-Meteor.methods({
-  'opportunity.create': create,
-  'opportunity.saveProperties': saveProperties,
-  'opportunity.addNote': addNote,
-  'opportunity.updateStatus': updateStatus,
-});
+Meteor.methods({ 'opportunity.updateStatus': updateStatus });

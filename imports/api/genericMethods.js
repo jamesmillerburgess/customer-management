@@ -3,6 +3,9 @@ import { Mongo } from 'meteor/mongo';
 import _ from 'lodash/fp';
 import validate from 'validate.js';
 
+import FieldLists from './fieldList/fieldListCollection';
+import { buildSearchRegExp } from './searchUtils';
+
 const CREATION = 'CREATION';
 const NOTE = 'NOTE';
 
@@ -27,14 +30,20 @@ export const create = (collection, object) => {
   });
 };
 
-export const saveProperties = (collection, objectProps, objectId, object) => {
+export const saveProperties = (
+  collection,
+  propertiesPage,
+  objectId,
+  object
+) => {
   if (!validate.isString(objectId)) {
     throw new Error('objectId must be a string');
   }
   if (!collection.findOne(objectId)) {
     throw new Error('No document with the given objectId');
   }
-  const fields = _.pick(objectProps().map(property => property.name), object);
+  const properties = FieldLists.findOne({ page: propertiesPage }).fields;
+  const fields = _.pick(properties.map(property => property.name), object);
   collection.update(objectId, { $set: fields });
 };
 
@@ -55,3 +64,22 @@ export const addNote = (collection, objectId, note) => {
     },
   });
 };
+
+export const search = (collection, searchText) => {
+  validate.isString(searchText);
+  const query = { name: { $regex: buildSearchRegExp(searchText) } };
+  return collection.find(query).fetch();
+};
+
+const registerGenericMethods = (collectionName, collection, propertiesPage) => {
+  Meteor.methods({
+    [`${collectionName}.create`]: object => create(collection, object),
+    [`${collectionName}.saveProperties`]: (objectId, object) =>
+      saveProperties(collection, propertiesPage, objectId, object),
+    [`${collectionName}.addNote`]: (objectId, note) =>
+      addNote(collection, objectId, note),
+    [`${collectionName}.search`]: searchText => search(collection, searchText),
+  });
+};
+
+export default registerGenericMethods;
