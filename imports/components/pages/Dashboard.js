@@ -8,9 +8,9 @@ import PageHeader from './PageHeader';
 const GridLayout = WidthProvider(ReactGridLayout);
 
 const headerProps = {
-  title: 'Dashboard',
-  search: 'Search for a report',
-  add: 'Add report',
+  title: 'Opportunities',
+  searchPlaceholder: 'Search for a report',
+  addButtonText: 'Add report',
 };
 
 const Dashboard = () => (
