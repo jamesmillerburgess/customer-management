@@ -1,3 +1,5 @@
+## v0.7.0 – Interactions
+
 ## v0.6.0 – Contacts
 
 * Contacts list page
