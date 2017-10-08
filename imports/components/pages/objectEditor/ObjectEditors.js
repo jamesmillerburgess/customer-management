@@ -20,6 +20,8 @@ export const generateObjectEditorProps = (singular, plural) => ({
   savePropertiesMethod: `${singular}.saveProperties`,
   addNoteMethod: `${singular}.addNote`,
   logCallMethod: `${singular}.logCall`,
+  logEmailMethod: `${singular}.logEmail`,
+  logMeetingMethod: `${singular}.logMeeting`,
 });
 
 export const getProperties = propertiesPage =>
@@ -76,6 +78,8 @@ export const opportunityProps = () => ({
   addInteractionMethod: 'opportunity.addInteraction',
   addNoteMethod: 'opportunity.addNote',
   logCallMethod: 'opportunity.logCall',
+  logEmailMethod: 'opportunity.logEmail',
+  logMeetingMethod: 'opportunity.logMeeting',
   interactions: ['NEW_NOTE', 'LOG_CALL', 'LOG_EMAIL', 'LOG_MEETING'],
   properties: getProperties('OPPORTUNITY_PROPERTIES'),
 });

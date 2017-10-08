@@ -6,7 +6,7 @@ import moment from 'moment';
 import LogCallDisplay from './LogCallDisplay';
 import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCreators';
 
-export const mapStateToProps = ({ objectEditor }, ownProps) => ({
+export const mapStateToProps = ({ objectEditor }) => ({
   callText: objectEditor.callText || '',
   isWritingCall: objectEditor.callText ? true : false,
   callTime: objectEditor.callTime || new Date(),
@@ -27,11 +27,15 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
           console.log(err);
         }
         dispatch(setObjectEditorProp('callText', ''));
-        dispatch(setObjectEditorProp('callTime', ''));
+        dispatch(setObjectEditorProp('callTime', new Date()));
         dispatch(setObjectEditorProp('callOutcome', ''));
       }
     ),
-  cancelCall: () => dispatch(setObjectEditorProp('callText', '')),
+  cancelCall: () => {
+    dispatch(setObjectEditorProp('callText', ''));
+    dispatch(setObjectEditorProp('callTime', new Date()));
+    dispatch(setObjectEditorProp('callOutcome', ''));
+  },
 });
 
 const InteractionMenuConnect = connect(mapStateToProps, mapDispatchToProps)(

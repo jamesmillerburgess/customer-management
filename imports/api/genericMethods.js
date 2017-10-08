@@ -9,6 +9,8 @@ import { buildSearchRegExp } from './searchUtils';
 const CREATION = 'CREATION';
 const NOTE = 'NOTE';
 const CALL = 'CALL';
+const EMAIL = 'EMAIL';
+const MEETING = 'MEETING';
 
 export const create = (collection, object) => {
   if (!object || !object.name) {
@@ -86,6 +88,44 @@ export const logCall = (collection, objectId, call) => {
   });
 };
 
+export const logEmail = (collection, objectId, email) => {
+  if (!validate.isString(objectId)) {
+    throw new Error('Parameter objectId must be a string');
+  }
+  collection.update(objectId, {
+    $push: {
+      timeline: {
+        id: email.id,
+        type: EMAIL,
+        timestamp: new Date(),
+        userId: Meteor.userId(),
+        keyword: Meteor.users.findOne(Meteor.userId()).username,
+        callTime: email.callTime,
+        callText: email.callText,
+      },
+    },
+  });
+};
+
+export const logMeeting = (collection, objectId, meeting) => {
+  if (!validate.isString(objectId)) {
+    throw new Error('Parameter objectId must be a string');
+  }
+  collection.update(objectId, {
+    $push: {
+      timeline: {
+        id: meeting.id,
+        type: MEETING,
+        timestamp: new Date(),
+        userId: Meteor.userId(),
+        keyword: Meteor.users.findOne(Meteor.userId()).username,
+        meetingTime: meeting.meetingTime,
+        meetingText: meeting.meetingText,
+      },
+    },
+  });
+};
+
 export const search = (collection, searchText) => {
   validate.isString(searchText);
   const query = { name: { $regex: buildSearchRegExp(searchText) } };
@@ -104,6 +144,10 @@ export const buildGenericMethods = (
     addNote(collection, objectId, note),
   [`${collectionName}.logCall`]: (objectId, call) =>
     logCall(collection, objectId, call),
+  [`${collectionName}.logEmail`]: (objectId, email) =>
+    logEmail(collection, objectId, email),
+  [`${collectionName}.logMeeting`]: (objectId, meeting) =>
+    logMeeting(collection, objectId, meeting),
   [`${collectionName}.search`]: searchText => search(collection, searchText),
 });
 

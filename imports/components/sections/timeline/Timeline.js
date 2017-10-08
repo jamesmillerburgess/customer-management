@@ -47,6 +47,8 @@ export const TIMELINE_MESSAGES = {
   CREATION: () => 'was created',
   NOTE: () => 'left a note',
   CALL: () => 'called',
+  EMAIL: () => 'emailed',
+  MEETING: () => 'met',
   STATUS_CHANGE_FORWARD: entry => StatusChangeMessage(entry, 'forward'),
   STATUS_CHANGE_BACKWARD: entry => StatusChangeMessage(entry, 'backward'),
 };
@@ -55,6 +57,8 @@ const TIMELINE_ICONS = {
   CREATION: 'fa-plus',
   NOTE: 'fa-pencil',
   CALL: 'fa-phone',
+  EMAIL: 'fa-envelope',
+  MEETING: 'fa-handshake-o',
   STATUS_CHANGE_FORWARD: 'fa-angle-double-right',
   STATUS_CHANGE_BACKWARD: 'fa-angle-double-left',
 };
@@ -63,6 +67,8 @@ const TIMELINE_AVATARS = {
   CREATION: '/empty-company-pic.png',
   NOTE: '/empty-profile-pic.png',
   CALL: '/empty-profile-pic.png',
+  EMAIL: '/empty-profile-pic.png',
+  MEETING: '/empty-profile-pic.png',
   STATUS_CHANGE_FORWARD: '/empty-profile-pic.png',
   STATUS_CHANGE_BACKWARD: '/empty-profile-pic.png',
 };

@@ -26,6 +26,7 @@ const LogCallDisplay = props => {
             onChange={props.setCallOutcome}
             placeholder="Select an outcome..."
             options={[
+              { value: null, label: '' },
               { value: 'NO_ANSWER', label: 'No answer' },
               { value: 'BUSY', label: 'Busy' },
               { value: 'WRONG_NUMBER', label: 'Wrong number' },
