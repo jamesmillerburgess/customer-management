@@ -8,7 +8,12 @@ const DateField = props => (
     dateFormat={'DD MMM[,] YYYY'}
     closeOnSelect
     value={props.value}
-    onChange={value => props.onChange(value.toDate())}
+    onChange={value => {
+      if (typeof value.toDate !== 'function') {
+        return;
+      }
+      props.onChange(value.toDate());
+    }}
   />
 );
 
