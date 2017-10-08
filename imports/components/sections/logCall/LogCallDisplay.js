@@ -4,28 +4,10 @@ import React from 'react';
 import DateField from '../../fields/dateField/DateField';
 import OptionField from '../../fields/optionField/OptionField';
 
+// Sections
+import InteractionButtons from '../interactionButtons/InteractionButtons';
+
 const LogCallDisplay = props => {
-  const call = {};
-  if (props.isWritingCall) {
-    call.buttonGroupClass = 'expanded';
-    call.buttonGroupHeight = '43px';
-    call.buttonGroupOpacity = '1';
-    call.buttonCursor = 'auto';
-    call.primaryButtonOnClick = () =>
-      props.logCall({
-        callTime: props.callTime,
-        callOutcome: props.callOutcome,
-        callText: props.callText,
-      });
-    call.secondaryButtonOnClick = props.cancelCall;
-  } else {
-    call.buttonGroupClass = 'expandable';
-    call.buttonGroupHeight = '0px';
-    call.buttonGroupOpacity = '0';
-    call.buttonCursor = null;
-    call.primaryButtonOnClick = null;
-    call.secondaryButtonOnClick = null;
-  }
   return (
     <div className="interaction">
       <div className="input-row">
@@ -60,28 +42,17 @@ const LogCallDisplay = props => {
         onChange={e => props.setCallText(e.target.value)}
         placeholder="Start typing to describe a call..."
       />
-      <div
-        className={`button-group ${call.buttonGroupClass}`}
-        style={{
-          height: call.buttonGroupHeight,
-          opacity: call.buttonGroupOpacity,
-        }}
-      >
-        <button
-          className="button-primary"
-          style={{ cursor: call.buttonCursor }}
-          onClick={call.primaryButtonOnClick}
-        >
-          Save call
-        </button>
-        <button
-          className="button-secondary"
-          style={{ cursor: call.buttonCursor }}
-          onClick={call.secondaryButtonOnClick}
-        >
-          Cancel
-        </button>
-      </div>
+      <InteractionButtons
+        isWriting={props.isWritingCall}
+        confirmText="Log call"
+        onConfirm={() =>
+          props.logCall({
+            callTime: props.callTime,
+            callOutcome: props.callOutcome,
+            callText: props.callText,
+          })}
+        onCancel={props.cancelCall}
+      />
     </div>
   );
 };
