@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import moment from 'moment';
 
 import LogMeetingDisplay from './LogMeetingDisplay';
 import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCreators';
