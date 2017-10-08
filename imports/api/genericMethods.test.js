@@ -60,12 +60,6 @@ describe('addNote Function', () => {
     Meteor.users.docs = [{ username: 'a' }];
     expect(() => GM.addNote(collection, 1, 'a')).toThrow();
   });
-  it('throws if note is not a string', () => {
-    const collection = new Mongo.Collection();
-    collection.docs = [{}];
-    Meteor.users.docs = [{ username: 'a' }];
-    expect(() => GM.addNote(collection, 'a', 1)).toThrow();
-  });
 });
 describe('buildGenericMethods Function', () => {
   it('builds each method', () => {

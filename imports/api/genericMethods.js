@@ -51,9 +51,6 @@ export const addNote = (collection, objectId, note) => {
   if (!validate.isString(objectId)) {
     throw new Error('Parameter objectId must be a string');
   }
-  if (!validate.isString(note)) {
-    throw new Error('Parameter note must be a string');
-  }
   collection.update(objectId, {
     $push: {
       timeline: {
