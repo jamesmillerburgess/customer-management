@@ -47,18 +47,20 @@ describe('saveProperties Function', () => {
     ).toThrow();
   });
 });
-describe('addNote Function', () => {
+describe('logInteraction Function', () => {
   it('does not throw', () => {
     const collection = new Mongo.Collection();
     collection.docs = [{}];
     Meteor.users.docs = [{ username: 'a' }];
-    expect(() => GM.addNote(collection, 'a', 'my note')).not.toThrow();
+    expect(() =>
+      GM.logInteraction(collection, 'a', 'my note', 'NOTE')
+    ).not.toThrow();
   });
   it('throws if objectId is not a string', () => {
     const collection = new Mongo.Collection();
     collection.docs = [{}];
     Meteor.users.docs = [{ username: 'a' }];
-    expect(() => GM.addNote(collection, 1, 'a')).toThrow();
+    expect(() => GM.logInteraction(collection, 1, 'a', 'NOTE')).toThrow();
   });
 });
 describe('buildGenericMethods Function', () => {

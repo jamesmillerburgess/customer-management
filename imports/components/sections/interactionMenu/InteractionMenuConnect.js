@@ -7,27 +7,11 @@ import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCr
 
 export const mapStateToProps = ({ objectEditor }, ownProps) => ({
   activeInteraction: objectEditor.activeInteraction || ownProps.interactions[0],
-  note: objectEditor.note || '',
-  isWritingNote: objectEditor.note ? true : false,
 });
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = dispatch => ({
   setActiveInteraction: value =>
     dispatch(setObjectEditorProp('activeInteraction', value)),
-  setNote: note => dispatch(setObjectEditorProp('note', note)),
-  addNote: note =>
-    Meteor.call(
-      ownProps.addNoteMethod,
-      ownProps.match.params[ownProps.uriID],
-      { text: note, id: new Mongo.ObjectID()._str },
-      (err, res) => {
-        if (err) {
-          console.log(err);
-        }
-        dispatch(setObjectEditorProp('note', ''));
-      }
-    ),
-  cancelNote: () => dispatch(setObjectEditorProp('note', '')),
 });
 
 const InteractionMenuConnect = connect(mapStateToProps, mapDispatchToProps);

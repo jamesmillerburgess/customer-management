@@ -38,11 +38,17 @@ describe('Timeline', () => {
         .find('.timeline-icon-post-line').length
     ).toBe(0);
   });
+  it('renders the text if the entry has text', () => {
+    wrapper.setProps({ timeline: [{ id: 'a', text: 'b', type: 'CREATION' }] });
+    expect(wrapper.contains(<div>b</div>)).toBe(true);
+    wrapper.setProps({ timeline: [{ id: 'a', type: 'CREATION' }] });
+    expect(wrapper.contains(<div>b</div>)).toBe(false);
+  });
   it('renders the note if the entry has a note', () => {
     wrapper.setProps({ timeline: [{ id: 'a', note: 'b', type: 'CREATION' }] });
-    expect(wrapper.find('.timeline-entry .note').length).toBe(1);
+    expect(wrapper.contains(<div>b</div>)).toBe(true);
     wrapper.setProps({ timeline: [{ id: 'a', type: 'CREATION' }] });
-    expect(wrapper.find('.timeline-entry .note').length).toBe(0);
+    expect(wrapper.contains(<div>b</div>)).toBe(false);
   });
 });
 describe('TIMELINE_MESSAGES Object', () => {
