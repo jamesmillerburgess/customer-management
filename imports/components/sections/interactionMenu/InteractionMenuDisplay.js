@@ -1,5 +1,5 @@
 import React from 'react';
-import Interaction from './Interaction';
+import Interaction from '../interaction/Interaction';
 
 const InteractionMenuDisplay = props => {
   const InteractionItem = interaction => {
