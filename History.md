@@ -1,3 +1,8 @@
+## v0.6.0 – Contacts
+
+* Contacts list page
+* Contact page with timeline and properties editor
+
 ## v0.5.0 – Opportunities 2
 
 * Opportunity page with visual status flow bar
