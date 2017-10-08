@@ -1,59 +1,65 @@
 import React from 'react';
+import Interaction from './Interaction';
 
 const InteractionMenuDisplay = props => {
-  const note = {};
-  if (props.isWritingNote) {
-    note.buttonGroupClass = 'expanded';
-    note.buttonGroupHeight = '43px';
-    note.buttonGroupOpacity = '1';
-    note.buttonCursor = 'auto';
-    note.primaryButtonOnClick = () => props.addNote(props.note);
-    note.secondaryButtonOnClick = props.cancelNote;
-  } else {
-    note.buttonGroupClass = 'expandable';
-    note.buttonGroupHeight = '0px';
-    note.buttonGroupOpacity = '0';
-    note.buttonCursor = null;
-    note.primaryButtonOnClick = null;
-    note.secondaryButtonOnClick = null;
-  }
+  const InteractionItem = interaction => {
+    const activeClass = interaction === props.activeInteraction && 'active';
+    switch (interaction) {
+      case 'NEW_NOTE':
+        return (
+          <button
+            className={`interaction-item ${activeClass}`}
+            key={interaction}
+            onClick={() => props.setActiveInteraction(interaction)}
+          >
+            <div className="fa fa-fw fa-pencil icon" />
+            New note
+          </button>
+        );
+      case 'LOG_CALL':
+        return (
+          <button
+            className={`interaction-item ${activeClass}`}
+            key={interaction}
+            onClick={() => props.setActiveInteraction(interaction)}
+          >
+            <div className="fa fa-fw fa-phone icon" />
+            Log call
+          </button>
+        );
+      case 'LOG_EMAIL':
+        return (
+          <button
+            className={`interaction-item ${activeClass}`}
+            key={interaction}
+            onClick={() => props.setActiveInteraction(interaction)}
+          >
+            <div className="fa fa-fw fa-envelope icon" />
+            Log email
+          </button>
+        );
+      case 'LOG_MEETING':
+        return (
+          <button
+            className={`interaction-item ${activeClass}`}
+            key={interaction}
+            onClick={() => props.setActiveInteraction(interaction)}
+          >
+            <div className="fa fa-fw fa-handshake-o icon" />
+            Log meeting
+          </button>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="panel menu-panel">
       <div className="interaction-menu">
-        <div className="interaction-item active">
-          <div className="fa fa-fw fa-pencil icon" />
-          New note
-        </div>
+        {props.interactions.map(interaction => InteractionItem(interaction))}
       </div>
-      <textarea
-        id="note"
-        value={props.note}
-        onChange={e => props.setNote(e.target.value)}
-        placeholder="Start typing to leave a note..."
-      />
-      <div
-        className={`button-group ${note.buttonGroupClass}`}
-        style={{
-          height: note.buttonGroupHeight,
-          opacity: note.buttonGroupOpacity,
-        }}
-      >
-        <button
-          className="button-primary"
-          style={{ cursor: note.buttonCursor }}
-          onClick={note.primaryButtonOnClick}
-        >
-          Save note
-        </button>
-        <button
-          className="button-secondary"
-          style={{ cursor: note.buttonCursor }}
-          onClick={note.secondaryButtonOnClick}
-        >
-          Cancel
-        </button>
-      </div>
+      <Interaction {...props} />
     </div>
   );
 };

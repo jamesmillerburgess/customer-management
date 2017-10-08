@@ -5,12 +5,15 @@ import _ from 'lodash/fp';
 
 import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCreators';
 
-export const mapStateToProps = ({ objectEditor }) => ({
+export const mapStateToProps = ({ objectEditor }, ownProps) => ({
+  activeInteraction: objectEditor.activeInteraction || ownProps.interactions[0],
   note: objectEditor.note || '',
   isWritingNote: objectEditor.note ? true : false,
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
+  setActiveInteraction: value =>
+    dispatch(setObjectEditorProp('activeInteraction', value)),
   setNote: note => dispatch(setObjectEditorProp('note', note)),
   addNote: note =>
     Meteor.call(

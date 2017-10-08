@@ -1,0 +1,30 @@
+.interaction {
+  .input-row {
+    margin: 8px 10px 0 10px;
+  }
+  input,
+  .Select-control {
+    background-color: transparent;
+    min-width: 150px;
+    border: 0;
+    border-radius: 0;
+  }
+  .Select-control:hover {
+    box-shadow: none;
+  }
+  .Select-placeholder {
+    color: rgba(#33475b, 0.5);
+  }
+  .Select-placeholder,
+  .Select-value {
+    padding-top: 1px;
+  }
+  .Select input {
+    height: 32px;
+    padding: 2px;
+  }
+  .Select.is-focused .Select-control {
+    border: none;
+    box-shadow: none;
+  }
+}

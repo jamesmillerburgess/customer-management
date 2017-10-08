@@ -75,13 +75,20 @@
   font-weight: 300;
   margin-bottom: -2px;
   cursor: pointer;
+  background-color: transparent;
+  border: 3px solid transparent;
+  border-radius: 0;
+  transition: border-bottom 0.3s ease-in-out;
+}
+.interaction-item:focus {
+  outline: none;
 }
 .interaction-item.active {
   border-bottom: 3px solid #33475b;
   font-weight: 400;
 }
 .interaction-item:hover {
-  opacity: 0.6;
+  color: rgba(#33475b, 0.6);
 }
 .interaction-item .icon {
   margin-right: 3px;
