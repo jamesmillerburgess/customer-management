@@ -51,6 +51,9 @@ export const addNote = (collection, objectId, note) => {
   if (!validate.isString(objectId)) {
     throw new Error('Parameter objectId must be a string');
   }
+  if (!validate.isString(note)) {
+    throw new Error('Parameter note must be a string');
+  }
   collection.update(objectId, {
     $push: {
       timeline: {
@@ -71,15 +74,23 @@ export const search = (collection, searchText) => {
   return collection.find(query).fetch();
 };
 
+export const buildGenericMethods = (
+  collectionName,
+  collection,
+  propertiesPage
+) => ({
+  [`${collectionName}.create`]: object => create(collection, object),
+  [`${collectionName}.saveProperties`]: (objectId, object) =>
+    saveProperties(collection, propertiesPage, objectId, object),
+  [`${collectionName}.addNote`]: (objectId, note) =>
+    addNote(collection, objectId, note),
+  [`${collectionName}.search`]: searchText => search(collection, searchText),
+});
+
 const registerGenericMethods = (collectionName, collection, propertiesPage) => {
-  Meteor.methods({
-    [`${collectionName}.create`]: object => create(collection, object),
-    [`${collectionName}.saveProperties`]: (objectId, object) =>
-      saveProperties(collection, propertiesPage, objectId, object),
-    [`${collectionName}.addNote`]: (objectId, note) =>
-      addNote(collection, objectId, note),
-    [`${collectionName}.search`]: searchText => search(collection, searchText),
-  });
+  Meteor.methods(
+    buildGenericMethods(collectionName, collection, propertiesPage)
+  );
 };
 
 export default registerGenericMethods;

@@ -49,7 +49,9 @@ export const Meteor = {
   logout: cb => cb(),
   _userId: null,
   _methods: {},
-  methods: () => null,
+  methods: function(methods) {
+    this._methods = methods;
+  },
   call: function() {
     if (typeof arguments[0] === 'string' && this._methods[arguments[0]]) {
       this._methods[arguments[0]]();

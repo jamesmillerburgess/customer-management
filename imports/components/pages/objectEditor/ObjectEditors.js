@@ -21,14 +21,17 @@ export const generateObjectEditorProps = (singular, plural) => ({
   addInteractionMethod: `${singular}.addInteraction`,
 });
 
+export const getProperties = propertiesPage =>
+  FieldLists.findOne({ page: propertiesPage })
+    ? FieldLists.findOne({ page: propertiesPage }).fields
+    : [];
+
 export const contactProps = () => ({
   ...generateObjectEditorProps('contact', 'contacts'),
   collection: Contacts,
   avatarPath: '/empty-profile-pic.png',
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
-  properties: FieldLists.findOne({ page: 'CONTACT_PROPERTIES' })
-    ? FieldLists.findOne({ page: 'CONTACT_PROPERTIES' }).fields
-    : [],
+  properties: getProperties('CONTACT_PROPERTIES'),
 });
 
 export const companyProps = () => ({
@@ -36,9 +39,7 @@ export const companyProps = () => ({
   collection: Companies,
   avatarPath: '/empty-company-pic.png',
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
-  properties: FieldLists.findOne({ page: 'COMPANY_PROPERTIES' })
-    ? FieldLists.findOne({ page: 'COMPANY_PROPERTIES' }).fields
-    : [],
+  properties: getProperties('COMPANY_PROPERTIES'),
 });
 
 export const opportunityProps = () => ({
@@ -73,9 +74,7 @@ export const opportunityProps = () => ({
   savePropertiesMethod: 'opportunity.saveProperties',
   addInteractionMethod: 'opportunity.addInteraction',
   interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
-  properties: FieldLists.findOne({ page: 'OPPORTUNITY_PROPERTIES' })
-    ? FieldLists.findOne({ page: 'OPPORTUNITY_PROPERTIES' }).fields
-    : [],
+  properties: getProperties('OPPORTUNITY_PROPERTIES'),
 });
 
 const ObjectConnect = ObjectEditorConnect(ObjectEditorDisplay);

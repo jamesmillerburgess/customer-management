@@ -15,10 +15,3 @@ describe('Opportunity Component', () => {
   });
   it('renders without error', () => {});
 });
-describe('properties Function', () => {
-  it('uses the fieldList document if it finds one', () => {
-    const fieldList = { fields: { a: 'a' } };
-    FieldLists.docs = [fieldList];
-    expect(properties()).toEqual(fieldList.fields);
-  });
-});
