@@ -17,7 +17,10 @@ export const create = name => {
   }
   const userId = Meteor.userId();
   const teamId = Teams.insert({ name, owner: Meteor.userId, members: [] });
-  Meteor.users.update(userId, { $push: { ownedTeams: teamId, teams: teamId } });
+  Meteor.users.update(userId, {
+    $push: { ownedTeams: teamId },
+    $set: { team: teamId },
+  });
 };
 
 export const remove = teamId => {
@@ -28,10 +31,11 @@ export const remove = teamId => {
   }
   Teams.remove(teamId);
   Meteor.users.update(
-    { _id: { $in: [...team.members, team.owner] } },
-    { $pull: { ownedTeams: teamId, teams: teamId } },
+    { _id: { $in: [team.members] } },
+    { $unset: { team: '' } },
     { multi: true }
   );
+  Meteor.users.update({ _id: team.owner }, { $pull: { ownedTeams: teamId } });
 };
 
 export const update = (teamId, options) => {
@@ -65,7 +69,7 @@ export const addMember = (teamId, memberId) => {
     throw new Error('The given memberId is already on this team');
   }
   Teams.update(teamId, { $push: { members: memberId } });
-  Meteor.users.update(memberId, { $push: { teams: teamId } });
+  Meteor.users.update(memberId, { $set: { team: teamId } });
 };
 
 export const removeMember = (teamId, memberId) => {
@@ -84,7 +88,7 @@ export const removeMember = (teamId, memberId) => {
     throw new Error('The given memberId is not on this team');
   }
   Teams.update(teamId, { $pull: { members: memberId } });
-  Meteor.users.update(memberId, { $pull: { teams: teamId } });
+  Meteor.users.update(memberId, { $unset: { team: '' } });
 };
 
 export const search = searchText => GM.search(Teams, searchText);
