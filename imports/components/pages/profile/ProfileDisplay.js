@@ -23,6 +23,10 @@ const ProfileDisplay = props => (
             onChange={e => props.setUsername(e.target.value)}
           />
         </div>
+        <div className="input-group">
+          <div className="input-label">Team</div>
+          <input />
+        </div>
         <button type="submit" className="button-primary">
           Save
         </button>

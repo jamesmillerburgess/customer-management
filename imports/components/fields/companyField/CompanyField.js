@@ -3,7 +3,9 @@ import Select from 'react-select';
 import { Meteor } from 'meteor/meteor';
 import { withRouter } from 'react-router';
 
-export const renderStakeholder = stakeholder => (
+import AsyncOptionField from '../asyncOptionField/AsyncOptionField';
+
+export const optionRenderer = stakeholder => (
   <div className="company-value">
     <div className="value">{stakeholder.name}</div>
   </div>
@@ -17,25 +19,12 @@ export const loadOptions = (search, cb) =>
     cb(null, { options });
   });
 
-export const filterOption = () => true;
-export const noop = () => null;
-
 const CompanyField = props => (
   <div className="company-field">
-    <Select.Async
-      value={props.value}
-      onChange={option =>
-        props.onChange({ _id: option._id, name: option.name })}
-      valueKey="_id"
+    <AsyncOptionField
+      {...props}
       loadOptions={loadOptions}
-      optionRenderer={renderStakeholder}
-      valueRenderer={renderStakeholder}
-      filterOption={filterOption}
-      autoload
-      clearRenderer={noop}
-      arrowRenderer={noop}
-      placeholder=""
-      clearable={false}
+      optionRenderer={optionRenderer}
     />
     {props.value ? (
       <button

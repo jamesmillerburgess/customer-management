@@ -9,7 +9,8 @@ const ProfileContainer = createContainer(props => {
     props.setHasLoaded(true);
     props.setUsername(Meteor.user().username);
   }
-  return { ...props, isLoggingIn };
+  const user = Meteor.user();
+  return { ...props, isLoggingIn, user };
 }, ProfileDisplay);
 
 export default ProfileContainer;
