@@ -2,7 +2,7 @@ import React from 'react';
 
 import InteractionConnect from './InteractionConnect';
 
-const getInteractionProps = props => {
+export const getInteractionProps = props => {
   const uriID = props.uriID;
   switch (props.activeInteraction) {
     case 'NEW_NOTE':

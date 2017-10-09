@@ -8,6 +8,13 @@ import OptionField from '../../fields/optionField/OptionField';
 import InteractionButtons from './InteractionButtons';
 
 const InteractionDisplay = props => {
+  const confirm = () =>
+    props.logInteraction({
+      time: props.time,
+      outcome: props.outcome,
+      text: props.text,
+    });
+
   return (
     <div className="interaction">
       {(props.hasTime || props.hasOutcome) && (
@@ -51,12 +58,7 @@ const InteractionDisplay = props => {
       <InteractionButtons
         isWriting={props.isWriting}
         confirmText={props.confirmText}
-        onConfirm={() =>
-          props.logInteraction({
-            time: props.time,
-            outcome: props.outcome,
-            text: props.text,
-          })}
+        onConfirm={confirm}
         onCancel={props.cancelInteraction}
       />
     </div>
