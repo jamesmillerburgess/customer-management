@@ -117,4 +117,9 @@ describe('teamMethods Script', () => {
       expect(() => team.removeMember('a', 'b')).toThrow();
     });
   });
+  describe('team.search Meteor Method', () => {
+    it('calls the generic method equivalent', () => {
+      expect(() => team.search('a')).not.toThrow();
+    });
+  });
 });

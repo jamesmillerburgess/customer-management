@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import validate from 'validate.js';
 import _ from 'lodash/fp';
 
+import * as GM from '../genericMethods';
 import Teams from './teamCollection';
 
 const TEAM_FIELDS = ['name'];
@@ -100,10 +101,13 @@ export const removeMember = (teamId, memberId) => {
   Meteor.users.update(memberId, { $pull: { teams: teamId } });
 };
 
+export const search = searchText => GM.search(Teams, searchText);
+
 Meteor.methods({
   'team.create': create,
   'team.remove': remove,
   'team.update': update,
   'team.addMember': addMember,
   'team.removeMember': removeMember,
+  'team.search': search,
 });
