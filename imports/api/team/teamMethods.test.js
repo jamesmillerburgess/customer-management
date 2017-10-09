@@ -11,10 +11,11 @@ describe('teamMethods Script', () => {
       team.create('a');
       expect(Teams.num).toBe(1);
     });
-    it('throws if there is no name', () => {
+    it('throws with invalid params', () => {
       expect(() => team.create()).toThrow();
       expect(() => team.create(null)).toThrow();
       expect(() => team.create('')).toThrow();
+      expect(() => team.create(1)).toThrow();
     });
     it('throws if there is already a team with the same name', () => {
       Teams.docs = [{ name: 'a' }];

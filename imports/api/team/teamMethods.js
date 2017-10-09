@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import validate from 'validate.js';
+import { check } from 'meteor/check';
 import _ from 'lodash/fp';
 
 import * as GM from '../genericMethods';
@@ -8,43 +8,37 @@ import Teams from './teamCollection';
 const TEAM_FIELDS = ['name'];
 
 export const create = name => {
-  if (!validate.isString(name)) {
-    throw new Error('Parameter name must be a string');
-  }
+  check(name, String);
   if (!name) {
     throw new Error('Parameter name must be non-empty');
   }
   if (Teams.findOne({ name })) {
     throw new Error('There is already a team with this name');
   }
-  return Teams.insert({ name, members: [] });
+  const userId = Meteor.userId();
+  const teamId = Teams.insert({ name, owner: Meteor.userId, members: [] });
+  Meteor.users.update(userId, { $push: { ownedTeams: teamId, teams: teamId } });
 };
 
 export const remove = teamId => {
-  if (!validate.isString(teamId)) {
-    throw new Error('Parameter name must be a string');
-  }
+  check(teamId, String);
   const team = Teams.findOne(teamId);
   if (!team) {
     throw new Error('There is no team with this name');
   }
   Teams.remove(teamId);
   Meteor.users.update(
-    { _id: { $in: [team.members] } },
-    { $pull: { teams: teamId } },
+    { _id: { $in: [...team.members, team.owner] } },
+    { $pull: { ownedTeams: teamId, teams: teamId } },
     { multi: true }
   );
 };
 
 export const update = (teamId, options) => {
-  if (!validate.isString(teamId)) {
-    throw new Error('Parameter teamId must be a string');
-  }
-  if (!validate.isObject(options)) {
-    throw new Error('Parameter teamId must be an object');
-  }
+  check(teamId, String);
+  check(options, Object);
   const fields = _.pick(TEAM_FIELDS, options);
-  if (validate.isEmpty(fields)) {
+  if (Object.keys(fields).length === 0) {
     throw new Error('Parameter options contains no valid fields');
   }
   const team = Teams.findOne(teamId);
@@ -56,12 +50,8 @@ export const update = (teamId, options) => {
 };
 
 export const addMember = (teamId, memberId) => {
-  if (!validate.isString(teamId)) {
-    throw new Error('Parameter teamId must be a string');
-  }
-  if (!validate.isString(memberId)) {
-    throw new Error('Parameter memberId must be a string');
-  }
+  check(teamId, String);
+  check(memberId, String);
   const member = Meteor.users.findOne(memberId);
   if (!member) {
     throw new Error('There is no user with the given memberId');
@@ -79,12 +69,8 @@ export const addMember = (teamId, memberId) => {
 };
 
 export const removeMember = (teamId, memberId) => {
-  if (!validate.isString(teamId)) {
-    throw new Error('Parameter teamId must be a string');
-  }
-  if (!validate.isString(memberId)) {
-    throw new Error('Parameter memberId must be a string');
-  }
+  check(teamId, String);
+  check(memberId, String);
   const member = Meteor.users.findOne(memberId);
   if (!member) {
     throw new Error('There is no user with the given memberId');
