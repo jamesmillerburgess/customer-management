@@ -7,7 +7,7 @@ export const noop = () => null;
 const AsyncOptionField = props => (
   <Select.Async
     value={props.value}
-    onChange={option => props.onChange({ _id: option._id, name: option.name })}
+    onChange={option => props.onChange(option._id)}
     valueKey="_id"
     loadOptions={props.loadOptions}
     optionRenderer={props.optionRenderer}

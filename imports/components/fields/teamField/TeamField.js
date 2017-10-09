@@ -4,15 +4,18 @@ import { Meteor } from 'meteor/meteor';
 import AsyncOptionField from '../asyncOptionField/AsyncOptionField';
 
 export const optionRenderer = option => (
-  <div className="company-value">
+  <div className="option-value">
     <div className="value">
-      {option.name} <div className="badge">{option.members.length}</div>
+      <div>{option.name} </div>
+      {option.members.length > 0 && (
+        <div className="badge">{option.members.length}</div>
+      )}
     </div>
   </div>
 );
 
 export const valueRenderer = option => (
-  <div className="company-value">
+  <div className="option-value">
     <div className="value">{option.name}</div>
   </div>
 );

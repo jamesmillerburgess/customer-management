@@ -5,6 +5,7 @@ import FieldLists from '../fieldList/fieldListCollection';
 import Contacts from '../contact/contactCollection';
 import Companies from '../company/companyCollection';
 import Opportunities from '../opportunity/opportunityCollection';
+import Teams from '../team/teamCollection';
 
 export const all = collection => {
   if (!Meteor.userId()) {
@@ -20,11 +21,15 @@ export const user = function(collection) {
   return collection.find({ users: Meteor.userId(), isArchived: false });
 };
 
-export const single = function(collection, companyId) {
+export const single = function(collection, id) {
   if (!Meteor.userId()) {
     throw new Error('Cannot subscribe without being logged in');
   }
-  return collection.find({ _id: companyId });
+  return collection.find({ _id: id });
+};
+
+export const list = (collection, ids) => {
+  return collection.find({ _id: { $in: ids } });
 };
 
 Meteor.publish({
@@ -32,7 +37,9 @@ Meteor.publish({
   'contact.user': () => user(Contacts),
   'company.user': () => user(Companies),
   'opportunity.user': () => user(Opportunities),
-  'contact.single': contactId => single(Contacts, contactId),
-  'company.single': companyId => single(Companies, companyId),
-  'opportunity.single': companyId => single(Opportunities, companyId),
+  'contact.single': id => single(Contacts, id),
+  'company.single': id => single(Companies, id),
+  'opportunity.single': id => single(Opportunities, id),
+  'team.single': id => single(Teams, id),
+  'team.list': ids => list(Teams, ids),
 });

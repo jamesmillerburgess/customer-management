@@ -17,11 +17,13 @@ export const create = name => {
     throw new Error('There is already a team with this name');
   }
   const userId = Meteor.userId();
-  const teamId = Teams.insert({ name, owner: Meteor.userId, members: [] });
-  Meteor.users.update(userId, {
-    $push: { ['profile.ownedTeams']: teamId },
-    $set: { ['profile.team']: teamId },
+  const teamId = Teams.insert({
+    name,
+    owner: Meteor.userId,
+    members: [],
+    createDate: new Date(),
   });
+  Meteor.users.update(userId, { $push: { ['profile.ownedTeams']: teamId } });
 };
 
 export const remove = teamId => {
