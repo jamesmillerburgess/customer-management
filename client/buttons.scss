@@ -1,11 +1,12 @@
 button {
   border: 1px solid transparent;
   border-radius: 3px;
-  padding: 12px 24px;
+  padding: 11.5px 24px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 button:hover {
