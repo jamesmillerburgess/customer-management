@@ -3,8 +3,6 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-// import { STATUS_LABELS } from '../../fields/statusField/StatusField';
-
 const APPOINTMENT_SCHEDULED = 'APPOINTMENT_SCHEDULED';
 const QUALIFIED_TO_BUY = 'QUALIFIED_TO_BUY';
 const PRESENTATION_SCHEDULED = 'PRESENTATION_SCHEDULED';
@@ -33,6 +31,15 @@ export const STATUS_LABELS = {
   [STATUS_VALUES[6]]: 'Closed Lost',
 };
 
+export const OUTCOME_LABELS = {
+  NO_ANSWER: 'No answer',
+  BUSY: 'Busy',
+  WRONG_NUMBER: 'Wrong number',
+  LEFT_LIVE_MESSAGE: 'Left live message',
+  LEFT_VOICEMAIL: 'Left voicemail',
+  CONNECTED: 'Connected',
+};
+
 const StatusChangeMessage = (entry, direction) => (
   <span>
     Opportunity{' '}
@@ -48,6 +55,9 @@ const StatusChangeMessage = (entry, direction) => (
 export const TIMELINE_MESSAGES = {
   CREATION: () => 'was created',
   NOTE: () => 'left a note',
+  CALL: () => 'made a call',
+  EMAIL: () => 'sent an email',
+  MEETING: () => 'had a meeting',
   STATUS_CHANGE_FORWARD: entry => StatusChangeMessage(entry, 'forward'),
   STATUS_CHANGE_BACKWARD: entry => StatusChangeMessage(entry, 'backward'),
 };
@@ -55,6 +65,9 @@ export const TIMELINE_MESSAGES = {
 const TIMELINE_ICONS = {
   CREATION: 'fa-plus',
   NOTE: 'fa-pencil',
+  CALL: 'fa-phone',
+  EMAIL: 'fa-envelope',
+  MEETING: 'fa-handshake-o',
   STATUS_CHANGE_FORWARD: 'fa-angle-double-right',
   STATUS_CHANGE_BACKWARD: 'fa-angle-double-left',
 };
@@ -62,8 +75,17 @@ const TIMELINE_ICONS = {
 const TIMELINE_AVATARS = {
   CREATION: '/empty-company-pic.png',
   NOTE: '/empty-profile-pic.png',
+  CALL: '/empty-profile-pic.png',
+  EMAIL: '/empty-profile-pic.png',
+  MEETING: '/empty-profile-pic.png',
   STATUS_CHANGE_FORWARD: '/empty-profile-pic.png',
   STATUS_CHANGE_BACKWARD: '/empty-profile-pic.png',
+};
+
+const sort = (a, b) => {
+  const aTime = a.time || a.timestamp;
+  const bTime = b.time || b.timestamp;
+  return bTime - aTime;
 };
 
 const Timeline = props => (
@@ -80,7 +102,7 @@ const Timeline = props => (
       transitionEnter={true}
       transitionLeave={false}
     >
-      {props.timeline.reverse().map((entry, index) => (
+      {props.timeline.sort(sort).map((entry, index) => (
         <div className="timeline-entry" key={entry.id}>
           <div className="timeline-icon-container">
             <div className="timeline-icon-pre-line" />
@@ -102,9 +124,20 @@ const Timeline = props => (
                 {TIMELINE_MESSAGES[entry.type](entry)}
               </div>
               <div className="timestamp">
-                {moment(entry.timestamp).format('MMMM Do [at] h:mm a')}
+                {moment(entry.time || entry.timestamp).format(
+                  'MMMM Do [at] h:mm a'
+                )}
               </div>
-              {entry.note ? <div className="note">{entry.note}</div> : null}
+              <div className="note">
+                {entry.outcome && (
+                  <div className="outcome">
+                    <span className="keyword">Call outcome: </span>
+                    {OUTCOME_LABELS[entry.outcome]}
+                  </div>
+                )}
+                {entry.note && <div>{entry.note}</div>}
+                {entry.text && <div>{entry.text}</div>}
+              </div>
             </div>
           </div>
         </div>

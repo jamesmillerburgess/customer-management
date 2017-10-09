@@ -1,3 +1,8 @@
+## v0.7.0 – Interactions
+
+* Log call, Log email, and Log meeting interactions
+* New interactions display and sort in timeline using specified dates and times
+
 ## v0.6.0 – Contacts
 
 * Contacts list page

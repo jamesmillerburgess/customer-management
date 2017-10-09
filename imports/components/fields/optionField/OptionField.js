@@ -10,8 +10,12 @@ const OptionField = props => (
     onChange={option => props.onChange(option.value)}
     clearable={false}
     arrowRenderer={noop}
-    placeholder=""
+    placeholder={props.placeholder}
   />
 );
+
+OptionField.defaultProps = {
+  placeholder: '',
+};
 
 export default OptionField;

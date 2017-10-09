@@ -18,7 +18,10 @@ export const generateObjectEditorProps = (singular, plural) => ({
     path: `/${plural}`,
   },
   savePropertiesMethod: `${singular}.saveProperties`,
-  addInteractionMethod: `${singular}.addInteraction`,
+  addNoteMethod: `${singular}.addNote`,
+  logCallMethod: `${singular}.logCall`,
+  logEmailMethod: `${singular}.logEmail`,
+  logMeetingMethod: `${singular}.logMeeting`,
 });
 
 export const getProperties = propertiesPage =>
@@ -30,7 +33,7 @@ export const contactProps = () => ({
   ...generateObjectEditorProps('contact', 'contacts'),
   collection: Contacts,
   avatarPath: '/empty-profile-pic.png',
-  interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
+  interactions: ['NEW_NOTE', 'LOG_CALL', 'LOG_EMAIL', 'LOG_MEETING'],
   properties: getProperties('CONTACT_PROPERTIES'),
 });
 
@@ -38,7 +41,7 @@ export const companyProps = () => ({
   ...generateObjectEditorProps('company', 'companies'),
   collection: Companies,
   avatarPath: '/empty-company-pic.png',
-  interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
+  interactions: ['NEW_NOTE', 'LOG_CALL', 'LOG_EMAIL', 'LOG_MEETING'],
   properties: getProperties('COMPANY_PROPERTIES'),
 });
 
@@ -73,7 +76,11 @@ export const opportunityProps = () => ({
   updateStatusMethod: 'opportunity.updateStatus',
   savePropertiesMethod: 'opportunity.saveProperties',
   addInteractionMethod: 'opportunity.addInteraction',
-  interactions: ['NEW_NOTE', 'LOG_ACTIVITY'],
+  addNoteMethod: 'opportunity.addNote',
+  logCallMethod: 'opportunity.logCall',
+  logEmailMethod: 'opportunity.logEmail',
+  logMeetingMethod: 'opportunity.logMeeting',
+  interactions: ['NEW_NOTE', 'LOG_CALL', 'LOG_EMAIL', 'LOG_MEETING'],
   properties: getProperties('OPPORTUNITY_PROPERTIES'),
 });
 

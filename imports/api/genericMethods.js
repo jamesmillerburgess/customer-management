@@ -8,6 +8,9 @@ import { buildSearchRegExp } from './searchUtils';
 
 const CREATION = 'CREATION';
 const NOTE = 'NOTE';
+const CALL = 'CALL';
+const EMAIL = 'EMAIL';
+const MEETING = 'MEETING';
 
 export const create = (collection, object) => {
   if (!object || !object.name) {
@@ -47,19 +50,21 @@ export const saveProperties = (
   collection.update(objectId, { $set: fields });
 };
 
-export const addNote = (collection, objectId, note) => {
+export const logInteraction = (collection, objectId, interaction, type) => {
   if (!validate.isString(objectId)) {
     throw new Error('Parameter objectId must be a string');
   }
   collection.update(objectId, {
     $push: {
       timeline: {
-        id: note.id,
-        type: NOTE,
+        id: interaction.id,
+        type,
         timestamp: new Date(),
         userId: Meteor.userId(),
         keyword: Meteor.users.findOne(Meteor.userId()).username,
-        note: note.note,
+        time: interaction.time,
+        outcome: interaction.outcome,
+        text: interaction.text,
       },
     },
   });
@@ -80,7 +85,13 @@ export const buildGenericMethods = (
   [`${collectionName}.saveProperties`]: (objectId, object) =>
     saveProperties(collection, propertiesPage, objectId, object),
   [`${collectionName}.addNote`]: (objectId, note) =>
-    addNote(collection, objectId, note),
+    logInteraction(collection, objectId, note, NOTE),
+  [`${collectionName}.logCall`]: (objectId, call) =>
+    logInteraction(collection, objectId, call, CALL),
+  [`${collectionName}.logEmail`]: (objectId, email) =>
+    logInteraction(collection, objectId, email, EMAIL),
+  [`${collectionName}.logMeeting`]: (objectId, meeting) =>
+    logInteraction(collection, objectId, meeting, MEETING),
   [`${collectionName}.search`]: searchText => search(collection, searchText),
 });
 

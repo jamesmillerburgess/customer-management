@@ -72,16 +72,22 @@
 }
 .interaction-item {
   padding: 8px;
-  font-weight: 300;
   margin-bottom: -2px;
   cursor: pointer;
+  background-color: transparent;
+  border: 3px solid transparent;
+  transition: border-bottom 0.3s ease-in-out;
+  color: rgba(#33475b, 0.8);
+}
+.interaction-item:focus {
+  outline: none;
 }
 .interaction-item.active {
   border-bottom: 3px solid #33475b;
-  font-weight: 400;
+  color: #33475b;
 }
 .interaction-item:hover {
-  opacity: 0.6;
+  color: rgba(#33475b, 0.6);
 }
 .interaction-item .icon {
   margin-right: 3px;

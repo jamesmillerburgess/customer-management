@@ -29,10 +29,7 @@ const OpportunityDisplay = props => (
         />
       </div>
       <div className="content">
-        <InteractionMenu
-          addNoteMethod={props.addNoteMethod}
-          uriID={props.uriID}
-        />
+        <InteractionMenu {...props} />
         <Timeline timeline={props.object.timeline} />
       </div>
     </div>

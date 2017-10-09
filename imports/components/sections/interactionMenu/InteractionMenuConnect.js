@@ -5,26 +5,13 @@ import _ from 'lodash/fp';
 
 import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCreators';
 
-export const mapStateToProps = ({ objectEditor }) => ({
-  note: objectEditor.note || '',
-  isWritingNote: objectEditor.note ? true : false,
+export const mapStateToProps = ({ objectEditor }, ownProps) => ({
+  activeInteraction: objectEditor.activeInteraction || ownProps.interactions[0],
 });
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
-  setNote: note => dispatch(setObjectEditorProp('note', note)),
-  addNote: note =>
-    Meteor.call(
-      ownProps.addNoteMethod,
-      ownProps.match.params[ownProps.uriID],
-      { note, id: new Mongo.ObjectID()._str },
-      (err, res) => {
-        if (err) {
-          console.log(err);
-        }
-        dispatch(setObjectEditorProp('note', ''));
-      }
-    ),
-  cancelNote: () => dispatch(setObjectEditorProp('note', '')),
+export const mapDispatchToProps = dispatch => ({
+  setActiveInteraction: value =>
+    dispatch(setObjectEditorProp('activeInteraction', value)),
 });
 
 const InteractionMenuConnect = connect(mapStateToProps, mapDispatchToProps);
