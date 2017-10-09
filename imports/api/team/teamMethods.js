@@ -53,7 +53,7 @@ export const update = (teamId, options) => {
   return Teams.update(teamId, update);
 };
 
-export const addMember = (teamId, memberId) => {
+const validateAddRemoveMember = (teamId, memberId) => {
   check(teamId, String);
   check(memberId, String);
   const member = Meteor.users.findOne(memberId);
@@ -64,7 +64,12 @@ export const addMember = (teamId, memberId) => {
   if (!team) {
     throw new Error('There is no team with the given teamId');
   }
-  const memberIndex = team.members.indexOf(memberId);
+  return { team, member };
+};
+
+export const addMember = (teamId, memberId) => {
+  const docs = validateAddRemoveMember(teamId, memberId);
+  const memberIndex = docs.team.members.indexOf(memberId);
   if (memberIndex !== -1) {
     throw new Error('The given memberId is already on this team');
   }
@@ -73,17 +78,8 @@ export const addMember = (teamId, memberId) => {
 };
 
 export const removeMember = (teamId, memberId) => {
-  check(teamId, String);
-  check(memberId, String);
-  const member = Meteor.users.findOne(memberId);
-  if (!member) {
-    throw new Error('There is no user with the given memberId');
-  }
-  const team = Teams.findOne(teamId);
-  if (!team) {
-    throw new Error('There is no team with the given teamId');
-  }
-  const memberIndex = team.members.indexOf(memberId);
+  const docs = validateAddRemoveMember(teamId, memberId);
+  const memberIndex = docs.team.members.indexOf(memberId);
   if (memberIndex === -1) {
     throw new Error('The given memberId is not on this team');
   }
