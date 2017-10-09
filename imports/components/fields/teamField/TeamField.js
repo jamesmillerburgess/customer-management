@@ -11,6 +11,12 @@ export const optionRenderer = option => (
   </div>
 );
 
+export const valueRenderer = option => (
+  <div className="company-value">
+    <div className="value">{option.name}</div>
+  </div>
+);
+
 export const loadOptions = (search, cb) =>
   Meteor.call('team.search', search, (err, options) => {
     if (err) {
@@ -24,6 +30,7 @@ const TeamField = props => (
     {...props}
     loadOptions={loadOptions}
     optionRenderer={optionRenderer}
+    valueRenderer={valueRenderer}
   />
 );
 

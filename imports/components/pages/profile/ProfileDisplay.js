@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import PageHeader from '../PageHeader';
+import TeamField from '../../fields/teamField/TeamField';
 
 const ProfileDisplay = props => (
   <div>
@@ -12,7 +13,7 @@ const ProfileDisplay = props => (
         className="form"
         onSubmit={e => {
           e.preventDefault();
-          props.saveProfile({ username: props.username });
+          props.saveProfile({ username: props.username, team: props.team });
         }}
       >
         <div className="input-group">
@@ -25,7 +26,7 @@ const ProfileDisplay = props => (
         </div>
         <div className="input-group">
           <div className="input-label">Team</div>
-          <input />
+          <TeamField value={props.team} onChange={props.setTeam} />
         </div>
         <button type="submit" className="button-primary">
           Save

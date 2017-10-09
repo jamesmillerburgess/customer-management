@@ -24,6 +24,7 @@ const CompanyField = props => (
       {...props}
       loadOptions={loadOptions}
       optionRenderer={optionRenderer}
+      valueRenderer={optionRenderer}
     />
     {props.value ? (
       <button

@@ -8,6 +8,7 @@ const ProfileContainer = createContainer(props => {
   if (!Meteor.loggingIn() && !props.hasLoaded) {
     props.setHasLoaded(true);
     props.setUsername(Meteor.user().username);
+    props.setTeam(Meteor.user().profile.team);
   }
   const user = Meteor.user();
   return { ...props, isLoggingIn, user };

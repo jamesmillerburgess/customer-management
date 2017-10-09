@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import _ from 'lodash/fp';
 
+import { isoError } from '../methodUtils';
 import * as GM from '../genericMethods';
 import Teams from './teamCollection';
 
@@ -18,8 +19,8 @@ export const create = name => {
   const userId = Meteor.userId();
   const teamId = Teams.insert({ name, owner: Meteor.userId, members: [] });
   Meteor.users.update(userId, {
-    $push: { ownedTeams: teamId },
-    $set: { team: teamId },
+    $push: { ['profile.ownedTeams']: teamId },
+    $set: { ['profile.team']: teamId },
   });
 };
 
@@ -32,10 +33,13 @@ export const remove = teamId => {
   Teams.remove(teamId);
   Meteor.users.update(
     { _id: { $in: [team.members] } },
-    { $unset: { team: '' } },
+    { $unset: { ['profile.team']: '' } },
     { multi: true }
   );
-  Meteor.users.update({ _id: team.owner }, { $pull: { ownedTeams: teamId } });
+  Meteor.users.update(
+    { _id: team.owner },
+    { $pull: { ['profile.ownedTeams']: teamId } }
+  );
 };
 
 export const update = (teamId, options) => {
@@ -62,29 +66,35 @@ const validateAddRemoveMember = (teamId, memberId) => {
   }
   const team = Teams.findOne(teamId);
   if (!team) {
-    throw new Error('There is no team with the given teamId');
+    return isoError('There is no team with the given teamId');
   }
   return { team, member };
 };
 
 export const addMember = (teamId, memberId) => {
   const docs = validateAddRemoveMember(teamId, memberId);
+  if (docs.error) {
+    return docs;
+  }
   const memberIndex = docs.team.members.indexOf(memberId);
   if (memberIndex !== -1) {
     throw new Error('The given memberId is already on this team');
   }
   Teams.update(teamId, { $push: { members: memberId } });
-  Meteor.users.update(memberId, { $set: { team: teamId } });
+  Meteor.users.update(memberId, { $set: { ['profile.team']: teamId } });
 };
 
 export const removeMember = (teamId, memberId) => {
   const docs = validateAddRemoveMember(teamId, memberId);
+  if (docs.error) {
+    return docs;
+  }
   const memberIndex = docs.team.members.indexOf(memberId);
   if (memberIndex === -1) {
     throw new Error('The given memberId is not on this team');
   }
   Teams.update(teamId, { $pull: { members: memberId } });
-  Meteor.users.update(memberId, { $unset: { team: '' } });
+  Meteor.users.update(memberId, { $unset: { ['profile.team']: '' } });
 };
 
 export const search = searchText => GM.search(Teams, searchText);

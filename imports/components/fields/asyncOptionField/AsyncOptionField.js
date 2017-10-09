@@ -11,7 +11,7 @@ const AsyncOptionField = props => (
     valueKey="_id"
     loadOptions={props.loadOptions}
     optionRenderer={props.optionRenderer}
-    valueRenderer={props.optionRenderer}
+    valueRenderer={props.valueRenderer}
     filterOption={filterOption}
     autoload
     clearRenderer={noop}

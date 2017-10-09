@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 
-import { buildSearchRegExp } from './searchUtils';
+import { buildSearchRegExp } from './methodUtils';
 
 describe('buildSearchRegExp', () => {
   it('returns a regular expression', () => {
