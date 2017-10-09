@@ -5,7 +5,7 @@ const DateField = props => (
   <DateTime
     className="date-field"
     timeFormat={props.timeFormat}
-    dateFormat={props.timeFormat ? 'DD MMM YYYY' : 'DD MMM YYYY'}
+    dateFormat={'DD MMM YYYY'}
     closeOnSelect
     value={props.value}
     onChange={value => {

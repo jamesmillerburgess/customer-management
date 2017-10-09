@@ -71,6 +71,9 @@ describe('buildGenericMethods Function', () => {
     expect(() => methods['a.create']({ name: 'a' })).not.toThrow();
     expect(() => methods['a.saveProperties']('a', { name: 'a' })).not.toThrow();
     expect(() => methods['a.addNote']('a', 'b')).not.toThrow();
+    expect(() => methods['a.logCall']('a', 'b')).not.toThrow();
+    expect(() => methods['a.logEmail']('a', 'b')).not.toThrow();
+    expect(() => methods['a.logMeeting']('a', 'b')).not.toThrow();
     expect(() => methods['a.search']('a')).not.toThrow();
   });
 });

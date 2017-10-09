@@ -50,11 +50,24 @@ describe('Timeline', () => {
     wrapper.setProps({ timeline: [{ id: 'a', type: 'CREATION' }] });
     expect(wrapper.contains(<div>b</div>)).toBe(false);
   });
+  it('renders the outcome if the entry has an outcome', () => {
+    wrapper.setProps({ timeline: [{ id: 'a', outcome: 'b', type: 'NOTE' }] });
+    expect(
+      wrapper.contains(<span className="keyword">Call outcome: </span>)
+    ).toBe(true);
+    wrapper.setProps({ timeline: [{ id: 'a', type: 'NOTE' }] });
+    expect(
+      wrapper.contains(<span className="keyword">Call outcome: </span>)
+    ).toBe(false);
+  });
 });
 describe('TIMELINE_MESSAGES Object', () => {
   it('returns some functions', () => {
     expect(TIMELINE_MESSAGES.CREATION).not.toThrow();
     expect(TIMELINE_MESSAGES.NOTE).not.toThrow();
+    expect(TIMELINE_MESSAGES.CALL).not.toThrow();
+    expect(TIMELINE_MESSAGES.EMAIL).not.toThrow();
+    expect(TIMELINE_MESSAGES.MEETING).not.toThrow();
     expect(() => TIMELINE_MESSAGES.STATUS_CHANGE_FORWARD({})).not.toThrow();
     expect(() => TIMELINE_MESSAGES.STATUS_CHANGE_BACKWARD({})).not.toThrow();
   });
