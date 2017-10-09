@@ -1,3 +1,5 @@
+## v0.8.0 – Teams
+
 ## v0.7.0 – Interactions
 
 * Log call, Log email, and Log meeting interactions
