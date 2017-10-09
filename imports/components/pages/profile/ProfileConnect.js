@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
 
-import ProfileDisplay from './ProfileDisplay';
+import ProfileContainer from './ProfileContainer';
 
 import { setProfileProp } from '../../../state/actions/profileActionCreators';
 
@@ -18,7 +18,7 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 const ProfileConnect = connect(mapStateToProps, mapDispatchToProps)(
-  ProfileDisplay
+  ProfileContainer
 );
 
 export default ProfileConnect;
