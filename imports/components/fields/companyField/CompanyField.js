@@ -1,5 +1,4 @@
 import React from 'react';
-import Select from 'react-select';
 import { Meteor } from 'meteor/meteor';
 import { withRouter } from 'react-router';
 
