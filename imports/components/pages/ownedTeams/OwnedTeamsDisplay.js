@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import TextField from '../../fields/textField/TextField';
+import CheckboxField from '../../fields/checkboxField/CheckboxField';
 import Grid from '../../fields/Grid';
 
 const gridPageProps = {
@@ -11,6 +12,7 @@ const gridPageProps = {
       width: 45,
       resizable: false,
       sortable: false,
+      Cell: props => <CheckboxField />,
     },
     {
       Header: 'Name',
