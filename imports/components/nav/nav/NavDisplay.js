@@ -28,7 +28,14 @@ const NavDisplay = props => (
               ? props.setIsProfileMenuOpen(!props.isProfileMenuOpen)
               : null}
         >
-          {props.user ? props.user.username : 'Log in'}
+          {props.user ? (
+            <div className="profile-button-text">
+              <div className="username">{props.user.username} </div>
+              <div className="team-name">{props.team && props.team.name}</div>
+            </div>
+          ) : (
+            'Log in'
+          )}
         </button>
         <div
           id="profile-menu"

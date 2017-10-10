@@ -3,9 +3,16 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import NavDisplay from './NavDisplay';
 
+import Teams from '../../../api/team/teamCollection';
+
 const NavContainer = createContainer(props => {
   const user = Meteor.user();
-  return { ...props, user };
+  let team = '';
+  if (user) {
+    Meteor.subscribe('team.single', user.profile.team);
+    team = Teams.findOne(user.profile.team);
+  }
+  return { ...props, user, team };
 }, NavDisplay);
 
 export default NavContainer;

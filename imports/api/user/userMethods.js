@@ -9,7 +9,7 @@ export const saveProfile = (userId, profile) => {
   const fields = _.pick(PROFILE_FIELDS, profile);
   Meteor.users.update(userId, { $set: fields });
   const oldTeam = Meteor.users.findOne(userId).profile.team;
-  const newTeam = profile.team._id;
+  const newTeam = profile.team;
   if (newTeam) {
     if (oldTeam) {
       TM.removeMember(oldTeam, userId);

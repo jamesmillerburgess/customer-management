@@ -40,6 +40,15 @@
   .nav-button:focus {
     outline: none;
   }
+  .profile-button-text {
+    display: flex;
+  }
+  .profile-button-text .username {
+    margin-right: 10px;
+  }
+  .profile-button-text .team-name {
+    font-weight: 300;
+  }
   .profile-menu {
     display: none;
     position: absolute;
