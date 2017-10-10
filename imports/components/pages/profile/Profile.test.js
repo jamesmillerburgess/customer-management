@@ -1,15 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ProfileDisplay from './ProfileDisplay';
+import Profile from './Profile';
 
-describe('ProfileDisplay', () => {
+describe('Profile', () => {
   const props = {};
   let wrapper;
   beforeEach(() => {
     props.saveProfile = jest.fn();
     props.setUsername = jest.fn();
-    wrapper = shallow(<ProfileDisplay {...props} />);
+    wrapper = shallow(<Profile {...props} />);
   });
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});

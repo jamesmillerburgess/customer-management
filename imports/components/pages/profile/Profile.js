@@ -7,7 +7,7 @@ import PageHeader from '../PageHeader';
 import BasicInfo from '../basicInfo/BasicInfo';
 import OwnedTeams from '../ownedTeams/OwnedTeams';
 
-const ProfileDisplay = props => (
+const Profile = props => (
   <div>
     <PageHeader title="Profile" hideButtons />
     <div className="section-body">
@@ -29,4 +29,4 @@ const ProfileDisplay = props => (
   </div>
 );
 
-export default ProfileDisplay;
+export default Profile;

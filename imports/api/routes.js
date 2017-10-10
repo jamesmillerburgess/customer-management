@@ -9,7 +9,7 @@ import Contact from '../components/pages/contact/Contact';
 import Company from '../components/pages/company/Company';
 import Opportunity from '../components/pages/opportunity/Opportunity';
 
-import ProfileConnect from '../components/pages/profile/ProfileConnect';
+import Profile from '../components/pages/profile/Profile';
 
 const routes = [
   {
@@ -46,7 +46,7 @@ const routes = [
   },
   {
     path: '/profile',
-    component: ProfileConnect,
+    component: Profile,
     isNavLink: false,
   },
   {
