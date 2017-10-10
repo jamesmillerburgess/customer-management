@@ -25,7 +25,9 @@ export const loadOptions = (search, cb) =>
     if (err) {
       console.log(err);
     }
-    cb(null, { options });
+    cb(null, {
+      options: [{ _id: '', name: 'No team assigned', members: [] }, ...options],
+    });
   });
 
 const TeamField = props => (
