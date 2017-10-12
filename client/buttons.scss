@@ -18,6 +18,11 @@ button:hover {
   color: white;
 }
 
+.button-primary.disabled {
+  background-color: #ccc;
+  cursor: auto;
+}
+
 .button-secondary {
   background-color: white;
   border-color: rgb(255, 122, 89);
@@ -52,6 +57,7 @@ button:hover {
 .button-dismiss-overlay:hover {
   background-color: rgba(white, 0.2);
 }
+
 .button-group {
   display: flex;
   align-items: center;

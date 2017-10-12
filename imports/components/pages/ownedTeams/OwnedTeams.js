@@ -1,3 +1,3 @@
-import OwnedTeamsConnect from './OwnedTeamsConnect';
-const OwnedTeams = OwnedTeamsConnect;
+import OwnedTeamsContainer from './OwnedTeamsContainer';
+const OwnedTeams = OwnedTeamsContainer;
 export default OwnedTeams;

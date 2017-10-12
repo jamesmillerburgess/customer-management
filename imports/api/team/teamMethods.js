@@ -19,7 +19,7 @@ export const create = name => {
   const userId = Meteor.userId();
   const teamId = Teams.insert({
     name,
-    owner: Meteor.userId,
+    owner: userId,
     members: [],
     createDate: new Date(),
   });
@@ -27,6 +27,9 @@ export const create = name => {
 };
 
 export const remove = teamId => {
+  if (teamId.constructor.name === 'Array') {
+    return teamId.forEach(team => remove(team));
+  }
   check(teamId, String);
   const team = Teams.findOne(teamId);
   if (!team) {
@@ -34,7 +37,7 @@ export const remove = teamId => {
   }
   Teams.remove(teamId);
   Meteor.users.update(
-    { _id: { $in: [team.members] } },
+    { _id: { $in: team.members } },
     { $unset: { ['profile.team']: '' } },
     { multi: true }
   );
@@ -74,6 +77,7 @@ const validateAddRemoveMember = (teamId, memberId) => {
 };
 
 export const addMember = (teamId, memberId) => {
+  console.log(teamId);
   const docs = validateAddRemoveMember(teamId, memberId);
   if (docs.error) {
     return docs;

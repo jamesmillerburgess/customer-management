@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
-import OwnedTeamsDisplay from './OwnedTeamsDisplay';
+import OwnedTeamsConnect from './OwnedTeamsConnect';
 import Teams from '../../../api/team/teamCollection';
 
 const sort = (a, b) => {
@@ -18,6 +18,6 @@ const ProfileContainer = createContainer(props => {
       .sort(sort);
   }
   return { ...props, ownedTeams };
-}, OwnedTeamsDisplay);
+}, OwnedTeamsConnect);
 
 export default ProfileContainer;

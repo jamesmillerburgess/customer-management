@@ -5,14 +5,26 @@ import TextField from '../../fields/textField/TextField';
 import CheckboxField from '../../fields/checkboxField/CheckboxField';
 import Grid from '../../fields/Grid';
 
-const gridPageProps = {
+const gridPageProps = props => ({
   noRows: `No teams yet!`,
   columns: [
     {
       width: 45,
       resizable: false,
       sortable: false,
-      Cell: props => <CheckboxField />,
+      Header: cellProps => (
+        <CheckboxField
+          value={props.areAllSelected}
+          onChange={value =>
+            props.setAllRowSelection(cellProps.data.map(() => value))}
+        />
+      ),
+      Cell: cellProps => (
+        <CheckboxField
+          value={props.rowSelection[cellProps.index]}
+          onChange={value => props.setRowSelection(cellProps.index, value)}
+        />
+      ),
     },
     {
       Header: 'Name',
@@ -33,12 +45,13 @@ const gridPageProps = {
       ),
     },
   ],
-};
+});
 
 const OwnedTeamsDisplay = props => (
   <div>
     <div className="input-row">
       <div className="input-group">
+        <div className="label">Team name</div>
         <TextField value={props.newTeamName} onChange={props.setNewTeamName} />
         <button
           className="button-secondary"
@@ -49,7 +62,28 @@ const OwnedTeamsDisplay = props => (
       </div>
     </div>
     <div className="input-group">
-      <Grid {...gridPageProps} data={props.ownedTeams} />
+      <Grid {...gridPageProps(props)} data={props.ownedTeams} />
+      <div
+        className={`button-footer ${props.areAnySelected
+          ? 'expanded'
+          : 'expandable'}`}
+        style={{
+          height: props.areAnySelected ? '90px' : '0px',
+        }}
+      >
+        <div className="button-group">
+          <button
+            className="button-secondary"
+            onClick={() => props.deleteRowSelection(props.rowSelection)}
+          >
+            Delete
+          </button>
+          <div className="edited-properties">
+            You've selected {props.numSelectedRows}{' '}
+            {props.numSelectedRows === 1 ? 'row' : 'rows'}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 );
