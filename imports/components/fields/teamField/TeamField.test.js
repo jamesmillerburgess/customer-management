@@ -18,6 +18,7 @@ describe('TeamField Component', () => {
     it('calls the team.search Meteor Method', () => {
       const teamSearch = jest.fn();
       Meteor._methods['team.search'] = teamSearch;
+      Meteor.res = [];
       loadOptions('a', () => null);
       expect(teamSearch).toHaveBeenCalledTimes(1);
     });
