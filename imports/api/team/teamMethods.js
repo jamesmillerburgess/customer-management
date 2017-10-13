@@ -70,23 +70,24 @@ const validateAddRemoveMember = (teamId, memberId) => {
     throw new Error('There is no user with the given memberId');
   }
   const team = Teams.findOne(teamId);
-  if (!team) {
+  if (!team && teamId) {
     return isoError('There is no team with the given teamId');
   }
   return { team, member };
 };
 
 export const addMember = (teamId, memberId) => {
-  console.log(teamId);
   const docs = validateAddRemoveMember(teamId, memberId);
   if (docs.error) {
     return docs;
   }
-  const memberIndex = docs.team.members.indexOf(memberId);
-  if (memberIndex !== -1) {
-    throw new Error('The given memberId is already on this team');
+  if (docs.team) {
+    const memberIndex = docs.team.members.indexOf(memberId);
+    if (memberIndex !== -1) {
+      throw new Error('The given memberId is already on this team');
+    }
+    Teams.update(teamId, { $push: { members: memberId } });
   }
-  Teams.update(teamId, { $push: { members: memberId } });
   Meteor.users.update(memberId, { $set: { ['profile.team']: teamId } });
 };
 
