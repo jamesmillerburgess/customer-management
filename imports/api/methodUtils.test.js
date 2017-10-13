@@ -1,8 +1,20 @@
 import { Meteor } from 'meteor/meteor';
 
-import { buildSearchRegExp } from './methodUtils';
+import { isoError, buildSearchRegExp } from './methodUtils';
 
-describe('buildSearchRegExp', () => {
+describe('isoError Funciton', () => {
+  it('returns an error on the client', () => {
+    Meteor.isClient = true;
+    Meteor.isServer = false;
+    expect(isoError().constructor.name).toBe('Object');
+  });
+  it('throws an error on the server', () => {
+    Meteor.isClient = false;
+    Meteor.isServer = true;
+    expect(isoError).toThrow();
+  });
+});
+describe('buildSearchRegExp Function', () => {
   it('returns a regular expression', () => {
     const regexp = buildSearchRegExp();
     expect(regexp instanceof RegExp).toBe(true);
