@@ -23,6 +23,11 @@ describe('teamMethods Script', () => {
     });
   });
   describe('team.remove Meteor Method', () => {
+    it('handles an array of teamIds passed', () => {
+      Teams.docs = [{ _id: 'a', members: ['b'] }];
+      Meteor.users.docs = [{ _id: 'b', teams: ['a'] }];
+      expect(() => team.remove(['a'])).not.toThrow();
+    });
     it('removes the team and updates the members', () => {
       Teams.docs = [{ _id: 'a', members: ['b'] }];
       Meteor.users.docs = [{ _id: 'b', teams: ['a'] }];
@@ -66,6 +71,7 @@ describe('teamMethods Script', () => {
     it('throws with invalid params', () => {
       Teams.docs = [{}];
       Meteor.users.docs = [{}];
+      Meteor.err = {};
       expect(() => team.addMember(null, 'b')).toThrow();
       expect(() => team.addMember('a', null)).toThrow();
       expect(() => team.addMember(1, 'b')).toThrow();
@@ -74,6 +80,7 @@ describe('teamMethods Script', () => {
     });
     it('throws if there is no matching team', () => {
       Teams.docs = [];
+      Meteor.users.docs = [{}];
       expect(() => team.addMember('a', 'b')).toThrow();
     });
     it('throws if there is no matching user', () => {

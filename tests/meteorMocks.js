@@ -35,8 +35,8 @@ export const Mongo = {
 
 export const Meteor = {
   startup: cb => cb(),
-  Error: function() {
-    return {};
+  Error: function(error) {
+    return { error };
   },
   user: function() {
     return this.loggedInUser;
