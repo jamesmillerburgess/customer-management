@@ -1,5 +1,6 @@
 import React from 'react';
 
+import TextField from '../../fields/textField/TextField';
 import TeamField from '../../fields/teamField/TeamField';
 
 const BasicInfoDisplay = props => (
@@ -12,10 +13,10 @@ const BasicInfoDisplay = props => (
   >
     <div className="input-group">
       <div className="input-label">Username</div>
-      <input
+      <TextField
         id="username"
         value={props.username}
-        onChange={e => props.setUsername(e.target.value)}
+        onChange={props.setUsername}
       />
     </div>
     <div className="input-group">
