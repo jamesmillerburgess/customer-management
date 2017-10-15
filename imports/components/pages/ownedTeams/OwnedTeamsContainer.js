@@ -8,7 +8,7 @@ const sort = (a, b) => {
   return b.createDate - a.createDate;
 };
 
-const ProfileContainer = createContainer(props => {
+const OwnedTeamsContainer = createContainer(props => {
   const user = Meteor.user();
   let ownedTeams = [];
   if (user && user.profile) {
@@ -20,4 +20,4 @@ const ProfileContainer = createContainer(props => {
   return { ...props, ownedTeams };
 }, OwnedTeamsConnect);
 
-export default ProfileContainer;
+export default OwnedTeamsContainer;
