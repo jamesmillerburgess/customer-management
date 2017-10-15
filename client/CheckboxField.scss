@@ -1,0 +1,23 @@
+.checkbox {
+  background-color: white;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd6e2;
+  border-radius: 3px;
+  transition: all 0.15s ease-out;
+}
+.checkbox:hover {
+  background-color: rgba(#cbd6e2, 0.5);
+  opacity: 1;
+}
+.checkbox:focus {
+  outline: none;
+}
+.checkbox.active {
+  border-color: #00a4bd;
+  color: #00a4bd;
+}
+.checkbox .fa {
+  transform: translate(-1px, 1px);
+}

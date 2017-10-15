@@ -4,7 +4,7 @@ import _ from 'lodash/fp';
 import validate from 'validate.js';
 
 import FieldLists from './fieldList/fieldListCollection';
-import { buildSearchRegExp } from './searchUtils';
+import { buildSearchRegExp } from './methodUtils';
 
 const CREATION = 'CREATION';
 const NOTE = 'NOTE';

@@ -1,0 +1,25 @@
+.sidebar {
+  width: 173px;
+  margin-right: 32px;
+}
+.sidebar li {
+  padding: 12px 12px 10px 8px;
+  font-weight: 300;
+  transition: background-color 0.2s linear;
+  color: #33475b;
+}
+.sidebar a.active li {
+  background-color: #eaf0f6;
+  color: #33475b;
+  font-weight: 400;
+  border-radius: 3px;
+}
+.sidebar a {
+  text-decoration: none;
+}
+.sidebar a:visited {
+}
+.sidebar li:hover {
+  background-color: #eaf0f6;
+  transition: none;
+}

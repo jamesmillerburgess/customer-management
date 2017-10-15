@@ -72,3 +72,18 @@ describe('opportunity.single Meteor Publication', () => {
     expect(() => Meteor.publications['opportunity.single']('b')).not.toThrow();
   });
 });
+describe('team.single Meteor Publication', () => {
+  it('throws without a user', () => {
+    Meteor._userId = null;
+    expect(() => Meteor.publications['team.single']('b')).toThrow();
+  });
+  it('does not throw if there is a user', () => {
+    Meteor._userId = 'a';
+    expect(() => Meteor.publications['team.single']('b')).not.toThrow();
+  });
+});
+describe('team.list Meteor Publication', () => {
+  it('does not throw', () => {
+    expect(() => Meteor.publications['team.list']([])).not.toThrow();
+  });
+});

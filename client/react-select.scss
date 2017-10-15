@@ -385,7 +385,19 @@
     -webkit-transform: rotate(1turn);
   }
 }
-.overlay-body {
+.option-value .value {
+  display: flex;
+  justify-content: space-between;
+}
+.option-value .badge {
+  background-color: rgba(black, 0.1);
+  padding: 4px 4px 2px 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 12px;
+}
+.overlay-body,
+.content .form {
   .Select-control {
     height: 40px;
     background-color: #f5f8fa;

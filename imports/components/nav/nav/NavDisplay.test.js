@@ -1,5 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 import NavDisplay from './NavDisplay';
 
@@ -40,5 +43,15 @@ describe('NavDisplay', () => {
   it("removes the 'open' menu class if the state is not open", () => {
     wrapper.setProps({ isProfileMenuOpen: false });
     expect(wrapper.find('#profile-menu').hasClass('open')).toBe(false);
+  });
+  it('renders the team name if there is one', () => {
+    wrapper.setProps({ user: {}, team: null });
+    expect(wrapper.containsMatchingElement(<div className="team-name" />)).toBe(
+      true
+    );
+    wrapper.setProps({ user: {}, team: { name: 'a' } });
+    expect(
+      wrapper.containsMatchingElement(<div className="team-name">a</div>)
+    ).toBe(true);
   });
 });

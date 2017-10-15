@@ -1,11 +1,12 @@
 button {
   border: 1px solid transparent;
   border-radius: 3px;
-  padding: 12px 24px;
+  padding: 11.5px 24px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   font-family: 'Josefin Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 button:hover {
@@ -15,6 +16,11 @@ button:hover {
 .button-primary {
   background-color: rgb(255, 122, 89);
   color: white;
+}
+
+.button-primary.disabled {
+  background-color: #ccc;
+  cursor: auto;
 }
 
 .button-secondary {
@@ -51,6 +57,7 @@ button:hover {
 .button-dismiss-overlay:hover {
   background-color: rgba(white, 0.2);
 }
+
 .button-group {
   display: flex;
   align-items: center;

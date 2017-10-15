@@ -40,6 +40,15 @@
   .nav-button:focus {
     outline: none;
   }
+  .profile-button-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .profile-button-text .username,
+  .profile-button-text .team-name {
+    line-height: 21px;
+  }
   .profile-menu {
     display: none;
     position: absolute;

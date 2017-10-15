@@ -128,16 +128,18 @@ const Timeline = props => (
                   'MMMM Do [at] h:mm a'
                 )}
               </div>
-              <div className="note">
-                {entry.outcome && (
-                  <div className="outcome">
-                    <span className="keyword">Call outcome: </span>
-                    {OUTCOME_LABELS[entry.outcome]}
-                  </div>
-                )}
-                {entry.note && <div>{entry.note}</div>}
-                {entry.text && <div>{entry.text}</div>}
-              </div>
+              {(entry.outcome || entry.note || entry.text) && (
+                <div className="note">
+                  {entry.outcome && (
+                    <div className="outcome">
+                      <span className="keyword">Call outcome: </span>
+                      {OUTCOME_LABELS[entry.outcome]}
+                    </div>
+                  )}
+                  {entry.note && <div>{entry.note}</div>}
+                  {entry.text && <div>{entry.text}</div>}
+                </div>
+              )}
             </div>
           </div>
         </div>

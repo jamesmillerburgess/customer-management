@@ -25,8 +25,11 @@
   .rt-th:hover {
     background-color: rgba(0, 157, 186, 0.101961);
   }
-  .rt-th:first-child {
-    padding: 12px 8px !important;
+  .rt-th:first-child,
+  .rt-td:first-child {
+    padding: 0 !important;
+    justify-content: space-around;
+    align-items: center;
   }
   .rt-tbody {
     font-weight: 300;

@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 
-import { buildSearchRegExp } from './searchUtils';
+import { isoError, buildSearchRegExp } from './methodUtils';
 
-describe('buildSearchRegExp', () => {
+describe('buildSearchRegExp Function', () => {
   it('returns a regular expression', () => {
     const regexp = buildSearchRegExp();
     expect(regexp instanceof RegExp).toBe(true);

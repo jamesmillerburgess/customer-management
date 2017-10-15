@@ -35,6 +35,9 @@ export const Mongo = {
 
 export const Meteor = {
   startup: cb => cb(),
+  Error: function(error) {
+    return { error };
+  },
   user: function() {
     return this.loggedInUser;
   },
@@ -94,3 +97,12 @@ export const Accounts = {
 export const createContainer = (options = {}, Component) => props => (
   <Component {...options(props)} />
 );
+
+export const check = (param, type) => {
+  if (param === null && type === null) {
+    throw new Error('Check failed');
+  }
+  if (param.constructor.name !== type.name) {
+    throw new Error('Check failed');
+  }
+};

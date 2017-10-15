@@ -1,6 +1,6 @@
 {
   "name": "customer-management",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "scripts": {
     "start": "meteor run",
@@ -14,13 +14,13 @@
     "deep-equal": "^1.0.1",
     "lodash": "^4.17.4",
     "meteor-node-stubs": "~0.2.4",
-    "moment": "^2.18.1",
-    "react": "^15.6.2",
+    "moment": "^2.19.1",
+    "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-datetime": "^2.10.3",
     "react-dnd": "^2.5.4",
     "react-dnd-html5-backend": "^2.5.4",
-    "react-grid-layout": "^0.15.3",
+    "react-grid-layout": "^0.16.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -39,12 +39,13 @@
     "babel-preset-react": "^6.24.1",
     "codeclimate": "0.0.32",
     "codeclimate-test-reporter": "^0.5.0",
-    "enzyme": "^2.9.1",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "jsdom": "^11.3.0",
-    "react-dom": "^15.6.2",
-    "react-test-renderer": "^15.6.2",
+    "react-dom": "^16.0.0",
+    "react-test-renderer": "^16.0.0",
     "regenerator-runtime": "^0.11.0"
   }
 }

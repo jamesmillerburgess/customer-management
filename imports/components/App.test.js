@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { shallow } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import { Meteor } from 'meteor/meteor ';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 import App, { hasReduxDevTools } from './App.js';
 import HomeConnect from './pages/home/HomeConnect';

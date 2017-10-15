@@ -1,7 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import { Meteor } from 'meteor/meteor';
 import { BrowserRouter } from 'react-router-dom';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 import AppDisplay, {
   renderRoute,

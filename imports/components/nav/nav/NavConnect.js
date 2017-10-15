@@ -17,7 +17,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   goToProfile: e => {
     dispatch(setNavProp('isProfileMenuOpen', false));
     e.preventDefault();
-    ownProps.history.push('/profile');
+    ownProps.history.push('/profile/basic-info');
   },
   tryLogout: e => {
     dispatch(setNavProp('isProfileMenuOpen', false));

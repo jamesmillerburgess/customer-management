@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+
 export const escapeRegExp = text =>
   text.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
 
