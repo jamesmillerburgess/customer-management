@@ -2,7 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Meteor } from 'meteor/meteor';
 
-import TeamField, { optionRenderer, loadOptions } from './TeamField';
+import TeamField, {
+  optionRenderer,
+  valueRenderer,
+  loadOptions,
+} from './TeamField';
 
 describe('TeamField Component', () => {
   let wrapper;
@@ -12,6 +16,17 @@ describe('TeamField Component', () => {
   describe('optionRenderer Function', () => {
     it('does not throw', () => {
       expect(() => shallow(optionRenderer({ members: [] }))).not.toThrow();
+    });
+    it('renders a badge if there is at least one member', () => {
+      const optionRendererWrapper = shallow(optionRenderer({ members: [{}] }));
+      expect(
+        optionRendererWrapper.containsMatchingElement(<div>{1}</div>)
+      ).toBe(true);
+    });
+  });
+  describe('valueRenderer Function', () => {
+    it('does not throw', () => {
+      expect(() => shallow(valueRenderer({ members: [] }))).not.toThrow();
     });
   });
   describe('loadOptions Function', () => {

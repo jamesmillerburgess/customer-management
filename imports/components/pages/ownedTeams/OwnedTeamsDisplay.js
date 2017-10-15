@@ -5,7 +5,7 @@ import TextField from '../../fields/textField/TextField';
 import CheckboxField from '../../fields/checkboxField/CheckboxField';
 import Grid from '../../fields/Grid';
 
-const gridPageProps = props => ({
+export const gridPageProps = props => ({
   noRows: `No teams yet!`,
   columns: [
     {

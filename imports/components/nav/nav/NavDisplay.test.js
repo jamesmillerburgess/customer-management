@@ -41,4 +41,14 @@ describe('NavDisplay', () => {
     wrapper.setProps({ isProfileMenuOpen: false });
     expect(wrapper.find('#profile-menu').hasClass('open')).toBe(false);
   });
+  it('renders the team name if there is one', () => {
+    wrapper.setProps({ user: {}, team: null });
+    expect(wrapper.containsMatchingElement(<div className="team-name" />)).toBe(
+      true
+    );
+    wrapper.setProps({ user: {}, team: { name: 'a' } });
+    expect(
+      wrapper.containsMatchingElement(<div className="team-name">a</div>)
+    ).toBe(true);
+  });
 });

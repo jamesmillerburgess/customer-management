@@ -1,14 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 
-export const isoError = (error, reason, details) => {
-  const meteorError = new Meteor.Error(error, reason, details);
-  if (Meteor.isClient) {
-    return meteorError;
-  } else if (Meteor.isServer) {
-    throw meteorError;
-  }
-};
-
 export const escapeRegExp = text =>
   text.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
 

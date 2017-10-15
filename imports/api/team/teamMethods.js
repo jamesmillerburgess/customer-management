@@ -62,45 +62,28 @@ export const update = (teamId, options) => {
   return Teams.update(teamId, update);
 };
 
-const validateAddRemoveMember = (teamId, memberId) => {
+export const addMember = (teamId, memberId) => {
   check(teamId, String);
   check(memberId, String);
-  const member = Meteor.users.findOne(memberId);
-  if (!member) {
-    throw new Error('There is no user with the given memberId');
-  }
   const team = Teams.findOne(teamId);
-  if (!team && teamId) {
-    return isoError('There is no team with the given teamId');
-  }
-  return { team, member };
-};
-
-export const addMember = (teamId, memberId) => {
-  const docs = validateAddRemoveMember(teamId, memberId);
-  if (docs.error) {
-    return docs;
-  }
-  if (docs.team) {
-    const memberIndex = docs.team.members.indexOf(memberId);
-    if (memberIndex !== -1) {
-      throw new Error('The given memberId is already on this team');
-    }
+  const member = Meteor.users.findOne(memberId);
+  if (team && team.members.indexOf(memberId) === -1) {
     Teams.update(teamId, { $push: { members: memberId } });
+  }
+  if (member.profile.team && member.profile.team !== teamId) {
+    Teams.update(member.profile.team, { $pull: { members: memberId } });
   }
   Meteor.users.update(memberId, { $set: { ['profile.team']: teamId } });
 };
 
 export const removeMember = (teamId, memberId) => {
-  const docs = validateAddRemoveMember(teamId, memberId);
-  if (docs.error) {
-    return docs;
+  check(teamId, String);
+  check(memberId, String);
+  const team = Teams.findOne(teamId);
+  const member = Meteor.users.findOne(memberId);
+  if (member.profile.team && member.profile.team === teamId) {
+    Teams.update(member.profile.team, { $pull: { members: memberId } });
   }
-  const memberIndex = docs.team.members.indexOf(memberId);
-  if (memberIndex === -1) {
-    throw new Error('The given memberId is not on this team');
-  }
-  Teams.update(teamId, { $pull: { members: memberId } });
   Meteor.users.update(memberId, { $unset: { ['profile.team']: '' } });
 };
 

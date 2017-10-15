@@ -3,10 +3,7 @@ import { Meteor } from 'meteor/meteor';
 
 import OwnedTeamsDisplay from './OwnedTeamsDisplay';
 
-import {
-  setProfileProp,
-  setProfileArrayElem,
-} from '../../../state/actions/profileActionCreators';
+import { setProfileProp } from '../../../state/actions/profileActionCreators';
 
 export const mapStateToProps = ({ profile }, ownProps) => {
   const props = {

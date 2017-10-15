@@ -6,9 +6,3 @@ export const setProfileProp = makeActionCreator(
   'prop',
   'value'
 );
-export const setProfileArrayElem = makeActionCreator(
-  AT.SET_PROFILE_ARRAY_ELEM,
-  'prop',
-  'index',
-  'value'
-);

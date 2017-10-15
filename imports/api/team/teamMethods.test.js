@@ -65,7 +65,14 @@ describe('teamMethods Script', () => {
   describe('team.addMember Meteor Method', () => {
     it('adds the member to the team', () => {
       Teams.docs = [{ members: ['c'] }];
-      Meteor.users.docs = [{}];
+      Meteor.users.docs = [{ profile: {} }];
+      expect(() => team.addMember('a', 'b')).not.toThrow();
+    });
+    it('removes the member from its old team', () => {
+      Meteor.users.docs = [{ profile: { team: 'a' } }];
+      expect(() => team.addMember('c', 'b')).not.toThrow();
+      Teams.docs = [{ members: ['c'] }];
+      Meteor.users.docs = [{ profile: { team: 'a' } }];
       expect(() => team.addMember('a', 'b')).not.toThrow();
     });
     it('throws with invalid params', () => {
@@ -97,7 +104,11 @@ describe('teamMethods Script', () => {
   describe('team.removeMember Meteor Method', () => {
     it('removes the member from the team', () => {
       Teams.docs = [{ members: ['b'] }];
-      Meteor.users.docs = [{}];
+      Meteor.users.docs = [{ profile: {} }];
+      expect(() => team.removeMember('a', 'b')).not.toThrow();
+      Meteor.users.docs = [{ profile: { team: 'a' } }];
+      expect(() => team.removeMember('a', 'b')).not.toThrow();
+      Meteor.users.docs = [{ profile: { team: 'c' } }];
       expect(() => team.removeMember('a', 'b')).not.toThrow();
     });
     it('throws with invalid params', () => {
