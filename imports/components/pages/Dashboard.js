@@ -29,7 +29,7 @@ const Dashboard = () => (
         cols={2}
         rowHeight={450}
         width={1200}
-        verticalCompact={false}
+        compactType="vertical"
       >
         <div key={'a'} className="panel">
           <Panel title="Team Activity">
