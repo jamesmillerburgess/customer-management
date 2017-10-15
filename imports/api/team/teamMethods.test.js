@@ -83,22 +83,21 @@ describe('teamMethods Script', () => {
       expect(() => team.addMember('a', null)).toThrow();
       expect(() => team.addMember(1, 'b')).toThrow();
       expect(() => team.addMember('a', 2)).toThrow();
-      expect(() => team.addMember('a', '')).toThrow();
     });
-    it('throws if there is no matching team', () => {
+    it('does not throw if there is no matching team', () => {
       Teams.docs = [];
       Meteor.users.docs = [{}];
-      expect(() => team.addMember('a', 'b')).toThrow();
+      expect(() => team.addMember('a', 'b')).not.toThrow();
     });
-    it('throws if there is no matching user', () => {
+    it('does not throw if there is no matching user', () => {
       Teams.docs = [{}];
       Meteor.users.docs = [];
-      expect(() => team.addMember('a', 'b')).toThrow();
+      expect(() => team.addMember('a', 'b')).not.toThrow();
     });
-    it('throws if the memberId is in the members array', () => {
+    it('does not throw if the memberId is in the members array', () => {
       Teams.docs = [{ members: ['b'] }];
       Meteor.users.docs = [{}];
-      expect(() => team.addMember('a', 'b')).toThrow();
+      expect(() => team.addMember('a', 'b')).not.toThrow();
     });
   });
   describe('team.removeMember Meteor Method', () => {
@@ -118,22 +117,21 @@ describe('teamMethods Script', () => {
       expect(() => team.removeMember('a', null)).toThrow();
       expect(() => team.removeMember(1, 'b')).toThrow();
       expect(() => team.removeMember('a', 2)).toThrow();
-      expect(() => team.removeMember('a', '')).toThrow();
     });
-    it('throws if there is no matching team', () => {
+    it('does not throw if there is no matching team', () => {
       Teams.docs = [];
       Meteor.users.docs = [{}];
-      expect(() => team.removeMember('a', 'b')).toThrow();
+      expect(() => team.removeMember('a', 'b')).not.toThrow();
     });
-    it('throws if there is no matching user', () => {
+    it('does not throw if there is no matching user', () => {
       Teams.docs = [{}];
       Meteor.users.docs = [];
-      expect(() => team.removeMember('a', 'b')).toThrow();
+      expect(() => team.removeMember('a', 'b')).not.toThrow();
     });
-    it('throws if the memberId is not in the members array', () => {
+    it('does not throw if the memberId is not in the members array', () => {
       Teams.docs = [{ members: ['c'] }];
       Meteor.users.docs = [{}];
-      expect(() => team.removeMember('a', 'b')).toThrow();
+      expect(() => team.removeMember('a', 'b')).not.toThrow();
     });
   });
   describe('team.search Meteor Method', () => {
