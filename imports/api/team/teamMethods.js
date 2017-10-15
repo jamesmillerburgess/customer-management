@@ -70,7 +70,7 @@ export const addMember = (teamId, memberId) => {
   if (team && team.members.indexOf(memberId) === -1) {
     Teams.update(teamId, { $push: { members: memberId } });
   }
-  if (member.profile.team && member.profile.team !== teamId) {
+  if (member.profile && member.profile.team && member.profile.team !== teamId) {
     Teams.update(member.profile.team, { $pull: { members: memberId } });
   }
   Meteor.users.update(memberId, { $set: { ['profile.team']: teamId } });
@@ -81,7 +81,7 @@ export const removeMember = (teamId, memberId) => {
   check(memberId, String);
   const team = Teams.findOne(teamId);
   const member = Meteor.users.findOne(memberId);
-  if (member.profile.team && member.profile.team === teamId) {
+  if (member.profile && member.profile.team && member.profile.team === teamId) {
     Teams.update(member.profile.team, { $pull: { members: memberId } });
   }
   Meteor.users.update(memberId, { $unset: { ['profile.team']: '' } });
