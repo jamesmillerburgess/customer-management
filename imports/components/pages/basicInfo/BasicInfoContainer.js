@@ -7,7 +7,7 @@ const BasicInfoContainer = createContainer(props => {
   if (!Meteor.loggingIn() && !props.hasLoaded) {
     props.setHasLoaded(true);
     props.setUsername(Meteor.user().username);
-    props.setTeam(Meteor.user().profile.team);
+    props.setTeam(Meteor.user().profile && Meteor.user().profile.team);
   }
   return props;
 }, BasicInfoDisplay);
