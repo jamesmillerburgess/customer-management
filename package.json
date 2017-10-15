@@ -14,7 +14,7 @@
     "deep-equal": "^1.0.1",
     "lodash": "^4.17.4",
     "meteor-node-stubs": "~0.2.4",
-    "moment": "^2.18.1",
+    "moment": "^2.19.1",
     "react": "^15.6.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-datetime": "^2.10.3",
