@@ -4,11 +4,12 @@ import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import Panel from '../fields/Panel';
 import './Dashboard.scss';
 import PageHeader from './PageHeader';
+import TeamActivity from '../widgets/teamActivity/TeamActivity';
 
 const GridLayout = WidthProvider(ReactGridLayout);
 
 const headerProps = {
-  title: 'Opportunities',
+  title: 'Dashboard',
   searchPlaceholder: 'Search for a report',
   addButtonText: 'Add report',
 };
@@ -32,13 +33,14 @@ const Dashboard = () => (
       >
         <div key={'a'} className="panel">
           <Panel title="Team Activity">
-            <div className="body-title">Work as a team</div>
+            <TeamActivity />
+            {/* <div className="body-title">Work as a team</div>
             <div className="body-text">
               Gain insight into the tasks created, emails sent, calls placed,
               and meetings booked from your sales team. Create a task and you'll
               see it here.
             </div>
-            <button className="button-neutral">Create a task</button>
+            <button className="button-neutral">Create a task</button> */}
           </Panel>
         </div>
         <div key={'b'} className="panel">

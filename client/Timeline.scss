@@ -12,13 +12,17 @@
 .timeline-entry-enter {
   max-height: 0.01px;
 }
-
 .timeline-entry-enter.timeline-entry-enter-active {
   max-height: 200px;
   transition: max-height 1s;
-  // height: auto;
-  // max-height: none;
-  // transition: height 500ms ease-in;
+}
+.timeline-entry a {
+  text-decoration: none;
+  font-weight: 400;
+  color: #0091ae;
+}
+.timeline-entry a:hover {
+  text-decoration: underline;
 }
 .timeline-icon-container {
   display: flex;
@@ -61,6 +65,7 @@
 }
 .timeline-details-body {
   flex-grow: 1;
+  text-align: left;
 }
 .timeline-message {
   font-weight: 300;

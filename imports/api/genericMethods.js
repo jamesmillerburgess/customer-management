@@ -4,6 +4,7 @@ import _ from 'lodash/fp';
 import validate from 'validate.js';
 
 import FieldLists from './fieldList/fieldListCollection';
+import Activity from './activity/activityCollection';
 import { buildSearchRegExp } from './methodUtils';
 
 const CREATION = 'CREATION';
@@ -12,25 +13,34 @@ const CALL = 'CALL';
 const EMAIL = 'EMAIL';
 const MEETING = 'MEETING';
 
+export const addActivity = (activity, collection, id) => {
+  Activity.insert({
+    ...activity,
+    parent: id,
+    parentCollection: collection._name,
+  });
+};
+
 export const create = (collection, object) => {
   if (!object || !object.name) {
     throw new Error();
   }
-  return collection.insert({
+  const activity = {
+    id: new Mongo.ObjectID()._str,
+    type: CREATION,
+    timestamp: new Date(),
+    userId: Meteor.userId(),
+    keyword: object.name,
+  };
+  const id = collection.insert({
     ...object,
     users: [Meteor.userId()],
     createDate: new Date(),
     isArchived: false,
-    timeline: [
-      {
-        id: new Mongo.ObjectID()._str,
-        type: CREATION,
-        timestamp: new Date(),
-        userId: Meteor.userId(),
-        keyword: object.name,
-      },
-    ],
+    timeline: [activity],
   });
+  addActivity(activity, collection, id);
+  return id;
 };
 
 export const saveProperties = (
@@ -54,20 +64,18 @@ export const logInteraction = (collection, objectId, interaction, type) => {
   if (!validate.isString(objectId)) {
     throw new Error('Parameter objectId must be a string');
   }
-  collection.update(objectId, {
-    $push: {
-      timeline: {
-        id: interaction.id,
-        type,
-        timestamp: new Date(),
-        userId: Meteor.userId(),
-        keyword: Meteor.users.findOne(Meteor.userId()).username,
-        time: interaction.time,
-        outcome: interaction.outcome,
-        text: interaction.text,
-      },
-    },
-  });
+  const activity = {
+    id: interaction.id,
+    type,
+    timestamp: new Date(),
+    userId: Meteor.userId(),
+    keyword: Meteor.users.findOne(Meteor.userId()).username,
+    time: interaction.time,
+    outcome: interaction.outcome,
+    text: interaction.text,
+  };
+  collection.update(objectId, { $push: { timeline: activity } });
+  addActivity(activity, collection, objectId);
 };
 
 export const search = (collection, searchText) => {
