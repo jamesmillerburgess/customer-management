@@ -1,5 +1,9 @@
 ## v0.8.0 – Teams
 
+* Updated profile page with Basic Info and Owned Teams section
+* Change own team from Basic Info
+* Create/Delete teams from Owned Teams section
+
 ## v0.7.0 – Interactions
 
 * Log call, Log email, and Log meeting interactions
