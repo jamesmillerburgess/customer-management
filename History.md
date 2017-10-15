@@ -1,3 +1,5 @@
+## v0.9.0 – Dashboard
+
 ## v0.8.0 – Teams
 
 * Updated profile page with Basic Info and Owned Teams section
