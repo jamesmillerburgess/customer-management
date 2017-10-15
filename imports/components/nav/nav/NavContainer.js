@@ -8,7 +8,7 @@ import Teams from '../../../api/team/teamCollection';
 const NavContainer = createContainer(props => {
   const user = Meteor.user();
   let team = '';
-  if (user) {
+  if (user && user.profile) {
     Meteor.subscribe('team.single', user.profile.team);
     team = Teams.findOne(user.profile.team);
   }
