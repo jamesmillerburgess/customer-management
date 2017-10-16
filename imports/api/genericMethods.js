@@ -21,7 +21,7 @@ export const addActivity = (activity, collection, id) => {
     collection && collection.findOne(id)
       ? collection.findOne(id).name
       : undefined;
-  Activity.insert({
+  return Activity.insert({
     ...activity,
     username,
     parent: id,
@@ -46,9 +46,10 @@ export const create = (collection, object) => {
     users: [Meteor.userId()],
     createDate: new Date(),
     isArchived: false,
-    timeline: [activity],
+    timeline: [],
   });
-  addActivity(activity, collection, id);
+  const activityId = addActivity(activity, collection, id);
+  collection.update(id, { $push: { timeline: Activity.findOne(activityId) } });
   return id;
 };
 
@@ -83,8 +84,10 @@ export const logInteraction = (collection, objectId, interaction, type) => {
     outcome: interaction.outcome,
     text: interaction.text,
   };
-  collection.update(objectId, { $push: { timeline: activity } });
-  addActivity(activity, collection, objectId);
+  const activityId = addActivity(activity, collection, objectId);
+  collection.update(objectId, {
+    $push: { timeline: Activity.findOne(activityId) },
+  });
 };
 
 export const search = (collection, searchText) => {

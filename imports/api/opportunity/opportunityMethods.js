@@ -3,6 +3,7 @@ import validate from 'validate.js';
 
 import Opportunities from './opportunityCollection';
 import Companies from '../company/companyCollection';
+import Activity from '../activity/activityCollection';
 
 import registerGenericMethods, { addActivity } from '../genericMethods';
 
@@ -54,7 +55,7 @@ export const updateStatus = (opportunityId, { status, id }) => {
     throw new Error('No opportunity with this id');
   }
   if (status === opportunity.status) {
-    throw new Error('From and to statuses are the same');
+    return;
   }
   const type = getStatusDirection(opportunity.status, status);
   const activity = {
@@ -69,14 +70,16 @@ export const updateStatus = (opportunityId, { status, id }) => {
   };
   Opportunities.update(opportunityId, {
     $set: { status },
-    $push: { timeline: activity },
+  });
+  const activityId = addActivity(activity, Opportunities, opportunityId);
+  Opportunities.update(opportunityId, {
+    $push: { timeline: Activity.findOne(activityId) },
   });
   if (opportunity.company && opportunity.company._id) {
     Companies.update(opportunity.company._id, {
-      $push: { timeline: activity },
+      $push: { timeline: Activity.findOne(activityId) },
     });
   }
-  addActivity(activity, Opportunities, opportunityId);
 };
 
 Meteor.methods({ 'opportunity.updateStatus': updateStatus });
