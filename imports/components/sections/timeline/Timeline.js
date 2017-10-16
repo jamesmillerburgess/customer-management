@@ -5,7 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import TimelineEntry from '../timelineEntry/TimelineEntry';
 
-const sort = (a, b) => {
+export const sort = (a, b) => {
   const aTime = a.time || a.timestamp;
   const bTime = b.time || b.timestamp;
   return bTime - aTime;
@@ -27,7 +27,13 @@ const Timeline = props => (
     >
       {props.timeline
         .sort(sort)
-        .map((entry, index) => <TimelineEntry key={entry.id} {...entry} />)}
+        .map((entry, index) => (
+          <TimelineEntry
+            key={entry.id}
+            {...entry}
+            isNotLast={index !== props.timeline.length - 1}
+          />
+        ))}
     </ReactCSSTransitionGroup>
   </div>
 );

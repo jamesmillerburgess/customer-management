@@ -20,7 +20,7 @@ const TeamActivityContainer = createContainer(props => {
     const range = moment.range(
       moment().date(1),
       moment()
-        .add('months', 1)
+        .add(1, 'months')
         .date(0)
     );
     activity = Activity.find()

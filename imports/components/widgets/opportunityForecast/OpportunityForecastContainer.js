@@ -41,7 +41,7 @@ const OpportunityForecastContainer = createContainer(props => {
       const range = moment.range(
         moment().date(1),
         moment()
-          .add('months', 1)
+          .add(1, 'months')
           .date(0)
       );
       opportunityForecast = Opportunities.find({
