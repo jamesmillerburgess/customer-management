@@ -1,5 +1,8 @@
 ## v0.9.0 – Dashboard
 
+* Team Activity dashboard widget
+* Opportunity Forecast dashboard widget
+
 ## v0.8.0 – Teams
 
 * Updated profile page with Basic Info and Owned Teams section
