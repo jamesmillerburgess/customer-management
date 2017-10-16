@@ -49,11 +49,11 @@ describe('TimelineEntry Component', () => {
   });
   describe('TIMELINE_MESSAGES Object', () => {
     it('returns some functions', () => {
-      expect(TIMELINE_MESSAGES.CREATION).not.toThrow();
-      expect(TIMELINE_MESSAGES.NOTE).not.toThrow();
-      expect(TIMELINE_MESSAGES.CALL).not.toThrow();
-      expect(TIMELINE_MESSAGES.EMAIL).not.toThrow();
-      expect(TIMELINE_MESSAGES.MEETING).not.toThrow();
+      expect(() => TIMELINE_MESSAGES.CREATION({})).not.toThrow();
+      expect(() => TIMELINE_MESSAGES.NOTE({})).not.toThrow();
+      expect(() => TIMELINE_MESSAGES.CALL({})).not.toThrow();
+      expect(() => TIMELINE_MESSAGES.EMAIL({})).not.toThrow();
+      expect(() => TIMELINE_MESSAGES.MEETING({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.STATUS_CHANGE_FORWARD({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.STATUS_CHANGE_BACKWARD({})).not.toThrow();
     });

@@ -3,6 +3,14 @@ import { Mongo } from 'meteor/mongo';
 import registerGenericMethods, * as GM from './genericMethods';
 import FieldLists from './fieldList/fieldListCollection';
 
+describe('addActivity Function', () => {
+  it('handles having a user or not', () => {
+    Meteor.loggedInUser = { username: 'a' };
+    expect(() => GM.addActivity({}, FieldLists, 'a')).not.toThrow();
+    FieldLists._name = 'hello';
+    expect(() => GM.addActivity({}, FieldLists, 'a')).not.toThrow();
+  });
+});
 describe('create Function', () => {
   it('does not throw', () => {
     const collection = new Mongo.Collection();

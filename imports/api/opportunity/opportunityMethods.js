@@ -76,7 +76,7 @@ export const updateStatus = (opportunityId, { status, id }) => {
       $push: { timeline: activity },
     });
   }
-  addActivity(activity, opportunity, opportunityId);
+  addActivity(activity, Opportunities, opportunityId);
 };
 
 Meteor.methods({ 'opportunity.updateStatus': updateStatus });

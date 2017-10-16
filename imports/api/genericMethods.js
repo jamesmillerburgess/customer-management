@@ -14,11 +14,19 @@ const EMAIL = 'EMAIL';
 const MEETING = 'MEETING';
 
 export const addActivity = (activity, collection, id) => {
+  const username = Meteor.user() ? Meteor.user().username : undefined;
+  const parentCollection =
+    collection && collection._name ? collection._name.toLowerCase() : undefined;
+  const parentName =
+    collection && collection.findOne(id)
+      ? collection.findOne(id).name
+      : undefined;
   Activity.insert({
     ...activity,
+    username,
     parent: id,
-    parentName: collection.findOne(id).name,
-    parentCollection: collection._name,
+    parentName,
+    parentCollection,
   });
 };
 

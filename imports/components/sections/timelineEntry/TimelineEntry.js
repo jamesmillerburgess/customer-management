@@ -41,26 +41,57 @@ export const OUTCOME_LABELS = {
 
 const StatusChangeMessage = (props, direction) => (
   <span>
-    Opportunity{' '}
+    {props.username || 'Someone'} moved{' '}
     <Link to={`/opportunities/${props.opportunityId}`} className="keyword">
       {props.opportunityName}
     </Link>{' '}
-    moved {direction} from{' '}
+    {direction} from{' '}
     <span className="keyword">{STATUS_LABELS[props.from]}</span> to{' '}
     <span className="keyword">{STATUS_LABELS[props.to]}</span>
   </span>
 );
 
 export const TIMELINE_MESSAGES = {
-  CREATION: props => 'was created',
-  NOTE: props =>
-    `left a note ${props.parentName ? `on ${props.parentName}` : ''}`,
-  CALL: props =>
-    `made a call ${props.parentName ? `to ${props.parentName}` : ''}`,
-  EMAIL: props =>
-    `sent an email ${props.parentName ? `to ${props.parentName}` : ''}`,
-  MEETING: props =>
-    `had a meeting ${props.parentName ? `with ${props.parentName}` : ''}`,
+  CREATION: props => (
+    <span>
+      {props.username || 'Someone'} created{' '}
+      <Link to={`/${props.parentCollection}/${props.parent}`}>
+        {props.parentName}
+      </Link>
+    </span>
+  ),
+  NOTE: props => (
+    <span>
+      {props.username || 'Someone'} left a note on{' '}
+      <Link to={`/${props.parentCollection}/${props.parent}`}>
+        {props.parentName}
+      </Link>
+    </span>
+  ),
+  CALL: props => (
+    <span>
+      {props.username || 'Someone'} made a call to{' '}
+      <Link to={`/${props.parentCollection}/${props.parent}`}>
+        {props.parentName}
+      </Link>
+    </span>
+  ),
+  EMAIL: props => (
+    <span>
+      {props.username || 'Someone'} sent an email to{' '}
+      <Link to={`/${props.parentCollection}/${props.parent}`}>
+        {props.parentName}
+      </Link>
+    </span>
+  ),
+  MEETING: props => (
+    <span>
+      {props.username || 'Someone'} had a meeting with{' '}
+      <Link to={`/${props.parentCollection}/${props.parent}`}>
+        {props.parentName}
+      </Link>
+    </span>
+  ),
   STATUS_CHANGE_FORWARD: props => StatusChangeMessage(props, 'forward'),
   STATUS_CHANGE_BACKWARD: props => StatusChangeMessage(props, 'backward'),
 };
@@ -98,7 +129,7 @@ const TimelineEntry = props => (
       <img className="timeline-avatar" src={TIMELINE_AVATARS[props.type]} />
       <div className="timeline-details-body">
         <div className="timeline-message">
-          <span className="keyword">{props.keyword}</span>{' '}
+          {/* <span className="keyword">{props.keyword}</span>{' '} */}
           {TIMELINE_MESSAGES[props.type](props)}
         </div>
         <div className="timestamp">
