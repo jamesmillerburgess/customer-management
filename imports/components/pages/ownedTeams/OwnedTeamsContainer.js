@@ -13,7 +13,7 @@ const OwnedTeamsContainer = createContainer(props => {
   let ownedTeams = [];
   if (user && user.profile) {
     Meteor.subscribe('team.list', user.profile.ownedTeams);
-    ownedTeams = Teams.find({ _id: { $in: user.profile.ownedTeams } })
+    ownedTeams = Teams.find({ _id: { $in: user.profile.ownedTeams || [] } })
       .fetch()
       .sort(sort);
   }
