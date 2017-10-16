@@ -37,7 +37,7 @@ export const team = (collection, id) => {
   if (team && team.members) {
     return collection.find({ 'users.0': { $in: team.members } });
   }
-  return null;
+  return collection.find({ 'users.0': Meteor.userId() });
 };
 
 Meteor.publish({

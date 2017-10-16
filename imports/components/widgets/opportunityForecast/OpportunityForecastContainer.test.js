@@ -43,9 +43,9 @@ describe('OpportunityForecastContainer Component', () => {
     Meteor.loggedInUser = { profile: {} };
     Teams.docs = [{ members: null }];
     wrapper.setProps({});
-    expect(wrapper.props().opportunityForecast).toEqual([0, 0, 0, 0, 0, 0, 0]);
+    expect(wrapper.props().opportunityForecast).toEqual([0, 0, 0, 0, 0, 1, 0]);
     Teams.docs = [];
     wrapper.setProps({});
-    expect(wrapper.props().opportunityForecast).toEqual([0, 0, 0, 0, 0, 0, 0]);
+    expect(wrapper.props().opportunityForecast).toEqual([0, 0, 0, 0, 0, 1, 0]);
   });
 });

@@ -37,29 +37,28 @@ const OpportunityForecastContainer = createContainer(props => {
     Meteor.subscribe('opportunity.team', teamId);
     Meteor.subscribe('team.single', teamId);
     const team = Teams.findOne(teamId);
-    if (team && team.members) {
-      const range = moment.range(
-        moment().date(1),
-        moment()
-          .add(1, 'months')
-          .date(0)
+    const ids = team && team.members ? team.members : [Meteor.userId()];
+    const range = moment.range(
+      moment().date(1),
+      moment()
+        .add(1, 'months')
+        .date(0)
+    );
+    opportunityForecast = Opportunities.find({
+      'users.0': { $in: ids },
+    })
+      .fetch()
+      .filter(opp => range.contains(moment(opp.closeDate)))
+      .reduce(
+        (prev, curr) => {
+          const i = STATUS_VALUES.indexOf(curr.status);
+          if (i !== -1) {
+            prev[i] += +curr.amount * STATUS_PROBABILITIES[i];
+          }
+          return prev;
+        },
+        [0, 0, 0, 0, 0, 0, 0]
       );
-      opportunityForecast = Opportunities.find({
-        'users.0': { $in: team.members },
-      })
-        .fetch()
-        .filter(opp => range.contains(moment(opp.closeDate)))
-        .reduce(
-          (prev, curr) => {
-            const i = STATUS_VALUES.indexOf(curr.status);
-            if (i !== -1) {
-              prev[i] += +curr.amount * STATUS_PROBABILITIES[i];
-            }
-            return prev;
-          },
-          [0, 0, 0, 0, 0, 0, 0]
-        );
-    }
   }
   return { ...props, opportunityForecast };
 }, OpportunityForecastDisplay);

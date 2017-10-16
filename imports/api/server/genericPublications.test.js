@@ -81,9 +81,13 @@ describe('opportunity.team Meteor Publication', () => {
       'Object'
     );
     Teams.docs = [{}];
-    expect(Meteor.publications['opportunity.team']('a')).toBe(null);
+    expect(Meteor.publications['opportunity.team']('a').constructor.name).toBe(
+      'Object'
+    );
     Teams.docs = [];
-    expect(Meteor.publications['opportunity.team']('a')).toBe(null);
+    expect(Meteor.publications['opportunity.team']('a').constructor.name).toBe(
+      'Object'
+    );
   });
 });
 describe('team.single Meteor Publication', () => {
