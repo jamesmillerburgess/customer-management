@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import TimelineEntry from '../../sections/timelineEntry/TimelineEntry';
 
@@ -23,9 +24,19 @@ const TeamActivityDisplay = props =>
       <div className="body-title">Work as a team</div>
       <div className="body-text">
         Gain insight into the contacts, companies, and opportunities created,
-        and the interaction with your sales team afterwards. Once there has been
-        some activity by you or someone on your team, it will display in this
-        widget.
+        and the interaction with your sales team afterwards.
+        <br />
+        <br />
+        Once there has been some activity by you or someone on your team, it
+        will display in this widget.
+        <br />
+        <br />
+        If you don't have a team yet, you can add one from your profile page.
+        <br />
+        <br />
+        <Link to="/profile/basic-info">
+          <button className="button-secondary">Go to profile</button>
+        </Link>
       </div>
     </div>
   );
