@@ -31,7 +31,7 @@ const CompanyField = props => (
         className="icon fa fa-fw fa-building-o"
         onClick={e => {
           e.preventDefault();
-          props.history.push(`/companies/${props.value}`);
+          props.history.push(`/companies/${props.value._id || props.value}`);
         }}
       />
     ) : null}
