@@ -9,7 +9,7 @@ const statuses = [
   { title: 'APPOINTMENT SCHEDULED', color: '#fb9d95' },
   { title: 'QUALIFIED TO BUY', color: '#ef91a4' },
   { title: 'PRESENTATION SCHEDULED', color: '#da89b2' },
-  { title: 'DECISION MAKER BOUGHT-IN', color: '#da89b2' },
+  { title: 'DECISION MAKER BOUGHT-IN', color: '#bc85bd' },
   { title: 'CONTRACT SENT', color: '#aa85c0' },
   { title: 'CLOSED WON', color: '#9784c2' },
   { title: 'CLOSED LOST', color: '#516f90' },

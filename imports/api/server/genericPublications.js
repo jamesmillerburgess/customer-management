@@ -32,6 +32,14 @@ export const list = (collection, ids) => {
   return collection.find({ _id: { $in: ids } });
 };
 
+export const team = (collection, id) => {
+  const team = Teams.findOne(id);
+  if (team && team.members) {
+    return collection.find({ 'users.0': { $in: team.members } });
+  }
+  return null;
+};
+
 Meteor.publish({
   'configurations.all': () => [all(FieldOptions), all(FieldLists)],
   'contact.user': () => user(Contacts),
@@ -40,6 +48,7 @@ Meteor.publish({
   'contact.single': id => single(Contacts, id),
   'company.single': id => single(Companies, id),
   'opportunity.single': id => single(Opportunities, id),
+  'opportunity.team': id => team(Opportunities, id),
   'team.single': id => single(Teams, id),
   'team.list': ids => list(Teams, ids),
 });
