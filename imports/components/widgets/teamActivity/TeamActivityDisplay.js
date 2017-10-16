@@ -23,7 +23,9 @@ const TeamActivityDisplay = props =>
       <div className="body-title">Work as a team</div>
       <div className="body-text">
         Gain insight into the contacts, companies, and opportunities created,
-        and the interaction with your sales team afterwards.
+        and the interaction with your sales team afterwards. Once there has been
+        some activity by you or someone on your team, it will display in this
+        widget.
       </div>
     </div>
   );
