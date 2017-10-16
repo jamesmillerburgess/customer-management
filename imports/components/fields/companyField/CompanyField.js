@@ -31,6 +31,9 @@ const CompanyField = props => (
         className="icon fa fa-fw fa-building-o"
         onClick={e => {
           e.preventDefault();
+          // An older version stored the company as an object with an _id prop.
+          // Later we should be able to update the database and remove this
+          // condition.
           props.history.push(`/companies/${props.value._id || props.value}`);
         }}
       />
