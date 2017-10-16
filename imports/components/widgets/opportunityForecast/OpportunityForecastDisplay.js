@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import { Link } from 'react-router-dom';
 
 const data = opportunityForecast => ({
   labels: [],
@@ -89,23 +90,44 @@ const data = opportunityForecast => ({
   ],
 });
 
-const OpportunityForecastDisplay = props => (
-  <div className="opportunity-forecast">
-    <Bar
-      data={data(props.opportunityForecast)}
-      width={80}
-      height={80}
-      options={{
-        maintainAspectRatio: false,
-        scales: {
-          xAxes: [{ stacked: true }, { id: 'line', display: false }],
-          yAxes: [{ stacked: true }],
-        },
-        legend: {
-          display: false,
-        },
-      }}
-    />
-  </div>
-);
+const OpportunityForecastDisplay = props =>
+  props.opportunityForecast.reduce((prev, curr) => prev + curr, 0) > 0 ? (
+    <div className="opportunity-forecast">
+      <Bar
+        data={data(props.opportunityForecast)}
+        width={80}
+        height={80}
+        options={{
+          maintainAspectRatio: false,
+          scales: {
+            xAxes: [{ stacked: true }, { id: 'line', display: false }],
+            yAxes: [{ stacked: true }],
+          },
+          legend: {
+            display: false,
+          },
+        }}
+      />
+    </div>
+  ) : (
+    <div style={{ width: '100%' }}>
+      <div className="body-title">Forecast your sales</div>
+      <div className="body-text">
+        Keep up to date with your team's progress towards its quota each month.
+        <br />
+        <br />
+        Once your team has an opportunity closing this month, a graph of your
+        forecast will display in this widget.
+        <br />
+        <br />
+        If you don't have any opportunities yet, you can create one from the
+        opportunities page.
+        <br />
+        <br />
+        <Link to="/opportunities">
+          <button className="button-secondary">Go to opportunities</button>
+        </Link>
+      </div>
+    </div>
+  );
 export default OpportunityForecastDisplay;
