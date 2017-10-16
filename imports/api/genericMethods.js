@@ -17,6 +17,7 @@ export const addActivity = (activity, collection, id) => {
   Activity.insert({
     ...activity,
     parent: id,
+    parentName: collection.findOne(id).name,
     parentCollection: collection._name,
   });
 };

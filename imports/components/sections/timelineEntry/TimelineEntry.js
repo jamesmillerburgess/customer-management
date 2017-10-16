@@ -52,11 +52,15 @@ const StatusChangeMessage = (props, direction) => (
 );
 
 export const TIMELINE_MESSAGES = {
-  CREATION: () => 'was created',
-  NOTE: () => 'left a note',
-  CALL: () => 'made a call',
-  EMAIL: () => 'sent an email',
-  MEETING: () => 'had a meeting',
+  CREATION: props => 'was created',
+  NOTE: props =>
+    `left a note ${props.parentName ? `on ${props.parentName}` : ''}`,
+  CALL: props =>
+    `made a call ${props.parentName ? `to ${props.parentName}` : ''}`,
+  EMAIL: props =>
+    `sent an email ${props.parentName ? `to ${props.parentName}` : ''}`,
+  MEETING: props =>
+    `had a meeting ${props.parentName ? `with ${props.parentName}` : ''}`,
   STATUS_CHANGE_FORWARD: props => StatusChangeMessage(props, 'forward'),
   STATUS_CHANGE_BACKWARD: props => StatusChangeMessage(props, 'backward'),
 };
