@@ -31,7 +31,7 @@ export const STATUS_PROBABILITIES = [0.2, 0.4, 0.6, 0.8, 0.9, 1, 0];
 
 const OpportunityForecastContainer = createContainer(props => {
   const user = Meteor.user();
-  let opportunityForecast = [];
+  let opportunityForecast = [0, 0, 0, 0, 0, 0, 0];
   if (user && user.profile) {
     const teamId = user.profile.team;
     Meteor.subscribe('opportunity.team', teamId);
@@ -52,7 +52,9 @@ const OpportunityForecastContainer = createContainer(props => {
         .reduce(
           (prev, curr) => {
             const i = STATUS_VALUES.indexOf(curr.status);
-            prev[i] += +curr.amount * STATUS_PROBABILITIES[i];
+            if (i !== -1) {
+              prev[i] += +curr.amount * STATUS_PROBABILITIES[i];
+            }
             return prev;
           },
           [0, 0, 0, 0, 0, 0, 0]

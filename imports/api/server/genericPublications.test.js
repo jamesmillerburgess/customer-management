@@ -2,6 +2,8 @@ import * as pubs from './genericPublications';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
+import Teams from '../team/teamCollection';
+
 describe('configurations.all Meteor Publication', () => {
   it('throws without a user', () => {
     Meteor._userId = null;
@@ -70,6 +72,18 @@ describe('opportunity.single Meteor Publication', () => {
   it('does not throw if there is a user', () => {
     Meteor._userId = 'a';
     expect(() => Meteor.publications['opportunity.single']('b')).not.toThrow();
+  });
+});
+describe('opportunity.team Meteor Publication', () => {
+  it('returns a cursor if there is a team', () => {
+    Teams.docs = [{ members: [] }];
+    expect(Meteor.publications['opportunity.team']('a').constructor.name).toBe(
+      'Object'
+    );
+    Teams.docs = [{}];
+    expect(Meteor.publications['opportunity.team']('a')).toBe(null);
+    Teams.docs = [];
+    expect(Meteor.publications['opportunity.team']('a')).toBe(null);
   });
 });
 describe('team.single Meteor Publication', () => {
