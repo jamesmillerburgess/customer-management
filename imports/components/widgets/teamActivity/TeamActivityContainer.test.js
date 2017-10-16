@@ -7,6 +7,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 import TeamActivityContainer from './TeamActivityContainer';
 import Activity from '../../../api/activity/activityCollection';
+import Teams from '../../../api/team/teamCollection';
 
 describe('TeamActivityContainer Component', () => {
   let wrapper;
@@ -24,6 +25,18 @@ describe('TeamActivityContainer Component', () => {
   it('subscribes and populates the activity if there is a user and a profile', () => {
     Meteor.loggedInUser = { profile: {} };
     Activity.docs = [{ timestamp: 1 }, { timestamp: 2 }];
+    wrapper.setProps({});
+    expect(wrapper.props().activity).toEqual([
+      { timestamp: 2 },
+      { timestamp: 1 },
+    ]);
+    Teams.docs = [];
+    wrapper.setProps({});
+    expect(wrapper.props().activity).toEqual([
+      { timestamp: 2 },
+      { timestamp: 1 },
+    ]);
+    Teams.docs = [{ members: [] }];
     wrapper.setProps({});
     expect(wrapper.props().activity).toEqual([
       { timestamp: 2 },
