@@ -7,6 +7,7 @@ const moment = extendMoment(Moment);
 
 import TeamActivityDisplay from './TeamActivityDisplay';
 import Activity from '../../../api/activity/activityCollection';
+import Teams from '../../../api/team/teamCollection';
 
 const sort = (a, b) => {
   return b.timestamp - a.timestamp;
@@ -16,14 +17,18 @@ const TeamActivityContainer = createContainer(props => {
   const user = Meteor.user();
   let activity = [];
   if (user && user.profile) {
-    Meteor.subscribe('activity.team', user.profile.team);
+    const teamId = user.profile.teamId;
+    Meteor.subscribe('activity.team', teamId);
+    Meteor.subscribe('team.single', teamId);
     const range = moment.range(
       moment().date(1),
       moment()
         .add(1, 'months')
         .date(0)
     );
-    activity = Activity.find()
+    const team = Teams.findOne(teamId);
+    const ids = team && team.members ? team.members : [Meteor.userId()];
+    activity = Activity.find({ userId: { $in: ids } })
       .fetch()
       .filter(act => range.contains(moment(act.closeDate)))
       .sort(sort);

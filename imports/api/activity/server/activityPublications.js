@@ -8,7 +8,7 @@ export const team = (teamId, from, to) => {
   if (team && team.members) {
     return Activity.find({ userId: { $in: team.members } });
   }
-  return null;
+  return Activity.find({ userId: Meteor.userId() });
 };
 
 Meteor.publish({
