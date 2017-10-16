@@ -1,23 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import TimelineEntry from '../../sections/timelineEntry/TimelineEntry';
 
 const TeamActivityDisplay = props =>
   props.activity.length > 0 ? (
     <div className="team-activity">
-      <div className="timeline-entry">
-        <div className="timeline-icon-container">
-          <div className="timeline-icon-pre-line first" />
+      <ReactCSSTransitionGroup
+        transitionName="timeline-entry"
+        transitionAppear={false}
+        transitionEnterTimeout={500}
+        transitionEnter={true}
+        transitionLeave={false}
+      >
+        <div className="timeline-entry">
+          <div className="timeline-icon-container">
+            <div className="timeline-icon-pre-line first" />
+          </div>
         </div>
-      </div>
-      {props.activity.map((item, index) => (
-        <TimelineEntry
-          key={item.id}
-          {...item}
-          isNotLast={index !== props.activity.length - 1}
-        />
-      ))}
+        {props.activity.map((item, index) => (
+          <TimelineEntry
+            key={item.id}
+            {...item}
+            isNotLast={index !== props.activity.length - 1}
+          />
+        ))}
+      </ReactCSSTransitionGroup>
     </div>
   ) : (
     <div style={{ width: '100%' }}>
