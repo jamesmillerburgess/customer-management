@@ -29,6 +29,9 @@
   flex-direction: column;
   align-items: center;
 }
+.timeline-icon-container:first-child {
+  width: 62px;
+}
 .timeline-icon-pre-line {
   border-left: 1px solid rgb(81, 111, 144);
   height: 8px;
