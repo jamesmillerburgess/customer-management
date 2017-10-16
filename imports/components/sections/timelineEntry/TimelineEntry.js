@@ -70,7 +70,7 @@ export const TIMELINE_MESSAGES = {
   ),
   CALL: props => (
     <span>
-      {props.username || 'Someone'} made a call to{' '}
+      {props.username || 'Someone'} logged a call to{' '}
       <Link to={`/${props.parentCollection}/${props.parent}`}>
         {props.parentName}
       </Link>
@@ -78,7 +78,7 @@ export const TIMELINE_MESSAGES = {
   ),
   EMAIL: props => (
     <span>
-      {props.username || 'Someone'} sent an email to{' '}
+      {props.username || 'Someone'} logged an email to{' '}
       <Link to={`/${props.parentCollection}/${props.parent}`}>
         {props.parentName}
       </Link>
@@ -86,7 +86,7 @@ export const TIMELINE_MESSAGES = {
   ),
   MEETING: props => (
     <span>
-      {props.username || 'Someone'} had a meeting with{' '}
+      {props.username || 'Someone'} logged a meeting with{' '}
       <Link to={`/${props.parentCollection}/${props.parent}`}>
         {props.parentName}
       </Link>
