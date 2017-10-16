@@ -5,8 +5,10 @@ import Teams from '../../team/teamCollection';
 
 export const team = (teamId, from, to) => {
   const team = Teams.findOne(teamId);
-  const members = team.members;
-  return Activity.find({ userId: { $in: members } });
+  if (team && team.members) {
+    return Activity.find({ userId: { $in: team.members } });
+  }
+  return null;
 };
 
 Meteor.publish({

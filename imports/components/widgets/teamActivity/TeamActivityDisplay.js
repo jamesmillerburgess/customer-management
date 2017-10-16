@@ -19,7 +19,7 @@ const TeamActivityDisplay = props =>
       ))}
     </div>
   ) : (
-    <div>
+    <div style={{ width: '100%' }}>
       <div className="body-title">Work as a team</div>
       <div className="body-text">
         Gain insight into the contacts, companies, and opportunities created,
