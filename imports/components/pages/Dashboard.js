@@ -40,7 +40,7 @@ const Dashboard = () => (
         </div>
         <div key={'b'} className="panel">
           <Panel
-            title="Opportunity Forecast"
+            title="Opportunity Forecast (USD)"
             subtitle={moment().format('MMMM YYYY')}
           >
             <OpportunityForecast />
