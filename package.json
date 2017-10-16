@@ -5,7 +5,7 @@
   "scripts": {
     "start": "meteor run",
     "test": "jest --config=jest.config.json --coverage",
-    "watch": "jest --config=jest.config.json --coverage --watchAll",
+    "cover": "jest --config=jest.config.json --coverage --watchAll",
     "nocover": "jest --config=jest.config.json --watchAll"
   },
   "dependencies": {
