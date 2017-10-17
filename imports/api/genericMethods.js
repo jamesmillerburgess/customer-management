@@ -93,7 +93,8 @@ export const logInteraction = (collection, objectId, interaction, type) => {
 export const search = (collection, searchText) => {
   validate.isString(searchText);
   const query = { name: { $regex: buildSearchRegExp(searchText) } };
-  return collection.find(query).fetch();
+  const options = { fields: { _id: 1, name: 1 } };
+  return collection.find(query, options).fetch();
 };
 
 export const buildGenericMethods = (
