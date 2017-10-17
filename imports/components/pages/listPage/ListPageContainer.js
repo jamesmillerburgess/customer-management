@@ -8,7 +8,8 @@ export const linkMeteorData = props => {
   if (!Meteor.userId()) {
     return { ...props, items: [], loading: true };
   }
-  const loading = !Meteor.subscribe(props.subscription).ready();
+  // const loading = !Meteor.subscribe(props.subscription).ready();
+  const loading = false;
   const items = props.collection
     .find({
       users: Meteor.userId(),
