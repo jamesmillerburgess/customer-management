@@ -2,7 +2,6 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withRouter } from 'react-router';
 
-// import AsyncOptionField from '../asyncOptionField/AsyncOptionField';
 import OptionField from '../optionField/OptionField';
 import Companies from '../../../api/company/companyCollection';
 import { buildSearchRegExp } from '../../../api/methodUtils';
