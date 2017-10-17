@@ -7,8 +7,9 @@ export const mapStateToProps = ({ app, subscriptions }) => ({
   isOverlayOpen: app.isOverlayOpen || false,
   overlay: app.overlay || '',
   subscriptions: {
-    constacts: ['contact.user', Meteor.userId()],
-    companies: ['company.user', Meteor.userId()],
+    constacts: ['contact.user'],
+    companies: ['company.user'],
+    opportunities: ['opportunity.user'],
   },
 });
 

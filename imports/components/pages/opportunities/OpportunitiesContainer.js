@@ -6,14 +6,14 @@ import OpportunitiesDisplay from './OpportunitiesDisplay';
 
 const OpportunitiesContainer = createContainer(props => {
   if (!Meteor.userId()) {
-    return { ...props, opportunities: [], loading: true };
+    return { ...props, opportunities: [] };
   }
-  const loading = !Meteor.subscribe('opportunity.user').ready();
+  const loading = false;
   const opportunities = Opportunities.find({
     users: Meteor.userId(),
     isArchived: false,
   }).fetch();
-  return { ...props, opportunities, loading };
+  return { ...props, opportunities };
 }, OpportunitiesDisplay);
 
 export default OpportunitiesContainer;
