@@ -55,6 +55,9 @@ export const Meteor = {
   methods: function(methods) {
     this._methods = methods;
   },
+  apply: function() {
+    this.call.apply(arguments[0], arguments[1]);
+  },
   call: function() {
     if (typeof arguments[0] === 'string' && this._methods[arguments[0]]) {
       this._methods[arguments[0]]();
