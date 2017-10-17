@@ -64,10 +64,9 @@ class CompanyField extends React.Component {
     // the round trip.
     // Possible Improvements:
     //    1) Ensure option order doesn't change once server results come in
-    //    2) Limit merged results to 10 for consistency
-    //    3) Throttle searches
-    //    4) Cancel out-of-date searches
-    //    5) Cache searches(?)
+    //    2) Throttle searches
+    //    3) Cancel out-of-date searches
+    //    4) Cache searches(?)
 
     // Client results and application
     const lastResults = filterBySearch(this.state.options, inputValue);
