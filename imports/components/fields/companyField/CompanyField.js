@@ -15,7 +15,6 @@ export const loadOptions = (search, cb) =>
     if (err) {
       console.log(err);
     }
-    console.log(options);
     cb(null, { options });
   });
 
