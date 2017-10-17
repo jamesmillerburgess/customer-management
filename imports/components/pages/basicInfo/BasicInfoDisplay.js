@@ -8,7 +8,7 @@ const BasicInfoDisplay = props => (
     className="form"
     onSubmit={e => {
       e.preventDefault();
-      props.saveProfile({ username: props.username, team: props.team });
+      props.saveProfile({ username: props.username, team: props.team._id });
     }}
   >
     <div className="input-group">
