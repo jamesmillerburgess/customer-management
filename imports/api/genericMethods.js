@@ -30,12 +30,13 @@ export const addActivity = (activity, collection, id) => {
   });
 };
 
-export const create = (collection, object) => {
+export const create = (collection, object, activityId) => {
   if (!object || !object.name) {
     throw new Error();
   }
   const activity = {
-    id: new Mongo.ObjectID()._str,
+    _id: activityId,
+    id: activityId,
     type: CREATION,
     timestamp: new Date(),
     userId: Meteor.userId(),
@@ -48,7 +49,7 @@ export const create = (collection, object) => {
     isArchived: false,
     timeline: [],
   });
-  const activityId = addActivity(activity, collection, id);
+  addActivity(activity, collection, id);
   collection.update(id, { $push: { timeline: Activity.findOne(activityId) } });
   return id;
 };
@@ -75,6 +76,7 @@ export const logInteraction = (collection, objectId, interaction, type) => {
     throw new Error('Parameter objectId must be a string');
   }
   const activity = {
+    _id: interaction.id,
     id: interaction.id,
     type,
     timestamp: new Date(),
@@ -102,7 +104,8 @@ export const buildGenericMethods = (
   collection,
   propertiesPage
 ) => ({
-  [`${collectionName}.create`]: object => create(collection, object),
+  [`${collectionName}.create`]: (object, activityId) =>
+    create(collection, object, activityId),
   [`${collectionName}.saveProperties`]: (objectId, object) =>
     saveProperties(collection, propertiesPage, objectId, object),
   [`${collectionName}.addNote`]: (objectId, note) =>

@@ -59,6 +59,7 @@ export const updateStatus = (opportunityId, { status, id }) => {
   }
   const type = getStatusDirection(opportunity.status, status);
   const activity = {
+    _id: id,
     id,
     type,
     timestamp: new Date(),

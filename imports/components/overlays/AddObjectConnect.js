@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 import { Accounts } from 'meteor/accounts-base';
 
 import AddObjectDisplay from './AddObjectDisplay';
@@ -24,9 +25,13 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   setProp: (prop, value) => dispatch(setOverlayProp(prop, value)),
   closeOverlay: () => dispatch(setAppProp('isOverlayOpen', false)),
   create: company => {
-    const id = Meteor.apply(ownProps.createMethod, [company], {
-      returnStubValue: true,
-    });
+    const id = Meteor.apply(
+      ownProps.createMethod,
+      [company, new Mongo.ObjectID()._str],
+      {
+        returnStubValue: true,
+      }
+    );
     dispatch(setAppProp('isOverlayOpen', false));
     ownProps.history.push(`/${ownProps.pathPrefix}/${id}`);
   },
