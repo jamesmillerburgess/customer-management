@@ -20,24 +20,17 @@ export const mapStateToProps = ({ overlay }, ownProps) => {
   };
 };
 
-export const mapDispatchToProps = (dispatch, ownProps) => {
-  const handleCreateResult = (err, res) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
+export const mapDispatchToProps = (dispatch, ownProps) => ({
+  setProp: (prop, value) => dispatch(setOverlayProp(prop, value)),
+  closeOverlay: () => dispatch(setAppProp('isOverlayOpen', false)),
+  create: company => {
+    const id = Meteor.apply(ownProps.createMethod, [company], {
+      returnStubValue: true,
+    });
     dispatch(setAppProp('isOverlayOpen', false));
-    ownProps.history.push(`/${ownProps.pathPrefix}/${res}`);
-  };
-  return {
-    setProp: (prop, value) => dispatch(setOverlayProp(prop, value)),
-    closeOverlay: () => dispatch(setAppProp('isOverlayOpen', false)),
-    create: company =>
-      Meteor.apply(ownProps.createMethod, [company], {
-        onResultReceived: handleCreateResult,
-      }),
-  };
-};
+    ownProps.history.push(`/${ownProps.pathPrefix}/${id}`);
+  },
+});
 
 const AddCompanyConnect = connect(mapStateToProps, mapDispatchToProps)(
   AddObjectDisplay
