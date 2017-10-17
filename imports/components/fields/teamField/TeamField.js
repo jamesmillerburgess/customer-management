@@ -7,9 +7,10 @@ export const optionRenderer = option => (
   <div className="option-value">
     <div className="value">
       <div>{option.name} </div>
-      {option.members.length > 0 && (
-        <div className="badge">{option.members.length}</div>
-      )}
+      {option.members &&
+        option.members.length > 0 && (
+          <div className="badge">{option.members.length}</div>
+        )}
     </div>
   </div>
 );
@@ -26,7 +27,7 @@ export const loadOptions = (search, cb) =>
       console.log(err);
     }
     cb(null, {
-      options: [{ _id: '', name: 'No team assigned', members: [] }, ...options],
+      options: [{ _id: '', name: 'No team assigned' }, ...options],
     });
   });
 
