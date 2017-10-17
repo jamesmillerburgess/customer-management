@@ -24,6 +24,13 @@ export const loadOptions = (search, cb) => {
   });
 };
 
+const filterBySearch = (options, inputValue) => {
+  console.log(options);
+  const exp = buildSearchRegExp(inputValue);
+  console.log(options.filter(opt => exp.test(opt.name)));
+  return options.filter(opt => exp.test(opt.name));
+};
+
 const getClientResults = inputValue => {
   const query = { name: { $regex: buildSearchRegExp(inputValue) } };
   const options = { fields: { _id: 1, name: 1, members: 1 }, limit: 10 };
@@ -62,7 +69,7 @@ class CompanyField extends React.Component {
     //    2) Limit merged results to 10 for consistency
 
     // Client results and application
-    const lastResults = this.state.options;
+    const lastResults = filterBySearch(this.state.options, inputValue);
     const clientResults = getClientResults(inputValue);
     this.setState({ options: mergeResults(lastResults, clientResults) });
 
