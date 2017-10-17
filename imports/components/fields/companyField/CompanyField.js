@@ -25,9 +25,7 @@ export const loadOptions = (search, cb) => {
 };
 
 const filterBySearch = (options, inputValue) => {
-  console.log(options);
   const exp = buildSearchRegExp(inputValue);
-  console.log(options.filter(opt => exp.test(opt.name)));
   return options.filter(opt => exp.test(opt.name));
 };
 
@@ -44,7 +42,7 @@ const mergeResults = (a, b) => {
   const additional = b.filter(
     bItem => !a.reduce((prev, aItem) => prev || aItem._id === bItem._id, false)
   );
-  return [...a, ...additional];
+  return [...a, ...additional].slice(0, 10);
 };
 
 class CompanyField extends React.Component {
@@ -67,6 +65,9 @@ class CompanyField extends React.Component {
     // Possible Improvements:
     //    1) Ensure option order doesn't change once server results come in
     //    2) Limit merged results to 10 for consistency
+    //    3) Throttle searches
+    //    4) Cancel out-of-date searches
+    //    5) Cache searches(?)
 
     // Client results and application
     const lastResults = filterBySearch(this.state.options, inputValue);
