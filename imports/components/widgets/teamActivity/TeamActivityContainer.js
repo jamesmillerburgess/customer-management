@@ -18,8 +18,6 @@ const TeamActivityContainer = createContainer(props => {
   let activity = [];
   if (user && user.profile) {
     const teamId = user.profile.team;
-    Meteor.subscribe('activity.team', teamId);
-    Meteor.subscribe('team.single', teamId);
     const range = moment.range(
       moment().date(1),
       moment()

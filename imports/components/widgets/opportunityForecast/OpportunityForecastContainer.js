@@ -34,8 +34,6 @@ const OpportunityForecastContainer = createContainer(props => {
   let opportunityForecast = [0, 0, 0, 0, 0, 0, 0];
   if (user && user.profile) {
     const teamId = user.profile.team;
-    Meteor.subscribe('opportunity.team', teamId);
-    Meteor.subscribe('team.single', teamId);
     const team = Teams.findOne(teamId);
     const ids = team && team.members ? team.members : [Meteor.userId()];
     const range = moment.range(

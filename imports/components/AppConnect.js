@@ -10,6 +10,15 @@ export const mapStateToProps = ({ app, subscriptions }) => ({
     constacts: ['contact.user'],
     companies: ['company.user'],
     opportunities: ['opportunity.user'],
+    teams: ['team.single', Meteor.user() ? Meteor.user().profile.team : ''],
+    teamActivity: [
+      'activity.team',
+      Meteor.user() ? Meteor.user().profile.team : '',
+    ],
+    opportunityForecast: [
+      'opportunity.team',
+      Meteor.user() ? Meteor.user().profile.team : '',
+    ],
   },
 });
 

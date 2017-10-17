@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import moment from 'moment';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Panel from '../fields/Panel';
 import './Dashboard.scss';
