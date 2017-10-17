@@ -48,17 +48,16 @@ class CompanyField extends React.Component {
     this.onInputChange = this.onInputChange.bind(this);
   }
 
+  // Since we don't know which companies might be subscribed to on the client,
+  // we can include the last set of results in our client search, as they may
+  // have come from the server. This will ensure instant results in many cases
+  // and then additional results will come once the server call has completed
+  // the round trip.
+  // Possible Improvements:
+  //    1) Throttle searches
+  //    2) Cancel out-of-date searches
+  //    3) Cache searches(?)
   onInputChange(inputValue) {
-    // Since we don't know which companies might be subscribed to on the client,
-    // we can include the last set of results in our client search, as they may
-    // have come from the server. This will ensure instant results in many cases
-    // and then additional results will come once the server call has completed
-    // the round trip.
-    // Possible Improvements:
-    //    1) Throttle searches
-    //    2) Cancel out-of-date searches
-    //    3) Cache searches(?)
-
     // Client results and application
     const lastResults = filterBySearch(this.state.options, inputValue);
     const clientResults = getClientResults(inputValue);
@@ -69,6 +68,7 @@ class CompanyField extends React.Component {
       if (err) {
         console.log(err);
       }
+
       this.setState({
         // Merge results to preserve the order of the client results and only
         // extend the list as needed
