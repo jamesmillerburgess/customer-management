@@ -11,8 +11,13 @@ const NavDisplay = props => (
     <div className="button-group">
       {routes
         .filter(route => route.isNavLink)
-        .map(({ path, title, exact, className }, index) => (
-          <NavLink key={index} to={path} className={className} exact={exact}>
+        .map(({ path, navPath, title, exact, className }, index) => (
+          <NavLink
+            key={index}
+            to={navPath || path}
+            className={className}
+            exact={exact}
+          >
             <span className="nav-button">{title}</span>
           </NavLink>
         ))}

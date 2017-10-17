@@ -8,6 +8,7 @@ import { setAppProp } from '../../../state/actions/appActionCreators';
 import { clearOverlayProps } from '../../../state/actions/overlayActionCreators';
 
 export const generateListPageProps = (singular, plural, collection) => ({
+  path: `/${plural}`,
   subscription: `${singular}.user`,
   collection,
   title: plural[0].toUpperCase() + plural.slice(1),
