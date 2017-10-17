@@ -6,35 +6,27 @@ import OptionField from '../optionField/OptionField';
 import Companies from '../../../api/company/companyCollection';
 import { buildSearchRegExp } from '../../../api/methodUtils';
 
-export const optionRenderer = stakeholder => (
+export const optionRenderer = option => (
   <div className="company-value">
-    <div className="value">{stakeholder.name}</div>
+    <div className="value">{option.name}</div>
   </div>
 );
-
-export const loadOptions = (search, cb) => {
-  const query = { name: { $regex: buildSearchRegExp(search) } };
-  const options = { fields: { _id: 1, name: 1, members: 1 }, limit: 10 };
-  cb(null, Companies.find(query, options).fetch());
-  const res = Meteor.call('company.search', search, (err, options) => {
-    if (err) {
-      console.log(err);
-    }
-    cb(null, { options });
-  });
-};
 
 const filterBySearch = (options, inputValue) => {
   const exp = buildSearchRegExp(inputValue);
   return options.filter(opt => exp.test(opt.name));
 };
 
+// Search the client database for matching records, limiting to ten
 const getClientResults = inputValue => {
   const query = { name: { $regex: buildSearchRegExp(inputValue) } };
   const options = { fields: { _id: 1, name: 1, members: 1 }, limit: 10 };
   return Companies.find(query, options).fetch();
 };
 
+// Call the search method to get the results from the server
+// TODO: It looks like we could use the returnStubValue option here to remove
+// the need for the `getClientResults` function
 const getServerResults = (inputValue, cb) =>
   Meteor.call('company.search', inputValue, cb);
 
@@ -63,10 +55,9 @@ class CompanyField extends React.Component {
     // and then additional results will come once the server call has completed
     // the round trip.
     // Possible Improvements:
-    //    1) Ensure option order doesn't change once server results come in
-    //    2) Throttle searches
-    //    3) Cancel out-of-date searches
-    //    4) Cache searches(?)
+    //    1) Throttle searches
+    //    2) Cancel out-of-date searches
+    //    3) Cache searches(?)
 
     // Client results and application
     const lastResults = filterBySearch(this.state.options, inputValue);
@@ -78,7 +69,11 @@ class CompanyField extends React.Component {
       if (err) {
         console.log(err);
       }
-      this.setState({ options: serverResults });
+      this.setState({
+        // Merge results to preserve the order of the client results and only
+        // extend the list as needed
+        options: mergeResults(this.state.options, serverResults),
+      });
     });
   }
 
