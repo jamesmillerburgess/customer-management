@@ -65,7 +65,7 @@ const data = opportunityForecast => ({
 });
 
 const OpportunityForecastDisplay = props =>
-  props.opportunityForecast.reduce((prev, curr) => prev + curr, 0) > 0 ? (
+  props.showWidget ? (
     <div className="opportunity-forecast">
       <Bar
         data={data(props.opportunityForecast)}

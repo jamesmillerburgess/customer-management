@@ -16,10 +16,10 @@ describe('TeamActivityDisplay Component', () => {
     wrapper.unmount();
   });
   it('renders without error', () => {});
-  it('renders the timeline only if there is at least one activity', () => {
-    wrapper.setProps({ activity: [{ id: 'a' }] });
+  it('renders the timeline only if showWidget is true', () => {
+    wrapper.setProps({ showWidget: true, activity: [{ id: 'a' }] });
     expect(wrapper.hasClass('team-activity')).toBe(true);
-    wrapper.setProps({ activity: [] });
+    wrapper.setProps({ showWidget: false, activity: [{ id: 'a' }] });
     expect(wrapper.hasClass('team-activity')).toBe(false);
   });
 });

@@ -5,7 +5,7 @@ import TimelineEntry from '../../sections/timelineEntry/TimelineEntry';
 import WidgetPlaceholder from '../widgetPlaceholder/WidgetPlaceholder';
 
 const TeamActivityDisplay = props =>
-  props.activity.length > 0 ? (
+  props.showWidget ? (
     <div className="team-activity">
       <ReactCSSTransitionGroup
         transitionName="timeline-entry"

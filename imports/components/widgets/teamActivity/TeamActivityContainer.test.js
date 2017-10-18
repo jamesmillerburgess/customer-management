@@ -30,23 +30,28 @@ describe('TeamActivityContainer Component', () => {
       { timestamp: 2 },
       { timestamp: 1 },
     ]);
+    expect(wrapper.props().showWidget).toBe(true);
     Teams.docs = [];
     wrapper.setProps({});
     expect(wrapper.props().activity).toEqual([
       { timestamp: 2 },
       { timestamp: 1 },
     ]);
+    expect(wrapper.props().showWidget).toBe(true);
     Teams.docs = [{ members: [] }];
     wrapper.setProps({});
     expect(wrapper.props().activity).toEqual([
       { timestamp: 2 },
       { timestamp: 1 },
     ]);
+    expect(wrapper.props().showWidget).toBe(true);
     Meteor.loggedInUser = {};
     wrapper.setProps({});
     expect(wrapper.props().activity).toEqual([]);
+    expect(wrapper.props().showWidget).toBe(false);
     Meteor.loggedInUser = null;
     wrapper.setProps({});
     expect(wrapper.props().activity).toEqual([]);
+    expect(wrapper.props().showWidget).toBe(false);
   });
 });

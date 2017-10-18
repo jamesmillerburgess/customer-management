@@ -31,7 +31,8 @@ const TeamActivityContainer = createContainer(props => {
       .filter(act => range.contains(moment(act.closeDate)))
       .sort(sort);
   }
-  return { ...props, activity };
+  const showWidget = activity.length > 0;
+  return { ...props, activity, showWidget };
 }, TeamActivityDisplay);
 
 export default TeamActivityContainer;

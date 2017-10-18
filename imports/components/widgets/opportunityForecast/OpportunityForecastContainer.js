@@ -58,7 +58,9 @@ const OpportunityForecastContainer = createContainer(props => {
         [0, 0, 0, 0, 0, 0, 0]
       );
   }
-  return { ...props, opportunityForecast };
+  const showWidget =
+    opportunityForecast.reduce((prev, curr) => prev + curr, 0) > 0;
+  return { ...props, opportunityForecast, showWidget };
 }, OpportunityForecastDisplay);
 
 export default OpportunityForecastContainer;

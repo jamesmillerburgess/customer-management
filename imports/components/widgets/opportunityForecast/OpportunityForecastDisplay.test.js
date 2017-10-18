@@ -16,10 +16,16 @@ describe('OpportunityForecastDisplay Component', () => {
     wrapper.unmount();
   });
   it('renders without error', () => {});
-  it('renders the graph only if the total forecast is greater than zero', () => {
-    wrapper.setProps({ opportunityForecast: [1, 0, 0, 0, 0, 0, 0, 0] });
+  it('renders the graph only if showWidget is true', () => {
+    wrapper.setProps({
+      showWidget: true,
+      opportunityForecast: [1, 0, 0, 0, 0, 0, 0, 0],
+    });
     expect(wrapper.hasClass('opportunity-forecast')).toBe(true);
-    wrapper.setProps({ opportunityForecast: [0, 0, 0, 0, 0, 0, 0, 0] });
+    wrapper.setProps({
+      showWidget: false,
+      opportunityForecast: [1, 0, 0, 0, 0, 0, 0, 0],
+    });
     expect(wrapper.hasClass('opportunity-forecast')).toBe(false);
   });
 });
