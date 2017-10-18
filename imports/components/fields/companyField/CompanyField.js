@@ -3,35 +3,20 @@ import { Meteor } from 'meteor/meteor';
 import { withRouter } from 'react-router';
 
 import AsyncOptionField from '../asyncOptionField/AsyncOptionField';
-
-export const optionRenderer = stakeholder => (
-  <div className="company-value">
-    <div className="value">{stakeholder.name}</div>
-  </div>
-);
-
-export const loadOptions = (search, cb) =>
-  Meteor.call('company.search', search, (err, options) => {
-    if (err) {
-      console.log(err);
-    }
-    cb(null, { options });
-  });
+import Companies from '../../../api/company/companyCollection';
 
 const CompanyField = props => (
   <div className="company-field">
-    <AsyncOptionField
-      {...props}
-      loadOptions={loadOptions}
-      optionRenderer={optionRenderer}
-      valueRenderer={optionRenderer}
-    />
+    <AsyncOptionField {...props} searchMethod="company.search" />
     {props.value ? (
       <button
         className="icon fa fa-fw fa-building-o"
         onClick={e => {
           e.preventDefault();
-          props.history.push(`/companies/${props.value._id}`);
+          // An older version stored the company as an object with an _id prop.
+          // Later we should be able to update the database and remove this
+          // condition.
+          props.history.push(`/companies/${props.value._id || props.value}`);
         }}
       />
     ) : null}

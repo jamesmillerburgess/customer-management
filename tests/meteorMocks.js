@@ -55,8 +55,15 @@ export const Meteor = {
   methods: function(methods) {
     this._methods = methods;
   },
+  apply: function() {
+    return this.call.apply(this, arguments);
+  },
   call: function() {
-    if (typeof arguments[0] === 'string' && this._methods[arguments[0]]) {
+    if (
+      typeof arguments[0] === 'string' &&
+      this._methods &&
+      this._methods[arguments[0]]
+    ) {
       this._methods[arguments[0]]();
     }
     if (
@@ -65,6 +72,7 @@ export const Meteor = {
     ) {
       arguments[arguments.length - 1](this.err, this.res);
     }
+    return this.res;
   },
   loginWithPassword: function(username, password, cb) {
     return cb(this.err, this.res);
@@ -76,7 +84,9 @@ export const Meteor = {
     this.publications = publications;
   },
   users: new Mongo.Collection(),
+  _subscriptions: [],
   subscribe: function() {
+    Meteor._subscriptions.push([...arguments]);
     return {
       ready: () => {
         return this.ready;

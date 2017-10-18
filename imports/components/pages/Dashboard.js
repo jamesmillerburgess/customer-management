@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
+import moment from 'moment';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Panel from '../fields/Panel';
 import './Dashboard.scss';
 import PageHeader from './PageHeader';
+import TeamActivity from '../widgets/teamActivity/TeamActivity';
+import OpportunityForecast from '../widgets/opportunityForecast/OpportunityForecast';
 
 const GridLayout = WidthProvider(ReactGridLayout);
 
 const headerProps = {
-  title: 'Opportunities',
+  title: 'Dashboard',
   searchPlaceholder: 'Search for a report',
   addButtonText: 'Add report',
 };
@@ -28,38 +32,20 @@ const Dashboard = () => (
         cols={2}
         rowHeight={450}
         width={1200}
-        verticalCompact={false}
+        compactType="vertical"
       >
         <div key={'a'} className="panel">
-          <Panel title="Team Activity">
-            <div className="body-title">Work as a team</div>
-            <div className="body-text">
-              Gain insight into the tasks created, emails sent, calls placed,
-              and meetings booked from your sales team. Create a task and you'll
-              see it here.
-            </div>
-            <button className="button-neutral">Create a task</button>
+          <Panel title="Team Activity" subtitle={moment().format('MMMM YYYY')}>
+            <TeamActivity />
           </Panel>
         </div>
         <div key={'b'} className="panel">
-          <Panel title="Productivity">
-            <div className="body-title">Spend less time on manual work</div>
-            <div className="body-text">
-              Make your sales process more efficient by turning your most used
-              emails into reusable templates. Create a template and over time
-              you'll see productivity rise.
-            </div>
-            <button className="button-neutral">Create a template</button>
+          <Panel
+            title="Opportunity Forecast (USD)"
+            subtitle={moment().format('MMMM YYYY')}
+          >
+            <OpportunityForecast />
           </Panel>
-        </div>
-        <div key={'c'} className="panel">
-          <Panel title="Sales Performance" />
-        </div>
-        <div key={'d'} className="panel">
-          <Panel title="Deal Forecast" />
-        </div>
-        <div key={'e'} className="panel">
-          <Panel title="Deals Closed vs Goal" />
         </div>
       </GridLayout>
     </div>

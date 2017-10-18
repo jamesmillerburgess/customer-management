@@ -9,27 +9,35 @@ import Teams from '../team/teamCollection';
 
 export const all = collection => {
   if (!Meteor.userId()) {
-    throw new Error('Cannot subscribe without being logged in');
+    return collection.find({ _id: -1 });
   }
   return collection.find();
 };
 
 export const user = function(collection) {
   if (!Meteor.userId()) {
-    throw new Error('Cannot subscribe without being logged in');
+    return collection.find({ _id: -1 });
   }
   return collection.find({ users: Meteor.userId(), isArchived: false });
 };
 
 export const single = function(collection, id) {
   if (!Meteor.userId()) {
-    throw new Error('Cannot subscribe without being logged in');
+    return collection.find({ _id: -1 });
   }
   return collection.find({ _id: id });
 };
 
 export const list = (collection, ids) => {
   return collection.find({ _id: { $in: ids } });
+};
+
+export const team = (collection, id) => {
+  const team = Teams.findOne(id);
+  if (team && team.members) {
+    return collection.find({ 'users.0': { $in: team.members } });
+  }
+  return collection.find({ 'users.0': Meteor.userId() });
 };
 
 Meteor.publish({
@@ -40,6 +48,7 @@ Meteor.publish({
   'contact.single': id => single(Contacts, id),
   'company.single': id => single(Companies, id),
   'opportunity.single': id => single(Opportunities, id),
+  'opportunity.team': id => team(Opportunities, id),
   'team.single': id => single(Teams, id),
   'team.list': ids => list(Teams, ids),
 });

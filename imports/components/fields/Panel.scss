@@ -22,7 +22,7 @@
   color: #0091ae;
 }
 .panel-body {
-  padding: 24px;
+  padding: 10px 0;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -39,4 +39,7 @@
   font-weight: 300;
   margin-bottom: 20px;
   width: 100%; // Forces word-wrap in IE11
+}
+.body-text-line {
+  margin-bottom: 18px;
 }

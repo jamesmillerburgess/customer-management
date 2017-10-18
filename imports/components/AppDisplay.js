@@ -51,37 +51,6 @@ export const Overlays = ({ open, type }) => (
         )}
       />
     ))}
-    {/* <Route
-      path="/"
-      render={routeProps => (
-        <AddCompanyConnect
-          {...routeProps}
-          show={type === OT.ADD_COMPANY}
-          label="company"
-        />
-      )}
-    />
-    <Route
-      path="/"
-      render={routeProps => (
-        <AddOpportunityConnect
-          {...routeProps}
-          show={type === OT.ADD_OPPORTUNITY}
-          fields={fields.addOpportunityFields}
-          label="opportunity"
-        />
-      )}
-    />
-    <Route
-      path="/"
-      render={routeProps => (
-        <AddContactConnect
-          {...routeProps}
-          show={type === OT.ADD_CONTACT}
-          label="contact"
-        />
-      )}
-    /> */}
   </div>
 );
 

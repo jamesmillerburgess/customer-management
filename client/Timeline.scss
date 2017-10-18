@@ -12,18 +12,24 @@
 .timeline-entry-enter {
   max-height: 0.01px;
 }
-
 .timeline-entry-enter.timeline-entry-enter-active {
   max-height: 200px;
   transition: max-height 1s;
-  // height: auto;
-  // max-height: none;
-  // transition: height 500ms ease-in;
+}
+.timeline-entry a {
+  text-decoration: none;
+  font-weight: 400;
+  color: #0091ae;
+}
+.timeline-entry a:hover {
+  text-decoration: underline;
 }
 .timeline-icon-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.timeline-entry:first-child .timeline-icon-container {
   width: 62px;
 }
 .timeline-icon-pre-line {
@@ -61,6 +67,7 @@
 }
 .timeline-details-body {
   flex-grow: 1;
+  text-align: left;
 }
 .timeline-message {
   font-weight: 300;
@@ -83,6 +90,7 @@
   color: #7c98b6;
 }
 .timeline-avatar {
+  min-width: 32px;
   width: 32px;
   height: 32px;
   border-radius: 100%;

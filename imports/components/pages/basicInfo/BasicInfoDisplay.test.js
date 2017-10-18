@@ -8,7 +8,7 @@ import BasicInfoDisplay from './BasicInfoDisplay';
 
 describe('BasicInfoDisplay Component', () => {
   let wrapper;
-  const props = {};
+  const props = { team: {} };
   beforeEach(() => {
     wrapper = shallow(<BasicInfoDisplay {...props} />);
   });

@@ -4,6 +4,7 @@ import _ from 'lodash/fp';
 import validate from 'validate.js';
 
 import FieldLists from './fieldList/fieldListCollection';
+import Activity from './activity/activityCollection';
 import { buildSearchRegExp } from './methodUtils';
 
 const CREATION = 'CREATION';
@@ -12,25 +13,45 @@ const CALL = 'CALL';
 const EMAIL = 'EMAIL';
 const MEETING = 'MEETING';
 
-export const create = (collection, object) => {
+export const addActivity = (activity, collection, id) => {
+  const username = Meteor.user() ? Meteor.user().username : undefined;
+  const parentCollection =
+    collection && collection._name ? collection._name.toLowerCase() : undefined;
+  const parentName =
+    collection && collection.findOne(id)
+      ? collection.findOne(id).name
+      : undefined;
+  return Activity.insert({
+    ...activity,
+    username,
+    parent: id,
+    parentName,
+    parentCollection,
+  });
+};
+
+export const create = (collection, object, activityId) => {
   if (!object || !object.name) {
     throw new Error();
   }
-  return collection.insert({
+  const activity = {
+    _id: activityId,
+    id: activityId,
+    type: CREATION,
+    timestamp: new Date(),
+    userId: Meteor.userId(),
+    keyword: object.name,
+  };
+  const id = collection.insert({
     ...object,
     users: [Meteor.userId()],
     createDate: new Date(),
     isArchived: false,
-    timeline: [
-      {
-        id: new Mongo.ObjectID()._str,
-        type: CREATION,
-        timestamp: new Date(),
-        userId: Meteor.userId(),
-        keyword: object.name,
-      },
-    ],
+    timeline: [],
   });
+  addActivity(activity, collection, id);
+  collection.update(id, { $push: { timeline: Activity.findOne(activityId) } });
+  return id;
 };
 
 export const saveProperties = (
@@ -54,26 +75,28 @@ export const logInteraction = (collection, objectId, interaction, type) => {
   if (!validate.isString(objectId)) {
     throw new Error('Parameter objectId must be a string');
   }
+  const activity = {
+    _id: interaction.id,
+    id: interaction.id,
+    type,
+    timestamp: new Date(),
+    userId: Meteor.userId(),
+    keyword: Meteor.users.findOne(Meteor.userId()).username,
+    time: interaction.time,
+    outcome: interaction.outcome,
+    text: interaction.text,
+  };
+  const activityId = addActivity(activity, collection, objectId);
   collection.update(objectId, {
-    $push: {
-      timeline: {
-        id: interaction.id,
-        type,
-        timestamp: new Date(),
-        userId: Meteor.userId(),
-        keyword: Meteor.users.findOne(Meteor.userId()).username,
-        time: interaction.time,
-        outcome: interaction.outcome,
-        text: interaction.text,
-      },
-    },
+    $push: { timeline: Activity.findOne(activityId) },
   });
 };
 
 export const search = (collection, searchText) => {
   validate.isString(searchText);
   const query = { name: { $regex: buildSearchRegExp(searchText) } };
-  return collection.find(query).fetch();
+  const options = { fields: { _id: 1, name: 1, members: 1 }, limit: 10 };
+  return { searchResults: collection.find(query, options).fetch(), searchText };
 };
 
 export const buildGenericMethods = (
@@ -81,7 +104,8 @@ export const buildGenericMethods = (
   collection,
   propertiesPage
 ) => ({
-  [`${collectionName}.create`]: object => create(collection, object),
+  [`${collectionName}.create`]: (object, activityId) =>
+    create(collection, object, activityId),
   [`${collectionName}.saveProperties`]: (objectId, object) =>
     saveProperties(collection, propertiesPage, objectId, object),
   [`${collectionName}.addNote`]: (objectId, note) =>

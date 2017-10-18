@@ -5,7 +5,10 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-import OpportunitiesContainer from './OpportunitiesContainer';
+import Opportunities from '../../../api/opportunity/opportunityCollection';
+import OpportunitiesContainer, {
+  linkMeteorData,
+} from './OpportunitiesContainer';
 
 describe('OpportunitiesContainer Component', () => {
   let wrapper;
@@ -14,16 +17,11 @@ describe('OpportunitiesContainer Component', () => {
   it('wraps the OpportunitiesDisplay component', () => {
     expect(wrapper.name()).toBe('OpportunitiesDisplay');
   });
-  it('is loading if subscription is not ready', () => {
-    Meteor._userId = 'a';
-    Meteor.ready = false;
-    wrapper.setProps({ a: 'a' });
-    expect(wrapper.props().loading).toBe(true);
-  });
-  it('is not loading if subscription is ready', () => {
-    Meteor._userId = 'a';
-    Meteor.ready = true;
-    wrapper.setProps({ a: 'a' });
-    expect(wrapper.props().loading).toBe(false);
+  it('returns no items if there is no user', () => {
+    Meteor._userId = {};
+    Opportunities.docs = [{}];
+    expect(linkMeteorData().opportunities).toEqual([{}]);
+    Meteor._userId = null;
+    expect(linkMeteorData().opportunities).toEqual([]);
   });
 });

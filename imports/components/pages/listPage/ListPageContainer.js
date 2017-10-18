@@ -6,9 +6,8 @@ export const sort = (a, b) => b.createDate - a.createDate;
 
 export const linkMeteorData = props => {
   if (!Meteor.userId()) {
-    return { ...props, items: [], loading: true };
+    return { ...props, items: [] };
   }
-  const loading = !Meteor.subscribe(props.subscription).ready();
   const items = props.collection
     .find({
       users: Meteor.userId(),
@@ -16,7 +15,7 @@ export const linkMeteorData = props => {
     })
     .fetch()
     .sort(sort);
-  return { ...props, items, loading };
+  return { ...props, items };
 };
 
 const ListPageContainer = createContainer(linkMeteorData, ListPageDisplay);

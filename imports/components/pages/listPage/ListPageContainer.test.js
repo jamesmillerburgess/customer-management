@@ -6,7 +6,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-import ListPageContainer, { sort } from './ListPageContainer';
+import ListPageContainer, { sort, linkMeteorData } from './ListPageContainer';
 
 describe('ListPageContainer Component', () => {
   let wrapper;
@@ -16,17 +16,12 @@ describe('ListPageContainer Component', () => {
   it('wraps the ListPageDisplay component', () => {
     expect(wrapper.name()).toBe('ListPageDisplay');
   });
-  it('is loading if subscription is not ready', () => {
-    Meteor._userId = 'a';
-    Meteor.ready = false;
-    wrapper.setProps({ a: 'a' });
-    expect(wrapper.props().loading).toBe(true);
-  });
-  it('is not loading if subscription is ready', () => {
-    Meteor._userId = 'a';
-    Meteor.ready = true;
-    wrapper.setProps({ a: 'a' });
-    expect(wrapper.props().loading).toBe(false);
+  it('returns no items if there is no user', () => {
+    Meteor._userId = {};
+    props.collection.docs = [{}];
+    expect(linkMeteorData(props).items).toEqual([{}]);
+    Meteor._userId = null;
+    expect(linkMeteorData(props).items).toEqual([]);
   });
 });
 describe('sort Function', () => {

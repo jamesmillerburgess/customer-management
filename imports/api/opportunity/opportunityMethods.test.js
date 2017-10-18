@@ -39,11 +39,11 @@ describe('opportunity.updateStatus Meteor Method', () => {
       opportunity.updateStatus('a', { status: 'b', id: 'c' })
     ).toThrow();
   });
-  it('throws if the from and to statuses are the same', () => {
+  it('returns if the from and to statuses are the same', () => {
     Opportunities.docs = [{ status: 'b' }];
-    expect(() =>
-      opportunity.updateStatus('a', { status: 'b', id: 'c' })
-    ).toThrow();
+    expect(opportunity.updateStatus('a', { status: 'b', id: 'c' })).toBe(
+      undefined
+    );
   });
   it('updates the company if there is one on the opportunity', () => {
     Opportunities.docs = [{ company: { _id: 'a' } }];

@@ -5,11 +5,12 @@
   .dashboard-grid {
     background-color: rgb(245, 248, 250);
     padding: 0 48px;
+    border-bottom: 1px solid #cbd6e2;
   }
   .panel {
     cursor: -webkit-grab;
     cursor: grab;
-    transition: box-shadow 0.3s ease-in-out, transform 0.15s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out;
   }
   .panel:hover {
     box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.1);
