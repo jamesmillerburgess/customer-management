@@ -27,8 +27,15 @@
   .button-group {
     margin-bottom: 18px;
   }
-  .error-message {
-    color: rgb(255, 122, 89);
-    font-weight: 300;
-  }
+}
+.error-message {
+  color: rgb(255, 122, 89);
+  font-weight: 300;
+  transition: opacity 0.3s ease-in-out;
+}
+.error-message.show {
+  opacity: 1;
+}
+.error-message.hide {
+  opacity: 0;
 }

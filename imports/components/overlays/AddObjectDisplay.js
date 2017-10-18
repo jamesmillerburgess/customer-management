@@ -50,6 +50,9 @@ const AddObjectDisplay = props => (
       >
         Cancel
       </button>
+      <div className={`error-message ${props.errorMessageClass}`}>
+        {props.errorMessage}
+      </div>
     </footer>
   </form>
 );
