@@ -24,6 +24,7 @@ describe('TeamActivityContainer Component', () => {
   });
   it('subscribes and populates the activity if there is a user and a profile', () => {
     Meteor.loggedInUser = { profile: {} };
+    Date.now = () => 0;
     Activity.docs = [{ timestamp: 1 }, { timestamp: 2 }];
     wrapper.setProps({});
     expect(wrapper.props().activity).toEqual([

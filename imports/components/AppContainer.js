@@ -4,13 +4,7 @@ import AppDisplay from './AppDisplay';
 import FieldOptions from '../api/fieldOptions/fieldOptionsCollection';
 
 export const linkMeteorData = props => {
-  if (!Meteor.userId()) {
-    return { ...props, object: { timeline: [] }, loading: true };
-  }
-  const loading = !Meteor.subscribe('configurations.all').ready();
-  Object.keys(props.subscriptions).forEach(key =>
-    Meteor.subscribe.apply(null, props.subscriptions[key])
-  );
+  const loading = !Meteor.user() || Meteor.loggingIn();
   return { ...props, loading };
 };
 
