@@ -8,6 +8,7 @@ import NavConnect from './nav/nav/NavConnect';
 import AddObjectConnect from './overlays/AddObjectConnect';
 import routes, { overlayRoutes } from '../api/routes';
 import * as fields from './overlays/AddObjectConstants';
+import SubscriptionManager from './app/subscriptionManager/SubscriptionManagerConnect';
 
 export const verifyAuth = (component, props) => {
   if (Meteor.user() || Meteor.loggingIn()) {
@@ -57,6 +58,7 @@ export const Overlays = ({ open, type }) => (
 const AppDisplay = props => (
   <BrowserRouter>
     <div>
+      {props.loading ? null : <SubscriptionManager />}
       <div className={`app ${props.isOverlayOpen ? 'blur' : ''}`}>
         <Route path="/" component={NavConnect} />
         {routes.map(renderRoute)}

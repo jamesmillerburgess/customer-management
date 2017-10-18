@@ -26,9 +26,11 @@ const TeamActivityContainer = createContainer(props => {
     );
     const team = Teams.findOne(teamId);
     const ids = team && team.members ? team.members : [Meteor.userId()];
-    activity = Activity.find({ userId: { $in: ids } })
+    activity = Activity.find({
+      $or: [{ userId: { $in: ids } }, { parentId: teamId }],
+    })
       .fetch()
-      .filter(act => range.contains(moment(act.closeDate)))
+      .filter(act => range.contains(moment(act.timestamp)))
       .sort(sort);
   }
   const showWidget = activity.length > 0;

@@ -12,6 +12,8 @@ const NOTE = 'NOTE';
 const CALL = 'CALL';
 const EMAIL = 'EMAIL';
 const MEETING = 'MEETING';
+const JOIN_TEAM = 'JOIN_TEAM';
+const LEAVE_TEAM = 'LEAVE_TEAM';
 
 export const addActivity = (activity, collection, id) => {
   const username = Meteor.user() ? Meteor.user().username : undefined;
