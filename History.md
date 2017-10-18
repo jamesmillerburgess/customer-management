@@ -1,3 +1,5 @@
+## v0.10.0 – Search and Filtering
+
 ## v0.9.0 – Dashboard
 
 * Team Activity dashboard widget
