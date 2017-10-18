@@ -12,28 +12,25 @@ export const optionRenderer = option => (
   </div>
 );
 
+// Filter for old results which are not being passed through a Meteor Method
 const filterBySearch = (options, inputValue) => {
   const exp = buildSearchRegExp(inputValue);
   return options.filter(opt => exp.test(opt.name));
 };
 
-// Search the client database for matching records, limiting to ten
-const getClientResults = inputValue => {
-  const query = { name: { $regex: buildSearchRegExp(inputValue) } };
-  const options = { fields: { _id: 1, name: 1, members: 1 }, limit: 10 };
-  return Companies.find(query, options).fetch();
-};
+// Call the search method on both client and server. Client results come in the
+// return value and server results are passed into the callback.
+const getClientAndServerResults = (inputValue, cb) =>
+  Meteor.apply('company.search', [inputValue], { returnStubValue: true }, cb);
 
-// Call the search method to get the results from the server
-// TODO: It looks like we could use the returnStubValue option here to remove
-// the need for the `getClientResults` function
-const getServerResults = (inputValue, cb) =>
-  Meteor.call('company.search', inputValue, cb);
-
+// Combine two sets of results to remove duplicates and maintain the first set
+// as coming first in the sequence
 const mergeResults = (a, b) => {
   const additional = b.filter(
     bItem => !a.reduce((prev, aItem) => prev || aItem._id === bItem._id, false)
   );
+
+  // Limit to ten results
   return [...a, ...additional].slice(0, 10);
 };
 
@@ -46,6 +43,25 @@ class CompanyField extends React.Component {
       this.state = { options: [] };
     }
     this.onInputChange = this.onInputChange.bind(this);
+    this.handleServerResults = this.handleServerResults.bind(this);
+  }
+
+  // Handle server results
+  handleServerResults(err, res) {
+    if (err) {
+      console.log(err);
+    }
+
+    // Only update the results if this is for the most current search. It could
+    // be results for an old search if the user is typing sufficiently quickly
+    // and the connection is sufficiently slow.
+    if (res.searchText === this.state.inputValue) {
+      this.setState({
+        // Merge results to preserve the order of the client results and only
+        // extend the list as needed
+        options: mergeResults(this.state.options, res.searchResults),
+      });
+    }
   }
 
   // Since we don't know which companies might be subscribed to on the client,
@@ -55,25 +71,23 @@ class CompanyField extends React.Component {
   // the round trip.
   // Possible Improvements:
   //    TODO: 1) Throttle searches
-  //    TODO: 2) Cancel out-of-date searches
-  //    TODO: 3) Cache searches(?)
+  //    TODO: 2) Cache searches(?)
   onInputChange(inputValue) {
-    // Client results and application
+    // Apply newest inputValue as a filter to the last set of results
     const lastResults = filterBySearch(this.state.options, inputValue);
-    const clientResults = getClientResults(inputValue);
-    this.setState({ options: mergeResults(lastResults, clientResults) });
 
-    // Server results and application
-    getServerResults(inputValue, (err, serverResults) => {
-      if (err) {
-        console.log(err);
-      }
+    // Get the results for both the client and the server
+    const clientResults = getClientAndServerResults(
+      inputValue,
+      this.handleServerResults
+    ).searchResults;
 
-      this.setState({
-        // Merge results to preserve the order of the client results and only
-        // extend the list as needed
-        options: mergeResults(this.state.options, serverResults),
-      });
+    // Merge the client results into the filtered results from the last
+    // search. This is synchronous, and so it will run before the server
+    // results are returned and merged.
+    this.setState({
+      options: mergeResults(lastResults, clientResults),
+      inputValue,
     });
   }
 

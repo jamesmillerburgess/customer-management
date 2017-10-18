@@ -96,7 +96,7 @@ export const search = (collection, searchText) => {
   validate.isString(searchText);
   const query = { name: { $regex: buildSearchRegExp(searchText) } };
   const options = { fields: { _id: 1, name: 1, members: 1 }, limit: 10 };
-  return collection.find(query, options).fetch();
+  return { searchResults: collection.find(query, options).fetch(), searchText };
 };
 
 export const buildGenericMethods = (
