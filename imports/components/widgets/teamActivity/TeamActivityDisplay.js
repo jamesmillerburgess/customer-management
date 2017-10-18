@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import TimelineEntry from '../../sections/timelineEntry/TimelineEntry';
+import WidgetPlaceholder from '../widgetPlaceholder/WidgetPlaceholder';
 
 const TeamActivityDisplay = props =>
   props.activity.length > 0 ? (
@@ -29,25 +29,18 @@ const TeamActivityDisplay = props =>
       </ReactCSSTransitionGroup>
     </div>
   ) : (
-    <div style={{ width: '100%' }}>
-      <div className="body-title">Work as a team</div>
-      <div className="body-text">
-        Gain insight into the contacts, companies, and opportunities created,
-        and the interaction with your sales team afterwards.
-        <br />
-        <br />
-        Once there has been some activity by you or someone on your team, it
-        will display in this widget.
-        <br />
-        <br />
-        If you don't have a team yet, you can add one from your profile page.
-        <br />
-        <br />
-        <Link to="/profile/basic-info">
-          <button className="button-secondary">Go to profile</button>
-        </Link>
-      </div>
-    </div>
+    <WidgetPlaceholder
+      title="Work as a team"
+      text={[
+        'Gain insight into the contacts, companies, and opportunities \n' +
+          'created, and the interaction with your sales team afterwards.',
+        'Once there has been some activity by you or someone on your team,\n' +
+          'it will display in this widget.',
+        "If you don't have a team yet, you can add one from your profile page.",
+      ]}
+      buttonText="Go to profile"
+      buttonPath="/profile/basic-info"
+    />
   );
 
 export default TeamActivityDisplay;
