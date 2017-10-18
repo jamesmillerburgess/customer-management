@@ -19,6 +19,12 @@ describe('OptionField Component', () => {
     wrapper.props().onChange('a');
     expect(onChange).toHaveBeenCalledTimes(1);
   });
+  it('returns the entire option on change if there is a valueKey', () => {
+    const onChange = jest.fn();
+    wrapper.setProps({ onChange, valueKey: 'a' });
+    wrapper.simulate('change', { value: 'b' });
+    expect(onChange).lastCalledWith({ value: 'b' });
+  });
 });
 describe('noop Function', () => {
   it('does nothing', () => {

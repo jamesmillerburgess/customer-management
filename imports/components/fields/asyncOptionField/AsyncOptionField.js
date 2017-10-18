@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import OptionField from '../optionField/OptionField';
 import { buildSearchRegExp } from '../../../api/methodUtils';
 
+export const filterOption = () => true;
+
 export const optionRenderer = option => (
   <div className="company-value">
     <div className="value">{option.name}</div>
@@ -11,7 +13,7 @@ export const optionRenderer = option => (
 );
 
 // Filter for old results which are not being passed through a Meteor Method
-const filterBySearch = (options, inputValue) => {
+export const filterBySearch = (options, inputValue) => {
   const exp = buildSearchRegExp(inputValue);
   return options.filter(opt => exp.test(opt.name));
 };
@@ -41,9 +43,8 @@ class AsyncOptionField extends React.Component {
 
     // Insert the clear option if applicable and missing
     if (
-      mergedResults[0] &&
-      mergedResults[0]._id !== '' &&
-      this.props.clearOption
+      this.props.clearOption &&
+      ((mergedResults[0] && mergedResults[0]._id !== '') || !mergedResults[0])
     ) {
       mergedResults.unshift({ _id: '', name: this.props.clearOption });
     }
@@ -54,12 +55,12 @@ class AsyncOptionField extends React.Component {
 
   // Call the search method on both client and server. Client results come in the
   // return value and server results are passed into the callback.
-  getClientAndServerResults(inputValue, cb) {
+  getClientAndServerResults(inputValue) {
     return Meteor.apply(
       this.props.searchMethod,
       [inputValue],
       { returnStubValue: true },
-      cb
+      this.handleServerResults
     );
   }
 
@@ -95,10 +96,8 @@ class AsyncOptionField extends React.Component {
     const lastResults = filterBySearch(this.state.options, inputValue);
 
     // Get the results for both the client and the server
-    const clientResults = this.getClientAndServerResults(
-      inputValue,
-      this.handleServerResults
-    ).searchResults;
+    const clientResults = this.getClientAndServerResults(inputValue)
+      .searchResults;
 
     // Merge the client results into the filtered results from the last
     // search. This is synchronous, and so it will run before the server
@@ -118,7 +117,7 @@ class AsyncOptionField extends React.Component {
         optionRenderer={optionRenderer}
         valueRenderer={optionRenderer}
         onInputChange={this.onInputChange}
-        filterOption={() => true}
+        filterOption={filterOption}
       />
     );
   }
