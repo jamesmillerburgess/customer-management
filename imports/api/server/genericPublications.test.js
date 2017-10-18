@@ -5,9 +5,9 @@ import { Mongo } from 'meteor/mongo';
 import Teams from '../team/teamCollection';
 
 describe('configurations.all Meteor Publication', () => {
-  it('throws without a user', () => {
+  it('does not throw without a user', () => {
     Meteor._userId = null;
-    expect(Meteor.publications['configurations.all']).toThrow();
+    expect(Meteor.publications['configurations.all']).not.toThrow();
   });
   it('does not throw if there is a user', () => {
     Meteor._userId = 'a';
@@ -15,9 +15,9 @@ describe('configurations.all Meteor Publication', () => {
   });
 });
 describe('contact.user Meteor Publication', () => {
-  it('throws without a user', () => {
+  it('does not throw without a user', () => {
     Meteor._userId = null;
-    expect(Meteor.publications['contact.user']).toThrow();
+    expect(Meteor.publications['contact.user']).not.toThrow();
   });
   it('does not throw if there is a user', () => {
     Meteor._userId = 'a';
@@ -25,9 +25,9 @@ describe('contact.user Meteor Publication', () => {
   });
 });
 describe('company.user Meteor Publication', () => {
-  it('throws without a user', () => {
+  it('does not throw without a user', () => {
     Meteor._userId = null;
-    expect(Meteor.publications['company.user']).toThrow();
+    expect(Meteor.publications['company.user']).not.toThrow();
   });
   it('does not throw if there is a user', () => {
     Meteor._userId = 'a';
@@ -35,9 +35,9 @@ describe('company.user Meteor Publication', () => {
   });
 });
 describe('opportunity.user Meteor Publication', () => {
-  it('throws without a user', () => {
+  it('does not throw without a user', () => {
     Meteor._userId = null;
-    expect(Meteor.publications['opportunity.user']).toThrow();
+    expect(Meteor.publications['opportunity.user']).not.toThrow();
   });
   it('does not throw if there is a user', () => {
     Meteor._userId = 'a';
@@ -45,9 +45,9 @@ describe('opportunity.user Meteor Publication', () => {
   });
 });
 describe('contact.single Meteor Publication', () => {
-  it('throws without a user', () => {
+  it('does not throw without a user', () => {
     Meteor._userId = null;
-    expect(() => Meteor.publications['contact.single']('b')).toThrow();
+    expect(() => Meteor.publications['contact.single']('b')).not.toThrow();
   });
   it('does not throw if there is a user', () => {
     Meteor._userId = 'a';
@@ -55,9 +55,9 @@ describe('contact.single Meteor Publication', () => {
   });
 });
 describe('company.single Meteor Publication', () => {
-  it('throws without a user', () => {
+  it('does not throw without a user', () => {
     Meteor._userId = null;
-    expect(() => Meteor.publications['company.single']('b')).toThrow();
+    expect(() => Meteor.publications['company.single']('b')).not.toThrow();
   });
   it('does not throw if there is a user', () => {
     Meteor._userId = 'a';
@@ -65,9 +65,9 @@ describe('company.single Meteor Publication', () => {
   });
 });
 describe('opportunity.single Meteor Publication', () => {
-  it('throws without a user', () => {
+  it('does not throw without a user', () => {
     Meteor._userId = null;
-    expect(() => Meteor.publications['opportunity.single']('b')).toThrow();
+    expect(() => Meteor.publications['opportunity.single']('b')).not.toThrow();
   });
   it('does not throw if there is a user', () => {
     Meteor._userId = 'a';
@@ -91,9 +91,9 @@ describe('opportunity.team Meteor Publication', () => {
   });
 });
 describe('team.single Meteor Publication', () => {
-  it('throws without a user', () => {
+  it('does not throw without a user', () => {
     Meteor._userId = null;
-    expect(() => Meteor.publications['team.single']('b')).toThrow();
+    expect(() => Meteor.publications['team.single']('b')).not.toThrow();
   });
   it('does not throw if there is a user', () => {
     Meteor._userId = 'a';

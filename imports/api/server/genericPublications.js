@@ -9,21 +9,21 @@ import Teams from '../team/teamCollection';
 
 export const all = collection => {
   if (!Meteor.userId()) {
-    throw new Error('Cannot subscribe without being logged in');
+    return collection.find({ _id: -1 });
   }
   return collection.find();
 };
 
 export const user = function(collection) {
   if (!Meteor.userId()) {
-    throw new Error('Cannot subscribe without being logged in');
+    return collection.find({ _id: -1 });
   }
   return collection.find({ users: Meteor.userId(), isArchived: false });
 };
 
 export const single = function(collection, id) {
   if (!Meteor.userId()) {
-    throw new Error('Cannot subscribe without being logged in');
+    return collection.find({ _id: -1 });
   }
   return collection.find({ _id: id });
 };
