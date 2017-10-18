@@ -31,7 +31,7 @@ describe('AppContainer Component', () => {
 });
 describe('linkMeteorData Function', () => {
   const collection = new Mongo.Collection();
-  const props = {};
+  const props = { subscriptions: {} };
   it('sets loading to true if there is no userId', () => {
     Meteor._userId = null;
     expect(linkMeteorData(props).loading).toBe(true);
@@ -45,5 +45,15 @@ describe('linkMeteorData Function', () => {
     Meteor._userId = 'a';
     Meteor.ready = true;
     expect(linkMeteorData(props).loading).toBe(false);
+  });
+  it('subscibes to all of the subscriptions', () => {
+    Meteor._subscriptions = [];
+    props.subscriptions = { a: ['a'], b: ['b'] };
+    linkMeteorData(props);
+    expect(Meteor._subscriptions).toEqual([
+      ['configurations.all'],
+      ['a'],
+      ['b'],
+    ]);
   });
 });

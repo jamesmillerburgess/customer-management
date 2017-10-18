@@ -4,16 +4,20 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Opportunities from '../../../api/opportunity/opportunityCollection';
 import OpportunitiesDisplay from './OpportunitiesDisplay';
 
-const OpportunitiesContainer = createContainer(props => {
+export const linkMeteorData = props => {
   if (!Meteor.userId()) {
     return { ...props, opportunities: [] };
   }
-  const loading = false;
   const opportunities = Opportunities.find({
     users: Meteor.userId(),
     isArchived: false,
   }).fetch();
   return { ...props, opportunities };
-}, OpportunitiesDisplay);
+};
+
+const OpportunitiesContainer = createContainer(
+  linkMeteorData,
+  OpportunitiesDisplay
+);
 
 export default OpportunitiesContainer;

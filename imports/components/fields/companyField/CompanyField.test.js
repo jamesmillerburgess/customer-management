@@ -5,7 +5,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-import CompanyField, { optionRenderer, loadOptions } from './CompanyField';
+import CompanyField from './CompanyField';
 
 describe('CompanyField Component', () => {
   let wrapper;
@@ -37,27 +37,5 @@ describe('CompanyField Component', () => {
       .simulate('click', { preventDefault });
     expect(history.push).toHaveBeenCalledTimes(1);
     expect(preventDefault).toHaveBeenCalledTimes(1);
-  });
-  describe('optionRenderer Function', () => {
-    it('does not throw', () => {
-      expect(() => shallow(optionRenderer({}))).not.toThrow();
-    });
-  });
-  describe('loadOptions Function', () => {
-    it('calls the company.search Meteor Method', () => {
-      const companySearch = jest.fn();
-      Meteor._methods['company.search'] = companySearch;
-      loadOptions('a', () => null);
-      expect(companySearch).toHaveBeenCalledTimes(1);
-    });
-    it('calls the callback', () => {
-      const cb = jest.fn();
-      loadOptions('a', cb);
-      expect(cb).toHaveBeenCalledTimes(1);
-    });
-    it('handles errors', () => {
-      Meteor.err = 'err';
-      expect(() => loadOptions('a', () => null)).not.toThrow();
-    });
   });
 });

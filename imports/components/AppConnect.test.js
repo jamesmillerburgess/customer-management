@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import AppConnect, { mapStateToProps, mapDispatchToProps } from './AppConnect';
 
 describe('AppConnect Component', () => {
@@ -8,15 +9,24 @@ describe('AppConnect Component', () => {
 describe('mapStateToProps Function', () => {
   it('maps login state', () => {
     const state = { app: {}, other: 'b' };
-    expect(mapStateToProps(state)).toEqual({
-      isOverlayOpen: false,
-      overlay: '',
-    });
+    expect(mapStateToProps(state).isOverlayOpen).toEqual(false);
     state.app.isOverlayOpen = true;
-    expect(mapStateToProps(state)).toEqual({
-      isOverlayOpen: true,
-      overlay: '',
-    });
+    expect(mapStateToProps(state).isOverlayOpen).toEqual(true);
+  });
+  it('substitutes an empty string if there is no team on the user', () => {
+    const state = { app: {} };
+    Meteor.loggedInUser = { profile: { team: 'a' } };
+    expect(mapStateToProps(state).subscriptions.teams[1]).toBe('a');
+    expect(mapStateToProps(state).subscriptions.teamActivity[1]).toBe('a');
+    expect(mapStateToProps(state).subscriptions.opportunityForecast[1]).toBe(
+      'a'
+    );
+    Meteor.loggedInUser = null;
+    expect(mapStateToProps(state).subscriptions.teams[1]).toBe('');
+    expect(mapStateToProps(state).subscriptions.teamActivity[1]).toBe('');
+    expect(mapStateToProps(state).subscriptions.opportunityForecast[1]).toBe(
+      ''
+    );
   });
 });
 describe('mapDispatchToProps Function', () => {

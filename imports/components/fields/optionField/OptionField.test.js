@@ -16,7 +16,7 @@ describe('OptionField Component', () => {
     const onChange = jest.fn();
     wrapper.setProps({ onChange });
     expect(onChange).toHaveBeenCalledTimes(0);
-    wrapper.props().onChange('a');
+    wrapper.simulate('change', { value: 'b' });
     expect(onChange).toHaveBeenCalledTimes(1);
   });
   it('returns the entire option on change if there is a valueKey', () => {

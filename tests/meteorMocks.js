@@ -84,7 +84,9 @@ export const Meteor = {
     this.publications = publications;
   },
   users: new Mongo.Collection(),
+  _subscriptions: [],
   subscribe: function() {
+    Meteor._subscriptions.push([...arguments]);
     return {
       ready: () => {
         return this.ready;
