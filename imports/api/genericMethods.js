@@ -32,7 +32,7 @@ export const addActivity = (activity, collection, id) => {
 
 export const create = (collection, object, activityId) => {
   if (!object || !object.name) {
-    throw new Error();
+    throw new Error('Missing required field: `Name`');
   }
   const activity = {
     _id: activityId,

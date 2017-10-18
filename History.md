@@ -1,3 +1,7 @@
+## v0.10.0 – Search and Filtering
+
+* Add validation to object creation instead of crashing when `Name` is blank
+
 ## v0.9.0 – Dashboard
 
 * Team Activity dashboard widget
