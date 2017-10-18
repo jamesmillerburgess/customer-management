@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import Adapter from 'enzyme-adapter-react-16';
 
+import FieldLists from '../../../api/fieldList/fieldListCollection';
+
 Enzyme.configure({ adapter: new Adapter() });
 
 import ObjectEditorContainer, { linkMeteorData } from './ObjectEditorContainer';
@@ -80,6 +82,7 @@ describe('linkMeteorData Function', () => {
       loadedValues: {},
       ...fns,
     };
+    FieldLists.docs = [{ fields: [{ name: 'a' }] }];
     linkMeteorData(newProps);
     expect(fns.setHasLoaded).toHaveBeenCalled();
     expect(fns.setProperty).toHaveBeenCalled();
@@ -101,6 +104,7 @@ describe('linkMeteorData Function', () => {
       loadedValues: { _id: 'b' },
       ...fns,
     };
+    FieldLists.docs = [{ fields: [{ name: 'a' }] }];
     linkMeteorData(newProps);
     expect(fns.setHasLoaded).toHaveBeenCalled();
     expect(fns.setProperty).toHaveBeenCalled();

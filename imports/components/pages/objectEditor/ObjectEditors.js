@@ -24,17 +24,12 @@ export const generateObjectEditorProps = (singular, plural) => ({
   logMeetingMethod: `${singular}.logMeeting`,
 });
 
-export const getProperties = propertiesPage =>
-  FieldLists.findOne({ page: propertiesPage })
-    ? FieldLists.findOne({ page: propertiesPage }).fields
-    : [];
-
 export const contactProps = () => ({
   ...generateObjectEditorProps('contact', 'contacts'),
   collection: Contacts,
   avatarPath: '/empty-profile-pic.png',
   interactions: ['NEW_NOTE', 'LOG_CALL', 'LOG_EMAIL', 'LOG_MEETING'],
-  properties: getProperties('CONTACT_PROPERTIES'),
+  propertiesPage: 'CONTACT_PROPERTIES',
 });
 
 export const companyProps = () => ({
@@ -42,7 +37,7 @@ export const companyProps = () => ({
   collection: Companies,
   avatarPath: '/empty-company-pic.png',
   interactions: ['NEW_NOTE', 'LOG_CALL', 'LOG_EMAIL', 'LOG_MEETING'],
-  properties: getProperties('COMPANY_PROPERTIES'),
+  propertiesPage: 'COMPANY_PROPERTIES',
 });
 
 export const opportunityProps = () => ({
@@ -81,7 +76,7 @@ export const opportunityProps = () => ({
   logEmailMethod: 'opportunity.logEmail',
   logMeetingMethod: 'opportunity.logMeeting',
   interactions: ['NEW_NOTE', 'LOG_CALL', 'LOG_EMAIL', 'LOG_MEETING'],
-  properties: getProperties('OPPORTUNITY_PROPERTIES'),
+  propertiesPage: 'OPPORTUNITY_PROPERTIES',
 });
 
 const ObjectConnect = ObjectEditorConnect(ObjectEditorDisplay);
