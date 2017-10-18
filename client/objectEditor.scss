@@ -101,17 +101,24 @@
 .sidebar-header .title {
   font-size: 24px;
   font-weight: 300;
+  max-width: calc(280px - 90px - 36px);
+  word-wrap: break-word;
 }
 .sidebar-header .avatar {
+  min-width: 64px;
   width: 64px;
   height: 64px;
   border-radius: 100%;
   margin-right: 16px;
 }
+.sidebar-properties {
+  max-width: calc(280px - 16px);
+}
 .sidebar-properties .title {
   font-weight: 700;
   padding: 16px 0;
   color: #33475b;
+  word-wrap: break-word;
 }
 .sidebar-properties .input-group {
   padding-bottom: 4px;
