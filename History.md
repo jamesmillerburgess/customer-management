@@ -4,7 +4,8 @@
 * Opportunity Forecast dashboard widget
 * Use smart caching to eliminate load time between tabs and most object editors
 * Greatly improve async search fields such as `company` and `team` so that they 
-make use of any client-side data and handle race conditions on server calls
+make use of any previous search results and client-side data and so that they 
+handle race conditions on server calls
 
 ## v0.8.0 – Teams
 
