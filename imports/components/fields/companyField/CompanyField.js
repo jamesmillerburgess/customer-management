@@ -54,9 +54,9 @@ class CompanyField extends React.Component {
   // and then additional results will come once the server call has completed
   // the round trip.
   // Possible Improvements:
-  //    1) Throttle searches
-  //    2) Cancel out-of-date searches
-  //    3) Cache searches(?)
+  //    TODO: 1) Throttle searches
+  //    TODO: 2) Cancel out-of-date searches
+  //    TODO: 3) Cache searches(?)
   onInputChange(inputValue) {
     // Client results and application
     const lastResults = filterBySearch(this.state.options, inputValue);
