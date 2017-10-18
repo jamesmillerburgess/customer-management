@@ -56,6 +56,8 @@ describe('TimelineEntry Component', () => {
       expect(() => TIMELINE_MESSAGES.MEETING({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.STATUS_CHANGE_FORWARD({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.STATUS_CHANGE_BACKWARD({})).not.toThrow();
+      expect(() => TIMELINE_MESSAGES.JOIN_TEAM({})).not.toThrow();
+      expect(() => TIMELINE_MESSAGES.LEAVE_TEAM({})).not.toThrow();
     });
   });
 });

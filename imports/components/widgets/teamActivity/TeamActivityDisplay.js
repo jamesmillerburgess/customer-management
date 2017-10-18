@@ -21,7 +21,7 @@ const TeamActivityDisplay = props =>
         </div>
         {props.activity.map((item, index) => (
           <TimelineEntry
-            key={item.id}
+            key={item._id}
             {...item}
             isNotLast={index !== props.activity.length - 1}
           />

@@ -36,24 +36,14 @@ describe('linkMeteorData Function', () => {
     Meteor._userId = null;
     expect(linkMeteorData(props).loading).toBe(true);
   });
-  it('sets loading to true if there is a userid but the subscription is not ready', () => {
-    Meteor._userId = 'a';
-    Meteor.ready = false;
-    expect(linkMeteorData(props).loading).toBe(true);
-  });
-  it('sets loading to false if there is a userid and the subscription is ready', () => {
-    Meteor._userId = 'a';
-    Meteor.ready = true;
+  it('sets loading to false if there is a userid and it is not logging in', () => {
+    Meteor.loggedInUser = {};
+    Meteor.isLoggingIn = false;
     expect(linkMeteorData(props).loading).toBe(false);
-  });
-  it('subscibes to all of the subscriptions', () => {
-    Meteor._subscriptions = [];
-    props.subscriptions = { a: ['a'], b: ['b'] };
-    linkMeteorData(props);
-    expect(Meteor._subscriptions).toEqual([
-      ['configurations.all'],
-      ['a'],
-      ['b'],
-    ]);
+    Meteor.loggedInUser = null;
+    expect(linkMeteorData(props).loading).toBe(true);
+    Meteor.loggedInUser = {};
+    Meteor.isLoggingIn = true;
+    expect(linkMeteorData(props).loading).toBe(true);
   });
 });

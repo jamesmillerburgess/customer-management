@@ -94,6 +94,22 @@ export const TIMELINE_MESSAGES = {
   ),
   STATUS_CHANGE_FORWARD: props => StatusChangeMessage(props, 'forward'),
   STATUS_CHANGE_BACKWARD: props => StatusChangeMessage(props, 'backward'),
+  JOIN_TEAM: props => (
+    <span>
+      {props.username || 'Someone'} joined{' '}
+      <Link to={`/${props.parentCollection}/${props.parent}`}>
+        {props.parentName}
+      </Link>
+    </span>
+  ),
+  LEAVE_TEAM: props => (
+    <span>
+      {props.username || 'Someone'} left{' '}
+      <Link to={`/${props.parentCollection}/${props.parent}`}>
+        {props.parentName}
+      </Link>
+    </span>
+  ),
 };
 
 const TIMELINE_ICONS = {
@@ -104,6 +120,8 @@ const TIMELINE_ICONS = {
   MEETING: 'fa-handshake-o',
   STATUS_CHANGE_FORWARD: 'fa-angle-double-right',
   STATUS_CHANGE_BACKWARD: 'fa-angle-double-left',
+  JOIN_TEAM: 'fa-plus',
+  LEAVE_TEAM: 'fa-minus',
 };
 
 const TIMELINE_AVATARS = {
@@ -114,6 +132,8 @@ const TIMELINE_AVATARS = {
   MEETING: '/empty-profile-pic.png',
   STATUS_CHANGE_FORWARD: '/empty-profile-pic.png',
   STATUS_CHANGE_BACKWARD: '/empty-profile-pic.png',
+  JOIN_TEAM: '/empty-profile-pic.png',
+  LEAVE_TEAM: '/empty-profile-pic.png',
 };
 
 const TimelineEntry = props => (
@@ -129,7 +149,6 @@ const TimelineEntry = props => (
       <img className="timeline-avatar" src={TIMELINE_AVATARS[props.type]} />
       <div className="timeline-details-body">
         <div className="timeline-message">
-          {/* <span className="keyword">{props.keyword}</span>{' '} */}
           {TIMELINE_MESSAGES[props.type](props)}
         </div>
         <div className="timestamp">
