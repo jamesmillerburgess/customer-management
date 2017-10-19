@@ -27,8 +27,8 @@ jobs:
           # - v1-dependencies-
 
       # - run: npm install
-      - run: npm install chimp
-      - run: npm install selenium-standalone
+      - run: npm install -g selenium-standalone
+      - run: npm install -g chimp
       - run: mkdir empty
       # - run: PATH=$PATH:$HOME/.meteor
       # - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
