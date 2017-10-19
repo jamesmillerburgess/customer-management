@@ -27,6 +27,7 @@ jobs:
           # - v1-dependencies-
 
       # - run: npm install
+      - run: sudo chown ubuntu:ubuntu ~/.config
       - run: npm install -g selenium-standalone
       - run: npm install -g chimp
       - run: mkdir empty
