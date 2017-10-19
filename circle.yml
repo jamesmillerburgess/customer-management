@@ -5,9 +5,16 @@ dependencies:
   cache_directories:
     - "node_modules"
     - "~/.npm"
+    - "~/.meteor"
+    - "src/.meteor/local/build"
+    - "src/.meteor/local/bundler-cache"
+    - "src/.meteor/local/db"
+    - "src/.meteor/local/isopacks"
+    - "src/.meteor/local/plugin-cache"    
   override:
     - PATH=$PATH:$HOME/.meteor
-    - if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
+    - if [ -d ~/.meteor ]; then sudo ln -s ~/.meteor/meteor /usr/local/bin/meteor; fi
+    - if [ ! -e $HOME/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
     - meteor update
     - meteor npm install
     - sudo apt-get install -y locales grep
