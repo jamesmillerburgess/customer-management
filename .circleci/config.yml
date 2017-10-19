@@ -20,8 +20,8 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      - restore_cache:
-          keys:
+      # - restore_cache:
+      #     keys:
           # - v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
           # # fallback to using the latest cache if no exact match is found
           # - v1-dependencies-
