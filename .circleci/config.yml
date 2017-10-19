@@ -27,7 +27,7 @@ jobs:
           - v1-dependencies-
 
       - run: npm install
-      - run: sudo npm install -g chimp
+      - run: npm install chimp
 
       - save_cache:
           paths:
