@@ -1,0 +1,14 @@
+machine:
+  node:
+    version: 6.3.0
+dependencies:
+  cache_directories:
+    - "node_modules"
+    - "~/.npm"
+  override:
+    - npm install -g chimp
+    - mkdir empty
+    - chimp --browser=phantomjs --path empty
+test:
+   override:
+     - chimp --browser=phantomjs --mocha --path=tests
