@@ -1,6 +1,6 @@
-## v0.10.0 – Search and Filtering
+## vNEXT
 
-### Minor Changes
+#### Minor Changes
 
 * Add validation to object creation instead of crashing when `Name` is blank
 * Gracefully handle long names in the object editors
