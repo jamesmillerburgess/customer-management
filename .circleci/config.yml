@@ -9,10 +9,9 @@ jobs:
       - checkout
       - run: npm install -g chimp
       - run: mkdir empty
-      - run: chimp --browser=phantomjs --path empty     
-  test:
-    steps:
-      - run: npm run acceptance-ci
+      - run: chimp --browser=phantomjs --path empty  
+      - run: npm run acceptance-ci   
+    
 
 # machine:
 #   node:
