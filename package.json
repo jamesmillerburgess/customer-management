@@ -11,6 +11,7 @@
       "chimp --browser=phantomjs --ddp=http://localhost:3000 --watch --jasmine --path=tests/acceptance",
     "acceptance-ci":
       "chimp --browser=phantomjs --ddp=http://localhost:3000 --jasmine --path=tests/acceptance",
+    "unit-ci": "jest --config=jest.config.json --coverage",
     "chimp-empty": "chimp --path empty"
   },
   "dependencies": {
