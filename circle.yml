@@ -29,9 +29,9 @@ dependencies:
    
 test:
   override:
+    - npm run unit-ci
     - meteor:
         background: true
-    - npm run unit-ci
     - until curl --max-time 300 http://localhost:3000/; do sleep 1; done
     - npm run acceptance-ci
     
