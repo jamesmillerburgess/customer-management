@@ -27,7 +27,7 @@ jobs:
           # - v1-dependencies-
 
       # - run: npm install
-      - run: sudo chown -R $USER:$GROUP ~
+      - run: sudo chown -R $USER:$GROUP /usr/local/lib/node_modules
       - run: npm install -g selenium-standalone
       - run: npm install -g chimp
       - run: mkdir empty
