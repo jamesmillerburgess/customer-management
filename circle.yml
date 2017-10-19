@@ -21,7 +21,6 @@ dependencies:
     - chimp --browser=phantomjs --path empty
 test:
   override:
-    - meteor:
-        background: true
-    - sleep 90
+    - meteor
+    - until curl --max-time 300 http://localhost:3000/; do sleep 1; done
     - npm run acceptance-ci
