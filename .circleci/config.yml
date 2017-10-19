@@ -29,7 +29,7 @@ jobs:
       - run: npm install
       - run: npm install chimp
       - run: PATH=$PATH:$HOME/.meteor
-      - run: if [ ! -e $HOME/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
+      - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
       - run: meteor update
       - run: sudo apt-get install -y locales locales-all grep
       - run: sudo locale-gen en_US.UTF-8
