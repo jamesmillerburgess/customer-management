@@ -1,17 +1,32 @@
-machine:
-  node:
-    version: 6.3.0
-dependencies:
-  cache_directories:
-    - "node_modules"
-    - "~/.npm"
-  override:
-    - npm install -g chimp
-    - mkdir empty
-    - chimp --browser=phantomjs --path empty
-test:
-   override:
-     - chimp --browser=phantomjs --mocha --path=tests
+version: 2
+  jobs:
+    build:
+      docker:
+        # specify the version you desire here
+        - image: circleci/node:8.7
+      # working_directory: ~/repo
+      steps:
+        - checkout
+        - run: npm install -g chimp
+        - run: mkdir empty
+        - run: chimp --browser=phantomjs --path empty     
+    test:
+      - npm run acceptance-ci
+
+# machine:
+#   node:
+#     version: 6.3.0
+# dependencies:
+#   cache_directories:
+#     - "node_modules"
+#     - "~/.npm"
+#   override:
+#     - npm install -g chimp
+#     - mkdir empty
+#     - chimp --browser=phantomjs --path empty
+# test:
+#    override:
+#      - chimp --browser=phantomjs --mocha --path=tests
 
 # # Javascript Node CircleCI 2.0 configuration file
 # #
