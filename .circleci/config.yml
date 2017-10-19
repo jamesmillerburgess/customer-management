@@ -27,6 +27,8 @@ jobs:
           - v1-dependencies-
 
       # - run: npm install
+      - run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+      - run: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
       - run: npm i -g npm@latest-4
       - run: npm install node-gyp
       - run: npm install selenium-standalone
