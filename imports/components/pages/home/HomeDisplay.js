@@ -57,13 +57,18 @@ const HomeDisplay = props => {
         {props.mode === LOGIN ? (
           <div className="button-group">
             <button
+              id="register-mode-button"
               type="button"
               className="button-invis"
               onClick={props.setToRegisterMode}
             >
               Register
             </button>
-            <button type="submit" className="button-primary">
+            <button
+              id="login-submit-button"
+              type="submit"
+              className="button-primary"
+            >
               Login
             </button>
           </div>
@@ -71,13 +76,18 @@ const HomeDisplay = props => {
         {props.mode === REGISTER ? (
           <div className="button-group">
             <button
+              id="login-mode-button"
               type="button"
               className="button-invis"
               onClick={props.setToLoginMode}
             >
               Login
             </button>
-            <button type="submit" className="button-primary">
+            <button
+              id="register-submit-button"
+              type="submit"
+              className="button-primary"
+            >
               Register
             </button>
           </div>
