@@ -28,7 +28,7 @@ jobs:
 
       - run: npm install
       - run: PATH=$PATH:$HOME/.meteor
-      - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
+      - run: if [ ! -e $HOME/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
       - run: meteor update
       - run: sudo apt-get install -y locales locales-all grep
       - run: sudo locale-gen en_US.UTF-8
@@ -39,7 +39,7 @@ jobs:
 
       - save_cache:
           paths:
-            - .meteor
+            - ~/.meteor
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
         
