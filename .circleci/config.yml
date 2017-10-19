@@ -31,6 +31,7 @@ jobs:
       - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
       - run: meteor update
       - run: sudo apt-get install -y locales grep
+      - run: apt-get install language-pack-en
       - run: locale-gen en_US.UTF-8
       - run: sudo sh -c "echo -e 'LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8' > /etc/default/locale" 
       - run: npm install chimp
