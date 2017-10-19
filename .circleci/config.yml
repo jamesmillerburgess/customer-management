@@ -1,17 +1,17 @@
 version: 2
-  jobs:
-    build:
-      docker:
-        # specify the version you desire here
-        - image: circleci/node:8.7
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.7
       # working_directory: ~/repo
-      steps:
-        - checkout
-        - run: npm install -g chimp
-        - run: mkdir empty
-        - run: chimp --browser=phantomjs --path empty     
-    test:
-      - npm run acceptance-ci
+    steps:
+      - checkout
+      - run: npm install -g chimp
+      - run: mkdir empty
+      - run: chimp --browser=phantomjs --path empty     
+  test:
+    - npm run acceptance-ci
 
 # machine:
 #   node:
