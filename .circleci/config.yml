@@ -27,6 +27,9 @@ jobs:
           - v1-dependencies-
 
       - run: npm install
+      - run: PATH=$PATH:$HOME/.meteor
+      - run: if [ ! -e $HOME/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
+      - run: meteor update
       - run: npm install chimp
 
       - save_cache:
