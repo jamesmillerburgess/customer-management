@@ -6,9 +6,22 @@ dependencies:
     - "node_modules"
     - "~/.npm"
   override:
+    - PATH=$PATH:$HOME/.meteor
+    - if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
+    - meteor update
+    - meteor npm install
+    - sudo apt-get install -y locales locales-all grep
+    - sudo locale-gen en_US.UTF-8
+    - sudo localedef -i en_GB -f UTF-8 en_US.UTF-8
+    - sudo dpkg-reconfigure locales
+    - sudo sh -c "echo -e 'LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8' > /etc/default/locale" 
+    - export LANG=C
     - npm install -g chimp
     - mkdir empty
     - chimp --browser=phantomjs --path empty
 test:
-   override:
-     - chimp --browser=phantomjs --jasmine --path=tests/acceptance
+  override:
+    - meteor:
+        background: true
+    - sleep 90
+    - npm run acceptance-ci
