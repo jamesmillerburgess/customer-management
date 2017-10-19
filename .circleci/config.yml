@@ -47,10 +47,8 @@ jobs:
       - run: 
           command: meteor
           background: true
-      - run: sleep 120
-      - run: 
-          command: npm run acceptance-ci
-          background: true
+      - run: sleep 90
+      - run: npm run acceptance-ci
       - run: npm test
       - run: sudo npm install -g codeclimate-test-reporter
       - run: CODECLIMATE_REPO_TOKEN=e0b43cf94dece3dadef8107adf1da0a5baf2281ac7ba164a1571f35c28fa71dc codeclimate-test-reporter < .coverage/lcov.info 
