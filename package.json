@@ -8,9 +8,9 @@
     "cover": "jest --config=jest.config.json --coverage --watchAll",
     "nocover": "jest --config=jest.config.json --watchAll",
     "acceptance":
-      "chimp --ddp=http://localhost:3000 --watch --jasmine --path=tests/acceptance",
+      "chimp --browser=phantomjs --ddp=http://localhost:3000 --watch --jasmine --path=tests/acceptance",
     "acceptance-ci":
-      "chimp --ddp=http://localhost:3000 --jasmine --path=tests/acceptance",
+      "chimp --browser=phantomjs --ddp=http://localhost:3000 --jasmine --path=tests/acceptance",
     "chimp-empty": "chimp --path empty"
   },
   "dependencies": {
