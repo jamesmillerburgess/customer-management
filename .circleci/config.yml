@@ -27,7 +27,7 @@ jobs:
           - v1-dependencies-
 
       # - run: npm install
-      - run: npm install -g chimp
+      - run: sudo npm install -g chimp
       - run: mkdir empty
       # - run: PATH=$PATH:$HOME/.meteor
       # - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
