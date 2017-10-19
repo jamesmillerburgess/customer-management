@@ -46,7 +46,9 @@ jobs:
         
       # run tests!
       - run: npm test
-      - run: meteor &
+      - run: 
+        command: meteor
+        background: true
       - run: sleep 30
       - run: npm run acceptance-ci
       - run: sudo npm install -g codeclimate-test-reporter
