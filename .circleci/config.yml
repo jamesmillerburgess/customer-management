@@ -27,6 +27,7 @@ jobs:
           # - v1-dependencies-
 
       # - run: npm install
+      - run: PATH=$PATH:$HOME/.meteor
       - run: sudo chown -R $USER:$GROUP /usr/local/lib/node_modules
       - run: npm install -g selenium-standalone
       - run: npm install -g chimp
