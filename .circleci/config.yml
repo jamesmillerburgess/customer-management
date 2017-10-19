@@ -20,16 +20,13 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      # - restore_cache:
-      #     keys:
-          # - v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
-          # # fallback to using the latest cache if no exact match is found
-          # - v1-dependencies-
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
 
       # - run: npm install
-      - run: PATH=$PATH:$HOME/.meteor
-      - run: sudo chown -R $USER:$GROUP /usr/local/lib/node_modules
-      - run: sudo apt-get install -y g++-5 xvfb
       - run: npm install -g node-gyp
       - run: npm install -g selenium-standalone
       - run: npm install -g chimp
