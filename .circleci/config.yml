@@ -36,6 +36,7 @@ jobs:
       - run: sudo dpkg-reconfigure locales
       - run: sudo sh -c "echo -e 'LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8' > /etc/default/locale" 
       - run: export LANG=C
+      - run: chimp --path empty
 
       - save_cache:
           paths:

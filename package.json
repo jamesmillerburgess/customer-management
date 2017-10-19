@@ -10,7 +10,7 @@
     "acceptance":
       "chimp --ddp=http://localhost:3000 --watch --jasmine --path=tests/acceptance",
     "acceptance-ci":
-      "chimp --ddp=http://localhost:3000 --mocha --path=tests/acceptance"
+      "chimp --ddp=http://localhost:3000 --jasmine --path=tests/acceptance"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",
