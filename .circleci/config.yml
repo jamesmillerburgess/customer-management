@@ -31,9 +31,6 @@ jobs:
       - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
       - run: meteor update
       - run: sudo apt-get install -y locales locales-all grep
-      - run: ENV LC_ALL en_US.UTF-8
-      - run: ENV LANG en_US.UTF-8
-      - run: ENV LANGUAGE en_US.UTF-8
       - run: sudo locale-gen en_US.UTF-8
       - run: sudo localedef -i en_GB -f UTF-8 en_US.UTF-8
       - run: sudo dpkg-reconfigure locales
