@@ -1,58 +1,73 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8.7
+machine:
+  node:
+    version: 6.3.0
+dependencies:
+  cache_directories:
+    - "node_modules"
+    - "~/.npm"
+  override:
+    - npm install -g chimp
+    - mkdir empty
+    - chimp --browser=phantomjs --path empty
+test:
+   override:
+     - chimp --browser=phantomjs --mocha --path=tests
+
+# # Javascript Node CircleCI 2.0 configuration file
+# #
+# # Check https://circleci.com/docs/2.0/language-javascript/ for more details
+# #
+# version: 2
+# jobs:
+#   build:
+#     docker:
+#       # specify the version you desire here
+#       - image: circleci/node:8.7
       
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
+#       # Specify service dependencies here if necessary
+#       # CircleCI maintains a library of pre-built images
+#       # documented at https://circleci.com/docs/2.0/circleci-images/
+#       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/repo
+#     working_directory: ~/repo
 
-    steps:
-      - checkout
+#     steps:
+#       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+#       # Download and cache dependencies
+#       - restore_cache:
+#           keys:
+#           - v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
+#           # fallback to using the latest cache if no exact match is found
+#           - v1-dependencies-
 
-      # - run: npm install
-      - run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-      - run: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-      - run: yarn install
-      # - run: PATH=$PATH:$HOME/.meteor
-      # - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
-      # - run: meteor update
-      # - run: sudo apt-get install -y locales locales-all grep
-      # - run: sudo locale-gen en_US.UTF-8
-      # - run: sudo localedef -i en_GB -f UTF-8 en_US.UTF-8
-      # - run: sudo dpkg-reconfigure locales
-      # - run: sudo sh -c "echo -e 'LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8' > /etc/default/locale" 
-      # - run: export LANG=C
-      - run: npm run chimp-empty
+#       # - run: npm install
+#       - run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+#       - run: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+#       - run: yarn install
+#       # - run: PATH=$PATH:$HOME/.meteor
+#       # - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
+#       # - run: meteor update
+#       # - run: sudo apt-get install -y locales locales-all grep
+#       # - run: sudo locale-gen en_US.UTF-8
+#       # - run: sudo localedef -i en_GB -f UTF-8 en_US.UTF-8
+#       # - run: sudo dpkg-reconfigure locales
+#       # - run: sudo sh -c "echo -e 'LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8' > /etc/default/locale" 
+#       # - run: export LANG=C
+#       - run: npm run chimp-empty
 
-      # - save_cache:
-      #     paths:
-      #       # - ~/.meteor
-      #       - node_modules
-      #     key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
+#       # - save_cache:
+#       #     paths:
+#       #       # - ~/.meteor
+#       #       - node_modules
+#       #     key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
         
-      # run tests!
-      # - run: 
-      #     command: meteor
-      #     background: true
-      # - run: sleep 90
-      - run: npm run acceptance-ci
-      # - run: npm test
-      # - run: sudo npm install -g codeclimate-test-reporter
-      # - run: CODECLIMATE_REPO_TOKEN=e0b43cf94dece3dadef8107adf1da0a5baf2281ac7ba164a1571f35c28fa71dc codeclimate-test-reporter < .coverage/lcov.info 
+#       # run tests!
+#       # - run: 
+#       #     command: meteor
+#       #     background: true
+#       # - run: sleep 90
+#       - run: npm run acceptance-ci
+#       # - run: npm test
+#       # - run: sudo npm install -g codeclimate-test-reporter
+#       # - run: CODECLIMATE_REPO_TOKEN=e0b43cf94dece3dadef8107adf1da0a5baf2281ac7ba164a1571f35c28fa71dc codeclimate-test-reporter < .coverage/lcov.info 
