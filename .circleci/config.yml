@@ -42,7 +42,7 @@ jobs:
           paths:
             - .meteor
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
         
       # run tests!
       - run: npm test
