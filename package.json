@@ -9,7 +9,7 @@
     "nocover": "jest --config=jest.config.json --watchAll",
     "acceptance":
       "chimp --ddp=http://localhost:3000 --watch --jasmine --path=tests/acceptance",
-    "acceptance-ci": "chimp --jasmine --path=tests",
+    "acceptance-ci": "chimp --path=tests",
     "chimp-empty": "chimp --path=empty"
   },
   "dependencies": {
