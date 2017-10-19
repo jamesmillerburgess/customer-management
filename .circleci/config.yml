@@ -34,8 +34,8 @@ jobs:
       - run: ENV LC_ALL en_US.UTF-8
       - run: ENV LANG en_US.UTF-8
       - run: ENV LANGUAGE en_US.UTF-8
-      - run: locale-gen en_US.UTF-8
-      - run: localedef -i en_GB -f UTF-8 en_US.UTF-8
+      - run: sudo locale-gen en_US.UTF-8
+      - run: sudo localedef -i en_GB -f UTF-8 en_US.UTF-8
       - run: sudo dpkg-reconfigure locales
       - run: sudo sh -c "echo -e 'LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8' > /etc/default/locale" 
       - run: npm install chimp
