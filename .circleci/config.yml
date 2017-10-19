@@ -28,28 +28,28 @@ jobs:
 
       - run: npm install
       - run: npm install chimp
-      - run: PATH=$PATH:$HOME/.meteor
-      - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
-      - run: meteor update
-      - run: sudo apt-get install -y locales locales-all grep
-      - run: sudo locale-gen en_US.UTF-8
-      - run: sudo localedef -i en_GB -f UTF-8 en_US.UTF-8
-      - run: sudo dpkg-reconfigure locales
-      - run: sudo sh -c "echo -e 'LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8' > /etc/default/locale" 
-      - run: export LANG=C
-      - run: npm run chimp-empty
+      # - run: PATH=$PATH:$HOME/.meteor
+      # - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com | sh; fi
+      # - run: meteor update
+      # - run: sudo apt-get install -y locales locales-all grep
+      # - run: sudo locale-gen en_US.UTF-8
+      # - run: sudo localedef -i en_GB -f UTF-8 en_US.UTF-8
+      # - run: sudo dpkg-reconfigure locales
+      # - run: sudo sh -c "echo -e 'LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8' > /etc/default/locale" 
+      # - run: export LANG=C
+      # - run: npm run chimp-empty
 
       - save_cache:
           paths:
-            - ~/.meteor
+            # - ~/.meteor
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
         
       # run tests!
-      - run: 
-          command: meteor
-          background: true
-      - run: sleep 90
+      # - run: 
+      #     command: meteor
+      #     background: true
+      # - run: sleep 90
       - run: npm run acceptance-ci
       - run: npm test
       - run: sudo npm install -g codeclimate-test-reporter
