@@ -27,6 +27,7 @@ jobs:
           - v1-dependencies-
 
       # - run: npm install
+      - run: npm i -g npm@latest-4
       - run: npm install node-gyp
       - run: npm install selenium-standalone
       - run: npm install chimp

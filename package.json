@@ -10,7 +10,7 @@
     "acceptance":
       "chimp --ddp=http://localhost:3000 --watch --jasmine --path=tests/acceptance",
     "acceptance-ci": "chimp --jasmine --path=tests/acceptance",
-    "chimp-empty": "chimp --path=noexist"
+    "chimp-empty": "chimp --path empty"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",
