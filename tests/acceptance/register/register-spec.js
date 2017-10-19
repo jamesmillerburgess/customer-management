@@ -12,7 +12,7 @@ describe('Chimp Mocha', function() {
       expect(browser.elements('#login-mode-button').value.length).toBe(0);
       expect(browser.elements('#register-submit-button').value.length).toBe(0);
       browser.click('#register-mode-button');
-      expect(browser.elements('#login-mode-button').value.length).toBe(12);
+      expect(browser.elements('#login-mode-button').value.length).toBe(1);
       expect(browser.elements('#register-submit-button').value.length).toBe(1);
       expect(browser.elements('#register-mode-button').value.length).toBe(0);
       expect(browser.elements('#login-submit-button').value.length).toBe(0);
