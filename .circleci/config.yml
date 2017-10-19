@@ -27,7 +27,7 @@ jobs:
           # - v1-dependencies-
 
       # - run: npm install
-      - run: npm install chimp@0.45.0
+      - run: npm install chimp
       - run: npm install selenium-standalone
       - run: mkdir empty
       # - run: PATH=$PATH:$HOME/.meteor
@@ -41,11 +41,11 @@ jobs:
       # - run: export LANG=C
       - run: npm run chimp-empty
 
-      - save_cache:
-          paths:
-            # - ~/.meteor
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
+      # - save_cache:
+      #     paths:
+      #       # - ~/.meteor
+      #       - node_modules
+      #     key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum ".meteor/versions"}}
         
       # run tests!
       # - run: 
