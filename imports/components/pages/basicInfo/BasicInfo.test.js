@@ -10,7 +10,11 @@ describe('BasicInfo Component', () => {
   let wrapper;
   const options = {
     context: {
-      store: { subscribe: jest.fn(), getState: () => ({ profile: {} }) },
+      store: {
+        subscribe: jest.fn(),
+        dispatch: jest.fn(),
+        getState: () => ({ app: {}, profile: {} }),
+      },
     },
   };
   beforeEach(() => {

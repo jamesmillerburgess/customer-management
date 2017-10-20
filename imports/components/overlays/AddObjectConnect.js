@@ -9,7 +9,7 @@ import FieldLists from '../../api/fieldList/fieldListCollection';
 import { setOverlayProp } from '../../state/actions/overlayActionCreators';
 import { setAppProp } from '../../state/actions/appActionCreators';
 
-export const mapStateToProps = ({ overlay }, ownProps) => {
+export const mapStateToProps = ({ app, overlay }, ownProps) => {
   const { errorMessage, showErrorMessage } = overlay;
   const { fields } = FieldLists.findOne({ page: ownProps.page }) || {
     fields: [],

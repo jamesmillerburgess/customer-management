@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import deepEqual from 'deep-equal';
 
 import OptionField from '../optionField/OptionField';
 import { buildSearchRegExp } from '../../../api/methodUtils';
@@ -21,15 +22,22 @@ export const filterBySearch = (options, inputValue) => {
 class AsyncOptionField extends React.Component {
   constructor(props) {
     super(props);
-    if (props.value) {
-      this.state = { options: [props.value] };
-    } else {
-      this.state = { options: [] };
-    }
     this.mergeResults = this.mergeResults.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.handleServerResults = this.handleServerResults.bind(this);
     this.getClientAndServerResults = this.getClientAndServerResults.bind(this);
+    this.getOptions = this.getOptions.bind(this);
+    this.onOpen = this.onOpen.bind(this);
+    this.state = { options: [] };
+  }
+
+  onOpen() {
+    console.log('onOpen');
+    const inputValue = '';
+    const syncOptions = this.getOptions(inputValue, asyncOptions => {
+      this.setState({ options: asyncOptions });
+    });
+    this.setState({ options: syncOptions, inputValue });
   }
 
   // Combine two sets of results to remove duplicates and maintain the first set
@@ -55,17 +63,17 @@ class AsyncOptionField extends React.Component {
 
   // Call the search method on both client and server. Client results come in the
   // return value and server results are passed into the callback.
-  getClientAndServerResults(inputValue) {
+  getClientAndServerResults(inputValue, cb) {
     return Meteor.apply(
       this.props.searchMethod,
       [inputValue],
       { returnStubValue: true },
-      this.handleServerResults
+      (err, res) => this.handleServerResults(err, res, cb)
     );
   }
 
   // Handle server results
-  handleServerResults(err, res) {
+  handleServerResults(err, res, cb) {
     if (err) {
       console.log(err);
     }
@@ -74,12 +82,22 @@ class AsyncOptionField extends React.Component {
     // be results for an old search if the user is typing sufficiently quickly
     // and the connection is sufficiently slow.
     if (res.searchText === this.state.inputValue) {
-      this.setState({
-        // Merge results to preserve the order of the client results and only
-        // extend the list as needed
-        options: this.mergeResults(this.state.options, res.searchResults),
-      });
+      cb(this.mergeResults(this.state.options, res.searchResults));
     }
+  }
+
+  getOptions(inputValue, cb) {
+    // Apply newest inputValue as a filter to the last set of results
+    const lastResults = filterBySearch(this.state.options, inputValue);
+
+    // Get the results for both the client and the server
+    const clientResults = this.getClientAndServerResults(inputValue, cb)
+      .searchResults;
+
+    // Merge the client results into the filtered results from the last
+    // search. This is synchronous, and so it will run before the server
+    // results are returned and merged.
+    return this.mergeResults(lastResults, clientResults);
   }
 
   // Since we don't know which companies might be subscribed to on the client,
@@ -92,20 +110,11 @@ class AsyncOptionField extends React.Component {
   //    2) Cache searches(?)
   //    3) Load results on mount
   onInputChange(inputValue) {
-    // Apply newest inputValue as a filter to the last set of results
-    const lastResults = filterBySearch(this.state.options, inputValue);
-
-    // Get the results for both the client and the server
-    const clientResults = this.getClientAndServerResults(inputValue)
-      .searchResults;
-
-    // Merge the client results into the filtered results from the last
-    // search. This is synchronous, and so it will run before the server
-    // results are returned and merged.
-    this.setState({
-      options: this.mergeResults(lastResults, clientResults),
-      inputValue,
+    const syncOptions = this.getOptions(inputValue, asyncOptions => {
+      this.setState({ options: asyncOptions });
     });
+
+    this.setState({ options: syncOptions, inputValue });
   }
 
   render() {
@@ -118,6 +127,7 @@ class AsyncOptionField extends React.Component {
         valueRenderer={optionRenderer}
         onInputChange={this.onInputChange}
         filterOption={filterOption}
+        onOpen={this.onOpen}
       />
     );
   }

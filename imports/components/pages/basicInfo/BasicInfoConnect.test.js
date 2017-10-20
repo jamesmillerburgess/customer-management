@@ -11,10 +11,12 @@ describe('BasicInfoConnect Component', () => {
 describe('mapStateToProps Function', () => {
   it('maps state to props', () => {
     const state = {
+      app: { loading: false },
       profile: { username: 'a', team: 'b', hasLoaded: true },
       other: 'b',
     };
     expect(mapStateToProps(state)).toEqual({
+      loading: false,
       username: 'a',
       team: 'b',
       hasLoaded: true,
@@ -22,10 +24,12 @@ describe('mapStateToProps Function', () => {
   });
   it('loads in defaults if values are not in the state', () => {
     const state = {
+      app: {},
       profile: {},
       other: 'b',
     };
     expect(mapStateToProps(state)).toEqual({
+      loading: true,
       username: '',
       team: '',
       hasLoaded: false,
