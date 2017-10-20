@@ -10,6 +10,7 @@
 * Fixed issue with subscriptions not updating until state has been updated after
 loading
 * Automated test harness for acceptance tests
+* Automated deployment to live site triggered by new passing builds on `devel` branch (this is more frequent than the minor version increments like v0.9.0)
 
 ## v0.9.0 – Dashboard
 
