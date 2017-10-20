@@ -89,7 +89,7 @@ export const Meteor = {
     Meteor._subscriptions.push([...arguments]);
     return {
       ready: () => {
-        return this.ready;
+        return Meteor.ready;
       },
     };
   },

@@ -10,18 +10,21 @@ describe('ObjectEditorConnect Component', () => {
   });
 });
 describe('mapStateToProps Function', () => {
-  it('pulls in objectEditor properties', () => {
+  it('pulls in app and objectEditor properties', () => {
     const state = {
+      app: { loading: false },
       objectEditor: { hasLoaded: true, loadedValues: { a: 'a' } },
     };
     expect(mapStateToProps(state)).toEqual({
+      loading: false,
       hasLoaded: true,
       loadedValues: { a: 'a' },
     });
   });
   it('uses defaults if the properties are missing from the state', () => {
-    const state = { objectEditor: {} };
+    const state = { app: {}, objectEditor: {} };
     expect(mapStateToProps(state)).toEqual({
+      loading: true,
       hasLoaded: false,
       loadedValues: {},
     });

@@ -22,7 +22,8 @@ export const linkMeteorData = props => {
     object._id &&
     fieldList &&
     fieldList.fields &&
-    (!props.hasLoaded || object._id !== props.loadedValues._id)
+    (!props.hasLoaded || object._id !== props.loadedValues._id) &&
+    !props.loading
   ) {
     props.setHasLoaded(true);
     fieldList.fields.forEach(properties =>

@@ -2,9 +2,12 @@ import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
 
 import SubscriptionManagerContainer from './SubscriptionManagerContainer';
+import { setAppProp } from '../../../state/actions/appActionCreators';
 
 export const mapStateToProps = ({ app, subscriptions }) => ({
+  loading: app.loading === false ? false : true,
   subscriptions: {
+    configurations: ['configurations.all'],
     constacts: ['contact.user'],
     companies: ['company.user'],
     opportunities: ['opportunity.user'],
@@ -23,7 +26,9 @@ export const mapStateToProps = ({ app, subscriptions }) => ({
   },
 });
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({});
+export const mapDispatchToProps = (dispatch, ownProps) => ({
+  setLoading: value => dispatch(setAppProp('loading', value)),
+});
 
 const AppConnect = connect(mapStateToProps, mapDispatchToProps)(
   SubscriptionManagerContainer

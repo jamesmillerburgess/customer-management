@@ -11,6 +11,7 @@
 loading
 * Automated test harness for acceptance tests
 * Automated deployment to live site triggered by new passing builds on `devel` branch (this is more frequent than the minor version increments like v0.9.0)
+* Made async option fields more reliable (`Team` and `Company` fields)
 
 ## v0.9.0 – Dashboard
 

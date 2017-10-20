@@ -16,13 +16,25 @@ describe('AsyncOptionField Component', () => {
   beforeEach(() => (wrapper = shallow(<AsyncOptionField />)));
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
-  it('sets the options to the value if it exists', () => {
-    const field = shallow(<AsyncOptionField value="a" />);
-    expect(field.state('options')).toEqual(['a']);
-  });
   it('sets the options to an empty array if the value does not exist', () => {
     const field = shallow(<AsyncOptionField />);
     expect(field.state('options')).toEqual([]);
+  });
+  describe('onOpen Function', () => {
+    let onOpen;
+    beforeEach(() => ({ onOpen } = wrapper.instance()));
+    it('does not throw', () => {
+      Meteor.methods({
+        a: searchText => {
+          return { searchResults: [], searchText };
+        },
+      });
+      Meteor.err = null;
+      Meteor.res = { searchResults: [], searchText: '' };
+      wrapper.setProps({ searchMethod: 'a' });
+      wrapper.setState({ inputValue: '' });
+      expect(onOpen).not.toThrow();
+    });
   });
   describe('mergeResults Function', () => {
     let mergeResults;
@@ -69,12 +81,14 @@ describe('AsyncOptionField Component', () => {
     let handleServerResults;
     beforeEach(() => ({ handleServerResults } = wrapper.instance()));
     it('sets the state if the result searchText equals the current inputValue', () => {
+      const cb = jest.fn();
       wrapper.instance().state.inputValue = 'a';
-      handleServerResults(null, { searchText: 'a', searchResults: ['b'] });
-      expect(wrapper.state('options')).toEqual(['b']);
+      expect(cb).toHaveBeenCalledTimes(0);
+      handleServerResults(null, { searchText: 'a', searchResults: ['b'] }, cb);
+      expect(cb).toHaveBeenCalledTimes(1);
       wrapper.instance().state.options = [];
-      handleServerResults(null, { searchText: 'c', searchResults: ['b'] });
-      expect(wrapper.state('options')).toEqual([]);
+      handleServerResults(null, { searchText: 'c', searchResults: ['b'] }, cb);
+      expect(cb).toHaveBeenCalledTimes(1);
     });
     it('handles errors', () => {
       wrapper.instance().state.inputValue = 'a';
@@ -93,6 +107,7 @@ describe('AsyncOptionField Component', () => {
       Meteor.err = null;
       Meteor.res = { searchResults: [], searchText: 'a' };
       wrapper.setProps({ searchMethod: 'a' });
+      wrapper.setState({ inputValue: 'a' });
       expect(() => onInputChange('a')).not.toThrow();
     });
   });
