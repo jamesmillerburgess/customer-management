@@ -1,4 +1,4 @@
-describe('Accounts', function() {
+describe('Login', function() {
   let b;
   beforeEach(() => {
     b = browser;
