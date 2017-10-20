@@ -29,16 +29,16 @@ describe('HomeDisplay', () => {
     wrapper.find('#password').simulate('change', { target: { value: 'a' } });
     expect(props.setPassword).toHaveBeenCalled();
   });
-  it('only displays passwordAgain if mode is REGISTER', () => {
+  it('only displays password-again if mode is REGISTER', () => {
     wrapper.setProps({ mode: null });
-    expect(wrapper.find('#passwordAgain').length).toBe(0);
+    expect(wrapper.find('#password-again').length).toBe(0);
     wrapper.setProps({ mode: REGISTER });
-    expect(wrapper.find('#passwordAgain').length).toBe(1);
+    expect(wrapper.find('#password-again').length).toBe(1);
   });
-  it('dispatches on change of passwordAgain value', () => {
+  it('dispatches on change of password-again value', () => {
     wrapper.setProps({ mode: REGISTER });
     wrapper
-      .find('#passwordAgain')
+      .find('#password-again')
       .simulate('change', { target: { value: 'a' } });
     expect(props.setPasswordAgain).toHaveBeenCalled();
   });
