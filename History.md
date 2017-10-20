@@ -1,12 +1,16 @@
 ## vNEXT
 
-#### Minor Changes
+#### New Functionality
+
+#### Other Changes
 
 * Add validation to object creation instead of crashing when `Name` is blank
 * Gracefully handle long names in the object editors
 * Add timeline entries to members joining/leaving teams
 * Fixed issue with subscriptions not updating until state has been updated after
 loading
+* Automated test harness for acceptance tests
+* Automated deployment to live site triggered by new passing builds on `devel` branch (this is more frequent than the minor version increments like v0.9.0)
 
 ## v0.9.0 – Dashboard
 
