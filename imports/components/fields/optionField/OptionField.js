@@ -22,6 +22,7 @@ const OptionField = props => (
     optionRenderer={props.optionRenderer}
     valueRenderer={props.valueRenderer}
     filterOption={props.filterOption}
+    onOpen={props.onOpen}
   />
 );
 

@@ -6,10 +6,14 @@ export const linkMeteorData = props => {
   if (!Meteor.userId()) {
     return { ...props, object: { timeline: [] }, loading: true };
   }
-  const loading = !Meteor.subscribe('configurations.all').ready();
-  Object.keys(props.subscriptions).forEach(key =>
-    Meteor.subscribe.apply(null, props.subscriptions[key])
+  const loading = Object.keys(props.subscriptions).reduce(
+    (prev, key) =>
+      prev || !Meteor.subscribe.apply(null, props.subscriptions[key]).ready(),
+    false
   );
+  if (loading !== props.loading) {
+    props.setLoading(loading);
+  }
   return { ...props, loading };
 };
 

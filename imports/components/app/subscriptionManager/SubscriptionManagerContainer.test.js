@@ -22,7 +22,7 @@ describe('SubscriptionManagerContainer Component', () => {
 });
 describe('linkMeteorData Function', () => {
   const collection = new Mongo.Collection();
-  const props = { subscriptions: {} };
+  const props = { subscriptions: {}, setLoading: jest.fn() };
   it('sets loading to true if there is no userId', () => {
     Meteor._userId = null;
     expect(linkMeteorData(props).loading).toBe(true);
@@ -30,6 +30,7 @@ describe('linkMeteorData Function', () => {
   it('sets loading to true if there is a userid but the subscription is not ready', () => {
     Meteor._userId = 'a';
     Meteor.ready = false;
+    props.subscriptions.a = ['a'];
     expect(linkMeteorData(props).loading).toBe(true);
   });
   it('sets loading to false if there is a userid and the subscription is ready', () => {
@@ -41,11 +42,20 @@ describe('linkMeteorData Function', () => {
     Meteor._subscriptions = [];
     props.subscriptions = { a: ['a'], b: ['b'] };
     linkMeteorData(props);
-    expect(Meteor._subscriptions).toEqual([
-      ['configurations.all'],
-      ['a'],
-      ['b'],
-    ]);
+    expect(Meteor._subscriptions).toEqual([['a'], ['b']]);
+  });
+  it('calls setLoading if loading has changed', () => {
+    props.loading = true;
+    props.setLoading = jest.fn();
+    Meteor._subscriptions = [];
+    props.subscriptions = {};
+    expect(props.setLoading).toHaveBeenCalledTimes(0);
+    linkMeteorData(props);
+    expect(props.setLoading).toHaveBeenCalledTimes(1);
+    props.loading = false;
+    linkMeteorData(props);
+    props.setLoading = jest.fn();
+    expect(props.setLoading).toHaveBeenCalledTimes(0);
   });
   describe('Empty Component', () => {
     it('is a div', () => {

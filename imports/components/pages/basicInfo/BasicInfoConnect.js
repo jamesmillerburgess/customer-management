@@ -5,7 +5,8 @@ import BasicInfoContainer from './BasicInfoContainer';
 
 import { setProfileProp } from '../../../state/actions/profileActionCreators';
 
-export const mapStateToProps = ({ profile }) => ({
+export const mapStateToProps = ({ app, profile, subscriptions }) => ({
+  loading: app.loading === false ? false : true,
   username: profile.username || '',
   team: profile.team || '',
   hasLoaded: profile.hasLoaded || false,
