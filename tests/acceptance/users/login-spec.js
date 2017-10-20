@@ -1,4 +1,4 @@
-describe('Login', function() {
+describe('Login @watch', function() {
   let b;
   beforeEach(() => {
     b = browser;
@@ -36,15 +36,16 @@ describe('Login', function() {
     expect(b.elements('#password').value.length).toBe(1);
     expect(b.elements('#password-again').value.length).toBe(0);
   });
-  it('should validate login', () => {
+  it('validates login submission', () => {
     b.setValue('#username', '');
     b.setValue('#password', '');
     const getErr = () => b.getText('.home .error-message');
     expect(getErr()).toBe('');
     b.click('#login-submit-button');
+    b.waitUntil(() => getErr() !== '', 5000);
     expect(getErr()).toBe('Match failed');
   });
-  it('should validate registration', () => {
+  it('validates registration submission', () => {
     b.waitForExist('#register-mode-button');
     b.click('#register-mode-button');
     b.setValue('#username', 'test');
