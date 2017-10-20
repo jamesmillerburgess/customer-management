@@ -6,13 +6,13 @@ dependencies:
     - "node_modules"
     - "~/.npm"
     - "~/.meteor"
-    - $(npm config get prefix)/lib/node_modules
+    # - $(npm config get prefix)/lib/node_modules
   override:
     - PATH=$PATH:$HOME/.meteor
     - if [ -d ~/.meteor ]; then sudo ln -s ~/.meteor/meteor /usr/local/bin/meteor; fi
     - if [ ! -e $HOME/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
     - meteor npm install
-    - npm install -g chimp
+    # - npm install -g chimp
 test:
   override:
     - meteor:
