@@ -1,25 +1,21 @@
 machine:
-  node:
-    version: 6.3.0
 dependencies:
   cache_directories:
     - "node_modules"
     - "~/.npm"
     - "~/.meteor"
-    # - $(npm config get prefix)/lib/node_modules
   override:
     - PATH=$PATH:$HOME/.meteor
     - if [ -d ~/.meteor ]; then sudo ln -s ~/.meteor/meteor /usr/local/bin/meteor; fi
     - if [ ! -e $HOME/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
     - meteor npm install
-    # - npm install -g chimp
 test:
   override:
     - meteor:
         background: true
-    - npm run unit-ci
-    - npm install -g codeclimate-test-reporter
+    - meteor npm run unit-ci
+    - meteor npm install -g codeclimate-test-reporter
     - CODECLIMATE_REPO_TOKEN=e0b43cf94dece3dadef8107adf1da0a5baf2281ac7ba164a1571f35c28fa71dc codeclimate-test-reporter < .coverage/lcov.info 
     - until curl --max-time 300 http://localhost:3000/; do sleep 1; done
-    - npm run acceptance-ci
+    - meteor npm run acceptance-ci
     
