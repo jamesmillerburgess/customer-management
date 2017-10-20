@@ -43,18 +43,36 @@ const HomeDisplay = props => {
           />
         </div>
         {props.mode === REGISTER ? (
-          <div className="input-group">
-            <div className="input-label">Password again</div>
-            <input
-              id="passwordAgain"
-              className="login-password-again"
-              type="password"
-              value={props.passwordAgain}
-              onChange={e => props.setPasswordAgain(e.target.value)}
-            />
+          <div>
+            <div className="input-group">
+              <div className="input-label">Password again</div>
+              <input
+                id="passwordAgain"
+                className="login-password-again"
+                type="password"
+                value={props.passwordAgain}
+                onChange={e => props.setPasswordAgain(e.target.value)}
+              />
+            </div>
+            <div className="button-group">
+              <button
+                id="login-mode-button"
+                type="button"
+                className="button-invis"
+                onClick={props.setToLoginMode}
+              >
+                Login
+              </button>
+              <button
+                id="register-submit-button"
+                type="submit"
+                className="button-primary"
+              >
+                Register
+              </button>
+            </div>
           </div>
-        ) : null}
-        {props.mode === LOGIN ? (
+        ) : (
           <div className="button-group">
             <button
               id="register-mode-button"
@@ -72,26 +90,7 @@ const HomeDisplay = props => {
               Login
             </button>
           </div>
-        ) : null}
-        {props.mode === REGISTER ? (
-          <div className="button-group">
-            <button
-              id="login-mode-button"
-              type="button"
-              className="button-invis"
-              onClick={props.setToLoginMode}
-            >
-              Login
-            </button>
-            <button
-              id="register-submit-button"
-              type="submit"
-              className="button-primary"
-            >
-              Register
-            </button>
-          </div>
-        ) : null}
+        )}
         <div className="error-message">{props.errorMessage}</div>
       </form>
     </div>
