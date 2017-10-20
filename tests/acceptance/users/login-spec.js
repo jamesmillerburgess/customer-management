@@ -37,12 +37,12 @@ describe('Accounts', function() {
     expect(b.elements('#password-again').value.length).toBe(0);
   });
   it('should validate login', () => {
-    b.setValue('#username', 'test');
-    b.setValue('#password', 'test');
+    b.setValue('#username', '');
+    b.setValue('#password', '');
     const getErr = () => b.getText('.home .error-message');
     expect(getErr()).toBe('');
     b.click('#login-submit-button');
-    expect(getErr()).toBe('User not found');
+    expect(getErr()).toBe('Match failed');
   });
   it('should validate registration', () => {
     b.waitForExist('#register-mode-button');
