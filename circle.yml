@@ -6,11 +6,7 @@ dependencies:
     - "node_modules"
     - "~/.npm"
     - "~/.meteor"
-    - "src/.meteor/local/build"
-    - "src/.meteor/local/bundler-cache"
-    - "src/.meteor/local/db"
-    - "src/.meteor/local/isopacks"
-    - "src/.meteor/local/plugin-cache"    
+    - $(npm config get prefix)/lib/node_modules
   override:
     - PATH=$PATH:$HOME/.meteor
     - if [ -d ~/.meteor ]; then sudo ln -s ~/.meteor/meteor /usr/local/bin/meteor; fi
@@ -22,6 +18,7 @@ dependencies:
     - sudo localedef -i en_GB -f UTF-8 en_US.UTF-8
     - sudo dpkg-reconfigure locales
     - sudo sh -c "echo -e 'LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8' > /etc/default/locale" 
+    - export LANG=C
     - npm install -g chimp
     - mkdir empty
     - chimp --browser=phantomjs --path empty
