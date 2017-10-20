@@ -13,11 +13,7 @@ dependencies:
     - if [ ! -e $HOME/.meteor/meteor ]; then curl https://install.meteor.com | sh; fi
     - meteor update
     - meteor npm install
-    - sudo apt-get install -y locales grep
     - npm install -g chimp
-    - mkdir empty
-    - chimp --browser=phantomjs --path empty
-   
 test:
   override:
     - npm run unit-ci
