@@ -1,12 +1,15 @@
 ## vNEXT
 
-#### Minor Changes
+#### New Functionality
+
+#### Other Changes
 
 * Add validation to object creation instead of crashing when `Name` is blank
 * Gracefully handle long names in the object editors
 * Add timeline entries to members joining/leaving teams
 * Fixed issue with subscriptions not updating until state has been updated after
 loading
+* Automated test harness for acceptance tests
 
 ## v0.9.0 – Dashboard
 
