@@ -42,35 +42,35 @@ const HomeDisplay = props => {
             onChange={e => props.setPassword(e.target.value)}
           />
         </div>
+        {props.mode === REGISTER && (
+          <div className="input-group">
+            <div className="input-label">Password again</div>
+            <input
+              id="password-again"
+              className="login-password-again"
+              type="password"
+              value={props.passwordAgain}
+              onChange={e => props.setPasswordAgain(e.target.value)}
+            />
+          </div>
+        )}
         {props.mode === REGISTER ? (
-          <div>
-            <div className="input-group">
-              <div className="input-label">Password again</div>
-              <input
-                id="passwordAgain"
-                className="login-password-again"
-                type="password"
-                value={props.passwordAgain}
-                onChange={e => props.setPasswordAgain(e.target.value)}
-              />
-            </div>
-            <div className="button-group">
-              <button
-                id="login-mode-button"
-                type="button"
-                className="button-invis"
-                onClick={props.setToLoginMode}
-              >
-                Login
-              </button>
-              <button
-                id="register-submit-button"
-                type="submit"
-                className="button-primary"
-              >
-                Register
-              </button>
-            </div>
+          <div className="button-group">
+            <button
+              id="login-mode-button"
+              type="button"
+              className="button-invis"
+              onClick={props.setToLoginMode}
+            >
+              Login
+            </button>
+            <button
+              id="register-submit-button"
+              type="submit"
+              className="button-primary"
+            >
+              Register
+            </button>
           </div>
         ) : (
           <div className="button-group">
