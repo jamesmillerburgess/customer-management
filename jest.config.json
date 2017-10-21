@@ -9,5 +9,6 @@
     "^meteor/(.*)": "<rootDir>/tests/meteorMocks.js",
     "\\.(scss|css|less)$": "identity-obj-proxy"
   },
-  "coverageDirectory": ".coverage"
+  "coverageDirectory": ".coverage",
+  "setupFiles": ["raf/polyfill"]
 }
