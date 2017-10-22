@@ -1,6 +1,13 @@
 {
-  "verbose": true,
   "collectCoverageFrom": ["imports/**/*.{js,jsx}", "!client/index.js"],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 50
+    }
+  },
   "testPathIgnorePatterns": ["/node_modules/", "/.meteor/"],
   "transform": {
     "^.+\\.jsx?$": "babel-jest"

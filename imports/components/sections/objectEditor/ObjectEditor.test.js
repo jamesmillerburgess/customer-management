@@ -8,7 +8,7 @@ import ObjectEditor from './ObjectEditor';
 
 describe('ObjectEditor Component', () => {
   let wrapper;
-  const props = {};
+  const props = { path: '/' };
   beforeEach(() => {
     wrapper = shallow(<ObjectEditor {...props} />);
   });
