@@ -17,9 +17,9 @@ describe('TeamActivityDisplay Component', () => {
   });
   it('renders without error', () => {});
   it('renders the timeline only if showWidget is true', () => {
-    wrapper.setProps({ showWidget: true, activity: [{ id: 'a' }] });
+    wrapper.setProps({ showWidget: true, activity: [{ _id: 'a' }] });
     expect(wrapper.hasClass('team-activity')).toBe(true);
-    wrapper.setProps({ showWidget: false, activity: [{ id: 'a' }] });
+    wrapper.setProps({ showWidget: false, activity: [{ _id: 'a' }] });
     expect(wrapper.hasClass('team-activity')).toBe(false);
   });
 });
