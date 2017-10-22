@@ -12,7 +12,7 @@ describe('AddObjectDisplay', () => {
   let wrapper;
   const props = {
     fields: [
-      { prop: 'name', label: 'Name', component: TextField, default: '' },
+      { name: 'name', label: 'Name', component: TextField, default: '' },
     ],
   };
   beforeEach(() => {
