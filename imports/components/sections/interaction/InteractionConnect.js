@@ -18,7 +18,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   setTime: value => dispatch(setObjectEditorProp(ownProps.timeProp, value)),
   setOutcome: value =>
     dispatch(setObjectEditorProp(ownProps.outcomeProp, value)),
-  logInteraction: interaction =>
+  logInteraction: interaction => {
     Meteor.call(
       ownProps.logInteractionMethod,
       ownProps.match.params[ownProps.uriID],
@@ -31,11 +31,12 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
         if (err) {
           console.log(err);
         }
-        dispatch(setObjectEditorProp(ownProps.textProp, ''));
-        dispatch(setObjectEditorProp(ownProps.timeProp, new Date()));
-        dispatch(setObjectEditorProp(ownProps.outcomeProp, ''));
       }
-    ),
+    );
+    dispatch(setObjectEditorProp(ownProps.textProp, ''));
+    dispatch(setObjectEditorProp(ownProps.timeProp, new Date()));
+    dispatch(setObjectEditorProp(ownProps.outcomeProp, ''));
+  },
   cancelInteraction: () => {
     dispatch(setObjectEditorProp(ownProps.textProp, ''));
     dispatch(setObjectEditorProp(ownProps.timeProp, new Date()));
