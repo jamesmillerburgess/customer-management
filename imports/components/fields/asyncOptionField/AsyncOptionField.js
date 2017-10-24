@@ -32,7 +32,6 @@ class AsyncOptionField extends React.Component {
   }
 
   onOpen() {
-    console.log('onOpen');
     const inputValue = '';
     const syncOptions = this.getOptions(inputValue, asyncOptions => {
       this.setState({ options: asyncOptions });
