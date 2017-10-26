@@ -1,6 +1,12 @@
 ## vNEXT
 
-#### New Functionality
+## v1.0.0 – Data Entry and Workflow
+
+* Ability to enter all necessary data into the application
+* Support of the sales process through object workflows
+* Reporting on activity and sales pipeline by `Team`
+* Intuitive and simple user interface
+* Extremely fast performance, even on slow or spotty internet connections
 
 #### Other Changes
 
