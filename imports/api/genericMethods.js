@@ -14,6 +14,7 @@ const EMAIL = 'EMAIL';
 const MEETING = 'MEETING';
 const JOIN_TEAM = 'JOIN_TEAM';
 const LEAVE_TEAM = 'LEAVE_TEAM';
+const QUOTE = 'QUOTE';
 
 export const addActivity = (activity, collection, id) => {
   const username = Meteor.user() ? Meteor.user().username : undefined;
@@ -87,6 +88,7 @@ export const logInteraction = (collection, objectId, interaction, type) => {
     time: interaction.time,
     outcome: interaction.outcome,
     text: interaction.text,
+    quoteNumber: interaction.quoteNumber,
   };
   const activityId = addActivity(activity, collection, objectId);
   collection.update(objectId, {
@@ -118,6 +120,8 @@ export const buildGenericMethods = (
     logInteraction(collection, objectId, email, EMAIL),
   [`${collectionName}.logMeeting`]: (objectId, meeting) =>
     logInteraction(collection, objectId, meeting, MEETING),
+  [`${collectionName}.logQuote`]: (objectId, quote) =>
+    logInteraction(collection, objectId, quote, QUOTE),
   [`${collectionName}.search`]: searchText => search(collection, searchText),
 });
 

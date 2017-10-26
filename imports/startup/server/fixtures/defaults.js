@@ -26,6 +26,37 @@ export const FIELD_OPTIONS = [
     ],
   },
   {
+    type: 'COMPANY_LIFECYCLE_STAGE',
+    options: [
+      { value: '', label: '' },
+      { value: 'PARTY', label: 'Party' },
+      { value: 'LEAD', label: 'Lead' },
+      { value: 'PROSPECT', label: 'Prospect' },
+      { value: 'CUSTOMER', label: 'Customer' },
+    ],
+  },
+  {
+    type: 'COMPANY_STATUS',
+    options: [
+      { value: '', label: '' },
+      { value: 'ACTIVE', label: 'Active' },
+      { value: 'INACTIVE', label: 'Inactive' },
+      { value: 'EXITED', label: 'Exited' },
+    ],
+  },
+  {
+    type: 'CONTACT_TYPE',
+    options: [
+      { value: '', label: '' },
+      { value: 'ADMINISTRATION', label: 'Administration' },
+      { value: 'DECISION_MAKER', label: 'Decision Maker' },
+      { value: 'FINANCE', label: 'Finance' },
+      { value: 'INFLUENCER', label: 'Influencer' },
+      { value: 'KEY', label: 'Key' },
+      { value: 'OPERATIONS', label: 'Operations' },
+    ],
+  },
+  {
     type: 'CONTACT_LEAD_STATUS',
     options: [
       { value: '', label: '' },
@@ -51,12 +82,20 @@ export const FIELD_LISTS = [
     page: 'ADD_CONTACT',
     fields: [
       { name: 'name', label: 'Name', type: 'TEXT', default: '' },
-      { name: 'email', label: 'Email', type: 'TEXT', default: '' },
       {
         name: 'company',
         label: 'Company',
         type: 'COMPANY',
         default: null,
+      },
+      { name: 'position', label: 'Position', type: 'TEXT', default: '' },
+      { name: 'type', label: 'Type', type: 'CONTACT_TYPE', default: '' },
+      { name: 'email', label: 'Email', type: 'TEXT', default: '' },
+      {
+        name: 'phoneNumber',
+        label: 'Phone Number',
+        type: 'TEXT',
+        default: '',
       },
     ],
   },
@@ -86,29 +125,19 @@ export const FIELD_LISTS = [
     page: 'CONTACT_PROPERTIES',
     fields: [
       { name: 'name', label: 'Name', type: 'TEXT', default: '' },
-      { name: 'email', label: 'Email', type: 'TEXT', default: '' },
       {
         name: 'company',
         label: 'Company',
         type: 'COMPANY',
         default: null,
       },
+      { name: 'position', label: 'Position', type: 'TEXT', default: '' },
+      { name: 'type', label: 'Type', type: 'CONTACT_TYPE', default: '' },
+      { name: 'email', label: 'Email', type: 'TEXT', default: '' },
       {
         name: 'phoneNumber',
         label: 'Phone Number',
         type: 'TEXT',
-        default: '',
-      },
-      {
-        name: 'lifecycleStage',
-        label: 'Lifecycle Stage',
-        type: 'CONTACT_LIFECYCLE_STAGE',
-        default: '',
-      },
-      {
-        name: 'leadStatus',
-        label: 'Lead Status',
-        type: 'CONTACT_LEAD_STATUS',
         default: '',
       },
     ],
@@ -117,6 +146,13 @@ export const FIELD_LISTS = [
     page: 'COMPANY_PROPERTIES',
     fields: [
       { name: 'name', label: 'Name', type: 'TEXT', default: '' },
+      {
+        name: 'lifecycleStage',
+        label: 'Lifecycle Stage',
+        type: 'COMPANY_LIFECYCLE_STAGE',
+        default: '',
+      },
+      { name: 'status', label: 'Status', type: 'COMPANY_STATUS', default: '' },
       { name: 'website', label: 'Website', type: 'TEXT', default: '' },
       {
         name: 'industry',

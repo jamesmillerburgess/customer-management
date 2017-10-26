@@ -80,6 +80,9 @@
   font-weight: 300;
   border-top: 1px solid rgba(#33475b, 0.25);
 }
+.note .text {
+  white-space: pre-wrap;
+}
 .keyword {
   font-weight: 400;
 }
