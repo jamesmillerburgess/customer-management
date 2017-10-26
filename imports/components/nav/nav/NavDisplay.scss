@@ -2,11 +2,31 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   background-color: #2e2e2e;
   height: 42px;
   box-shadow: 0 1px 0 #4d4d4d inset, 0 2px 3px rgba(0, 0, 0, 0.25);
   .button-group {
     display: flex;
+  }
+  .hamburger {
+    display: none;
+    font-size: 24px;
+    color: #bbb;
+    padding: 5px 10px;
+    background-color: transparent;
+  }
+  .hamburger:focus {
+    outline: none;
+  }
+  @media screen and (max-width: 700px) {
+    .hamburger {
+      display: block;
+    }
+    .links,
+    .search-and-profile {
+      display: none;
+    }
   }
   .nav-button {
     font-size: 14px;
@@ -23,7 +43,8 @@
   a.active {
     background-color: #212121;
   }
-  a:hover {
+  a:hover,
+  .hamburger.active {
     background-color: #1b1b1b;
     color: #f0f0f0;
     border-left: 1px solid #000;

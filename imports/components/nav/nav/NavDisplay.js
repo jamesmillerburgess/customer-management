@@ -8,7 +8,13 @@ import NavSearchInput from '../../fields/NavSearchInput';
 
 const NavDisplay = props => (
   <div className="nav">
-    <div className="button-group">
+    <button
+      className={`button-group hamburger ${props.isHamburgerOpen && 'active'}`}
+      onClick={() => props.setIsHamburgerOpen(!props.isHamburgerOpen)}
+    >
+      <span className="fa fa-bars" />
+    </button>
+    <div className="button-group links">
       {routes
         .filter(route => route.isNavLink)
         .map(({ path, title, exact, className }, index) => (
@@ -17,7 +23,7 @@ const NavDisplay = props => (
           </NavLink>
         ))}
     </div>
-    <div className="button-group">
+    <div className="button-group search-and-profile">
       <NavSearchInput placeholder="Search" />
       <div>
         <button
