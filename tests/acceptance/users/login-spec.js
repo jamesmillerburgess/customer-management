@@ -18,7 +18,7 @@ describe('Login @watch', function() {
     expect(b.elements('#password-again').value.length).toBe(0);
   });
   it('switches between register and login modes', () => {
-    b.waitForExist('#register-mode-button');
+    b.waitUntil(() => b.isExisting('#register-mode-button'), 5000);
     b.click('#register-mode-button');
     expect(b.elements('#login-mode-button').value.length).toBe(1);
     expect(b.elements('#register-submit-button').value.length).toBe(1);
@@ -46,7 +46,7 @@ describe('Login @watch', function() {
     expect(getErr()).toBe('Match failed');
   });
   it('validates registration submission', () => {
-    b.waitForExist('#register-mode-button');
+    b.waitUntil(() => b.isExisting('#register-mode-button'), 5000);
     b.click('#register-mode-button');
     b.setValue('#username', 'test');
     b.setValue('#password', 'test');
