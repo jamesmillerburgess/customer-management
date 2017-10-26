@@ -103,7 +103,20 @@ export const FIELD_LISTS = [
     page: 'ADD_COMPANY',
     fields: [
       { name: 'name', label: 'Name', type: 'TEXT', default: '' },
+      {
+        name: 'lifecycleStage',
+        label: 'Lifecycle Stage',
+        type: 'COMPANY_LIFECYCLE_STAGE',
+        default: '',
+      },
+      { name: 'status', label: 'Status', type: 'COMPANY_STATUS', default: '' },
       { name: 'website', label: 'Website', type: 'TEXT', default: '' },
+      {
+        name: 'industry',
+        label: 'Industry',
+        type: 'TEXT',
+        default: '',
+      },
     ],
   },
   {
