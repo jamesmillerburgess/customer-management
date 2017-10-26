@@ -48,6 +48,7 @@ export const Overlays = ({ open, type }) => (
             {...overlayRoute}
             show={type === overlayRoute.page}
             label={overlayRoute.pathPrefix}
+            confirmLabel={overlayRoute.confirmLabel}
           />
         )}
       />

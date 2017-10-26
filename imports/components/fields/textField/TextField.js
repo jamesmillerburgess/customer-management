@@ -5,6 +5,7 @@ const TextField = props => (
     type="text"
     value={props.value}
     onChange={e => props.onChange(e.target.value)}
+    placeholder={props.placeholder}
   />
 );
 

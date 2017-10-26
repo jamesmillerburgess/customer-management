@@ -30,6 +30,9 @@ describe('Interaction Component', () => {
       expect(
         getInteractionProps({ activeInteraction: 'LOG_MEETING' })
       ).not.toBe(null);
+      expect(getInteractionProps({ activeInteraction: 'LOG_QUOTE' })).not.toBe(
+        null
+      );
     });
   });
 });

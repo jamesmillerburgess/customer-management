@@ -27,15 +27,15 @@ describe('TimelineEntry Component', () => {
   });
   it('renders the text if the entry has text', () => {
     wrapper.setProps({ text: 'b' });
-    expect(wrapper.contains(<div>b</div>)).toBe(true);
+    expect(wrapper.contains(<div className="text">b</div>)).toBe(true);
     wrapper.setProps({ text: null });
-    expect(wrapper.contains(<div>b</div>)).toBe(false);
+    expect(wrapper.contains(<div className="text">b</div>)).toBe(false);
   });
   it('renders the note if the entry has a note', () => {
     wrapper.setProps({ note: 'b' });
-    expect(wrapper.contains(<div>b</div>)).toBe(true);
+    expect(wrapper.contains(<div className="text">b</div>)).toBe(true);
     wrapper.setProps({ note: null });
-    expect(wrapper.contains(<div>b</div>)).toBe(false);
+    expect(wrapper.contains(<div className="text">b</div>)).toBe(false);
   });
   it('renders the outcome if the entry has an outcome', () => {
     wrapper.setProps({ outcome: 'b' });
@@ -54,6 +54,7 @@ describe('TimelineEntry Component', () => {
       expect(() => TIMELINE_MESSAGES.CALL({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.EMAIL({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.MEETING({})).not.toThrow();
+      expect(() => TIMELINE_MESSAGES.QUOTE({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.STATUS_CHANGE_FORWARD({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.STATUS_CHANGE_BACKWARD({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.JOIN_TEAM({})).not.toThrow();

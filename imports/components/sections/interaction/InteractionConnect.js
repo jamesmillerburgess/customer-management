@@ -11,6 +11,7 @@ export const mapStateToProps = ({ objectEditor }, ownProps) => ({
   isWriting: objectEditor[ownProps.textProp] ? true : false,
   time: objectEditor[ownProps.timeProp] || new Date(),
   outcome: objectEditor[ownProps.outcomeProp] || '',
+  quoteNumber: objectEditor[ownProps.quoteNumberProp] || '',
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -18,6 +19,8 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   setTime: value => dispatch(setObjectEditorProp(ownProps.timeProp, value)),
   setOutcome: value =>
     dispatch(setObjectEditorProp(ownProps.outcomeProp, value)),
+  setQuoteNumber: value =>
+    dispatch(setObjectEditorProp(ownProps.quoteNumberProp, value)),
   logInteraction: interaction => {
     Meteor.call(
       ownProps.logInteractionMethod,
@@ -36,11 +39,13 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(setObjectEditorProp(ownProps.textProp, ''));
     dispatch(setObjectEditorProp(ownProps.timeProp, new Date()));
     dispatch(setObjectEditorProp(ownProps.outcomeProp, ''));
+    dispatch(setObjectEditorProp(ownProps.quoteNumberProp, ''));
   },
   cancelInteraction: () => {
     dispatch(setObjectEditorProp(ownProps.textProp, ''));
     dispatch(setObjectEditorProp(ownProps.timeProp, new Date()));
     dispatch(setObjectEditorProp(ownProps.outcomeProp, ''));
+    dispatch(setObjectEditorProp(ownProps.quoteNumberProp, ''));
   },
 });
 

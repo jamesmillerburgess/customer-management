@@ -59,6 +59,7 @@ describe('mapDispatchToProps Function', () => {
     expect(props.setText).not.toThrow();
     expect(props.setTime).not.toThrow();
     expect(props.setOutcome).not.toThrow();
+    expect(props.setQuoteNumber).not.toThrow();
     expect(props.logInteraction).not.toThrow();
     expect(props.cancelInteraction).not.toThrow();
   });

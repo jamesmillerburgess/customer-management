@@ -35,6 +35,12 @@ describe('InteractionDisplay', () => {
     wrapper.setProps({ hasOutcome: true });
     expect(wrapper.find('OptionField').exists()).toBe(true);
   });
+  it('displays quoteNumber of hasQuoteNumber', () => {
+    wrapper.setProps({ hasQuoteNumber: false });
+    expect(wrapper.find('TextField').exists()).toBe(false);
+    wrapper.setProps({ hasQuoteNumber: true });
+    expect(wrapper.find('TextField').exists()).toBe(true);
+  });
   it('calls setText on change of textarea', () => {
     const setText = jest.fn();
     wrapper.setProps({ setText });

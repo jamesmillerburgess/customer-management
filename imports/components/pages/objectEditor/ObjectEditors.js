@@ -22,13 +22,20 @@ export const generateObjectEditorProps = (singular, plural) => ({
   logCallMethod: `${singular}.logCall`,
   logEmailMethod: `${singular}.logEmail`,
   logMeetingMethod: `${singular}.logMeeting`,
+  logQuoteMethod: `${singular}.logQuote`,
 });
 
 export const contactProps = () => ({
   ...generateObjectEditorProps('contact', 'contacts'),
   collection: Contacts,
   avatarPath: '/empty-profile-pic.png',
-  interactions: ['NEW_NOTE', 'LOG_CALL', 'LOG_EMAIL', 'LOG_MEETING'],
+  interactions: [
+    'NEW_NOTE',
+    'LOG_CALL',
+    'LOG_EMAIL',
+    'LOG_MEETING',
+    'LOG_QUOTE',
+  ],
   propertiesPage: 'CONTACT_PROPERTIES',
 });
 
@@ -36,7 +43,13 @@ export const companyProps = () => ({
   ...generateObjectEditorProps('company', 'companies'),
   collection: Companies,
   avatarPath: '/empty-company-pic.png',
-  interactions: ['NEW_NOTE', 'LOG_CALL', 'LOG_EMAIL', 'LOG_MEETING'],
+  interactions: [
+    'NEW_NOTE',
+    'LOG_CALL',
+    'LOG_EMAIL',
+    'LOG_MEETING',
+    'LOG_QUOTE',
+  ],
   propertiesPage: 'COMPANY_PROPERTIES',
 });
 
@@ -75,7 +88,14 @@ export const opportunityProps = () => ({
   logCallMethod: 'opportunity.logCall',
   logEmailMethod: 'opportunity.logEmail',
   logMeetingMethod: 'opportunity.logMeeting',
-  interactions: ['NEW_NOTE', 'LOG_CALL', 'LOG_EMAIL', 'LOG_MEETING'],
+  logQuoteMethod: 'opportunity.logQuote',
+  interactions: [
+    'NEW_NOTE',
+    'LOG_CALL',
+    'LOG_EMAIL',
+    'LOG_MEETING',
+    'LOG_QUOTE',
+  ],
   propertiesPage: 'OPPORTUNITY_PROPERTIES',
 });
 

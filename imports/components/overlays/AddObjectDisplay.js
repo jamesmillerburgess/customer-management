@@ -41,7 +41,7 @@ const AddObjectDisplay = props => (
     </div>
     <footer className="overlay-footer">
       <button className="button-primary" type="submit">
-        Create {props.label}
+        {props.confirmLabel}
       </button>
       <button
         type="button"

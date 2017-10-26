@@ -49,6 +49,17 @@ const InteractionMenuDisplay = props => {
             Log meeting
           </button>
         );
+      case 'LOG_QUOTE':
+        return (
+          <button
+            className={`interaction-item ${activeClass}`}
+            key={interaction}
+            onClick={() => props.setActiveInteraction(interaction)}
+          >
+            <div className="fa fa-fw fa-file-text-o icon" />
+            Log quote
+          </button>
+        );
       default:
         return null;
     }

@@ -3,6 +3,7 @@ import React from 'react';
 // Fields
 import DateField from '../../fields/dateField/DateField';
 import OptionField from '../../fields/optionField/OptionField';
+import TextField from '../../fields/textField/TextField';
 
 // Sections
 import InteractionButtons from './InteractionButtons';
@@ -13,11 +14,12 @@ const InteractionDisplay = props => {
       time: props.time,
       outcome: props.outcome,
       text: props.text,
+      quoteNumber: props.quoteNumber,
     });
 
   return (
     <div className="interaction">
-      {(props.hasTime || props.hasOutcome) && (
+      {(props.hasTime || props.hasOutcome || props.hasQuoteNumber) && (
         <div className="input-row">
           {props.hasTime && (
             <div className="input-group">
@@ -45,6 +47,16 @@ const InteractionDisplay = props => {
                   { value: 'LEFT_VOICEMAIL', label: 'Left voicemail' },
                   { value: 'CONNECTED', label: 'Connected' },
                 ]}
+              />
+            </div>
+          )}
+          {props.hasQuoteNumber && (
+            <div className="input-group">
+              <span className="label">Quote Number</span>
+              <TextField
+                value={props.quoteNumber}
+                onChange={props.setQuoteNumber}
+                placeholder="QT-99999-AABBB"
               />
             </div>
           )}

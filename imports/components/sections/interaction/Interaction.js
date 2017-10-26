@@ -49,6 +49,19 @@ export const getInteractionProps = props => {
         uriID,
         interactionType: 'MEETING',
       };
+    case 'LOG_QUOTE':
+      return {
+        textProp: 'quoteText',
+        timeProp: 'quoteTime',
+        hasTime: true,
+        hasQuoteNumber: true,
+        quoteNumberProp: 'quoteNumber',
+        textPlaceholder: 'Start typing to describe a quote...',
+        confirmText: 'Log quote',
+        logInteractionMethod: props.logQuoteMethod,
+        uriID,
+        interactionType: 'QUOTE',
+      };
     default:
       return null;
   }

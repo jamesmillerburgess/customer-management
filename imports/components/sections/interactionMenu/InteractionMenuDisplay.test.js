@@ -26,7 +26,13 @@ describe('InteractionMenuDisplay Component', () => {
   it('calls setActiveInteraction on click of an interaction', () => {
     const setActiveInteraction = jest.fn();
     wrapper.setProps({
-      interactions: ['NEW_NOTE', 'LOG_CALL', 'LOG_EMAIL', 'LOG_MEETING'],
+      interactions: [
+        'NEW_NOTE',
+        'LOG_CALL',
+        'LOG_EMAIL',
+        'LOG_MEETING',
+        'LOG_QUOTE',
+      ],
       setActiveInteraction,
     });
     expect(setActiveInteraction).toHaveBeenCalledTimes(0);
@@ -50,6 +56,11 @@ describe('InteractionMenuDisplay Component', () => {
       .at(3)
       .simulate('click');
     expect(setActiveInteraction).toHaveBeenCalledTimes(4);
+    wrapper
+      .find('button')
+      .at(4)
+      .simulate('click');
+    expect(setActiveInteraction).toHaveBeenCalledTimes(5);
   });
   it('ignores invalid interactions', () => {
     wrapper.setProps({ interactions: ['a', 'b'] });

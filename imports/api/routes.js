@@ -86,16 +86,19 @@ export const overlayRoutes = [
     pathPrefix: 'contacts',
     createMethod: 'contact.create',
     page: 'ADD_CONTACT',
+    confirmLabel: 'Create contact',
   },
   {
     pathPrefix: 'companies',
     createMethod: 'company.create',
     page: 'ADD_COMPANY',
+    confirmLabel: 'Create company',
   },
   {
     pathPrefix: 'opportunities',
     createMethod: 'opportunity.create',
     page: 'ADD_OPPORTUNITY',
+    confirmLabel: 'Create opportunity',
   },
 ];
 

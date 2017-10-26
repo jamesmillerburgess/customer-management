@@ -92,6 +92,21 @@ export const TIMELINE_MESSAGES = {
       </Link>
     </span>
   ),
+  QUOTE: props => (
+    <span>
+      {props.username || 'Someone'} logged quote{' '}
+      <a
+        href={`https://focis.agility.com/QuotationPrints/${props.quoteNumber}-v1.pdf`}
+        target="_blank"
+      >
+        {props.quoteNumber}
+      </a>{' '}
+      to{' '}
+      <Link to={`/${props.parentCollection}/${props.parent}`}>
+        {props.parentName}
+      </Link>
+    </span>
+  ),
   STATUS_CHANGE_FORWARD: props => StatusChangeMessage(props, 'forward'),
   STATUS_CHANGE_BACKWARD: props => StatusChangeMessage(props, 'backward'),
   JOIN_TEAM: props => (
@@ -118,6 +133,7 @@ const TIMELINE_ICONS = {
   CALL: 'fa-phone',
   EMAIL: 'fa-envelope',
   MEETING: 'fa-handshake-o',
+  QUOTE: 'fa-file-text-o',
   STATUS_CHANGE_FORWARD: 'fa-angle-double-right',
   STATUS_CHANGE_BACKWARD: 'fa-angle-double-left',
   JOIN_TEAM: 'fa-plus',
@@ -130,6 +146,7 @@ const TIMELINE_AVATARS = {
   CALL: '/empty-profile-pic.png',
   EMAIL: '/empty-profile-pic.png',
   MEETING: '/empty-profile-pic.png',
+  QUOTE: '/empty-profile-pic.png',
   STATUS_CHANGE_FORWARD: '/empty-profile-pic.png',
   STATUS_CHANGE_BACKWARD: '/empty-profile-pic.png',
   JOIN_TEAM: '/empty-profile-pic.png',
@@ -162,8 +179,8 @@ const TimelineEntry = props => (
                 {OUTCOME_LABELS[props.outcome]}
               </div>
             )}
-            {props.note && <div>{props.note}</div>}
-            {props.text && <div>{props.text}</div>}
+            {props.note && <div className="text">{props.note}</div>}
+            {props.text && <div className="text">{props.text}</div>}
           </div>
         )}
       </div>

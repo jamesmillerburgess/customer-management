@@ -82,6 +82,7 @@ describe('buildGenericMethods Function', () => {
     expect(() => methods['a.logCall']('a', 'b')).not.toThrow();
     expect(() => methods['a.logEmail']('a', 'b')).not.toThrow();
     expect(() => methods['a.logMeeting']('a', 'b')).not.toThrow();
+    expect(() => methods['a.logQuote']('a', 'b')).not.toThrow();
     expect(() => methods['a.search']('a')).not.toThrow();
   });
 });
