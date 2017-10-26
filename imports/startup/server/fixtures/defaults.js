@@ -90,13 +90,6 @@ export const FIELD_LISTS = [
       },
       { name: 'position', label: 'Position', type: 'TEXT', default: '' },
       { name: 'type', label: 'Type', type: 'CONTACT_TYPE', default: '' },
-      { name: 'email', label: 'Email', type: 'TEXT', default: '' },
-      {
-        name: 'phoneNumber',
-        label: 'Phone Number',
-        type: 'TEXT',
-        default: '',
-      },
     ],
   },
   {
