@@ -19,3 +19,4 @@ shell-server@0.3.0-rc.17            # Server-side component of the `meteor shell
 fourseven:scss
 accounts-password@1.5.0-rc.17
 react-meteor-data
+underscore
