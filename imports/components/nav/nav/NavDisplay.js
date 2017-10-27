@@ -1,25 +1,35 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink, Switch, Route } from 'react-router-dom';
 import routes from '../../../api/routes';
 import './NavDisplay.scss';
 import NavSearchInput from '../../fields/NavSearchInput';
 
 export const getPageTitle = () => (
-  <span>
-    <Route path="/" exact component={() => 'Dashboard'} />
-    <Route path="/contacts" component={() => 'Contacts'} />
-    <Route path="/companies" component={() => 'Companies'} />
-    <Route path="/opportunities" component={() => 'Opportunities'} />
-    <Route path="/profile" component={() => 'Profile'} />
-  </span>
+  <Switch>
+    <Route path="/" exact>
+      <span>Dashboard</span>
+    </Route>
+    <Route path="/contacts">
+      <span>Contacts</span>
+    </Route>
+    <Route path="/companies">
+      <span>Companies</span>
+    </Route>
+    <Route path="/opportunities">
+      <span>Opportunities</span>
+    </Route>
+    <Route path="/profile">
+      <span>Profile</span>
+    </Route>
+  </Switch>
 );
 
 const NavDisplay = props => (
   <div className="nav">
     <button
-      className={`button-group hamburger ${props.isHamburgerOpen && 'active'}`}
+      className="button-group hamburger"
       onClick={() => props.setIsHamburgerOpen(!props.isHamburgerOpen)}
     >
       <span className="fa fa-bars" />
