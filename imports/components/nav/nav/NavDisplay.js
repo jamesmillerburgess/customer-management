@@ -14,6 +14,36 @@ const NavDisplay = props => (
     >
       <span className="fa fa-bars" />
     </button>
+    <div className={`hamburger-menu ${props.isHamburgerOpen && 'open'}`}>
+      {routes
+        .filter(route => route.isNavLink)
+        .map(({ path, title, exact, className, icon }, index) => (
+          <NavLink
+            key={index}
+            to={path}
+            className={className}
+            exact={exact}
+            onClick={() => props.setIsHamburgerOpen(false)}
+          >
+            <span className="nav-button">
+              <span className={`icon fa fa-fw ${icon}`} />
+              {title}
+            </span>
+          </NavLink>
+        ))}
+      <a href="#" onClick={props.goToProfile}>
+        <span className="nav-button">
+          <span className="icon fa fa-fw fa-user" />
+          Edit profile
+        </span>
+      </a>
+      <a href="#" onClick={props.tryLogout}>
+        <span className="nav-button">
+          <span className="icon fa fa-fw fa-sign-out" />
+          Log out
+        </span>
+      </a>
+    </div>
     <div className="button-group links">
       {routes
         .filter(route => route.isNavLink)

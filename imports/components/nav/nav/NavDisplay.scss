@@ -16,12 +16,30 @@
     padding: 5px 10px;
     background-color: transparent;
   }
-  .hamburger:focus {
+  .hamburger:focus,
+  .hamburger:active {
     outline: none;
+    background-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hamburger-menu {
+    display: none;
   }
   @media screen and (max-width: 700px) {
     .hamburger {
       display: block;
+    }
+    .hamburger-menu.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 42px;
+      width: 100%;
+      background-color: #2e2e2e;
+      z-index: 1000;
+    }
+    .hamburger-menu a .icon {
+      margin-right: 10px;
     }
     .links,
     .search-and-profile {
@@ -43,8 +61,7 @@
   a.active {
     background-color: #212121;
   }
-  a:hover,
-  .hamburger.active {
+  a:hover {
     background-color: #1b1b1b;
     color: #f0f0f0;
     border-left: 1px solid #000;

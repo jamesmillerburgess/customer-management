@@ -18,11 +18,13 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(setNavProp('isProfileMenuOpen', value)),
   goToProfile: e => {
     dispatch(setNavProp('isProfileMenuOpen', false));
+    dispatch(setNavProp('isHamburgerOpen', false));
     e.preventDefault();
     ownProps.history.push('/profile/basic-info');
   },
   tryLogout: e => {
     dispatch(setNavProp('isProfileMenuOpen', false));
+    dispatch(setNavProp('isHamburgerOpen', false));
     e.preventDefault();
     Meteor.logout(() => {
       dispatch(setLoginProp('mode', LOGIN));
