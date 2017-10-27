@@ -22,7 +22,9 @@
     background-color: transparent;
     -webkit-tap-highlight-color: transparent;
   }
-  .hamburger-menu {
+  .hamburger-menu,
+  .mobile-page-title,
+  .mobile-notifications-icon {
     display: none;
   }
   @media screen and (max-width: 700px) {
@@ -40,6 +42,16 @@
     }
     .hamburger-menu a .icon {
       margin-right: 10px;
+    }
+    .mobile-page-title {
+      display: block;
+      color: white;
+      text-overflow: ellipsis;
+    }
+    .mobile-notifications-icon {
+      display: block;
+      width: 42px;
+      height: 1px;
     }
     .links,
     .search-and-profile {

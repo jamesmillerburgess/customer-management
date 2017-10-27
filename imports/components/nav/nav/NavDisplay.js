@@ -1,10 +1,20 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import routes from '../../../api/routes';
 import './NavDisplay.scss';
 import NavSearchInput from '../../fields/NavSearchInput';
+
+export const getPageTitle = () => (
+  <span>
+    <Route path="/" exact component={() => 'Dashboard'} />
+    <Route path="/contacts" component={() => 'Contacts'} />
+    <Route path="/companies" component={() => 'Companies'} />
+    <Route path="/opportunities" component={() => 'Opportunities'} />
+    <Route path="/profile" component={() => 'Profile'} />
+  </span>
+);
 
 const NavDisplay = props => (
   <div className="nav">
@@ -14,6 +24,16 @@ const NavDisplay = props => (
     >
       <span className="fa fa-bars" />
     </button>
+    <div className="mobile-page-title">
+      {props.user ? (
+        <span>
+          {props.user.username} / {getPageTitle()}
+        </span>
+      ) : (
+        <span>Agility Customer Management</span>
+      )}
+    </div>
+    <div className="mobile-notifications-icon" />
     <div className={`hamburger-menu ${props.isHamburgerOpen && 'open'}`}>
       {routes
         .filter(route => route.isNavLink)
