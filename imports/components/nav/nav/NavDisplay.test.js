@@ -14,6 +14,29 @@ describe('NavDisplay', () => {
   beforeEach(() => (wrapper = shallow(<NavDisplay {...props} />)));
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
+  it('calls setIsHamburgerOpen on click of hamburger', () => {
+    const setIsHamburgerOpen = jest.fn();
+    wrapper.setProps({ setIsHamburgerOpen });
+    expect(setIsHamburgerOpen).toHaveBeenCalledTimes(0);
+    wrapper.find('.hamburger').simulate('click');
+    expect(setIsHamburgerOpen).toHaveBeenCalledTimes(1);
+  });
+  it('sets the open class on hamburger-menu if isHamburgerOpen is true', () => {
+    wrapper.setProps({ isHamburgerOpen: true });
+    expect(wrapper.find('.hamburger-menu').hasClass('open')).toBe(true);
+    wrapper.setProps({ isHamburgerOpen: false });
+    expect(wrapper.find('.hamburger-menu').hasClass('open')).toBe(false);
+  });
+  it('calls setIsHamburgerOpen on click of mobile navlinks', () => {
+    const setIsHamburgerOpen = jest.fn();
+    wrapper.setProps({ setIsHamburgerOpen });
+    expect(setIsHamburgerOpen).toHaveBeenCalledTimes(0);
+    wrapper
+      .find('NavLink')
+      .at(0)
+      .simulate('click');
+    expect(setIsHamburgerOpen).toHaveBeenCalledTimes(1);
+  });
   it('calls setIsProfileMenuOpen on click of profile button if there is a user', () => {
     const setIsProfileMenuOpen = jest.fn();
     wrapper.setProps({ user: { username: 'username' }, setIsProfileMenuOpen });

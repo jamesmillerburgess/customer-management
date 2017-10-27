@@ -8,9 +8,16 @@ describe('NavConnect Component', () => {
 describe('mapStateToProps Function', () => {
   it('maps login state', () => {
     const state = { nav: {}, other: 'b' };
-    expect(mapStateToProps(state)).toEqual({ isProfileMenuOpen: false });
+    expect(mapStateToProps(state)).toEqual({
+      isHamburgerOpen: false,
+      isProfileMenuOpen: false,
+    });
+    state.nav.isHamburgerOpen = true;
     state.nav.isProfileMenuOpen = true;
-    expect(mapStateToProps(state)).toEqual({ isProfileMenuOpen: true });
+    expect(mapStateToProps(state)).toEqual({
+      isHamburgerOpen: true,
+      isProfileMenuOpen: true,
+    });
   });
 });
 describe('mapDispatchToProps Function', () => {
@@ -19,6 +26,7 @@ describe('mapDispatchToProps Function', () => {
     const props = mapDispatchToProps(() => null, {
       history: { push: jest.fn() },
     });
+    expect(props.setIsHamburgerOpen).not.toThrow();
     expect(props.setIsProfileMenuOpen).not.toThrow();
     expect(() => props.goToProfile(e)).not.toThrow();
     expect(() => props.tryLogout(e)).not.toThrow();

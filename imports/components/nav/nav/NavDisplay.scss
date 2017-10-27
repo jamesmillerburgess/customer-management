@@ -2,11 +2,60 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   background-color: #2e2e2e;
   height: 42px;
   box-shadow: 0 1px 0 #4d4d4d inset, 0 2px 3px rgba(0, 0, 0, 0.25);
   .button-group {
     display: flex;
+  }
+  .hamburger {
+    display: none;
+    font-size: 24px;
+    color: #bbb;
+    padding: 5px 10px;
+    background-color: transparent;
+  }
+  .hamburger:focus {
+    outline: none;
+    background-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hamburger-menu,
+  .mobile-page-title,
+  .mobile-notifications-icon {
+    display: none;
+  }
+  @media screen and (max-width: 700px) {
+    .hamburger {
+      display: block;
+    }
+    .hamburger-menu.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 42px;
+      width: 100%;
+      background-color: #2e2e2e;
+      z-index: 1000;
+    }
+    .hamburger-menu a .icon {
+      margin-right: 10px;
+    }
+    .mobile-page-title {
+      display: block;
+      color: #eee;
+      text-overflow: ellipsis;
+    }
+    .mobile-notifications-icon {
+      display: block;
+      width: 42px;
+      height: 1px;
+    }
+    .links,
+    .search-and-profile {
+      display: none;
+    }
   }
   .nav-button {
     font-size: 14px;
