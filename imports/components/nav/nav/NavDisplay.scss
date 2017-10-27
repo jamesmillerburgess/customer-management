@@ -30,6 +30,7 @@
       display: block;
     }
     .hamburger-menu.open {
+      left: 0;
       display: flex;
       flex-direction: column;
       position: absolute;
