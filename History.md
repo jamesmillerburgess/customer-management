@@ -8,7 +8,7 @@
 * Intuitive and simple user interface
 * Extremely fast performance, even on slow or spotty internet connections
 
-#### Other Changes
+## Other Changes after v0.9.0
 
 * Add validation to object creation instead of crashing when `Name` is blank
 * Gracefully handle long names in the object editors
