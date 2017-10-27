@@ -53,13 +53,13 @@ const OwnedTeamsDisplay = props => (
       <div className="input-group">
         <div className="label">Team name</div>
         <TextField value={props.newTeamName} onChange={props.setNewTeamName} />
-        <button
-          className="button-secondary"
-          onClick={() => props.createTeam(props.newTeamName)}
-        >
-          Create team
-        </button>
       </div>
+      <button
+        className="button-primary"
+        onClick={() => props.createTeam(props.newTeamName)}
+      >
+        Create team
+      </button>
     </div>
     <div className="input-group">
       <Grid {...gridPageProps(props)} data={props.ownedTeams} />

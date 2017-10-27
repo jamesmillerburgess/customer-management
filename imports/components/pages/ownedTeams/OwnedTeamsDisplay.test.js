@@ -21,7 +21,7 @@ describe('OwnedTeamsDisplay Component', () => {
     wrapper.setProps({ createTeam });
     expect(createTeam).toHaveBeenCalledTimes(0);
     wrapper
-      .find('.button-secondary')
+      .find('.button-primary')
       .at(0)
       .simulate('click');
     expect(createTeam).toHaveBeenCalledTimes(1);

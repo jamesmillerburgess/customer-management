@@ -13,7 +13,7 @@ const InteractionMenuDisplay = props => {
             onClick={() => props.setActiveInteraction(interaction)}
           >
             <div className="fa fa-fw fa-pencil icon" />
-            New note
+            <span className="button-text">New note</span>
           </button>
         );
       case 'LOG_CALL':
@@ -24,7 +24,7 @@ const InteractionMenuDisplay = props => {
             onClick={() => props.setActiveInteraction(interaction)}
           >
             <div className="fa fa-fw fa-phone icon" />
-            Log call
+            <span className="button-text">Log call</span>
           </button>
         );
       case 'LOG_EMAIL':
@@ -35,7 +35,7 @@ const InteractionMenuDisplay = props => {
             onClick={() => props.setActiveInteraction(interaction)}
           >
             <div className="fa fa-fw fa-envelope icon" />
-            Log email
+            <span className="button-text">Log email</span>
           </button>
         );
       case 'LOG_MEETING':
@@ -46,7 +46,7 @@ const InteractionMenuDisplay = props => {
             onClick={() => props.setActiveInteraction(interaction)}
           >
             <div className="fa fa-fw fa-handshake-o icon" />
-            Log meeting
+            <span className="button-text">Log meeting</span>
           </button>
         );
       case 'LOG_QUOTE':
@@ -57,7 +57,7 @@ const InteractionMenuDisplay = props => {
             onClick={() => props.setActiveInteraction(interaction)}
           >
             <div className="fa fa-fw fa-file-text-o icon" />
-            Log quote
+            <span className="button-text">Log quote</span>
           </button>
         );
       default:

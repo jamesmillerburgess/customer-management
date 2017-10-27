@@ -5,7 +5,6 @@
   .status-node {
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
     height: 100px;
     width: 150px;
@@ -29,7 +28,6 @@
   .status-node .status-label {
     transition: transform 0.3s ease-in-out;
     transform: translate(0px, 60px);
-    // top: 0;
   }
   .status-node.active .status-label {
     opacity: 1;
@@ -77,5 +75,10 @@
     background-color: rgb(203, 214, 226);
     transform: translate(75px, 0px);
     z-index: 1;
+  }
+}
+@media screen and (max-width: 750px) {
+  .status-flow {
+    display: none;
   }
 }
