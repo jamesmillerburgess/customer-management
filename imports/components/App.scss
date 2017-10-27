@@ -66,3 +66,9 @@
 .overlay-footer button {
   margin-right: 8px;
 }
+@media screen and (max-width: 750px) {
+  .overlay-right {
+    width: 100vw;
+    right: -100vw;
+  }
+}
