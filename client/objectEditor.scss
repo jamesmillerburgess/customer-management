@@ -157,3 +157,22 @@
   color: #33475b;
   font-weight: 300;
 }
+@media screen and (max-width: 750px) {
+  .object-editor .body {
+    flex-direction: column;
+  }
+  .object-editor .header {
+    height: 42px;
+  }
+  .object-editor .sidebar,
+  .object-editor .content {
+    width: calc(100% - 20px);
+    margin: 0 10px;
+    padding: 0;
+  }
+}
+@media screen and (max-width: 750px) {
+  .button-footer {
+    padding: 10px 10px;
+  }
+}

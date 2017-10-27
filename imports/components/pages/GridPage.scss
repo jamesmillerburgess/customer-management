@@ -26,3 +26,13 @@
     text-decoration: underline;
   }
 }
+@media screen and (max-width: 750px) {
+  .section-body {
+    flex-direction: column;
+    padding: 10px 0;
+    margin: 0 10px;
+  }
+  .sidebar {
+    margin-bottom: 10px;
+  }
+}
