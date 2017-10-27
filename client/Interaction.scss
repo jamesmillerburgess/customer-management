@@ -31,3 +31,11 @@
     height: 32px;
   }
 }
+@media screen and (max-width: 750px) {
+  .interaction-menu .button-text {
+    display: none;
+  }
+  .interaction textarea {
+    height: 42px;
+  }
+}

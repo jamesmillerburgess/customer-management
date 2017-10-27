@@ -1,9 +1,9 @@
 .home {
   display: flex;
   justify-content: space-around;
-  height: calc(100vh - 42px - 96px);
+  min-height: calc(100vh - 42px - 96px);
   padding: 48px;
-  background-color: rgba(255, 122, 89, 0.03);
+  background-color: rgba(255, 122, 89, 0.05);
   .login-form {
     width: 500px;
     height: 460px;
@@ -38,4 +38,18 @@
 }
 .error-message.hide {
   opacity: 0;
+}
+@media screen and (max-width: 750px) {
+  .home {
+    padding: 10px 10px 86px 10px;
+  }
+  .home .login-form {
+    padding: 48px 0 0 0;
+    box-sizing: border-box;
+    height: calc(100vh - 62px);
+    width: calc(100vw - 20px);
+  }
+  .home .login-title {
+    display: none;
+  }
 }
