@@ -27,3 +27,9 @@
     margin-left: 12px;
   }
 }
+@media screen and (max-width: 750px) {
+  .page-header {
+    padding: 0 10px;
+    height: 64px;
+  }
+}

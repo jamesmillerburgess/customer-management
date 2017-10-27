@@ -1,5 +1,9 @@
 ## vNEXT
 
+## Changes
+
+* Mobile menu on smaller screen sizes
+
 ## v1.0.0 – Data Entry and Workflow
 
 * Ability to enter all necessary data into the application
