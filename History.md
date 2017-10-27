@@ -1,8 +1,8 @@
 ## vNEXT
 
-## Changes
+## v0.1.0 – Mobile Layout
 
-* Mobile menu on smaller screen sizes
+* Format for mobile on screens smaller than 750 pixels in width
 
 ## v1.0.0 – Data Entry and Workflow
 
