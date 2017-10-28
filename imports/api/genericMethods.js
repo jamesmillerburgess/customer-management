@@ -69,6 +69,11 @@ export const saveProperties = (
   if (!collection.findOne(objectId)) {
     throw new Error('No document with the given objectId');
   }
+  if (collection._name === 'Opportunities' && object.status) {
+    Meteor.call('opportunity.updateStatus', objectId, {
+      status: object.status,
+    });
+  }
   const properties = FieldLists.findOne({ page: propertiesPage }).fields;
   const fields = _.pick(properties.map(property => property.name), object);
   collection.update(objectId, { $set: fields });

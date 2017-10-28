@@ -7,10 +7,8 @@
     "test": "jest --config=jest.config.json --coverage",
     "cover": "jest --config=jest.config.json --coverage --watchAll",
     "nocover": "jest --config=jest.config.json --watchAll",
-    "acceptance":
-      "chimp --browser=phantomjs --ddp=http://localhost:3000 --watch --jasmine --path=tests/acceptance",
-    "acceptance-ci":
-      "chimp --browser=phantomjs --ddp=http://localhost:3000 --jasmine --path=tests/acceptance",
+    "acceptance": "chimp --browser=phantomjs --ddp=http://localhost:3000 --watch --jasmine --path=tests/acceptance",
+    "acceptance-ci": "chimp --browser=phantomjs --ddp=http://localhost:3000 --jasmine --path=tests/acceptance",
     "unit-ci": "jest --config=jest.config.json --coverage --runInBand",
     "chimp-empty": "chimp --path empty",
     "codeclimate-test-reporter": "codeclimate-test-reporter"
@@ -18,7 +16,7 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "bcrypt": "^1.0.3",
-    "chart.js": "^2.7.0",
+    "chart.js": "^2.7.1",
     "deep-equal": "^1.0.1",
     "lodash": "^4.17.4",
     "meteor-node-stubs": "~0.2.4",
@@ -35,7 +33,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-select": "^1.0.0-rc.10",
-    "react-table": "^6.6.0",
+    "react-table": "^6.7.4",
     "redux": "^3.7.2",
     "reselect": "^3.0.1",
     "validate.js": "^0.11.1"

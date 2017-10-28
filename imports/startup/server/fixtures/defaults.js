@@ -226,6 +226,12 @@ export const FIELD_LISTS = [
         default: '',
       },
       {
+        name: 'status',
+        label: 'Status',
+        type: 'OPPORTUNITY_STATUS',
+        default: 'APPOINTMENT_SCHEDULED',
+      },
+      {
         name: 'company',
         label: 'Company',
         type: 'COMPANY',
