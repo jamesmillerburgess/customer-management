@@ -29,7 +29,7 @@ const Timeline = props => (
         .sort(sort)
         .map((entry, index) => (
           <TimelineEntry
-            key={entry.id}
+            key={entry.id || entry._id}
             {...entry}
             isNotLast={index !== props.timeline.length - 1}
           />
