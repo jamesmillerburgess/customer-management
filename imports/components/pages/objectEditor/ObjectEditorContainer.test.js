@@ -132,4 +132,26 @@ describe('linkMeteorData Function', () => {
     expect(fns.setLoadedValues).not.toHaveBeenCalled();
     expect(fns.setNote).not.toHaveBeenCalled();
   });
+  it('updates the properties and loaded values if the mongo document changes', () => {
+    Meteor._userId = 'a';
+    Meteor.ready = true;
+    collection.docs = [{ _id: 'a', a: 'a' }];
+    FieldLists.docs = [{ fields: [{ name: 'a' }] }];
+    const fns = {
+      setHasLoaded: jest.fn(),
+      setProperty: jest.fn(),
+      setLoadedValues: jest.fn(),
+      setNote: jest.fn(),
+    };
+    const newProps = {
+      ...props,
+      hasLoaded: false,
+      loadedValues: { _id: 'b', a: 'b' },
+      ...fns,
+      loading: false,
+    };
+    linkMeteorData(newProps);
+    expect(fns.setProperty).toHaveBeenCalled();
+    expect(fns.setLoadedValues).toHaveBeenCalled();
+  });
 });

@@ -54,6 +54,16 @@ describe('saveProperties Function', () => {
       GM.saveProperties(collection, propertiesPage, 'a', { name: 'a' })
     ).toThrow();
   });
+  it('calls opportunity.status if the collection is Opportunities and the status property is being modified', () => {
+    const collection = new Mongo.Collection();
+    collection._name = 'Opportunities';
+    collection.docs = [{}];
+    const propertiesPage = 'PROPERTIES_PAGE';
+    FieldLists.docs = [{ fields: [{}] }];
+    expect(() =>
+      GM.saveProperties(collection, propertiesPage, 'a', { status: 'a' })
+    ).not.toThrow();
+  });
 });
 describe('logInteraction Function', () => {
   it('does not throw', () => {

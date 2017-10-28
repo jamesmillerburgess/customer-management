@@ -24,6 +24,23 @@ describe('Timeline', () => {
         .key()
     ).toBe('a');
   });
+  it('uses id or _id as the key on TimelineEntries', () => {
+    wrapper.setProps({
+      timeline: [{ id: 'a', type: 'CREATION' }, { _id: 'b', type: 'CREATION' }],
+    });
+    expect(
+      wrapper
+        .find('TimelineEntry')
+        .at(0)
+        .key()
+    ).toBe('a');
+    expect(
+      wrapper
+        .find('TimelineEntry')
+        .at(1)
+        .key()
+    ).toBe('b');
+  });
   describe('sort Function', () => {
     it('sorts based on time', () => {
       const items = [{ time: 1 }, { time: 2 }];
