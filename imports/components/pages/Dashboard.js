@@ -22,7 +22,7 @@ const Dashboard = () => (
     <PageHeader {...headerProps} />
     <div className="dashboard-grid">
       <GridLayout
-        breakpoints={{ lg: 1200, md: 750 }}
+        breakpoints={{ lg: 750, md: 0 }}
         cols={{ lg: 2, md: 1 }}
         layouts={{
           lg: [
