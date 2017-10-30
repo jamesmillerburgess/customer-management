@@ -5,9 +5,6 @@ import deepEqual from 'deep-equal';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
 export const linkMeteorData = props => {
-  if (!Meteor.userId()) {
-    return { ...props, object: { timeline: [] }, loading: true };
-  }
   const objectId = props.match.params.objectId;
   const loading = !Meteor.subscribe(props.subscription, objectId).ready();
   const fieldList = FieldLists.findOne({ page: props.propertiesPage });
