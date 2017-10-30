@@ -86,10 +86,8 @@ describe('OwnedTeamsDisplay Component', () => {
     });
     it('renders the date in the create date cells', () => {
       const Cell = gridPageProps().columns[3].Cell;
-      const CellWrapper = shallow(<Cell value={'20170101'} />);
-      expect(
-        CellWrapper.containsMatchingElement(<span>Jan 01, 2017</span>)
-      ).toBe(true);
+      const wrapper = shallow(<Cell value="20170101" />);
+      expect(wrapper.find('Localize').props().value).toBe('20170101');
     });
   });
 });
