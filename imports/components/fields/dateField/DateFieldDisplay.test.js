@@ -5,11 +5,11 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-import DateField from './DateField';
+import DateFieldDisplay from './DateFieldDisplay';
 
-describe('DateField Component', () => {
+describe('DateFieldDisplay Component', () => {
   let wrapper;
-  beforeEach(() => (wrapper = shallow(<DateField />)));
+  beforeEach(() => (wrapper = shallow(<DateFieldDisplay />)));
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
   it('calls onChange when the value changes', () => {

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
+import { I18n } from 'react-redux-i18n';
 
 import HomeDisplay from './HomeDisplay';
 
@@ -40,7 +41,7 @@ export const tryRegister = (
   history
 ) => {
   if (password !== passwordAgain) {
-    dispatch(setLoginProp('errorMessage', 'Passwords do not match'));
+    dispatch(setLoginProp('errorMessage', I18n.t('home.passwordsDoNotMatch')));
     return;
   }
   const user = { username, password };

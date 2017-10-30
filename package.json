@@ -30,11 +30,13 @@
     "react-dnd-html5-backend": "^2.5.4",
     "react-grid-layout": "^0.16.0",
     "react-redux": "^5.0.6",
+    "react-redux-i18n": "^1.9.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-select": "^1.0.0-rc.10",
     "react-table": "^6.7.4",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
     "validate.js": "^0.11.1"
   },

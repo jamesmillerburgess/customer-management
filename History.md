@@ -3,7 +3,7 @@
 * Meteor Application Performance Management tool activated
 * Ability to change opportunity status in mobile layout
 
-## v0.1.0 – Mobile Layout
+## v1.1.0 – Mobile Layout
 
 * Format for mobile on screens smaller than 750 pixels in width
 

@@ -1,3 +1,6 @@
+import React from 'react';
+import { Translate } from 'react-redux-i18n';
+
 // List pages
 import Dashboard from '../components/pages/Dashboard';
 import CompanyList from '../components/pages/companyList/CompanyList';
@@ -15,7 +18,7 @@ const routes = [
   {
     path: '/',
     exact: true,
-    title: 'Dashboard',
+    title: <Translate value="nav.dashboard" />,
     component: Dashboard,
     icon: 'fa-tachometer',
     isNavLink: true,
@@ -23,7 +26,7 @@ const routes = [
   {
     path: '/contacts',
     exact: true,
-    title: 'Contacts',
+    title: <Translate value="nav.contacts" />,
     component: ContactList,
     icon: 'fa-address-book',
     overlay: 'ADD_CONTACT',
@@ -32,7 +35,7 @@ const routes = [
   {
     path: '/companies',
     exact: true,
-    title: 'Companies',
+    title: <Translate value="nav.companies" />,
     component: CompanyList,
     icon: 'fa-building',
     overlay: 'ADD_COMPANY',
@@ -41,7 +44,7 @@ const routes = [
   {
     path: '/opportunities',
     exact: true,
-    title: 'Opportunities',
+    title: <Translate value="nav.opportunities" />,
     component: OpportunitiesConnect,
     icon: 'fa-money',
     overlay: 'ADD_OPPORTUNITY',
@@ -89,19 +92,31 @@ export const overlayRoutes = [
     pathPrefix: 'contacts',
     createMethod: 'contact.create',
     page: 'ADD_CONTACT',
-    confirmLabel: 'Create contact',
+    title: <Translate value="contacts.addOverlayTitle" />,
+    confirmLabel: <Translate value="contacts.addOverlayConfirmButtonText" />,
+    cancelButtonText: <Translate value="contacts.addOverlayCancelButtonText" />,
   },
   {
     pathPrefix: 'companies',
     createMethod: 'company.create',
     page: 'ADD_COMPANY',
-    confirmLabel: 'Create company',
+    title: <Translate value="companies.addOverlayTitle" />,
+    confirmLabel: <Translate value="companies.addOverlayConfirmButtonText" />,
+    cancelButtonText: (
+      <Translate value="companies.addOverlayCancelButtonText" />
+    ),
   },
   {
     pathPrefix: 'opportunities',
     createMethod: 'opportunity.create',
     page: 'ADD_OPPORTUNITY',
-    confirmLabel: 'Create opportunity',
+    title: <Translate value="opportunities.addOverlayTitle" />,
+    confirmLabel: (
+      <Translate value="opportunities.addOverlayConfirmButtonText" />
+    ),
+    cancelButtonText: (
+      <Translate value="opportunities.addOverlayCancelButtonText" />
+    ),
   },
 ];
 

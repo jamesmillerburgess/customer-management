@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { I18n } from 'react-redux-i18n';
 
 import TimelineEntry from '../../sections/timelineEntry/TimelineEntry';
 import WidgetPlaceholder from '../widgetPlaceholder/WidgetPlaceholder';
@@ -30,15 +31,13 @@ const TeamActivityDisplay = props =>
     </div>
   ) : (
     <WidgetPlaceholder
-      title="Work as a team"
+      title={I18n.t('teamActivity.placeholderTitle')}
       text={[
-        'Gain insight into the contacts, companies, and opportunities \n' +
-          'created, and the interaction with your sales team afterwards.',
-        'Once there has been some activity by you or someone on your team,\n' +
-          'it will display in this widget.',
-        "If you don't have a team yet, you can add one from your profile page.",
+        I18n.t('teamActivity.placeholderText.0'),
+        I18n.t('teamActivity.placeholderText.1'),
+        I18n.t('teamActivity.placeholderText.2'),
       ]}
-      buttonText="Go to profile"
+      buttonText={I18n.t('teamActivity.placeholderButtonText')}
       buttonPath="/profile/basic-info"
     />
   );

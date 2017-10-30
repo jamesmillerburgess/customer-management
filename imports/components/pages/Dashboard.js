@@ -2,6 +2,7 @@ import React from 'react';
 import { WidthProvider, Responsive } from 'react-grid-layout';
 import moment from 'moment';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { Translate, Localize } from 'react-redux-i18n';
 
 import Panel from '../fields/Panel';
 import './Dashboard.scss';
@@ -12,9 +13,9 @@ import OpportunityForecast from '../widgets/opportunityForecast/OpportunityForec
 const GridLayout = WidthProvider(Responsive);
 
 const headerProps = {
-  title: 'Dashboard',
-  searchPlaceholder: 'Search for a report',
-  addButtonText: 'Add report',
+  title: <Translate value="dashboard.title" />,
+  searchPlaceholder: <Translate value="dashboard.searchPlaceholder" />,
+  addButtonText: <Translate value="dashboard.addReport" />,
 };
 
 const Dashboard = () => (
@@ -40,14 +41,27 @@ const Dashboard = () => (
         draggableCancel=".panel-body"
       >
         <div key={'a'} className="panel">
-          <Panel title="Team Activity" subtitle={moment().format('MMMM YYYY')}>
+          <Panel
+            title={<Translate value="dashboard.teamActivity" />}
+            subtitle={
+              <Localize
+                value={moment().format()}
+                dateFormat="dashboard.dateFormat"
+              />
+            }
+          >
             <TeamActivity />
           </Panel>
         </div>
         <div key={'b'} className="panel">
           <Panel
-            title="Opportunity Forecast (USD)"
-            subtitle={moment().format('MMMM YYYY')}
+            title={<Translate value="dashboard.opportunityForecast" />}
+            subtitle={
+              <Localize
+                value={moment().format()}
+                dateFormat="dashboard.dateFormat"
+              />
+            }
           >
             <OpportunityForecast />
           </Panel>

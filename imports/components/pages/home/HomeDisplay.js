@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translate } from 'react-redux-i18n';
 
 import { REGISTER, LOGIN } from './HomeConstants';
 import './HomeDisplay.scss';
@@ -22,9 +23,13 @@ const HomeDisplay = props => {
           }
         }}
       >
-        <div className="login-title">Agility Customer Management</div>
+        <div className="login-title">
+          <Translate value="app.title" />
+        </div>
         <div className="input-group">
-          <div className="input-label">Username</div>
+          <div className="input-label">
+            <Translate value="home.username" />
+          </div>
           <input
             id="username"
             className="login-input"
@@ -33,7 +38,9 @@ const HomeDisplay = props => {
           />
         </div>
         <div className="input-group">
-          <div className="input-label">Password</div>
+          <div className="input-label">
+            <Translate value="home.password" />
+          </div>
           <input
             id="password"
             className="login-password"
@@ -44,7 +51,9 @@ const HomeDisplay = props => {
         </div>
         {props.mode === REGISTER && (
           <div className="input-group">
-            <div className="input-label">Password again</div>
+            <div className="input-label">
+              <Translate value="home.passwordAgain" />
+            </div>
             <input
               id="password-again"
               className="login-password-again"
@@ -62,14 +71,14 @@ const HomeDisplay = props => {
               className="button-invis"
               onClick={props.setToLoginMode}
             >
-              Login
+              <Translate value="home.logIn" />
             </button>
             <button
               id="register-submit-button"
               type="submit"
               className="button-primary"
             >
-              Register
+              <Translate value="home.register" />
             </button>
           </div>
         ) : (
@@ -80,14 +89,14 @@ const HomeDisplay = props => {
               className="button-invis"
               onClick={props.setToRegisterMode}
             >
-              Register
+              <Translate value="home.register" />
             </button>
             <button
               id="login-submit-button"
               type="submit"
               className="button-primary"
             >
-              Login
+              <Translate value="home.logIn" />
             </button>
           </div>
         )}

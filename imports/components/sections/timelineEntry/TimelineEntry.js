@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { Translate, Localize } from 'react-redux-i18n';
 
 const APPOINTMENT_SCHEDULED = 'APPOINTMENT_SCHEDULED';
 const QUALIFIED_TO_BUY = 'QUALIFIED_TO_BUY';
@@ -41,88 +42,90 @@ export const OUTCOME_LABELS = {
 
 const StatusChangeMessage = (props, direction) => (
   <span>
-    {props.username || 'Someone'} moved{' '}
+    <Translate
+      value="timeline.statusChange.0"
+      username={props.username || ''}
+    />
     <Link to={`/opportunities/${props.opportunityId}`} className="keyword">
       {props.opportunityName}
-    </Link>{' '}
-    {direction} from{' '}
-    <span className="keyword">{STATUS_LABELS[props.from]}</span> to{' '}
-    <span className="keyword">{STATUS_LABELS[props.to]}</span>
+    </Link>
+    <Translate value="timeline.statusChange.1" />
   </span>
 );
 
 export const TIMELINE_MESSAGES = {
   CREATION: props => (
     <span>
-      {props.username || 'Someone'} created{' '}
+      <Translate value="timeline.creation.0" username={props.username || ''} />
       <Link to={`/${props.parentCollection}/${props.parent}`}>
         {props.parentName}
       </Link>
+      <Translate value="timeline.creation.1" />
     </span>
   ),
   NOTE: props => (
     <span>
-      {props.username || 'Someone'} left a note on{' '}
+      <Translate value="timeline.note.0" username={props.username || ''} />
       <Link to={`/${props.parentCollection}/${props.parent}`}>
         {props.parentName}
       </Link>
+      <Translate value="timeline.note.1" />
     </span>
   ),
   CALL: props => (
     <span>
-      {props.username || 'Someone'} logged a call to{' '}
+      <Translate value="timeline.call.0" username={props.username || ''} />
       <Link to={`/${props.parentCollection}/${props.parent}`}>
         {props.parentName}
       </Link>
+      <Translate value="timeline.call.1" />
     </span>
   ),
   EMAIL: props => (
     <span>
-      {props.username || 'Someone'} logged an email to{' '}
+      <Translate value="timeline.email.0" username={props.username || ''} />
       <Link to={`/${props.parentCollection}/${props.parent}`}>
         {props.parentName}
       </Link>
+      <Translate value="timeline.email.1" />
     </span>
   ),
   MEETING: props => (
     <span>
-      {props.username || 'Someone'} logged a meeting with{' '}
+      <Translate value="timeline.meeting.0" username={props.username || ''} />
       <Link to={`/${props.parentCollection}/${props.parent}`}>
         {props.parentName}
       </Link>
+      <Translate value="timeline.meeting.1" />
     </span>
   ),
   QUOTE: props => (
     <span>
-      {props.username || 'Someone'} logged quote{' '}
-      <a
-        href={`https://focis.agility.com/QuotationPrints/${props.quoteNumber}-v1.pdf`}
-        target="_blank"
-      >
-        {props.quoteNumber}
-      </a>{' '}
-      to{' '}
+      <Translate value="timeline.quote.0" username={props.username || ''} />
       <Link to={`/${props.parentCollection}/${props.parent}`}>
         {props.parentName}
       </Link>
+      <Translate value="timeline.quote.1" />
     </span>
   ),
   STATUS_CHANGE_FORWARD: props => StatusChangeMessage(props, 'forward'),
   STATUS_CHANGE_BACKWARD: props => StatusChangeMessage(props, 'backward'),
   JOIN_TEAM: props => (
     <span>
-      {props.username || 'Someone'} joined{' '}
+      <Translate value="timeline.joinTeam.0" username={props.username || ''} />
       <Link to={`/${props.parentCollection}/${props.parent}`}>
         {props.parentName}
       </Link>
+      <Translate value="timeline.joinTeam.1" />
     </span>
   ),
   LEAVE_TEAM: props => (
     <span>
-      {props.username || 'Someone'} left{' '}
+      <Translate value="timeline.leaveTeam.0" username={props.username || ''} />
       <Link to={`/${props.parentCollection}/${props.parent}`}>
         {props.parentName}
       </Link>
+      <Translate value="timeline.leaveTeam.1" />
     </span>
   ),
 };
@@ -169,14 +172,41 @@ const TimelineEntry = props => (
           {TIMELINE_MESSAGES[props.type](props)}
         </div>
         <div className="timestamp">
-          {moment(props.time || props.timestamp).format('MMMM Do [at] h:mm a')}
+          <Localize
+            value={props.time || props.timestamp}
+            dateFormat="timeline.dateFormat"
+          />
         </div>
-        {(props.outcome || props.note || props.text) && (
+        {(props.outcome || props.note || props.text || props.to) && (
           <div className="note">
             {props.outcome && (
               <div className="outcome">
-                <span className="keyword">Call outcome: </span>
-                {OUTCOME_LABELS[props.outcome]}
+                <Translate value="timeline.callOutcome" />:{' '}
+                <span className="keyword">
+                  <Translate value={`callOutcomes.${props.outcome}`} />
+                </span>
+              </div>
+            )}
+            {props.quoteNumber && (
+              <div className="outcome">
+                <Translate value="timeline.quoteNumber" />:{' '}
+                <span>
+                  <a
+                    href={`https://focis.agility.com/QuotationPrints/${props.quoteNumber}-v1.pdf`}
+                    target="_blank"
+                    className="keyword"
+                  >
+                    {props.quoteNumber}
+                  </a>
+                </span>
+              </div>
+            )}
+            {props.to && (
+              <div className="outcome">
+                <Translate value="timeline.newStatus" />:{' '}
+                <span className="keyword">
+                  <Translate value={`opportunityStatuses.${props.to}`} />
+                </span>
               </div>
             )}
             {props.note && <div className="text">{props.note}</div>}

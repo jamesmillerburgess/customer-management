@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translate } from 'react-redux-i18n';
 
 const InteractionButtons = props => {
   const btn = {};
@@ -37,7 +38,7 @@ const InteractionButtons = props => {
         style={{ cursor: btn.buttonCursor }}
         onClick={btn.secondaryButtonOnClick}
       >
-        Cancel
+        <Translate value="interaction.cancelButtonText" />
       </button>
     </div>
   );

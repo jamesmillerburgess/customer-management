@@ -3,7 +3,7 @@ import _ from 'lodash/fp';
 
 import * as TM from '../team/teamMethods';
 
-const PROFILE_FIELDS = ['username'];
+const PROFILE_FIELDS = ['username', 'profile.locale'];
 
 export const saveProfile = (userId, profile) => {
   const fields = _.pick(PROFILE_FIELDS, profile);

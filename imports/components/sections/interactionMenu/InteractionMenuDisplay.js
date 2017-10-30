@@ -1,4 +1,6 @@
 import React from 'react';
+import { Translate } from 'react-redux-i18n';
+
 import Interaction from '../interaction/Interaction';
 
 const InteractionMenuDisplay = props => {
@@ -13,7 +15,9 @@ const InteractionMenuDisplay = props => {
             onClick={() => props.setActiveInteraction(interaction)}
           >
             <div className="fa fa-fw fa-pencil icon" />
-            <span className="button-text">New note</span>
+            <span className="button-text">
+              <Translate value="interactionMenu.newNote" />
+            </span>
           </button>
         );
       case 'LOG_CALL':
@@ -24,7 +28,9 @@ const InteractionMenuDisplay = props => {
             onClick={() => props.setActiveInteraction(interaction)}
           >
             <div className="fa fa-fw fa-phone icon" />
-            <span className="button-text">Log call</span>
+            <span className="button-text">
+              <Translate value="interactionMenu.logCall" />
+            </span>
           </button>
         );
       case 'LOG_EMAIL':
@@ -35,7 +41,9 @@ const InteractionMenuDisplay = props => {
             onClick={() => props.setActiveInteraction(interaction)}
           >
             <div className="fa fa-fw fa-envelope icon" />
-            <span className="button-text">Log email</span>
+            <span className="button-text">
+              <Translate value="interactionMenu.logEmail" />
+            </span>
           </button>
         );
       case 'LOG_MEETING':
@@ -46,7 +54,9 @@ const InteractionMenuDisplay = props => {
             onClick={() => props.setActiveInteraction(interaction)}
           >
             <div className="fa fa-fw fa-handshake-o icon" />
-            <span className="button-text">Log meeting</span>
+            <span className="button-text">
+              <Translate value="interactionMenu.logMeeting" />
+            </span>
           </button>
         );
       case 'LOG_QUOTE':
@@ -57,7 +67,9 @@ const InteractionMenuDisplay = props => {
             onClick={() => props.setActiveInteraction(interaction)}
           >
             <div className="fa fa-fw fa-file-text-o icon" />
-            <span className="button-text">Log quote</span>
+            <span className="button-text">
+              <Translate value="interactionMenu.logQuote" />
+            </span>
           </button>
         );
       default:

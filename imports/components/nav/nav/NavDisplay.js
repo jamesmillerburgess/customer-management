@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { I18n, Translate } from 'react-redux-i18n';
 
 import { NavLink, Switch, Route } from 'react-router-dom';
 import routes from '../../../api/routes';
@@ -9,19 +10,19 @@ import NavSearchInput from '../../fields/NavSearchInput';
 export const getPageTitle = () => (
   <Switch>
     <Route path="/" exact>
-      <span>Dashboard</span>
+      <Translate value="nav.dashboard" />
     </Route>
     <Route path="/contacts">
-      <span>Contacts</span>
+      <Translate value="nav.contacts" />
     </Route>
     <Route path="/companies">
-      <span>Companies</span>
+      <Translate value="nav.companies" />
     </Route>
     <Route path="/opportunities">
-      <span>Opportunities</span>
+      <Translate value="nav.opportunities" />
     </Route>
     <Route path="/profile">
-      <span>Profile</span>
+      <Translate value="nav.profile" />
     </Route>
   </Switch>
 );
@@ -40,7 +41,7 @@ const NavDisplay = props => (
           {props.user.username} / {getPageTitle()}
         </span>
       ) : (
-        <span>Agility Customer Management</span>
+        <Translate value="app.title" />
       )}
     </div>
     <div className="mobile-notifications-icon" />
@@ -64,13 +65,13 @@ const NavDisplay = props => (
       <a href="#" onClick={props.goToProfile}>
         <span className="nav-button">
           <span className="icon fa fa-fw fa-user" />
-          Edit profile
+          <Translate value="nav.editProfile" />
         </span>
       </a>
       <a href="#" onClick={props.tryLogout}>
         <span className="nav-button">
           <span className="icon fa fa-fw fa-sign-out" />
-          Log out
+          <Translate value="nav.logOut" />
         </span>
       </a>
     </div>
@@ -84,7 +85,7 @@ const NavDisplay = props => (
         ))}
     </div>
     <div className="button-group search-and-profile">
-      <NavSearchInput placeholder="Search" />
+      <NavSearchInput placeholder={I18n.t('nav.search')} />
       <div>
         <button
           id="profile-button"
@@ -100,7 +101,7 @@ const NavDisplay = props => (
               <div className="team-name">{props.team && props.team.name}</div>
             </div>
           ) : (
-            'Log in'
+            <Translate value="nav.logIn" />
           )}
         </button>
         <div
@@ -115,12 +116,12 @@ const NavDisplay = props => (
           <ul>
             <li>
               <a href="#" onClick={props.goToProfile}>
-                Edit profile
+                <Translate value="nav.editProfile" />
               </a>
             </li>
             <li>
               <a href="#" onClick={props.tryLogout}>
-                Log out
+                <Translate value="nav.logOut" />
               </a>
             </li>
           </ul>

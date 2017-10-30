@@ -1,6 +1,7 @@
 import React from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import { Translate } from 'react-redux-i18n';
 
 import OpportunityList from './OpportunityList';
 import OpportunityCard from './OpportunityCard';
@@ -41,7 +42,11 @@ class OpportunityBoard extends React.Component {
           <div className="status-group" key={status.title}>
             <div className="header">
               <div className="header-text">
-                <div className="title">{status.title}</div>
+                <div className="title">
+                  <Translate
+                    value={`opportunityStatuses.${STATUS_VALUES[i]}`}
+                  />
+                </div>
                 <div className="count">{this.props.cardLists[i].length}</div>
               </div>
               <div className="probability-bar">
@@ -58,12 +63,18 @@ class OpportunityBoard extends React.Component {
                 ))}
               </div>
             </div>
-            <OpportunityList status={STATUS_VALUES[i]}>
+            <OpportunityList
+              status={
+                <Translate value={`opportunityStatuses.${STATUS_VALUES[i]}`} />
+              }
+            >
               {this.props.cardLists[i].map(card => (
                 <OpportunityCard {...card} key={card._id} />
               ))}
             </OpportunityList>
-            <div className="footer">Total: ${this.props.listTotals[i]}</div>
+            <div className="footer">
+              <Translate value="opportunities.total" />: ${this.props.listTotals[i]}
+            </div>
           </div>
         ))}
       </div>

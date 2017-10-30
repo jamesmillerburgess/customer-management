@@ -5,6 +5,10 @@ import FieldOptions from '../api/fieldOptions/fieldOptionsCollection';
 
 export const linkMeteorData = props => {
   const loading = !Meteor.user() || Meteor.loggingIn();
+  const userLocale = ((Meteor.user() || {}).profile || {}).locale;
+  if (userLocale && userLocale !== props.locale) {
+    props.setLocale(Meteor.user().profile.locale);
+  }
   return { ...props, loading };
 };
 

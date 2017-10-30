@@ -1,6 +1,7 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Link } from 'react-router-dom';
+import { I18n } from 'react-redux-i18n';
 
 import WidgetPlaceholder from '../widgetPlaceholder/WidgetPlaceholder';
 
@@ -8,7 +9,7 @@ const data = opportunityForecast => ({
   labels: [],
   datasets: [
     {
-      label: 'Appointment Scheduled',
+      label: I18n.t('opportunityStatuses.APPOINTMENT_SCHEDULED'),
       backgroundColor: 'rgba(251,157,149,0.8)',
       borderColor: 'rgba(251,157,149,1)',
       borderWidth: 1,
@@ -17,7 +18,7 @@ const data = opportunityForecast => ({
       data: [opportunityForecast[0]],
     },
     {
-      label: 'Qualified to Buy',
+      label: I18n.t('opportunityStatuses.QUALIFIED_TO_BUY'),
       backgroundColor: 'rgba(239,145,164,0.8)',
       borderColor: 'rgba(239,145,164,1)',
       borderWidth: 1,
@@ -26,7 +27,7 @@ const data = opportunityForecast => ({
       data: [opportunityForecast[1]],
     },
     {
-      label: 'Presentation Scheduled',
+      label: I18n.t('opportunityStatuses.PRESENTATION_SCHEDULED'),
       backgroundColor: 'rgba(218,137,178,0.8)',
       borderColor: 'rgba(218,137,178,1)',
       borderWidth: 1,
@@ -35,7 +36,7 @@ const data = opportunityForecast => ({
       data: [opportunityForecast[2]],
     },
     {
-      label: 'Decision Maker Bought-In',
+      label: I18n.t('opportunityStatuses.DECISION_MAKER_BOUGHT_IN'),
       backgroundColor: 'rgba(188,133,189,0.8)',
       borderColor: 'rgba(188,133,189,1)',
       borderWidth: 1,
@@ -44,7 +45,7 @@ const data = opportunityForecast => ({
       data: [opportunityForecast[3]],
     },
     {
-      label: 'Contract Sent',
+      label: I18n.t('opportunityStatuses.CONTRACT_SENT'),
       backgroundColor: 'rgba(170,133,192,0.8)',
       borderColor: 'rgba(170,133,192,1)',
       borderWidth: 1,
@@ -53,7 +54,7 @@ const data = opportunityForecast => ({
       data: [opportunityForecast[4]],
     },
     {
-      label: 'Closed Won',
+      label: I18n.t('opportunityStatuses.CLOSED_WON'),
       backgroundColor: 'rgba(151,132,194,0.8)',
       borderColor: 'rgba(151,132,194,1)',
       borderWidth: 1,
@@ -85,15 +86,13 @@ const OpportunityForecastDisplay = props =>
     </div>
   ) : (
     <WidgetPlaceholder
-      title="Forecast your sales"
+      title={I18n.t('opportunityForecast.placeholderTitle')}
       text={[
-        "Keep up to date with your team's progress towards its quota each month.",
-        'Once your team has an opportunity closing this month, a graph of \n' +
-          'your forecast will display in this widget.',
-        "If you don't have any opportunities yet, you can create one from \n" +
-          'the opportunities page.',
+        I18n.t('opportunityForecast.placeholderText.0'),
+        I18n.t('opportunityForecast.placeholderText.1'),
+        I18n.t('opportunityForecast.placeholderText.2'),
       ]}
-      buttonText="Go to opportunities"
+      buttonText={I18n.t('opportunityForecast.placeholderButtonText')}
       buttonPath="/opportunities"
     />
   );

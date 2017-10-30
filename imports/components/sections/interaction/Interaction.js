@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translate, I18n } from 'react-redux-i18n';
 
 import InteractionConnect from './InteractionConnect';
 
@@ -8,8 +9,8 @@ export const getInteractionProps = props => {
     case 'NEW_NOTE':
       return {
         textProp: 'noteText',
-        textPlaceholder: 'Start typing to leave a note...',
-        confirmText: 'Add note',
+        textPlaceholder: I18n.t('interaction.noteTextPlaceholder'),
+        confirmText: I18n.t('interaction.noteConfirmText'),
         logInteractionMethod: props.addNoteMethod,
         uriID,
         interactionType: 'NOTE',
@@ -21,8 +22,8 @@ export const getInteractionProps = props => {
         outcomeProp: 'callOutcome',
         hasTime: true,
         hasOutcome: true,
-        textPlaceholder: 'Start typing to describe a call...',
-        confirmText: 'Log call',
+        textPlaceholder: I18n.t('interaction.callTextPlaceholder'),
+        confirmText: I18n.t('interaction.callConfirmText'),
         logInteractionMethod: props.logCallMethod,
         uriID,
         interactionType: 'CALL',
@@ -32,8 +33,8 @@ export const getInteractionProps = props => {
         textProp: 'emailText',
         timeProp: 'emailTime',
         hasTime: true,
-        textPlaceholder: 'Start typing to describe an email...',
-        confirmText: 'Log email',
+        textPlaceholder: I18n.t('interaction.emailTextPlaceholder'),
+        confirmText: I18n.t('interaction.emailConfirmText'),
         logInteractionMethod: props.logEmailMethod,
         uriID,
         interactionType: 'EMAIL',
@@ -43,8 +44,8 @@ export const getInteractionProps = props => {
         textProp: 'meetingText',
         timeProp: 'meetingTime',
         hasTime: true,
-        textPlaceholder: 'Start typing to describe a meeting...',
-        confirmText: 'Log meeting',
+        textPlaceholder: I18n.t('interaction.meetingTextPlaceholder'),
+        confirmText: I18n.t('interaction.meetingConfirmText'),
         logInteractionMethod: props.logMeetingMethod,
         uriID,
         interactionType: 'MEETING',
@@ -56,8 +57,8 @@ export const getInteractionProps = props => {
         hasTime: true,
         hasQuoteNumber: true,
         quoteNumberProp: 'quoteNumber',
-        textPlaceholder: 'Start typing to describe a quote...',
-        confirmText: 'Log quote',
+        textPlaceholder: I18n.t('interaction.quoteTextPlaceholder'),
+        confirmText: I18n.t('interaction.quoteConfirmText'),
         logInteractionMethod: props.logQuoteMethod,
         uriID,
         interactionType: 'QUOTE',
