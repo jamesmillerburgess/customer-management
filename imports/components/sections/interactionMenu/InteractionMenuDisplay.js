@@ -6,72 +6,30 @@ import Interaction from '../interaction/Interaction';
 const InteractionMenuDisplay = props => {
   const InteractionItem = interaction => {
     const activeClass = interaction === props.activeInteraction && 'active';
+    const display = (iconClass, translation) => (
+      <button
+        className={`interaction-item ${activeClass}`}
+        key={interaction}
+        onClick={() => props.setActiveInteraction(interaction)}
+      >
+        <div className={`fa fa-fw ${iconClass} icon`} />
+        <span className="button-text">
+          <Translate value={`interactionMenu.${translation}`} />
+        </span>
+      </button>
+    );
+
     switch (interaction) {
       case 'NEW_NOTE':
-        return (
-          <button
-            className={`interaction-item ${activeClass}`}
-            key={interaction}
-            onClick={() => props.setActiveInteraction(interaction)}
-          >
-            <div className="fa fa-fw fa-pencil icon" />
-            <span className="button-text">
-              <Translate value="interactionMenu.newNote" />
-            </span>
-          </button>
-        );
+        return display('fa-pencil', 'newNote');
       case 'LOG_CALL':
-        return (
-          <button
-            className={`interaction-item ${activeClass}`}
-            key={interaction}
-            onClick={() => props.setActiveInteraction(interaction)}
-          >
-            <div className="fa fa-fw fa-phone icon" />
-            <span className="button-text">
-              <Translate value="interactionMenu.logCall" />
-            </span>
-          </button>
-        );
+        return display('fa-phone', 'logCall');
       case 'LOG_EMAIL':
-        return (
-          <button
-            className={`interaction-item ${activeClass}`}
-            key={interaction}
-            onClick={() => props.setActiveInteraction(interaction)}
-          >
-            <div className="fa fa-fw fa-envelope icon" />
-            <span className="button-text">
-              <Translate value="interactionMenu.logEmail" />
-            </span>
-          </button>
-        );
+        return display('fa-envelope', 'logEmail');
       case 'LOG_MEETING':
-        return (
-          <button
-            className={`interaction-item ${activeClass}`}
-            key={interaction}
-            onClick={() => props.setActiveInteraction(interaction)}
-          >
-            <div className="fa fa-fw fa-handshake-o icon" />
-            <span className="button-text">
-              <Translate value="interactionMenu.logMeeting" />
-            </span>
-          </button>
-        );
+        return display('fa-handshake-o', 'logMeeting');
       case 'LOG_QUOTE':
-        return (
-          <button
-            className={`interaction-item ${activeClass}`}
-            key={interaction}
-            onClick={() => props.setActiveInteraction(interaction)}
-          >
-            <div className="fa fa-fw fa-file-text-o icon" />
-            <span className="button-text">
-              <Translate value="interactionMenu.logQuote" />
-            </span>
-          </button>
-        );
+        return display('fa-file-text-o', 'logQuote');
       default:
         return null;
     }
