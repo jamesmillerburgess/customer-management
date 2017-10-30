@@ -19,4 +19,4 @@ ratings:
   - "**.php"
   - "**.py"
   - "**.rb"
-exclude_paths: ["**.test.js"]
+exclude_paths: ["**.test.js", "/imports/i18n/*"]
