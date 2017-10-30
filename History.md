@@ -4,8 +4,8 @@
 * Ability to change opportunity status in mobile layout
 * Localized strings, dates, and numbers throughout the application
 * Select locale in Edit profile -> Basic info
-* Translations added for English (United States), English (United Kingdom), and
-Korean
+* Translations added for English (United States), English (United Kingdom), 
+French (France), and Korean
 
 ## v1.1.0 – Mobile Layout
 
