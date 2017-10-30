@@ -19,6 +19,12 @@ describe('TimelineEntry Component', () => {
     wrapper.unmount();
   });
   it('renders without error', () => {});
+  it('uses time if available and falls back to timestamp otherwise', () => {
+    wrapper.setProps({ time: null, timestamp: 2 });
+    expect(wrapper.find('.timestamp Localize').props().value).toBe(2);
+    wrapper.setProps({ time: 1, timestamp: 2 });
+    expect(wrapper.find('.timestamp Localize').props().value).toBe(1);
+  });
   it('renders post line if the entry is not last', () => {
     wrapper.setProps({ isNotLast: true });
     expect(wrapper.find('.timeline-icon-post-line').length).toBe(1);
@@ -52,6 +58,38 @@ describe('TimelineEntry Component', () => {
         .at(0)
         .props().value
     ).not.toBe('timeline.callOutcome');
+  });
+  it('renders the quoteNumber if the entry has a quoteNumber', () => {
+    wrapper.setProps({ quoteNumber: 'b' });
+    expect(
+      wrapper
+        .find('.outcome Translate')
+        .at(0)
+        .props().value
+    ).toBe('timeline.quoteNumber');
+    wrapper.setProps({ quoteNumber: null });
+    expect(
+      wrapper
+        .find('.outcome Translate')
+        .at(0)
+        .props().value
+    ).not.toBe('timeline.quoteNumber');
+  });
+  it('renders the newStatus if the entry has a to', () => {
+    wrapper.setProps({ to: 'b' });
+    expect(
+      wrapper
+        .find('.outcome Translate')
+        .at(0)
+        .props().value
+    ).toBe('timeline.newStatus');
+    wrapper.setProps({ to: null });
+    expect(
+      wrapper
+        .find('.outcome Translate')
+        .at(0)
+        .props().value
+    ).not.toBe('timeline.newStatus');
   });
   describe('TIMELINE_MESSAGES Object', () => {
     it('returns some functions', () => {

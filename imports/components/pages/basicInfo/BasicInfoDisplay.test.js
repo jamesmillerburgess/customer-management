@@ -26,4 +26,18 @@ describe('BasicInfoDisplay Component', () => {
     expect(e.preventDefault).toHaveBeenCalledTimes(1);
     expect(saveProfile).toHaveBeenCalledTimes(1);
   });
+  it('passes selector functions to value and option renderer', () => {
+    expect(
+      wrapper
+        .find('OptionField')
+        .props()
+        .valueRenderer({ label: 'a' })
+    ).toBe('a');
+    expect(
+      wrapper
+        .find('OptionField')
+        .props()
+        .optionRenderer({ label: 'a' })
+    ).toBe('a');
+  });
 });

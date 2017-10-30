@@ -177,7 +177,11 @@ const TimelineEntry = props => (
             dateFormat="timeline.dateFormat"
           />
         </div>
-        {(props.outcome || props.note || props.text || props.to) && (
+        {(props.outcome ||
+          props.note ||
+          props.text ||
+          props.quoteNumber ||
+          props.to) && (
           <div className="note">
             {props.outcome && (
               <div className="outcome">
