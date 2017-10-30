@@ -5,6 +5,22 @@ import { REGISTER, LOGIN } from './HomeConstants';
 import './HomeDisplay.scss';
 
 const HomeDisplay = props => {
+  const buttonGroup =
+    props.mode === REGISTER
+      ? {
+          id1: 'login-mode-button',
+          onClick1: props.setToLoginMode,
+          label1: 'home.logIn',
+          id2: 'register-submit-button',
+          label2: 'home.register',
+        }
+      : {
+          id1: 'register-mode-button',
+          onClick1: props.setToRegisterMode,
+          label1: 'home.register',
+          id2: 'login-submit-button',
+          label2: 'home.logIn',
+        };
   return (
     <div className="home">
       <form
@@ -63,43 +79,19 @@ const HomeDisplay = props => {
             />
           </div>
         )}
-        {props.mode === REGISTER ? (
-          <div className="button-group">
-            <button
-              id="login-mode-button"
-              type="button"
-              className="button-invis"
-              onClick={props.setToLoginMode}
-            >
-              <Translate value="home.logIn" />
-            </button>
-            <button
-              id="register-submit-button"
-              type="submit"
-              className="button-primary"
-            >
-              <Translate value="home.register" />
-            </button>
-          </div>
-        ) : (
-          <div className="button-group">
-            <button
-              id="register-mode-button"
-              type="button"
-              className="button-invis"
-              onClick={props.setToRegisterMode}
-            >
-              <Translate value="home.register" />
-            </button>
-            <button
-              id="login-submit-button"
-              type="submit"
-              className="button-primary"
-            >
-              <Translate value="home.logIn" />
-            </button>
-          </div>
-        )}
+        <div className="button-group">
+          <button
+            id={buttonGroup.id1}
+            type="button"
+            className="button-invis"
+            onClick={buttonGroup.onClick1}
+          >
+            <Translate value={buttonGroup.label1} />
+          </button>
+          <button id={buttonGroup.id2} type="submit" className="button-primary">
+            <Translate value={buttonGroup.label2} />
+          </button>
+        </div>
         <div className="error-message">{props.errorMessage}</div>
       </form>
     </div>
