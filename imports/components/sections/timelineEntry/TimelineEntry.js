@@ -53,81 +53,27 @@ const StatusChangeMessage = (props, direction) => (
   </span>
 );
 
+const makeTimelineMessage = (entry, type) => (
+  <span>
+    <Translate value={`timeline.${type}.0`} username={entry.username || ''} />
+    <Link to={`/${entry.parentCollection}/${entry.parent}`} className="keyword">
+      {entry.parentName}
+    </Link>
+    <Translate value={`timeline.${type}.1`} />
+  </span>
+);
+
 export const TIMELINE_MESSAGES = {
-  CREATION: props => (
-    <span>
-      <Translate value="timeline.creation.0" username={props.username || ''} />
-      <Link to={`/${props.parentCollection}/${props.parent}`}>
-        {props.parentName}
-      </Link>
-      <Translate value="timeline.creation.1" />
-    </span>
-  ),
-  NOTE: props => (
-    <span>
-      <Translate value="timeline.note.0" username={props.username || ''} />
-      <Link to={`/${props.parentCollection}/${props.parent}`}>
-        {props.parentName}
-      </Link>
-      <Translate value="timeline.note.1" />
-    </span>
-  ),
-  CALL: props => (
-    <span>
-      <Translate value="timeline.call.0" username={props.username || ''} />
-      <Link to={`/${props.parentCollection}/${props.parent}`}>
-        {props.parentName}
-      </Link>
-      <Translate value="timeline.call.1" />
-    </span>
-  ),
-  EMAIL: props => (
-    <span>
-      <Translate value="timeline.email.0" username={props.username || ''} />
-      <Link to={`/${props.parentCollection}/${props.parent}`}>
-        {props.parentName}
-      </Link>
-      <Translate value="timeline.email.1" />
-    </span>
-  ),
-  MEETING: props => (
-    <span>
-      <Translate value="timeline.meeting.0" username={props.username || ''} />
-      <Link to={`/${props.parentCollection}/${props.parent}`}>
-        {props.parentName}
-      </Link>
-      <Translate value="timeline.meeting.1" />
-    </span>
-  ),
-  QUOTE: props => (
-    <span>
-      <Translate value="timeline.quote.0" username={props.username || ''} />
-      <Link to={`/${props.parentCollection}/${props.parent}`}>
-        {props.parentName}
-      </Link>
-      <Translate value="timeline.quote.1" />
-    </span>
-  ),
-  STATUS_CHANGE_FORWARD: props => StatusChangeMessage(props, 'forward'),
-  STATUS_CHANGE_BACKWARD: props => StatusChangeMessage(props, 'backward'),
-  JOIN_TEAM: props => (
-    <span>
-      <Translate value="timeline.joinTeam.0" username={props.username || ''} />
-      <Link to={`/${props.parentCollection}/${props.parent}`}>
-        {props.parentName}
-      </Link>
-      <Translate value="timeline.joinTeam.1" />
-    </span>
-  ),
-  LEAVE_TEAM: props => (
-    <span>
-      <Translate value="timeline.leaveTeam.0" username={props.username || ''} />
-      <Link to={`/${props.parentCollection}/${props.parent}`}>
-        {props.parentName}
-      </Link>
-      <Translate value="timeline.leaveTeam.1" />
-    </span>
-  ),
+  CREATION: entry => makeTimelineMessage(entry, 'creation'),
+  NOTE: entry => makeTimelineMessage(entry, 'note'),
+  CALL: entry => makeTimelineMessage(entry, 'call'),
+  EMAIL: entry => makeTimelineMessage(entry, 'email'),
+  MEETING: entry => makeTimelineMessage(entry, 'meeting'),
+  QUOTE: entry => makeTimelineMessage(entry, 'quote'),
+  JOIN_TEAM: entry => makeTimelineMessage(entry, 'joinTeam'),
+  LEAVE_TEAM: entry => makeTimelineMessage(entry, 'leaveTeam'),
+  STATUS_CHANGE_FORWARD: entry => makeTimelineMessage(entry, 'statusChange'),
+  STATUS_CHANGE_BACKWARD: entry => makeTimelineMessage(entry, 'statusChange'),
 };
 
 const TIMELINE_ICONS = {
