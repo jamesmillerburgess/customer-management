@@ -2,6 +2,10 @@
 
 * Meteor Application Performance Management tool activated
 * Ability to change opportunity status in mobile layout
+* Localized strings, dates, and numbers throughout the application
+* Select locale in Edit profile -> Basic info
+* Translations added for English (United States), English (United Kingdom), and
+Korean
 
 ## v1.1.0 – Mobile Layout
 
@@ -23,7 +27,8 @@
 * Fixed issue with subscriptions not updating until state has been updated after
 loading
 * Automated test harness for acceptance tests
-* Automated deployment to live site triggered by new passing builds on `devel` branch (this is more frequent than the minor version increments like v0.9.0)
+* Automated deployment to live site triggered by new passing builds on `devel` 
+branch (this is more frequent than the minor version increments like v0.9.0)
 * Made async option fields more reliable (`Team` and `Company` fields)
 
 ## v0.9.0 – Dashboard
