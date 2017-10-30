@@ -44,18 +44,18 @@ describe('OptionField Component', () => {
         .props()
         .optionRenderer({ a: 'b' })
     ).not.toThrow();
-    wrapper.setProps({ labelKey: null });
+    wrapper.setProps({ labelKey: undefined });
     expect(() =>
       wrapper
         .find('Select')
         .props()
-        .valueRenderer({ a: 'b' })
+        .valueRenderer({ label: 'b' })
     ).not.toThrow();
     expect(() =>
       wrapper
         .find('Select')
         .props()
-        .optionRenderer({ a: 'b' })
+        .optionRenderer({ label: 'b' })
     ).not.toThrow();
   });
 });
