@@ -2,7 +2,11 @@ export const FIELD_OPTIONS = [
   {
     type: 'LANGUAGE',
     options: [
+      { value: 'de-ch', label: 'DE-CH – Deutsch (Schweiz)' },
+      { value: 'de-de', label: 'DE-CH – Deutsch (Deutschland)' },
+      { value: 'en-gb', label: 'EN-GB – English (United Kingdom)' },
       { value: 'en-us', label: 'EN-US – English (United States)' },
+      { value: 'fr-fr', label: 'FR-FR – Français (France)' },
       { value: 'ko', label: 'KO – 한국어' },
     ],
   },
