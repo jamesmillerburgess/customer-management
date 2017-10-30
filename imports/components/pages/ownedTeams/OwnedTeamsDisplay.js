@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Translate } from 'react-redux-i18n';
+import { Translate, Localize } from 'react-redux-i18n';
 
 import TextField from '../../fields/textField/TextField';
 import CheckboxField from '../../fields/checkboxField/CheckboxField';
@@ -42,7 +42,7 @@ export const gridPageProps = props => ({
       id: 'createDate',
       accessor: 'createDate',
       Cell: props => (
-        <span>{moment(props.value).format('MMM DD[,] YYYY')}</span>
+        <Localize value={props.value} dateFormat="profile.dateFormat" />
       ),
     },
   ],

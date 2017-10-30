@@ -207,10 +207,10 @@ const ko = {
     OPERATIONS: '생산관리자',
   },
   companyLifecycleStages: {
-    PARTY: 'Party 다수 회사',
-    LEAD: 'Lead 기회 구매자',
-    PROSPECT: 'Prospect 장래의 구매자',
-    CUSTOMER: 'Customer 기존 구매자',
+    PARTY: 'Party / 다수 회사',
+    LEAD: 'Lead / 기회 구매자',
+    PROSPECT: 'Prospect / 장래의 구매자',
+    CUSTOMER: 'Customer / 기존 구매자',
   },
   companyStatuses: {
     ACTIVE: '진행중',
