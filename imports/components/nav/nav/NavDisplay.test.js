@@ -57,7 +57,12 @@ describe('NavDisplay', () => {
   });
   it("displays 'Log in' if there is no user", () => {
     wrapper.setProps({ user: null });
-    expect(wrapper.containsMatchingElement('Log in')).toBe(true);
+    expect(
+      wrapper
+        .find('#profile-button Translate')
+        .at(0)
+        .props().value
+    ).toBe('nav.logIn');
   });
   it("sets the menu class to 'open' if the state is open", () => {
     wrapper.setProps({ isProfileMenuOpen: true });

@@ -10,7 +10,7 @@ import { LOGIN } from '../../pages/home/HomeConstants';
 export const mapStateToProps = ({ nav, i18n }) => ({
   isHamburgerOpen: nav.isHamburgerOpen || false,
   isProfileMenuOpen: nav.isProfileMenuOpen || false,
-  locale: i18n.locale,
+  locale: i18n.locale || 'en-us',
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -25,9 +25,9 @@ describe('InteractionDisplay', () => {
   });
   it('displays time if hasTime', () => {
     wrapper.setProps({ hasTime: false });
-    expect(wrapper.find('DateField').exists()).toBe(false);
+    expect(wrapper.find('Connect(DateFieldDisplay)').exists()).toBe(false);
     wrapper.setProps({ hasTime: true });
-    expect(wrapper.find('DateField').exists()).toBe(true);
+    expect(wrapper.find('Connect(DateFieldDisplay)').exists()).toBe(true);
   });
   it('displays outcome if hasOutcome', () => {
     wrapper.setProps({ hasOutcome: false });

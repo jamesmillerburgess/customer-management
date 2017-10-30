@@ -10,7 +10,7 @@ describe('PropertiesEditorDisplay', () => {
   let wrapper;
   let props = {
     loadedValues: {},
-    fields: [{ name: 'name' }],
+    fields: [{ name: 'name', label: 'name' }],
   };
   beforeEach(() => {
     wrapper = shallow(<PropertiesEditorDisplay {...props} />);
@@ -45,12 +45,12 @@ describe('PropertiesEditorDisplay', () => {
   });
   it('renders the number of properties changed in the button footer', () => {
     wrapper.setProps({ numEditedProperties: 1 });
-    expect(wrapper.find('.edited-properties').text()).toBe(
-      "You've changed 1 property"
+    expect(wrapper.find('.edited-properties Translate').props().value).toBe(
+      'editProperties.singularPropertiesChangedText'
     );
     wrapper.setProps({ numEditedProperties: 2 });
-    expect(wrapper.find('.edited-properties').text()).toBe(
-      "You've changed 2 properties"
+    expect(wrapper.find('.edited-properties Translate').props().value).toBe(
+      'editProperties.pluralPropertiesChangedText'
     );
   });
 });

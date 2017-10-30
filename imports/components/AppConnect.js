@@ -7,7 +7,7 @@ import AppContainer from './AppContainer';
 export const mapStateToProps = ({ app, subscriptions, i18n }) => ({
   isOverlayOpen: app.isOverlayOpen || false,
   overlay: app.overlay || '',
-  locale: i18n.locale,
+  locale: i18n.locale || 'en-us',
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({

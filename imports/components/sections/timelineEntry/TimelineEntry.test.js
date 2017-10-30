@@ -11,7 +11,7 @@ import TimelineEntry, {
 
 describe('TimelineEntry Component', () => {
   let wrapper;
-  let props = { type: 'CREATION' };
+  let props = { type: 'CREATION', time: '1' };
   beforeEach(() => {
     wrapper = shallow(<TimelineEntry {...props} />);
   });
@@ -40,12 +40,18 @@ describe('TimelineEntry Component', () => {
   it('renders the outcome if the entry has an outcome', () => {
     wrapper.setProps({ outcome: 'b' });
     expect(
-      wrapper.contains(<span className="keyword">Call outcome: </span>)
-    ).toBe(true);
+      wrapper
+        .find('.outcome Translate')
+        .at(0)
+        .props().value
+    ).toBe('timeline.callOutcome');
     wrapper.setProps({ outcome: null });
     expect(
-      wrapper.contains(<span className="keyword">Call outcome: </span>)
-    ).toBe(false);
+      wrapper
+        .find('.outcome Translate')
+        .at(0)
+        .props().value
+    ).not.toBe('timeline.callOutcome');
   });
   describe('TIMELINE_MESSAGES Object', () => {
     it('returns some functions', () => {

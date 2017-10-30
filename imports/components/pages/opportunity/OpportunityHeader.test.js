@@ -17,36 +17,36 @@ describe('OpportunityHeader Component', () => {
     wrapper.setProps({ opportunity: { amount: 1 } });
     expect(
       wrapper
-        .find('.value')
+        .find('.value Localize')
         .at(0)
-        .text()
-    ).toBe('1 USD');
+        .props().value
+    ).toBe(1);
   });
   it('renders a placeholder for amount if it does not exist', () => {
     wrapper.setProps({ opportunity: { amount: null } });
     expect(
       wrapper
-        .find('.placeholder')
+        .find('.placeholder Translate')
         .at(0)
-        .text()
-    ).toBe('Opportunity Amount');
+        .props().value
+    ).toBe('opportunities.fields.amountPlaceholder');
   });
   it('renders the value of closeDate if it exists', () => {
     wrapper.setProps({ opportunity: { closeDate: '20170101' } });
     expect(
       wrapper
-        .find('.value')
+        .find('.value Localize')
         .at(0)
-        .text()
-    ).toBe('1 Jan, 2017');
+        .props().value
+    ).toBe('20170101');
   });
   it('renders a placeholder for closeDate if it does not exist', () => {
     wrapper.setProps({ opportunity: { closeDate: null } });
     expect(
       wrapper
-        .find('.placeholder')
+        .find('.placeholder Translate')
         .at(1)
-        .text()
-    ).toBe('Opportunity Close Date');
+        .props().value
+    ).toBe('opportunities.fields.closeDatePlaceholder');
   });
 });

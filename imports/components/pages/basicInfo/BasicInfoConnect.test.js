@@ -12,13 +12,14 @@ describe('mapStateToProps Function', () => {
   it('maps state to props', () => {
     const state = {
       app: { loading: false },
-      profile: { username: 'a', team: 'b', hasLoaded: true },
+      profile: { username: 'a', team: 'b', hasLoaded: true, locale: 'ko' },
       other: 'b',
     };
     expect(mapStateToProps(state)).toEqual({
       loading: false,
       username: 'a',
       team: 'b',
+      locale: 'ko',
       hasLoaded: true,
     });
   });
@@ -32,6 +33,7 @@ describe('mapStateToProps Function', () => {
       loading: true,
       username: '',
       team: '',
+      locale: 'en-us',
       hasLoaded: false,
     });
   });
@@ -42,6 +44,7 @@ describe('mapDispatchToProps Function', () => {
     const props = mapDispatchToProps(dispatch, { overlay: 'a' });
     expect(props.setUsername).not.toThrow();
     expect(props.setTeam).not.toThrow();
+    expect(props.setLocale).not.toThrow();
     expect(props.saveProfile).not.toThrow();
     expect(props.setHasLoaded).not.toThrow();
   });

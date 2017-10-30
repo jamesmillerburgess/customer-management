@@ -35,17 +35,17 @@ describe('OwnedTeamsDisplay Component', () => {
   });
   it('sets the pluralization of row/rows depending on numSelectedRows', () => {
     wrapper.setProps({ numSelectedRows: 1 });
-    expect(
-      wrapper.containsMatchingElement(<div>You've selected 1 row</div>)
-    ).toBe(true);
+    expect(wrapper.find('.edited-properties Translate').props().value).toBe(
+      'tableEditor.singularSelectedText'
+    );
     wrapper.setProps({ numSelectedRows: 2 });
-    expect(
-      wrapper.containsMatchingElement(<div>You've selected 2 rows</div>)
-    ).toBe(true);
+    expect(wrapper.find('.edited-properties Translate').props().value).toBe(
+      'tableEditor.pluralSelectedText'
+    );
     wrapper.setProps({ numSelectedRows: 0 });
-    expect(
-      wrapper.containsMatchingElement(<div>You've selected 0 rows</div>)
-    ).toBe(true);
+    expect(wrapper.find('.edited-properties Translate').props().value).toBe(
+      'tableEditor.pluralSelectedText'
+    );
   });
   it('sets the class and style of the footer depending on areAnySelected', () => {
     wrapper.setProps({ areAnySelected: true });
