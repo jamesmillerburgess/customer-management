@@ -19,39 +19,31 @@ export const linkMeteorData = props => {
     name: '',
     timeline: [],
   };
-  if (
-    object._id &&
-    fieldList &&
-    fieldList.fields &&
-    (!props.hasLoaded || object._id !== props.loadedValues._id) &&
-    !props.loading
-  ) {
-    props.setHasLoaded(true);
-    fieldList.fields.forEach(properties =>
-      props.setProperty(properties.name, object[properties.name])
-    );
-    properties = fieldList.fields;
-    props.setLoadedValues(object);
-  }
-  if (
-    object._id &&
-    fieldList &&
-    fieldList.fields &&
-    props.loadedValues._id &&
-    (props.hasLoaded || object._id !== props.loadedValues._id) &&
-    !props.loading
-  ) {
-    let hasUpdate = false;
-    fieldList.fields.forEach(property => {
-      if (
-        !deepEqual(object[property.name], props.loadedValues[property.name])
-      ) {
-        props.setProperty(property.name, object[property.name]);
-        hasUpdate = true;
-      }
-    });
-    if (hasUpdate) {
+  if (object._id && fieldList && fieldList.fields && !props.loading) {
+    if (!props.hasLoaded || object._id !== props.loadedValues._id) {
+      props.setHasLoaded(true);
+      fieldList.fields.forEach(properties =>
+        props.setProperty(properties.name, object[properties.name])
+      );
+      properties = fieldList.fields;
       props.setLoadedValues(object);
+    }
+    if (
+      props.loadedValues._id &&
+      (props.hasLoaded || object._id !== props.loadedValues._id)
+    ) {
+      let hasUpdate = false;
+      fieldList.fields.forEach(property => {
+        if (
+          !deepEqual(object[property.name], props.loadedValues[property.name])
+        ) {
+          props.setProperty(property.name, object[property.name]);
+          hasUpdate = true;
+        }
+      });
+      if (hasUpdate) {
+        props.setLoadedValues(object);
+      }
     }
   }
   return { ...props, object, loading, properties };

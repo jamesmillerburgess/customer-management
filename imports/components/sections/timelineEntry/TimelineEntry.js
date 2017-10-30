@@ -40,19 +40,6 @@ export const OUTCOME_LABELS = {
   CONNECTED: 'Connected',
 };
 
-const StatusChangeMessage = (props, direction) => (
-  <span>
-    <Translate
-      value="timeline.statusChange.0"
-      username={props.username || ''}
-    />
-    <Link to={`/opportunities/${props.opportunityId}`} className="keyword">
-      {props.opportunityName}
-    </Link>
-    <Translate value="timeline.statusChange.1" />
-  </span>
-);
-
 const makeTimelineMessage = (entry, type) => (
   <span>
     <Translate value={`timeline.${type}.0`} username={entry.username || ''} />
