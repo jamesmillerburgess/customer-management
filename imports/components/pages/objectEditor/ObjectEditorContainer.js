@@ -16,7 +16,7 @@ export const linkMeteorData = props => {
     name: '',
     timeline: [],
   };
-  if (object._id && fieldList && fieldList.fields && !props.loading) {
+  const setInitialProperties = () => {
     if (!props.hasLoaded || object._id !== props.loadedValues._id) {
       props.setHasLoaded(true);
       fieldList.fields.forEach(properties =>
@@ -25,6 +25,8 @@ export const linkMeteorData = props => {
       properties = fieldList.fields;
       props.setLoadedValues(object);
     }
+  };
+  const updateProperties = () => {
     if (
       props.loadedValues._id &&
       (props.hasLoaded || object._id !== props.loadedValues._id)
@@ -42,6 +44,10 @@ export const linkMeteorData = props => {
         props.setLoadedValues(object);
       }
     }
+  };
+  if (object._id && fieldList && fieldList.fields && !props.loading) {
+    setInitialProperties();
+    updateProperties();
   }
   return { ...props, object, loading, properties };
 };
