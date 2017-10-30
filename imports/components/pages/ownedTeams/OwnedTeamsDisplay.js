@@ -79,11 +79,17 @@ const OwnedTeamsDisplay = props => (
             className="button-secondary"
             onClick={() => props.deleteRowSelection(props.rowSelection)}
           >
-            Delete
+            <Translate value="tableEditor.delete" />
           </button>
           <div className="edited-properties">
-            You've selected {props.numSelectedRows}{' '}
-            {props.numSelectedRows === 1 ? 'row' : 'rows'}
+            {props.numSelectedRows === 1 ? (
+              <Translate value="tableEditor.singularSelectedText" />
+            ) : (
+              <Translate
+                value="tableEditor.pluralSelectedText"
+                numSelectedRows={props.numSelectedRows}
+              />
+            )}
           </div>
         </div>
       </div>

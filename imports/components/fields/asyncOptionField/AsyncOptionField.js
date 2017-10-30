@@ -7,11 +7,11 @@ import { buildSearchRegExp } from '../../../api/methodUtils';
 
 export const filterOption = () => true;
 
-// export const optionRenderer = option => (
-//   <div className="company-value">
-//     <div className="value">{option.name}</div>
-//   </div>
-// );
+export const optionRenderer = option => (
+  <div className="company-value">
+    <div className="value">{option.name}</div>
+  </div>
+);
 
 // Filter for old results which are not being passed through a Meteor Method
 export const filterBySearch = (options, inputValue) => {
@@ -123,6 +123,8 @@ class AsyncOptionField extends React.Component {
         valueKey="_id"
         options={this.state.options}
         onInputChange={this.onInputChange}
+        optionRenderer={optionRenderer}
+        valueRenderer={optionRenderer}
         filterOption={filterOption}
         onOpen={this.onOpen}
       />

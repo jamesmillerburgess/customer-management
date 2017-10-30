@@ -219,6 +219,11 @@ const frfr = {
     EXITED: 'Exited',
   },
   dateFieldFormat: 'DD MMM YYYY',
+  tableEditor: {
+    delete: 'Delete',
+    singularSelectedText: "You've selected 1 row",
+    pluralSelectedText: "You've selected %{numSelectedRows} rows",
+  },
 };
 
 export default frfr;

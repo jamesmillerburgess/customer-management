@@ -1,7 +1,7 @@
 import React from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import { Translate } from 'react-redux-i18n';
+import { Translate, Localize } from 'react-redux-i18n';
 
 import OpportunityList from './OpportunityList';
 import OpportunityCard from './OpportunityCard';
@@ -73,7 +73,8 @@ class OpportunityBoard extends React.Component {
               ))}
             </OpportunityList>
             <div className="footer">
-              <Translate value="opportunities.total" />: ${this.props.listTotals[i]}
+              <Translate value="opportunities.total" />{' '}
+              <Localize value={this.props.listTotals[i]} /> USD
             </div>
           </div>
         ))}

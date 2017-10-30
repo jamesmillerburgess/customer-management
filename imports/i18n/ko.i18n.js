@@ -218,6 +218,11 @@ const ko = {
     EXITED: '진행중단',
   },
   dateFieldFormat: 'YYYY[년] MMMM Do',
+  tableEditor: {
+    delete: '삭제',
+    singularSelectedText: "You've selected 1 row",
+    pluralSelectedText: "You've selected %{numSelectedRows} rows",
+  },
 };
 
 export default ko;

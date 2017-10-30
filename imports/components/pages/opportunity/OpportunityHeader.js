@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Translate } from 'react-redux-i18n';
+import { Translate, Localize } from 'react-redux-i18n';
 
 const OpportunityHeader = props => (
   <div className="opportunity-header">
@@ -12,10 +12,7 @@ const OpportunityHeader = props => (
         </div>
         {props.opportunity.amount ? (
           <div className="value">
-            {props.opportunity.amount.toLocaleString(undefined, {
-              maximumFractionDigits: 0,
-            })}{' '}
-            USD
+            <Localize value={props.opportunity.amount} /> USD
           </div>
         ) : (
           <div className="placeholder">
@@ -29,7 +26,10 @@ const OpportunityHeader = props => (
         </div>
         {props.opportunity.closeDate ? (
           <div className="value">
-            {moment(props.opportunity.closeDate).format('D MMM[,] YYYY')}
+            <Localize
+              value={props.opportunity.closeDate}
+              dateFormat="dateFieldFormat"
+            />
           </div>
         ) : (
           <div className="placeholder">

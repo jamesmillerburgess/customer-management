@@ -43,6 +43,8 @@ const BasicInfoDisplay = props => (
         value={props.locale}
         onChange={props.setLocale}
         options={props.languages}
+        valueRenderer={opt => opt.label}
+        optionRenderer={opt => opt.label}
       />
     </div>
     <button type="submit" className="button-primary">
