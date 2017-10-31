@@ -44,27 +44,27 @@ const InteractionDisplay = props => {
                 onChange={props.setOutcome}
                 placeholder={I18n.t('interaction.outcomePlaceholder')}
                 options={[
-                  { value: null, label: '' },
+                  { value: null, label: 'interaction.outcomePlaceholder' },
                   {
                     value: 'NO_ANSWER',
-                    label: I18n.t('callOutcomes.NO_ANSWER'),
+                    label: 'callOutcomes.NO_ANSWER',
                   },
-                  { value: 'BUSY', label: I18n.t('callOutcomes.BUSY') },
+                  { value: 'BUSY', label: 'callOutcomes.BUSY' },
                   {
                     value: 'WRONG_NUMBER',
-                    label: I18n.t('callOutcomes.WRONG_NUMBER'),
+                    label: 'callOutcomes.WRONG_NUMBER',
                   },
                   {
                     value: 'LEFT_LIVE_MESSAGE',
-                    label: I18n.t('callOutcomes.LEFT_LIVE_MESSAGE'),
+                    label: 'callOutcomes.LEFT_LIVE_MESSAGE',
                   },
                   {
                     value: 'LEFT_VOICEMAIL',
-                    label: I18n.t('callOutcomes.LEFT_VOICEMAIL'),
+                    label: 'callOutcomes.LEFT_VOICEMAIL',
                   },
                   {
                     value: 'CONNECTED',
-                    label: I18n.t('callOutcomes.CONNECTED'),
+                    label: 'callOutcomes.CONNECTED',
                   },
                 ]}
               />
