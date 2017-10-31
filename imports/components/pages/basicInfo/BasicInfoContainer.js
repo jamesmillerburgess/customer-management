@@ -9,17 +9,19 @@ const BasicInfoContainer = createContainer(props => {
   const languages =
     (FieldOptions.findOne({ type: 'LANGUAGE' }) || {}).options || [];
   if (!Meteor.loggingIn() && !props.hasLoaded && !props.loading) {
+    const user = Meteor.user() || {};
+    const username = user.username || '';
+    const profile = user.profile || {};
+    const team = profile.team || '';
+    const locale = profile.locale || '';
     props.setHasLoaded(true);
-    props.setUsername(Meteor.user().username);
-    if (Meteor.user().profile) {
-      props.setLocale(Meteor.user().profile.locale);
-      if (Meteor.user().profile.team) {
-        const teamId = Meteor.user().profile.team;
-        props.setTeam({
-          _id: teamId,
-          name: Teams.findOne(teamId).name,
-        });
-      }
+    props.setUsername(username);
+    props.setLocale(profile.locale);
+    if (team) {
+      props.setTeam({
+        _id: team,
+        name: Teams.findOne(team).name,
+      });
     } else {
       props.setTeam({ _id: '', name: 'No team assigned' });
     }

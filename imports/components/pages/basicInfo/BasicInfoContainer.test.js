@@ -45,14 +45,20 @@ describe('BasicInfoContainer Component', () => {
     wrapper.setProps({ ...props });
     expect(props.setHasLoaded).toHaveBeenCalledTimes(2);
     expect(props.setUsername).toHaveBeenCalledTimes(2);
-    expect(props.setTeam).toHaveBeenCalledTimes(1);
+    expect(props.setTeam).toHaveBeenCalledTimes(2);
     expect(props.setLocale).toHaveBeenCalledTimes(2);
-    Meteor.loggedInUser = { profile: undefined };
+    Meteor.loggedInUser = undefined;
     wrapper.setProps({ ...props });
     expect(props.setHasLoaded).toHaveBeenCalledTimes(3);
     expect(props.setUsername).toHaveBeenCalledTimes(3);
-    expect(props.setTeam).toHaveBeenCalledTimes(2);
-    expect(props.setLocale).toHaveBeenCalledTimes(2);
+    expect(props.setTeam).toHaveBeenCalledTimes(3);
+    expect(props.setLocale).toHaveBeenCalledTimes(3);
+    Meteor.loggedInUser = {};
+    wrapper.setProps({ ...props });
+    expect(props.setHasLoaded).toHaveBeenCalledTimes(4);
+    expect(props.setUsername).toHaveBeenCalledTimes(4);
+    expect(props.setTeam).toHaveBeenCalledTimes(4);
+    expect(props.setLocale).toHaveBeenCalledTimes(4);
   });
   it('does not call the dispatchers if not logging in and has loaded', () => {
     Meteor.isLoggingIn = false;
