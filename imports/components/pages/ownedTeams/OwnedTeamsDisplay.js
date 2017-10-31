@@ -17,13 +17,22 @@ export const gridPageProps = props => ({
         <CheckboxField
           value={props.areAllSelected}
           onChange={value =>
-            props.setAllRowSelection(cellProps.data.map(() => value))}
+            props.setAllRowSelection(
+              cellProps.data.reduce(
+                (prev, curr) => ({
+                  ...prev,
+                  [curr._original._id]: value,
+                }),
+                {}
+              )
+            )}
         />
       ),
       Cell: cellProps => (
         <CheckboxField
-          value={props.rowSelection[cellProps.index]}
-          onChange={value => props.setRowSelection(cellProps.index, value)}
+          value={props.rowSelection[cellProps.original._id]}
+          onChange={value =>
+            props.setRowSelection(cellProps.original._id, value)}
         />
       ),
     },

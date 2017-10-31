@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import OwnedTeamsConnect, {
   mapStateToProps,
   mapDispatchToProps,
+  selectId,
 } from './OwnedTeamsConnect';
 
 describe('OwnedTeamsConnect Component', () => {
@@ -46,25 +47,25 @@ describe('mapStateToProps Function', () => {
     expect(mapStateToProps(state, ownProps).numSelectedRows).toEqual(2);
   });
   it('sets areAllSelected to true if there is at least one ownedTeam and all rows are set to true', () => {
-    const state = { profile: { ownedTeamsRowSelection: [] } };
+    const state = { profile: { ownedTeamsRowSelection: {} } };
     const ownProps = { ownedTeams: [] };
     expect(mapStateToProps(state, ownProps).areAllSelected).toEqual(false);
-    state.profile.ownedTeamsRowSelection = [false, true];
+    state.profile.ownedTeamsRowSelection = { a: false, b: true };
     expect(mapStateToProps(state, ownProps).areAllSelected).toEqual(false);
-    ownProps.ownedTeams = [{}];
-    state.profile.ownedTeamsRowSelection = [true, true];
+    ownProps.ownedTeams = [{ _id: 'a' }, { _id: 'b' }];
+    state.profile.ownedTeamsRowSelection = { a: true, b: true };
     expect(mapStateToProps(state, ownProps).areAllSelected).toEqual(true);
   });
 });
 describe('mapDispatchToProps Function', () => {
   it('maps dispatchers to props', () => {
     const dispatch = jest.fn();
-    const ownProps = { ownedTeams: [{}] };
+    const ownProps = { ownedTeams: [{ _id: 'a' }] };
     const props = mapDispatchToProps(dispatch, ownProps);
     expect(props.setAllRowSelection).not.toThrow();
     expect(props.setRowSelection).not.toThrow();
     expect(props.setNewTeamName).not.toThrow();
-    expect(() => props.deleteRowSelection([{}])).not.toThrow();
+    expect(() => props.deleteRowSelection([{ a: true }])).not.toThrow();
     expect(props.createTeam).not.toThrow();
     expect(props.removeTeam).not.toThrow();
   });
@@ -76,5 +77,10 @@ describe('mapDispatchToProps Function', () => {
     expect(() => props.deleteRowSelection([{}])).not.toThrow();
     expect(props.createTeam).not.toThrow();
     expect(props.removeTeam).not.toThrow();
+  });
+});
+describe('selectId function', () => {
+  it('selects the _id property', () => {
+    expect(selectId({ _id: 'a' })).toBe('a');
   });
 });
