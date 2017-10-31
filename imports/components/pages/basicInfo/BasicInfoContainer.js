@@ -22,8 +22,6 @@ const BasicInfoContainer = createContainer(props => {
         _id: team,
         name: Teams.findOne(team).name,
       });
-    } else {
-      props.setTeam({ _id: '', name: 'No team assigned' });
     }
   }
   return { ...props, languages };

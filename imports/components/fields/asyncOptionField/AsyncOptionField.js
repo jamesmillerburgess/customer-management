@@ -29,6 +29,9 @@ class AsyncOptionField extends React.Component {
     this.getOptions = this.getOptions.bind(this);
     this.onOpen = this.onOpen.bind(this);
     this.state = { options: [] };
+    if (props.clearOption) {
+      this.state.options.unshift({ _id: '', name: props.clearOption });
+    }
   }
 
   onOpen() {
