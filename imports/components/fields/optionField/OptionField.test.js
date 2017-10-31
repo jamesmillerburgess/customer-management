@@ -25,6 +25,12 @@ describe('OptionField Component', () => {
     wrapper.simulate('change', { value: 'b' });
     expect(onChange).lastCalledWith({ value: 'b' });
   });
+  it('calls onChange with null if the option is null', () => {
+    const onChange = jest.fn();
+    wrapper.setProps({ onChange });
+    wrapper.simulate('change', null);
+    expect(onChange).lastCalledWith(null);
+  });
   it('overrides the value and option renderers if not passed', () => {
     const valueRenderer = jest.fn();
     const optionRenderer = jest.fn();
