@@ -38,6 +38,7 @@ const OptionField = props => {
       valueRenderer={valueRenderer}
       filterOption={props.filterOption}
       onOpen={props.onOpen}
+      autoBlur
     />
   );
 };
