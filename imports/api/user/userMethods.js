@@ -7,7 +7,7 @@ export const saveProfile = (userId, profile) => {
   Meteor.users.update(userId, {
     $set: {
       username: profile.username,
-      ['profile.locale']: profile.profile.locale,
+      ['profile.locale']: (profile.profile || {}).locale,
     },
   });
   if (profile.team !== undefined) {
