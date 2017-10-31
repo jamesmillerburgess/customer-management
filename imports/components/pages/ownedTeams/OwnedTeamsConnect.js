@@ -10,15 +10,19 @@ export const mapStateToProps = ({ profile }, ownProps) => {
     newTeamName: profile.newTeamName || '',
     rowSelection: profile.ownedTeamsRowSelection || [],
   };
-  props.areAnySelected = props.rowSelection.indexOf(true) !== -1;
-  props.numSelectedRows = props.rowSelection.reduce(
-    (prev, curr) => (curr ? prev + 1 : prev),
+  const selection = props.rowSelection;
+  props.areAnySelected = Object.keys(selection).reduce(
+    (prev, curr) => prev || selection[curr],
+    false
+  );
+  props.numSelectedRows = Object.keys(selection).reduce(
+    (prev, curr) => (selection[curr] ? prev + 1 : prev),
     0
   );
   props.areAllSelected =
     ownProps.ownedTeams.length > 0 &&
     ownProps.ownedTeams.reduce(
-      (prev, v, i) => prev && props.rowSelection[i],
+      (prev, v, i) => prev && props.rowSelection[v._id],
       true
     );
   props.isEditButtonDisabled = props.numSelectedRows !== 1;
@@ -28,20 +32,20 @@ export const mapStateToProps = ({ profile }, ownProps) => {
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   setAllRowSelection: value =>
     dispatch(setProfileProp('ownedTeamsRowSelection', value)),
-  setRowSelection: (index, value) =>
-    dispatch(setProfileProp(`ownedTeamsRowSelection[${index}]`, value)),
+  setRowSelection: (id, value) =>
+    dispatch(setProfileProp(`ownedTeamsRowSelection.${id}`, value)),
   setNewTeamName: value => dispatch(setProfileProp('newTeamName', value)),
   deleteRowSelection: rowSelection =>
     Meteor.call(
       'team.remove',
       ownProps.ownedTeams
-        .filter((t, i) => rowSelection[i])
+        .filter((t, i) => rowSelection[t._id])
         .map(team => team._id),
       (err, res) => {
         if (err) {
           console.log(err);
         }
-        dispatch(setProfileProp('ownedTeamsRowSelection', []));
+        dispatch(setProfileProp('ownedTeamsRowSelection', {}));
       }
     ),
   createTeam: value =>
