@@ -5,7 +5,7 @@ import './GridPage.scss';
 import SearchInput from '../fields/SearchInput';
 import ObjectLink from '../nav/ObjectLink';
 
-const GridPage = ({ sidebarHeader, noRows, columns, data }) => (
+const GridPage = ({ sidebarHeader, noDataText, columns, data }) => (
   <div className="section-body">
     <div className="sidebar">
       <ul>
@@ -13,7 +13,7 @@ const GridPage = ({ sidebarHeader, noRows, columns, data }) => (
       </ul>
     </div>
     <div className="content">
-      <Grid data={data} columns={columns} noDataText={noRows} />
+      <Grid data={data} columns={columns} noDataText={noDataText} />
     </div>
   </div>
 );

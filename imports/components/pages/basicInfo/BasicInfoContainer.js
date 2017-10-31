@@ -3,22 +3,31 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import BasicInfoDisplay from './BasicInfoDisplay';
 import Teams from '../../../api/team/teamCollection';
+import FieldOptions from '../../../api/fieldOptions/fieldOptionsCollection';
 
 const BasicInfoContainer = createContainer(props => {
-  if (!Meteor.loggingIn() && !props.hasLoaded && !props.loading) {
+  const languages =
+    (FieldOptions.findOne({ type: 'LANGUAGE' }) || {}).options || [];
+  const loadProfile = () => {
+    const user = Meteor.user() || {};
+    const username = user.username;
+    const profile = user.profile || {};
+    const team = profile.team;
+    const locale = profile.locale;
     props.setHasLoaded(true);
-    props.setUsername(Meteor.user().username);
-    if (Meteor.user().profile && Meteor.user().profile.team) {
-      const teamId = Meteor.user().profile.team;
+    props.setUsername(username);
+    props.setLocale(profile.locale);
+    if (team) {
       props.setTeam({
-        _id: teamId,
-        name: Teams.findOne(teamId).name,
+        _id: team,
+        name: Teams.findOne(team).name,
       });
-    } else {
-      props.setTeam({ _id: '', name: 'No team assigned' });
     }
+  };
+  if (!Meteor.loggingIn() && !props.hasLoaded && !props.loading) {
+    loadProfile();
   }
-  return props;
+  return { ...props, languages };
 }, BasicInfoDisplay);
 
 export default BasicInfoContainer;

@@ -1,3 +1,9 @@
+import React from 'react';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
+
 import ContactList, { contactListProps } from './ContactList';
 
 describe('ContactList Component', () => {
@@ -16,9 +22,8 @@ describe('gridPageProps Function', () => {
     expect(Cell.props.to).toBe('/contacts/a');
   });
   it('renders a date in the create date cells', () => {
-    const Cell = contactListProps
-      .gridPageProps()
-      .columns[2].Cell({ value: '20111031' });
-    expect(Cell.props.children).toBe('Oct 31, 2011');
+    const Cell = contactListProps.gridPageProps().columns[2].Cell;
+    const wrapper = shallow(<Cell value="20170101" />);
+    expect(wrapper.find('Localize').name()).toBe('Localize');
   });
 });

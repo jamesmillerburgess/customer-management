@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translate, I18n } from 'react-redux-i18n';
 
 // Fields
 import DateField from '../../fields/dateField/DateField';
@@ -23,7 +24,9 @@ const InteractionDisplay = props => {
         <div className="input-row">
           {props.hasTime && (
             <div className="input-group">
-              <span className="label">Date and time</span>
+              <span className="label">
+                <Translate value="interaction.dateAndTime" />
+              </span>
               <DateField
                 timeFormat
                 value={props.time}
@@ -33,26 +36,45 @@ const InteractionDisplay = props => {
           )}
           {props.hasOutcome && (
             <div className="input-group">
-              <span className="label">Outcome</span>
+              <span className="label">
+                <Translate value="interaction.outcome" />
+              </span>
               <OptionField
                 value={props.outcome}
                 onChange={props.setOutcome}
-                placeholder="Select an outcome..."
+                placeholder={I18n.t('interaction.outcomePlaceholder')}
                 options={[
                   { value: null, label: '' },
-                  { value: 'NO_ANSWER', label: 'No answer' },
-                  { value: 'BUSY', label: 'Busy' },
-                  { value: 'WRONG_NUMBER', label: 'Wrong number' },
-                  { value: 'LEFT_LIVE_MESSAGE', label: 'Left live message' },
-                  { value: 'LEFT_VOICEMAIL', label: 'Left voicemail' },
-                  { value: 'CONNECTED', label: 'Connected' },
+                  {
+                    value: 'NO_ANSWER',
+                    label: I18n.t('callOutcomes.NO_ANSWER'),
+                  },
+                  { value: 'BUSY', label: I18n.t('callOutcomes.BUSY') },
+                  {
+                    value: 'WRONG_NUMBER',
+                    label: I18n.t('callOutcomes.WRONG_NUMBER'),
+                  },
+                  {
+                    value: 'LEFT_LIVE_MESSAGE',
+                    label: I18n.t('callOutcomes.LEFT_LIVE_MESSAGE'),
+                  },
+                  {
+                    value: 'LEFT_VOICEMAIL',
+                    label: I18n.t('callOutcomes.LEFT_VOICEMAIL'),
+                  },
+                  {
+                    value: 'CONNECTED',
+                    label: I18n.t('callOutcomes.CONNECTED'),
+                  },
                 ]}
               />
             </div>
           )}
           {props.hasQuoteNumber && (
             <div className="input-group">
-              <span className="label">Quote Number</span>
+              <span className="label">
+                <Translate value="interaction.quoteNumber" />
+              </span>
               <TextField
                 value={props.quoteNumber}
                 onChange={props.setQuoteNumber}

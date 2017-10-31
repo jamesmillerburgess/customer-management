@@ -1,4 +1,6 @@
 import React from 'react';
+import { Translate } from 'react-redux-i18n';
+
 import Field from '../../fields/field/Field';
 
 const PropertiesEditorDisplay = props => (
@@ -17,10 +19,17 @@ const PropertiesEditorDisplay = props => (
       );
     }}
   >
-    <div className="title">About {props.loadedValues.name}</div>
+    <div className="title">
+      <Translate
+        value="editProperties.aboutText"
+        name={props.loadedValues.name}
+      />
+    </div>
     {props.fields.map(field => (
       <div className="input-group" key={field.name}>
-        <div className="input-label">{field.label}</div>
+        <div className="input-label">
+          <Translate value={field.label} />
+        </div>
         <Field
           id={field.name}
           {...field}
@@ -38,14 +47,20 @@ const PropertiesEditorDisplay = props => (
     >
       <div className="button-group">
         <button className="button-primary" type="submit">
-          Save
+          <Translate value="editProperties.saveButtonText" />
         </button>
         <button className="button-secondary" onClick={props.cancelEdit}>
-          Cancel
+          <Translate value="editProperties.cancelButtonText" />
         </button>
         <div className="edited-properties">
-          You've changed {props.numEditedProperties}{' '}
-          {props.numEditedProperties === 1 ? 'property' : 'properties'}
+          {props.numEditedProperties === 1 ? (
+            <Translate value="editProperties.singularPropertiesChangedText" />
+          ) : (
+            <Translate
+              value="editProperties.pluralPropertiesChangedText"
+              numEditedProperties={props.numEditedProperties}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Translate } from 'react-redux-i18n';
+
 import Field from '../fields/field/Field';
 
 const AddObjectDisplay = props => (
@@ -17,7 +19,7 @@ const AddObjectDisplay = props => (
     }}
   >
     <header className="overlay-header">
-      Add {props.label}
+      {props.title}
       <button
         type="button"
         className="button-dismiss-overlay"
@@ -30,7 +32,9 @@ const AddObjectDisplay = props => (
       <div className="overlay-content">
         {props.fields.map(field => (
           <div className="input-group" key={field.name}>
-            <div className="input-label">{field.label}</div>
+            <div className="input-label">
+              <Translate value={field.label} />
+            </div>
             <Field
               {...field}
               onChange={val => props.setProp(field.name, val)}
@@ -48,7 +52,7 @@ const AddObjectDisplay = props => (
         className="button-secondary"
         onClick={props.closeOverlay}
       >
-        Cancel
+        {props.cancelButtonText}
       </button>
       <div className={`error-message ${props.errorMessageClass}`}>
         {props.errorMessage}

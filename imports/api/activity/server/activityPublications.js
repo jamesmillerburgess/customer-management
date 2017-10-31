@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import Activity from '../activityCollection';
 import Teams from '../../team/teamCollection';
 
-export const team = (teamId, from, to) => {
+export const team = teamId => {
   const team = Teams.findOne(teamId);
   if (team && team.members) {
     return Activity.find({

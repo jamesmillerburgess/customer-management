@@ -1,9 +1,26 @@
 import React from 'react';
+import { Translate } from 'react-redux-i18n';
 
 import { REGISTER, LOGIN } from './HomeConstants';
 import './HomeDisplay.scss';
 
 const HomeDisplay = props => {
+  const buttonGroup =
+    props.mode === REGISTER
+      ? {
+          id1: 'login-mode-button',
+          onClick1: props.setToLoginMode,
+          label1: 'home.logIn',
+          id2: 'register-submit-button',
+          label2: 'home.register',
+        }
+      : {
+          id1: 'register-mode-button',
+          onClick1: props.setToRegisterMode,
+          label1: 'home.register',
+          id2: 'login-submit-button',
+          label2: 'home.logIn',
+        };
   return (
     <div className="home">
       <form
@@ -22,9 +39,13 @@ const HomeDisplay = props => {
           }
         }}
       >
-        <div className="login-title">Agility Customer Management</div>
+        <div className="login-title">
+          <Translate value="app.title" />
+        </div>
         <div className="input-group">
-          <div className="input-label">Username</div>
+          <div className="input-label">
+            <Translate value="home.username" />
+          </div>
           <input
             id="username"
             className="login-input"
@@ -33,7 +54,9 @@ const HomeDisplay = props => {
           />
         </div>
         <div className="input-group">
-          <div className="input-label">Password</div>
+          <div className="input-label">
+            <Translate value="home.password" />
+          </div>
           <input
             id="password"
             className="login-password"
@@ -44,7 +67,9 @@ const HomeDisplay = props => {
         </div>
         {props.mode === REGISTER && (
           <div className="input-group">
-            <div className="input-label">Password again</div>
+            <div className="input-label">
+              <Translate value="home.passwordAgain" />
+            </div>
             <input
               id="password-again"
               className="login-password-again"
@@ -54,43 +79,19 @@ const HomeDisplay = props => {
             />
           </div>
         )}
-        {props.mode === REGISTER ? (
-          <div className="button-group">
-            <button
-              id="login-mode-button"
-              type="button"
-              className="button-invis"
-              onClick={props.setToLoginMode}
-            >
-              Login
-            </button>
-            <button
-              id="register-submit-button"
-              type="submit"
-              className="button-primary"
-            >
-              Register
-            </button>
-          </div>
-        ) : (
-          <div className="button-group">
-            <button
-              id="register-mode-button"
-              type="button"
-              className="button-invis"
-              onClick={props.setToRegisterMode}
-            >
-              Register
-            </button>
-            <button
-              id="login-submit-button"
-              type="submit"
-              className="button-primary"
-            >
-              Login
-            </button>
-          </div>
-        )}
+        <div className="button-group">
+          <button
+            id={buttonGroup.id1}
+            type="button"
+            className="button-invis"
+            onClick={buttonGroup.onClick1}
+          >
+            <Translate value={buttonGroup.label1} />
+          </button>
+          <button id={buttonGroup.id2} type="submit" className="button-primary">
+            <Translate value={buttonGroup.label2} />
+          </button>
+        </div>
         <div className="error-message">{props.errorMessage}</div>
       </form>
     </div>

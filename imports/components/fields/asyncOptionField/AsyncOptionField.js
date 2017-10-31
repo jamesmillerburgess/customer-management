@@ -29,6 +29,9 @@ class AsyncOptionField extends React.Component {
     this.getOptions = this.getOptions.bind(this);
     this.onOpen = this.onOpen.bind(this);
     this.state = { options: [] };
+    if (props.clearOption) {
+      this.state.options.unshift({ _id: '', name: props.clearOption });
+    }
   }
 
   onOpen() {
@@ -122,9 +125,9 @@ class AsyncOptionField extends React.Component {
         {...this.props}
         valueKey="_id"
         options={this.state.options}
+        onInputChange={this.onInputChange}
         optionRenderer={optionRenderer}
         valueRenderer={optionRenderer}
-        onInputChange={this.onInputChange}
         filterOption={filterOption}
         onOpen={this.onOpen}
       />

@@ -20,6 +20,10 @@ describe('AsyncOptionField Component', () => {
     const field = shallow(<AsyncOptionField />);
     expect(field.state('options')).toEqual([]);
   });
+  it('adds the clear option if available', () => {
+    const field = shallow(<AsyncOptionField clearOption="a" />);
+    expect(field.state('options')).toEqual([{ _id: '', name: 'a' }]);
+  });
   describe('onOpen Function', () => {
     let onOpen;
     beforeEach(() => ({ onOpen } = wrapper.instance()));

@@ -25,9 +25,7 @@ describe('ObjectEditorContainer Component', () => {
     collection,
     subscription: 'a',
   };
-  beforeEach(
-    () => (wrapper = shallow(ObjectEditorContainer(Display)(...props)))
-  );
+  beforeEach(() => (wrapper = shallow(ObjectEditorContainer(Display)(props))));
   afterEach(() => wrapper.unmount());
   it('wraps the Display component', () => {
     expect(wrapper.name()).toBe('div');

@@ -3,11 +3,13 @@ import _ from 'lodash/fp';
 
 import * as TM from '../team/teamMethods';
 
-const PROFILE_FIELDS = ['username'];
-
 export const saveProfile = (userId, profile) => {
-  const fields = _.pick(PROFILE_FIELDS, profile);
-  Meteor.users.update(userId, { $set: fields });
+  Meteor.users.update(userId, {
+    $set: {
+      username: profile.username,
+      ['profile.locale']: (profile.profile || {}).locale,
+    },
+  });
   if (profile.team !== undefined) {
     TM.addMember(profile.team, userId);
   }

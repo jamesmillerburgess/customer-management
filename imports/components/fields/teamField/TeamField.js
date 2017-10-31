@@ -8,6 +8,7 @@ const TeamField = props => (
     {...props}
     searchMethod="team.search"
     clearOption="No team assigned"
+    labelKey="name"
   />
 );
 

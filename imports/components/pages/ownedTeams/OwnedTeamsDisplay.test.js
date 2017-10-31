@@ -35,17 +35,17 @@ describe('OwnedTeamsDisplay Component', () => {
   });
   it('sets the pluralization of row/rows depending on numSelectedRows', () => {
     wrapper.setProps({ numSelectedRows: 1 });
-    expect(
-      wrapper.containsMatchingElement(<div>You've selected 1 row</div>)
-    ).toBe(true);
+    expect(wrapper.find('.edited-properties Translate').props().value).toBe(
+      'tableEditor.singularSelectedText'
+    );
     wrapper.setProps({ numSelectedRows: 2 });
-    expect(
-      wrapper.containsMatchingElement(<div>You've selected 2 rows</div>)
-    ).toBe(true);
+    expect(wrapper.find('.edited-properties Translate').props().value).toBe(
+      'tableEditor.pluralSelectedText'
+    );
     wrapper.setProps({ numSelectedRows: 0 });
-    expect(
-      wrapper.containsMatchingElement(<div>You've selected 0 rows</div>)
-    ).toBe(true);
+    expect(wrapper.find('.edited-properties Translate').props().value).toBe(
+      'tableEditor.pluralSelectedText'
+    );
   });
   it('sets the class and style of the footer depending on areAnySelected', () => {
     wrapper.setProps({ areAnySelected: true });
@@ -86,10 +86,8 @@ describe('OwnedTeamsDisplay Component', () => {
     });
     it('renders the date in the create date cells', () => {
       const Cell = gridPageProps().columns[3].Cell;
-      const CellWrapper = shallow(<Cell value={'20170101'} />);
-      expect(
-        CellWrapper.containsMatchingElement(<span>Jan 01, 2017</span>)
-      ).toBe(true);
+      const wrapper = shallow(<Cell value="20170101" />);
+      expect(wrapper.find('Localize').props().value).toBe('20170101');
     });
   });
 });

@@ -16,6 +16,7 @@ describe('BasicInfoContainer Component', () => {
     setHasLoaded: jest.fn(),
     setUsername: jest.fn(),
     setTeam: jest.fn(),
+    setLocale: jest.fn(),
   };
   beforeEach(() => (wrapper = shallow(<BasicInfoContainer {...props} />)));
   afterEach(() => wrapper.unmount());
@@ -30,33 +31,52 @@ describe('BasicInfoContainer Component', () => {
     props.setHasLoaded = jest.fn();
     props.setUsername = jest.fn();
     props.setTeam = jest.fn();
+    props.setLocale = jest.fn();
     expect(props.setHasLoaded).toHaveBeenCalledTimes(0);
     expect(props.setUsername).toHaveBeenCalledTimes(0);
     expect(props.setTeam).toHaveBeenCalledTimes(0);
+    expect(props.setLocale).toHaveBeenCalledTimes(0);
     wrapper.setProps({ ...props });
     expect(props.setHasLoaded).toHaveBeenCalledTimes(1);
     expect(props.setUsername).toHaveBeenCalledTimes(1);
     expect(props.setTeam).toHaveBeenCalledTimes(1);
+    expect(props.setLocale).toHaveBeenCalledTimes(1);
     Meteor.loggedInUser = { profile: {} };
     wrapper.setProps({ ...props });
     expect(props.setHasLoaded).toHaveBeenCalledTimes(2);
     expect(props.setUsername).toHaveBeenCalledTimes(2);
-    expect(props.setTeam).toHaveBeenCalledTimes(2);
+    expect(props.setTeam).toHaveBeenCalledTimes(1);
+    expect(props.setLocale).toHaveBeenCalledTimes(2);
+    Meteor.loggedInUser = undefined;
+    wrapper.setProps({ ...props });
+    expect(props.setHasLoaded).toHaveBeenCalledTimes(3);
+    expect(props.setUsername).toHaveBeenCalledTimes(3);
+    expect(props.setTeam).toHaveBeenCalledTimes(1);
+    expect(props.setLocale).toHaveBeenCalledTimes(3);
+    Meteor.loggedInUser = {};
+    wrapper.setProps({ ...props });
+    expect(props.setHasLoaded).toHaveBeenCalledTimes(4);
+    expect(props.setUsername).toHaveBeenCalledTimes(4);
+    expect(props.setTeam).toHaveBeenCalledTimes(1);
+    expect(props.setLocale).toHaveBeenCalledTimes(4);
   });
-  it('does not call the dispatchers if not logging in an has loaded', () => {
+  it('does not call the dispatchers if not logging in and has loaded', () => {
     Meteor.isLoggingIn = false;
     Meteor.loggedInUser = { profile: {} };
     props.hasLoaded = true;
     props.setHasLoaded = jest.fn();
     props.setUsername = jest.fn();
     props.setTeam = jest.fn();
+    props.setLocale = jest.fn();
     expect(props.setHasLoaded).toHaveBeenCalledTimes(0);
     expect(props.setUsername).toHaveBeenCalledTimes(0);
     expect(props.setTeam).toHaveBeenCalledTimes(0);
+    expect(props.setLocale).toHaveBeenCalledTimes(0);
     wrapper.setProps({ ...props });
     expect(props.setHasLoaded).toHaveBeenCalledTimes(0);
     expect(props.setUsername).toHaveBeenCalledTimes(0);
     expect(props.setTeam).toHaveBeenCalledTimes(0);
+    expect(props.setLocale).toHaveBeenCalledTimes(0);
   });
   it('does not call the dispatchers if logging in', () => {
     Meteor.isLoggingIn = true;
@@ -65,12 +85,15 @@ describe('BasicInfoContainer Component', () => {
     props.setHasLoaded = jest.fn();
     props.setUsername = jest.fn();
     props.setTeam = jest.fn();
+    props.setLocale = jest.fn();
     expect(props.setHasLoaded).toHaveBeenCalledTimes(0);
     expect(props.setUsername).toHaveBeenCalledTimes(0);
     expect(props.setTeam).toHaveBeenCalledTimes(0);
+    expect(props.setLocale).toHaveBeenCalledTimes(0);
     wrapper.setProps({ ...props });
     expect(props.setHasLoaded).toHaveBeenCalledTimes(0);
     expect(props.setUsername).toHaveBeenCalledTimes(0);
     expect(props.setTeam).toHaveBeenCalledTimes(0);
+    expect(props.setLocale).toHaveBeenCalledTimes(0);
   });
 });

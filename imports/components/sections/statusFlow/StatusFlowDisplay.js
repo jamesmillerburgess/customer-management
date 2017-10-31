@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translate } from 'react-redux-i18n';
 
 const StatusFlowDisplay = props => (
   <div className="status-flow">
@@ -22,7 +23,9 @@ const StatusFlowDisplay = props => (
           key={status.value}
           onClick={() => props.updateStatus(status.value)}
         >
-          <div className="status-label">{status.label}</div>
+          <div className="status-label">
+            <Translate value={`opportunityStatuses.${status.value}`} />
+          </div>
           <div className="icons">
             <div
               className="bar left"
@@ -44,7 +47,10 @@ const StatusFlowDisplay = props => (
               }}
             />
           </div>
-          <div className="move-to-label">Move to: {status.label}</div>
+          <div className="move-to-label">
+            <span className="fa fa-fw fa-arrow-right" />
+            <Translate value={`opportunityStatuses.${status.value}`} />
+          </div>
         </button>
       );
     })}

@@ -7,9 +7,10 @@ import { setNavProp } from '../../../state/actions/navActionCreators';
 import { setLoginProp } from '../../../state/actions/loginActionCreators';
 import { LOGIN } from '../../pages/home/HomeConstants';
 
-export const mapStateToProps = ({ nav }) => ({
+export const mapStateToProps = ({ nav, i18n }) => ({
   isHamburgerOpen: nav.isHamburgerOpen || false,
   isProfileMenuOpen: nav.isProfileMenuOpen || false,
+  locale: i18n.locale || 'en-us',
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({

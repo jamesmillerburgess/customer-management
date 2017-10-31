@@ -7,7 +7,11 @@ import Companies from '../../../api/company/companyCollection';
 
 const CompanyField = props => (
   <div className="company-field">
-    <AsyncOptionField {...props} searchMethod="company.search" />
+    <AsyncOptionField
+      {...props}
+      searchMethod="company.search"
+      labelKey="name"
+    />
     {props.value ? (
       <button
         className="icon fa fa-fw fa-building-o"

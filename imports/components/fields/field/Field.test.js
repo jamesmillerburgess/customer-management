@@ -22,7 +22,7 @@ describe('Field Component', () => {
   });
   it('returns DateField if type is DATE', () => {
     wrapper.setProps({ type: 'DATE' });
-    expect(wrapper.name()).toBe('DateField');
+    expect(wrapper.name()).toBe('Connect(DateFieldDisplay)');
   });
   it('returns CompanyField if type is COMPANY', () => {
     wrapper.setProps({ type: 'COMPANY' });

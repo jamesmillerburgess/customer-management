@@ -93,22 +93,6 @@ export const addMember = (teamId, memberId) => {
   Meteor.users.update(memberId, { $set: { ['profile.team']: teamId } });
 };
 
-export const removeMember = (teamId, memberId) => {
-  check(teamId, String);
-  check(memberId, String);
-  const team = Teams.findOne(teamId);
-  const member = Meteor.users.findOne(memberId);
-  if (
-    member &&
-    member.profile &&
-    member.profile.team &&
-    member.profile.team === teamId
-  ) {
-    Teams.update(member.profile.team, { $pull: { members: memberId } });
-  }
-  Meteor.users.update(memberId, { $unset: { ['profile.team']: '' } });
-};
-
 export const search = searchText => GM.search(Teams, searchText);
 
 Meteor.methods({
@@ -116,6 +100,5 @@ Meteor.methods({
   'team.remove': remove,
   'team.update': update,
   'team.addMember': addMember,
-  'team.removeMember': removeMember,
   'team.search': search,
 });

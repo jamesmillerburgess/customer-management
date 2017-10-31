@@ -25,6 +25,39 @@ describe('OptionField Component', () => {
     wrapper.simulate('change', { value: 'b' });
     expect(onChange).lastCalledWith({ value: 'b' });
   });
+  it('overrides the value and option renderers if not passed', () => {
+    const valueRenderer = jest.fn();
+    const optionRenderer = jest.fn();
+    wrapper.setProps({ valueRenderer, optionRenderer, labelKey: 'a' });
+    expect(wrapper.find('Select').props().valueRenderer).toBe(valueRenderer);
+    expect(wrapper.find('Select').props().optionRenderer).toBe(optionRenderer);
+    wrapper.setProps({ valueRenderer: null, optionRenderer: null });
+    expect(() =>
+      wrapper
+        .find('Select')
+        .props()
+        .valueRenderer({ a: 'b' })
+    ).not.toThrow();
+    expect(() =>
+      wrapper
+        .find('Select')
+        .props()
+        .optionRenderer({ a: 'b' })
+    ).not.toThrow();
+    wrapper.setProps({ labelKey: undefined });
+    expect(() =>
+      wrapper
+        .find('Select')
+        .props()
+        .valueRenderer({ label: 'b' })
+    ).not.toThrow();
+    expect(() =>
+      wrapper
+        .find('Select')
+        .props()
+        .optionRenderer({ label: 'b' })
+    ).not.toThrow();
+  });
 });
 describe('noop Function', () => {
   it('does nothing', () => {

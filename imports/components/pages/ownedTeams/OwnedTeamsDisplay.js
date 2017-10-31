@@ -1,12 +1,13 @@
 import React from 'react';
 import moment from 'moment';
+import { Translate, Localize } from 'react-redux-i18n';
 
 import TextField from '../../fields/textField/TextField';
 import CheckboxField from '../../fields/checkboxField/CheckboxField';
 import Grid from '../../fields/Grid';
 
 export const gridPageProps = props => ({
-  noRows: `No teams yet!`,
+  noDataText: <Translate value="profile.noTeams" />,
   columns: [
     {
       width: 45,
@@ -27,21 +28,21 @@ export const gridPageProps = props => ({
       ),
     },
     {
-      Header: 'Name',
+      Header: <Translate value="profile.nameColumn" />,
       id: 'name',
       accessor: 'name',
     },
     {
-      Header: 'Members',
+      Header: <Translate value="profile.membersColumn" />,
       id: 'members',
       accessor: 'members.length',
     },
     {
-      Header: 'Create Date',
+      Header: <Translate value="profile.createDateColumn" />,
       id: 'createDate',
       accessor: 'createDate',
       Cell: props => (
-        <span>{moment(props.value).format('MMM DD[,] YYYY')}</span>
+        <Localize value={props.value} dateFormat="profile.dateFormat" />
       ),
     },
   ],
@@ -51,14 +52,16 @@ const OwnedTeamsDisplay = props => (
   <div>
     <div className="input-row">
       <div className="input-group">
-        <div className="label">Team name</div>
+        <div className="label">
+          <Translate value="profile.teamName" />
+        </div>
         <TextField value={props.newTeamName} onChange={props.setNewTeamName} />
       </div>
       <button
         className="button-primary"
         onClick={() => props.createTeam(props.newTeamName)}
       >
-        Create team
+        <Translate value="profile.createTeamButtonText" />
       </button>
     </div>
     <div className="input-group">
@@ -76,11 +79,17 @@ const OwnedTeamsDisplay = props => (
             className="button-secondary"
             onClick={() => props.deleteRowSelection(props.rowSelection)}
           >
-            Delete
+            <Translate value="tableEditor.delete" />
           </button>
           <div className="edited-properties">
-            You've selected {props.numSelectedRows}{' '}
-            {props.numSelectedRows === 1 ? 'row' : 'rows'}
+            {props.numSelectedRows === 1 ? (
+              <Translate value="tableEditor.singularSelectedText" />
+            ) : (
+              <Translate
+                value="tableEditor.pluralSelectedText"
+                numSelectedRows={props.numSelectedRows}
+              />
+            )}
           </div>
         </div>
       </div>

@@ -100,40 +100,6 @@ describe('teamMethods Script', () => {
       expect(() => team.addMember('a', 'b')).not.toThrow();
     });
   });
-  describe('team.removeMember Meteor Method', () => {
-    it('removes the member from the team', () => {
-      Teams.docs = [{ members: ['b'] }];
-      Meteor.users.docs = [{ profile: {} }];
-      expect(() => team.removeMember('a', 'b')).not.toThrow();
-      Meteor.users.docs = [{ profile: { team: 'a' } }];
-      expect(() => team.removeMember('a', 'b')).not.toThrow();
-      Meteor.users.docs = [{ profile: { team: 'c' } }];
-      expect(() => team.removeMember('a', 'b')).not.toThrow();
-    });
-    it('throws with invalid params', () => {
-      Teams.docs = [{}];
-      Meteor.users.docs = [{}];
-      expect(() => team.removeMember(null, 'b')).toThrow();
-      expect(() => team.removeMember('a', null)).toThrow();
-      expect(() => team.removeMember(1, 'b')).toThrow();
-      expect(() => team.removeMember('a', 2)).toThrow();
-    });
-    it('does not throw if there is no matching team', () => {
-      Teams.docs = [];
-      Meteor.users.docs = [{}];
-      expect(() => team.removeMember('a', 'b')).not.toThrow();
-    });
-    it('does not throw if there is no matching user', () => {
-      Teams.docs = [{}];
-      Meteor.users.docs = [];
-      expect(() => team.removeMember('a', 'b')).not.toThrow();
-    });
-    it('does not throw if the memberId is not in the members array', () => {
-      Teams.docs = [{ members: ['c'] }];
-      Meteor.users.docs = [{}];
-      expect(() => team.removeMember('a', 'b')).not.toThrow();
-    });
-  });
   describe('team.search Meteor Method', () => {
     it('calls the generic method equivalent', () => {
       expect(() => team.search('a')).not.toThrow();

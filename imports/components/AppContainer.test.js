@@ -46,4 +46,11 @@ describe('linkMeteorData Function', () => {
     Meteor.isLoggingIn = true;
     expect(linkMeteorData(props).loading).toBe(true);
   });
+  it('sets locale if there is a locale in the profile and it does not equal the app local', () => {
+    Meteor.loggedInUser = { profile: { locale: 'a' } };
+    const setLocale = jest.fn();
+    expect(setLocale).toHaveBeenCalledTimes(0);
+    linkMeteorData({ locale: 'b', setLocale });
+    expect(setLocale).toHaveBeenCalledTimes(1);
+  });
 });

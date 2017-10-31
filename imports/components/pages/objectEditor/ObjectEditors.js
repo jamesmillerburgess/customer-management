@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translate } from 'react-redux-i18n';
 
 // Components
 import ObjectEditorConnect from '../objectEditor/ObjectEditorConnect';
@@ -14,7 +15,7 @@ import FieldLists from '../../../api/fieldList/fieldListCollection';
 export const generateObjectEditorProps = (singular, plural) => ({
   subscription: `${singular}.single`,
   parentPage: {
-    label: plural[0].toUpperCase() + plural.slice(1),
+    label: <Translate value={`nav.${plural}`} />,
     path: `/${plural}`,
   },
   savePropertiesMethod: `${singular}.saveProperties`,
@@ -57,7 +58,7 @@ export const opportunityProps = () => ({
   collection: Opportunities,
   subscription: 'opportunity.single',
   parentPage: {
-    label: 'Opportunities',
+    label: <Translate value="nav.opportunities" />,
     path: '/opportunities',
   },
   statuses: [

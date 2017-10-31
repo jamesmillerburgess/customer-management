@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import { Translate, Localize } from 'react-redux-i18n';
 
 import ListPageContainer from './ListPageContainer';
 import { setAppProp } from '../../../state/actions/appActionCreators';
@@ -11,12 +12,12 @@ export const generateListPageProps = (singular, plural, collection) => ({
   path: `/${plural}`,
   subscription: `${singular}.user`,
   collection,
-  title: plural[0].toUpperCase() + plural.slice(1),
+  title: <Translate value={`${plural}.title`} />,
   searchPlaceholder: `Search for ${plural}`,
-  addButtonText: `Add ${singular}`,
+  addButtonText: <Translate value={`${plural}.addButtonText`} />,
   gridPageProps: items => ({
-    sidebarHeader: `All ${plural}`,
-    noRows: `No ${plural} yet!`,
+    sidebarHeader: <Translate value={`${plural}.allSidebarText`} />,
+    noDataText: <Translate value={`${plural}.noDataText`} />,
     columns: [
       {
         width: 45,
@@ -24,7 +25,7 @@ export const generateListPageProps = (singular, plural, collection) => ({
         sortable: false,
       },
       {
-        Header: 'Name',
+        Header: <Translate value={`${plural}.nameColumn`} />,
         id: 'name',
         accessor: 'name',
         Cell: props => (
@@ -32,11 +33,13 @@ export const generateListPageProps = (singular, plural, collection) => ({
         ),
       },
       {
-        Header: 'Create Date',
+        Header: <Translate value={`${plural}.createDateColumn`} />,
         id: 'createDate',
         accessor: 'createDate',
         Cell: props => (
-          <span>{moment(props.value).format('MMM DD[,] YYYY')}</span>
+          <span>
+            <Localize value={props.value} dateFormat={`${plural}.dateFormat`} />
+          </span>
         ),
       },
     ],
