@@ -8,7 +8,7 @@ import FieldOptions from '../../../api/fieldOptions/fieldOptionsCollection';
 const BasicInfoContainer = createContainer(props => {
   const languages =
     (FieldOptions.findOne({ type: 'LANGUAGE' }) || {}).options || [];
-  if (!Meteor.loggingIn() && !props.hasLoaded && !props.loading) {
+  const loadProfile = () => {
     const user = Meteor.user() || {};
     const username = user.username;
     const profile = user.profile || {};
@@ -23,6 +23,9 @@ const BasicInfoContainer = createContainer(props => {
         name: Teams.findOne(team).name,
       });
     }
+  };
+  if (!Meteor.loggingIn() && !props.hasLoaded && !props.loading) {
+    loadProfile();
   }
   return { ...props, languages };
 }, BasicInfoDisplay);
