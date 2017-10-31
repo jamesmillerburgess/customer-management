@@ -27,7 +27,7 @@ const OptionField = props => {
         if (props.valueKey) {
           props.onChange(option);
         } else {
-          props.onChange(option.value);
+          props.onChange(option ? option.value : null);
         }
       }}
       onInputChange={props.onInputChange}
