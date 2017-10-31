@@ -105,6 +105,12 @@ export const removeMember = (teamId, memberId) => {
     member.profile.team === teamId
   ) {
     Teams.update(member.profile.team, { $pull: { members: memberId } });
+    const activity = {
+      type: 'LEAVE_TEAM',
+      timestamp: new Date(),
+      userId: memberId,
+    };
+    GM.addActivity(activity, Teams, member.profile.team);
   }
   Meteor.users.update(memberId, { $unset: { ['profile.team']: '' } });
 };
