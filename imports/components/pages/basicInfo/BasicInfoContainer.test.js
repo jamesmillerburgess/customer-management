@@ -45,6 +45,12 @@ describe('BasicInfoContainer Component', () => {
     wrapper.setProps({ ...props });
     expect(props.setHasLoaded).toHaveBeenCalledTimes(2);
     expect(props.setUsername).toHaveBeenCalledTimes(2);
+    expect(props.setTeam).toHaveBeenCalledTimes(1);
+    expect(props.setLocale).toHaveBeenCalledTimes(2);
+    Meteor.loggedInUser = { profile: undefined };
+    wrapper.setProps({ ...props });
+    expect(props.setHasLoaded).toHaveBeenCalledTimes(3);
+    expect(props.setUsername).toHaveBeenCalledTimes(3);
     expect(props.setTeam).toHaveBeenCalledTimes(2);
     expect(props.setLocale).toHaveBeenCalledTimes(2);
   });

@@ -11,13 +11,15 @@ const BasicInfoContainer = createContainer(props => {
   if (!Meteor.loggingIn() && !props.hasLoaded && !props.loading) {
     props.setHasLoaded(true);
     props.setUsername(Meteor.user().username);
-    props.setLocale(Meteor.user().profile.locale);
-    if (Meteor.user().profile && Meteor.user().profile.team) {
-      const teamId = Meteor.user().profile.team;
-      props.setTeam({
-        _id: teamId,
-        name: Teams.findOne(teamId).name,
-      });
+    if (Meteor.user().profile) {
+      props.setLocale(Meteor.user().profile.locale);
+      if (Meteor.user().profile.team) {
+        const teamId = Meteor.user().profile.team;
+        props.setTeam({
+          _id: teamId,
+          name: Teams.findOne(teamId).name,
+        });
+      }
     } else {
       props.setTeam({ _id: '', name: 'No team assigned' });
     }
