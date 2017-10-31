@@ -5,6 +5,8 @@ import OwnedTeamsDisplay from './OwnedTeamsDisplay';
 
 import { setProfileProp } from '../../../state/actions/profileActionCreators';
 
+export const selectId = a => a._id;
+
 export const mapStateToProps = ({ profile }, ownProps) => {
   const props = {
     newTeamName: profile.newTeamName || '',
@@ -38,9 +40,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   deleteRowSelection: rowSelection =>
     Meteor.call(
       'team.remove',
-      ownProps.ownedTeams
-        .filter((t, i) => rowSelection[t._id])
-        .map(team => team._id),
+      ownProps.ownedTeams.filter((t, i) => rowSelection[t._id]).map(selectId),
       (err, res) => {
         if (err) {
           console.log(err);
