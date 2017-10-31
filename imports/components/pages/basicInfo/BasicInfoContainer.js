@@ -10,10 +10,10 @@ const BasicInfoContainer = createContainer(props => {
     (FieldOptions.findOne({ type: 'LANGUAGE' }) || {}).options || [];
   if (!Meteor.loggingIn() && !props.hasLoaded && !props.loading) {
     const user = Meteor.user() || {};
-    const username = user.username || '';
+    const username = user.username;
     const profile = user.profile || {};
-    const team = profile.team || '';
-    const locale = profile.locale || '';
+    const team = profile.team;
+    const locale = profile.locale;
     props.setHasLoaded(true);
     props.setUsername(username);
     props.setLocale(profile.locale);
