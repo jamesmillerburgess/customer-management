@@ -85,55 +85,53 @@ const NavDisplay = props => (
           </NavLink>
         ))}
     </div>
-    <div className="button-group search-and-profile">
-      <NavSearchInput placeholder={I18n.t('nav.search')} />
-      <div>
-        <button
-          id="profile-button"
-          className="nav-button"
-          onClick={() =>
-            props.user
-              ? props.setIsProfileMenuOpen(!props.isProfileMenuOpen)
-              : null}
-        >
-          {props.user ? (
+    {props.user && (
+      <div className="button-group search-and-profile">
+        <NavSearchInput placeholder={I18n.t('nav.search')} />
+        <div>
+          <button
+            id="profile-button"
+            className="nav-button"
+            onClick={() =>
+              props.user
+                ? props.setIsProfileMenuOpen(!props.isProfileMenuOpen)
+                : null}
+          >
             <div className="profile-button-text">
               <div className="username">{props.user.username} </div>
               <div className="team-name">{props.team && props.team.name}</div>
             </div>
-          ) : (
-            <Translate value="nav.logIn" />
-          )}
-        </button>
-        <div
-          id="profile-menu"
-          className={`profile-menu ${props.isProfileMenuOpen ? 'open' : ''}`}
-        >
-          <div className="nav-name">
-            <AvatarField
-              className="nav-avatar"
-              publicId={props.avatarURL || 'empty-profile-pic_wqnyvm.png'}
-              height="30"
-              width="30"
-            />
-            {props.user ? props.user.username : ''}
+          </button>
+          <div
+            id="profile-menu"
+            className={`profile-menu ${props.isProfileMenuOpen ? 'open' : ''}`}
+          >
+            <div className="nav-name">
+              <AvatarField
+                className="nav-avatar"
+                publicId={props.avatarURL || 'empty-profile-pic_wqnyvm.png'}
+                height="30"
+                width="30"
+              />
+              {props.user ? props.user.username : ''}
+            </div>
+            <hr />
+            <ul>
+              <li>
+                <a href="#" onClick={props.goToProfile}>
+                  <Translate value="nav.editProfile" />
+                </a>
+              </li>
+              <li>
+                <a href="#" onClick={props.tryLogout}>
+                  <Translate value="nav.logOut" />
+                </a>
+              </li>
+            </ul>
           </div>
-          <hr />
-          <ul>
-            <li>
-              <a href="#" onClick={props.goToProfile}>
-                <Translate value="nav.editProfile" />
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={props.tryLogout}>
-                <Translate value="nav.logOut" />
-              </a>
-            </li>
-          </ul>
         </div>
       </div>
-    </div>
+    )}
   </div>
 );
 
