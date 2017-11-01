@@ -97,4 +97,14 @@ describe('BasicInfoContainer Component', () => {
     expect(props.setTeam).toHaveBeenCalledTimes(0);
     expect(props.setLocale).toHaveBeenCalledTimes(0);
   });
+  it('calls saveProfile and setAvatarURL when handleDrop resolves', () => {
+    props.saveProfile = jest.fn();
+    props.setAvatarURL = jest.fn();
+    wrapper.setProps({ ...props });
+    expect(props.saveProfile).toHaveBeenCalledTimes(0);
+    expect(props.setAvatarURL).toHaveBeenCalledTimes(0);
+    wrapper.props().handleDrop([{}]);
+    expect(props.saveProfile).toHaveBeenCalledTimes(1);
+    expect(props.setAvatarURL).toHaveBeenCalledTimes(1);
+  });
 });

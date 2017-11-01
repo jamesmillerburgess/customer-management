@@ -14,7 +14,8 @@
   },
   "moduleNameMapper": {
     "^meteor/(.*)": "<rootDir>/tests/meteorMocks.js",
-    "\\.(scss|css|less)$": "identity-obj-proxy"
+    "\\.(scss|css|less)$": "identity-obj-proxy",
+    "axios": "<rootDir>/tests/axiosMocks.js"
   },
   "coverageDirectory": ".coverage",
   "setupFiles": ["raf/polyfill"]
