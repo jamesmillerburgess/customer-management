@@ -92,10 +92,7 @@ const NavDisplay = props => (
           <button
             id="profile-button"
             className="nav-button"
-            onClick={() =>
-              props.user
-                ? props.setIsProfileMenuOpen(!props.isProfileMenuOpen)
-                : null}
+            onClick={() => props.setIsProfileMenuOpen(!props.isProfileMenuOpen)}
           >
             <div className="profile-button-text">
               <div className="username">{props.user.username} </div>
@@ -113,7 +110,7 @@ const NavDisplay = props => (
                 height="30"
                 width="30"
               />
-              {props.user ? props.user.username : ''}
+              {props.user.username}
             </div>
             <hr />
             <ul>
