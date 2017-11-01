@@ -9,6 +9,7 @@ import {
 import thunk from 'redux-thunk';
 import moment from 'moment';
 import 'moment/locale/ko.js';
+import { CloudinaryContext } from 'cloudinary-react';
 
 import app from '../state/appReducer';
 import AppConnect from './AppConnect';
@@ -31,7 +32,9 @@ store.dispatch(setLocale('en-us'));
 
 const App = props => (
   <Provider store={store}>
-    <AppConnect />
+    <CloudinaryContext cloudName="dqhfaa1im">
+      <AppConnect />
+    </CloudinaryContext>
   </Provider>
 );
 

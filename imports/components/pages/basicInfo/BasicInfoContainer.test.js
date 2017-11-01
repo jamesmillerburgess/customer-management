@@ -17,6 +17,7 @@ describe('BasicInfoContainer Component', () => {
     setUsername: jest.fn(),
     setTeam: jest.fn(),
     setLocale: jest.fn(),
+    setAvatarURL: jest.fn(),
   };
   beforeEach(() => (wrapper = shallow(<BasicInfoContainer {...props} />)));
   afterEach(() => wrapper.unmount());

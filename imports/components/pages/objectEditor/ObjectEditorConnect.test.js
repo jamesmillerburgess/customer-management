@@ -13,19 +13,26 @@ describe('mapStateToProps Function', () => {
   it('pulls in app and objectEditor properties', () => {
     const state = {
       app: { loading: false },
-      objectEditor: { hasLoaded: true, loadedValues: { a: 'a' } },
+      objectEditor: {
+        hasLoaded: true,
+        loadedValues: { a: 'a' },
+        avatarURL: 'a',
+      },
     };
     expect(mapStateToProps(state)).toEqual({
       loading: false,
       hasLoaded: true,
+      avatarURL: 'a',
       loadedValues: { a: 'a' },
     });
   });
   it('uses defaults if the properties are missing from the state', () => {
     const state = { app: {}, objectEditor: {} };
-    expect(mapStateToProps(state)).toEqual({
+    const ownProps = { avatarURL: 'a' };
+    expect(mapStateToProps(state, ownProps)).toEqual({
       loading: true,
       hasLoaded: false,
+      avatarURL: 'a',
       loadedValues: {},
     });
   });

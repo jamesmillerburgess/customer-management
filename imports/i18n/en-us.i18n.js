@@ -137,6 +137,7 @@ const enus = {
     basicInfo: 'Basic info',
     ownedTeams: 'Owned teams',
     username: 'Username',
+    avatar: 'Avatar',
     team: 'Team',
     locale: 'Locale',
     teamName: 'Team name',

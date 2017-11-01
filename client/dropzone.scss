@@ -1,0 +1,8 @@
+.dropzone {
+  border-radius: 100%;
+  border: 3px dashed transparent;
+  transition: all 0.3s ease-in-out;
+}
+.dropzone:hover {
+  border: 3px dashed rgba(#33475b, 0.6);
+}

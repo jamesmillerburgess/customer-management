@@ -51,4 +51,5 @@ Meteor.publish({
   'opportunity.team': id => team(Opportunities, id),
   'team.single': id => single(Teams, id),
   'team.list': ids => list(Teams, ids),
+  'user.single': id => single(Meteor.users, id),
 });

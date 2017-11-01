@@ -19,9 +19,10 @@ describe('Timeline', () => {
     wrapper.setProps({ timeline: [{ id: 'a', type: 'CREATION' }] });
     expect(
       wrapper
-        .find('TimelineEntry')
+        .find('CSSTransitionGroup')
+        .children()
         .at(0)
-        .key()
+        .props().id
     ).toBe('a');
   });
   it('uses id or _id as the key on TimelineEntries', () => {
@@ -30,15 +31,17 @@ describe('Timeline', () => {
     });
     expect(
       wrapper
-        .find('TimelineEntry')
+        .find('CSSTransitionGroup')
+        .children()
         .at(0)
-        .key()
+        .props().id
     ).toBe('a');
     expect(
       wrapper
-        .find('TimelineEntry')
+        .find('CSSTransitionGroup')
+        .children()
         .at(1)
-        .key()
+        .props()._id
     ).toBe('b');
   });
   describe('sort Function', () => {

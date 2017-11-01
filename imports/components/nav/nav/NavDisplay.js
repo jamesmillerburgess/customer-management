@@ -6,6 +6,7 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 import routes from '../../../api/routes';
 import './NavDisplay.scss';
 import NavSearchInput from '../../fields/NavSearchInput';
+import AvatarField from '../../fields/avatarField/AvatarField';
 
 export const getPageTitle = () => (
   <Switch>
@@ -109,7 +110,12 @@ const NavDisplay = props => (
           className={`profile-menu ${props.isProfileMenuOpen ? 'open' : ''}`}
         >
           <div className="nav-name">
-            <img className="nav-avatar" src="/empty-profile-pic.png" />
+            <AvatarField
+              className="nav-avatar"
+              publicId={props.avatarURL || 'empty-profile-pic_wqnyvm.png'}
+              height="30"
+              width="30"
+            />
             {props.user ? props.user.username : ''}
           </div>
           <hr />
