@@ -12,7 +12,7 @@ export const mapStateToProps = ({ app, profile, i18n, subscriptions }) => ({
   team: profile.team || '',
   hasLoaded: profile.hasLoaded || false,
   locale: profile.locale || 'en-us',
-  avatarURL: profile.avatarURL,
+  avatarURL: profile.avatarURL || 'empty-profile-pic_wqnyvm.png',
 });
 
 export const mapDispatchToProps = dispatch => ({

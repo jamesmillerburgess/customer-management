@@ -16,7 +16,7 @@ const AvatarField = props =>
         publicId={props.publicId}
         width={props.width}
         height={props.height}
-        crop="lfill"
+        crop="fill"
       />
     </Dropzone>
   ) : (
