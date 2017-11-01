@@ -22,12 +22,14 @@ const TeamActivityContainer = createContainer(props => {
       moment()
         .date(1)
         .hour(0)
-        .minute(0),
+        .minute(0)
+        .second(0),
       moment()
         .add(1, 'months')
         .date(0)
         .hour(0)
         .minute(0)
+        .second(0)
     );
     const team = Teams.findOne(teamId);
     const ids = team && team.members ? team.members : [Meteor.userId()];
