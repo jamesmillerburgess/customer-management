@@ -84,7 +84,7 @@ class AsyncOptionField extends React.Component {
     // be results for an old search if the user is typing sufficiently quickly
     // and the connection is sufficiently slow.
     if (res.searchText === this.state.inputValue) {
-      cb(this.mergeResults(this.state.options, res.searchResults));
+      return cb(this.mergeResults(this.state.options, res.searchResults));
     }
   }
 
