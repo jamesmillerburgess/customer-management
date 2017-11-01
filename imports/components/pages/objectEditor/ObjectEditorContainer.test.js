@@ -152,4 +152,16 @@ describe('linkMeteorData Function', () => {
     expect(fns.setProperty).toHaveBeenCalled();
     expect(fns.setLoadedValues).toHaveBeenCalled();
   });
+  it('calls setProperty when handleDrop resolves without error', () => {
+    props.setProperty = jest.fn();
+    FieldLists.docs = [];
+    Meteor.err = '';
+    const res = linkMeteorData(props);
+    expect(props.setProperty).toHaveBeenCalledTimes(0);
+    res.handleDrop([{}]);
+    expect(props.setProperty).toHaveBeenCalledTimes(1);
+    Meteor.err = 'err';
+    res.handleDrop([{}]);
+    expect(props.setProperty).toHaveBeenCalledTimes(1);
+  });
 });

@@ -19,6 +19,18 @@ describe('profile.save Method', () => {
     expect(Meteor.users.update).lastCalledWith('a', {
       $set: { 'profile.locale': 'a' },
     });
+    saveProfile('a', { profile: {} });
+    expect(Meteor.users.update).lastCalledWith('a', {
+      $set: {},
+    });
+  });
+  it('picks the avatarURL field from the profile', () => {
+    Meteor.users.update = jest.fn();
+    Meteor.users.docs = [{ profile: {} }];
+    saveProfile('a', { avatarURL: 'a' });
+    expect(Meteor.users.update).lastCalledWith('a', {
+      $set: { 'profile.avatarURL': 'a' },
+    });
   });
   it('adds the team member if the new team is different from the old', () => {
     Meteor.users.update = jest.fn();
