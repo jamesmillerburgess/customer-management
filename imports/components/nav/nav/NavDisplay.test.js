@@ -46,23 +46,11 @@ describe('NavDisplay', () => {
       .simulate('click');
     expect(setIsProfileMenuOpen).toHaveBeenCalled();
   });
-  it('does not call setIsProfileMenuOpen on click of profile button if there is not a user', () => {
-    const setIsProfileMenuOpen = jest.fn();
-    wrapper.setProps({ user: null, setIsProfileMenuOpen });
-    wrapper
-      .find('#profile-button')
-      .first()
-      .simulate('click');
-    expect(setIsProfileMenuOpen).not.toHaveBeenCalled();
-  });
-  it("displays 'Log in' if there is no user", () => {
+  it('displays the app title if there is no user', () => {
     wrapper.setProps({ user: null });
-    expect(
-      wrapper
-        .find('#profile-button Translate')
-        .at(0)
-        .props().value
-    ).toBe('nav.logIn');
+    expect(wrapper.find('.mobile-page-title Translate').props().value).toBe(
+      'app.title'
+    );
   });
   it("sets the menu class to 'open' if the state is open", () => {
     wrapper.setProps({ isProfileMenuOpen: true });
