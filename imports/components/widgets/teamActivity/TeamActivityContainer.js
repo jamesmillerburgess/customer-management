@@ -19,10 +19,15 @@ const TeamActivityContainer = createContainer(props => {
   if (user && user.profile) {
     const teamId = user.profile.team;
     const range = moment.range(
-      moment().date(1),
+      moment()
+        .date(1)
+        .hour(0)
+        .minute(0),
       moment()
         .add(1, 'months')
         .date(0)
+        .hour(0)
+        .minute(0)
     );
     const team = Teams.findOne(teamId);
     const ids = team && team.members ? team.members : [Meteor.userId()];
