@@ -51,7 +51,7 @@ export const gridPageProps = props => ({
       id: 'createDate',
       accessor: 'createDate',
       Cell: props => (
-        <Localize value={props.value} dateFormat="profile.dateFormat" />
+        <Localize value={props.value} dateFormat="dateFieldFormat" />
       ),
     },
   ],
