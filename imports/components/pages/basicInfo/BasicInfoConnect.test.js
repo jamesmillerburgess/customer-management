@@ -12,10 +12,17 @@ describe('mapStateToProps Function', () => {
   it('maps state to props', () => {
     const state = {
       app: { loading: false },
-      profile: { username: 'a', team: 'b', hasLoaded: true, locale: 'ko' },
+      profile: {
+        username: 'a',
+        team: 'b',
+        hasLoaded: true,
+        locale: 'ko',
+        avatarURL: 'c',
+      },
       other: 'b',
     };
     expect(mapStateToProps(state)).toEqual({
+      avatarURL: 'c',
       loading: false,
       username: 'a',
       team: 'b',
@@ -30,6 +37,7 @@ describe('mapStateToProps Function', () => {
       other: 'b',
     };
     expect(mapStateToProps(state)).toEqual({
+      avatarURL: 'empty-profile-pic_wqnyvm.png',
       loading: true,
       username: '',
       team: '',
