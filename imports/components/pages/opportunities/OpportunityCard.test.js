@@ -25,6 +25,18 @@ describe('OpportunityCard Component', () => {
     wrapper.setProps({ isDragging: true });
     expect(wrapper.find('.panel').exists()).toBe(false);
   });
+  it('renders the amount if it is truthy', () => {
+    wrapper.setProps({ amount: 1 });
+    expect(wrapper.find('Link Localize').props().value).toBe(1);
+    wrapper.setProps({ amount: 0 });
+    expect(wrapper.find('Link Localize').exists()).toBe(false);
+  });
+  it('renders the close date if it is truthy', () => {
+    wrapper.setProps({ closeDate: 1 });
+    expect(wrapper.find('.close-date Localize').props().value).toBe(1);
+    wrapper.setProps({ closeDate: 0 });
+    expect(wrapper.find('.close-date Localize').exists()).toBe(false);
+  });
 });
 describe('opportunitySource Object', () => {
   describe('beginDrag Function', () => {

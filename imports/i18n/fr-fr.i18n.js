@@ -222,7 +222,7 @@ const frfr = {
     INACTIVE: 'Inactive',
     EXITED: 'Quitée',
   },
-  dateFieldFormat: 'DD MMM YYYY',
+  dateFieldFormat: 'Do MMMM[,] YYYY',
   tableEditor: {
     delete: 'Supprimer',
     singularSelectedText: 'Vous avez selectioné 1 ligne',
