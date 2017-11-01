@@ -6,13 +6,21 @@ import BasicInfoContainer from './BasicInfoContainer';
 
 import { setProfileProp } from '../../../state/actions/profileActionCreators';
 
-export const mapStateToProps = ({ app, profile, i18n, subscriptions }) => ({
-  loading: app.loading === false ? false : true,
-  username: profile.username || '',
-  team: profile.team || '',
-  hasLoaded: profile.hasLoaded || false,
-  locale: profile.locale || 'en-us',
-  avatarURL: profile.avatarURL || 'empty-profile-pic_wqnyvm.png',
+const getLoading = state => (state.app.loading === false ? false : true);
+const getUsername = state => state.profile.username || '';
+const getTeam = state => state.profile.team || '';
+const getHasLoaded = state => state.profile.hasLoaded || false;
+const getLocale = state => state.profile.locale || 'en-us';
+const getAvatarURL = state =>
+  state.profile.avatarURL || 'empty-profile-pic_wqnyvm.png';
+
+export const mapStateToProps = state => ({
+  loading: getLoading(state),
+  username: getUsername(state),
+  team: getTeam(state),
+  hasLoaded: getHasLoaded(state),
+  locale: getLocale(state),
+  avatarURL: getAvatarURL(state),
 });
 
 export const mapDispatchToProps = dispatch => ({
