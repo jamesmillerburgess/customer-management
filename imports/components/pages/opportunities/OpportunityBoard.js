@@ -63,11 +63,7 @@ class OpportunityBoard extends React.Component {
                 ))}
               </div>
             </div>
-            <OpportunityList
-              status={
-                <Translate value={`opportunityStatuses.${STATUS_VALUES[i]}`} />
-              }
-            >
+            <OpportunityList status={STATUS_VALUES[i]}>
               {this.props.cardLists[i].map(card => (
                 <OpportunityCard {...card} key={card._id} />
               ))}
