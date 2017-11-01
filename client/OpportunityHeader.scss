@@ -29,3 +29,8 @@
     color: #7c98b6;
   }
 }
+@media screen and (max-width: 750px) {
+  .opportunity-header .field {
+    display: none;
+  }
+}
