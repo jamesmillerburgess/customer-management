@@ -4,16 +4,16 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-import TimelineEntry, {
+import TimelineEntryDisplay, {
   TIMELINE_MESSAGES,
   STATUS_VALUES,
-} from './TimelineEntry';
+} from './TimelineEntryDisplay';
 
-describe('TimelineEntry Component', () => {
+describe('TimelineEntryDisplay Component', () => {
   let wrapper;
   let props = { type: 'CREATION', time: '1' };
   beforeEach(() => {
-    wrapper = shallow(<TimelineEntry {...props} />);
+    wrapper = shallow(<TimelineEntryDisplay {...props} />);
   });
   afterEach(() => {
     wrapper.unmount();

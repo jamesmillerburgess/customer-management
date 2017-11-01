@@ -75,7 +75,10 @@ export const saveProperties = (
     });
   }
   const properties = FieldLists.findOne({ page: propertiesPage }).fields;
-  const fields = _.pick(properties.map(property => property.name), object);
+  const fields = _.pick(
+    [...properties.map(property => property.name), 'avatarURL'],
+    object
+  );
   collection.update(objectId, { $set: fields });
 };
 

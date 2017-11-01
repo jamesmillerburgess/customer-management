@@ -14,9 +14,11 @@
     "codeclimate-test-reporter": "codeclimate-test-reporter"
   },
   "dependencies": {
+    "axios": "^0.17.0",
     "babel-runtime": "^6.20.0",
     "bcrypt": "^1.0.3",
     "chart.js": "^2.7.1",
+    "cloudinary-react": "^1.0.4",
     "deep-equal": "^1.0.1",
     "lodash": "^4.17.4",
     "meteor-node-stubs": "~0.2.4",
@@ -28,6 +30,7 @@
     "react-datetime": "^2.10.3",
     "react-dnd": "^2.5.4",
     "react-dnd-html5-backend": "^2.5.4",
+    "react-dropzone": "^4.2.1",
     "react-grid-layout": "^0.16.0",
     "react-redux": "^5.0.6",
     "react-redux-i18n": "^1.9.0",

@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import deepEqual from 'deep-equal';
+import axios from 'axios';
 
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
@@ -22,6 +23,7 @@ export const linkMeteorData = props => {
       fieldList.fields.forEach(properties =>
         props.setProperty(properties.name, object[properties.name])
       );
+      props.setProperty('avatarURL', object.avatarURL);
       properties = fieldList.fields;
       props.setLoadedValues(object);
     }
@@ -49,7 +51,43 @@ export const linkMeteorData = props => {
     setInitialProperties();
     updateProperties();
   }
-  return { ...props, object, loading, properties };
+  const handleDrop = files => {
+    // Push all the axios request promise into a single array
+    // Initial FormData
+    const formData = new FormData();
+    formData.append('file', files[0]);
+    formData.append('tags', `user avatar`);
+    formData.append('upload_preset', 'euqfrerp'); // Replace the preset name with your own
+    formData.append('timestamp', (Date.now() / 1000) | 0);
+
+    // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+    const uploader = axios
+      .post(
+        'https://api.cloudinary.com/v1_1/dqhfaa1im/image/upload',
+        formData,
+        {
+          headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        }
+      )
+      .then(response => {
+        console.log(response);
+        const data = response.data;
+        const avatarURL = data.public_id; // You should store this URL for future references in your app
+        Meteor.call(
+          props.savePropertiesMethod,
+          props.match.params[props.uriID],
+          { avatarURL },
+          (err, res) => {
+            if (!err) {
+              props.setProperty('hasLoaded', false);
+            } else {
+              console.log(err);
+            }
+          }
+        );
+      });
+  };
+  return { ...props, object, loading, properties, handleDrop };
 };
 
 const ObjectEditorContainer = ObjectEditorDisplay =>

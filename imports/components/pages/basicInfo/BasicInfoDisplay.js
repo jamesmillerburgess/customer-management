@@ -4,6 +4,7 @@ import { Translate } from 'react-redux-i18n';
 import TextField from '../../fields/textField/TextField';
 import TeamField from '../../fields/teamField/TeamField';
 import OptionField from '../../fields/optionField/OptionField';
+import AvatarField from '../../fields/avatarField/AvatarField';
 
 const BasicInfoDisplay = props => (
   <form
@@ -27,6 +28,19 @@ const BasicInfoDisplay = props => (
         id="username"
         value={props.username}
         onChange={props.setUsername}
+      />
+    </div>
+    <div className="input-group">
+      <div className="input-label">
+        <Translate value="profile.avatar" />
+      </div>
+      <AvatarField
+        className="avatar-input"
+        publicId={props.avatarURL}
+        width="150"
+        height="150"
+        editable
+        onDrop={props.handleDrop}
       />
     </div>
     <div className="input-group">

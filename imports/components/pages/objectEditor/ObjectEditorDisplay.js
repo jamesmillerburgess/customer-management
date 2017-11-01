@@ -11,7 +11,11 @@ const ObjectEditorDisplay = props => (
   <ObjectEditor {...props.parentPage}>
     <div className="body">
       <div className="sidebar">
-        <SidebarHeader name={props.object.name} avatarPath={props.avatarPath} />
+        <SidebarHeader
+          onDrop={props.handleDrop}
+          name={props.object.name}
+          avatarURL={props.avatarURL}
+        />
         <PropertiesEditor
           properties={props.properties}
           setProperty={props.setProperty}

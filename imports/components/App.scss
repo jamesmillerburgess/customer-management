@@ -6,6 +6,7 @@
   height: 0px;
   transition: background-color 0.3s ease-in-out, height 0s linear 0.3s,
     width 0s linear 0.3s;
+  z-index: 1000;
 }
 .overlay-background.show {
   position: fixed;

@@ -45,6 +45,7 @@ describe('mapDispatchToProps Function', () => {
     expect(props.setUsername).not.toThrow();
     expect(props.setTeam).not.toThrow();
     expect(props.setLocale).not.toThrow();
+    expect(props.setAvatarURL).not.toThrow();
     expect(props.saveProfile).not.toThrow();
     expect(props.setHasLoaded).not.toThrow();
   });

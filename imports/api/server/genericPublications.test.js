@@ -105,3 +105,8 @@ describe('team.list Meteor Publication', () => {
     expect(() => Meteor.publications['team.list']([])).not.toThrow();
   });
 });
+describe('user.single Meteor Publication', () => {
+  it('does not throw', () => {
+    expect(() => Meteor.publications['user.single']('a')).not.toThrow();
+  });
+});

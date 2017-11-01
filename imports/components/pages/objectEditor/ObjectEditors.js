@@ -29,7 +29,7 @@ export const generateObjectEditorProps = (singular, plural) => ({
 export const contactProps = () => ({
   ...generateObjectEditorProps('contact', 'contacts'),
   collection: Contacts,
-  avatarPath: '/empty-profile-pic.png',
+  avatarURL: 'empty-profile-pic_wqnyvm.png',
   interactions: [
     'NEW_NOTE',
     'LOG_CALL',
@@ -43,7 +43,7 @@ export const contactProps = () => ({
 export const companyProps = () => ({
   ...generateObjectEditorProps('company', 'companies'),
   collection: Companies,
-  avatarPath: '/empty-company-pic.png',
+  avatarURL: 'empty-company-pic_uokzyz',
   interactions: [
     'NEW_NOTE',
     'LOG_CALL',
