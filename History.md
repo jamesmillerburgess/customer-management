@@ -6,6 +6,7 @@
 * Select locale in Edit profile -> Basic info
 * Translations added for English (United States), English (United Kingdom),
 French (Canada), French (France), and Korean
+* Upload custom avatars for users, customers, and companies
 
 ## v1.1.0 – Mobile Layout
 
