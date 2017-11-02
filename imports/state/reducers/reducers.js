@@ -6,3 +6,4 @@ export { overlay } from './overlayReducer';
 export { company } from './companyReducer';
 export { objectEditor } from './objectEditorReducer';
 export { subscriptions } from './subscriptionsReducer';
+export { filters } from './filtersReducer';
