@@ -219,6 +219,11 @@ const enus = {
     INACTIVE: 'Inactive',
     EXITED: 'Exited',
   },
+  ownerFilters: {
+    SELF: 'Self',
+    TEAM: 'Team',
+    ANY: 'Any',
+  },
   dateFieldFormat: 'DD MMM YYYY',
   tableEditor: {
     delete: 'Delete',

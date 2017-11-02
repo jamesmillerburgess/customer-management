@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import ListPageSideBarDisplay from './ListPageSidebarDisplay';
 import { setFiltersProp } from '../../../state/actions/filtersActionCreators';
 
-const getFilter = (state, path) => state.filters[path] || '';
+const getFilter = (state, path) => state.filters[path] || 'SELF';
 
 export const mapStateToProps = (state, ownProps) => ({
   filter: getFilter(state, ownProps.match.path),

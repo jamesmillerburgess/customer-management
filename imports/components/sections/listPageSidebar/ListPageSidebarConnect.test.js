@@ -15,7 +15,7 @@ describe('mapStateToProps Function', () => {
     const ownProps = { match: { path: 'a' } };
     expect(mapStateToProps(state, ownProps).filter).toBe('b');
     state.filters.a = undefined;
-    expect(mapStateToProps(state, ownProps).filter).toBe('');
+    expect(mapStateToProps(state, ownProps).filter).toBe('SELF');
   });
 });
 describe('mapDispatchToProps Function', () => {
