@@ -1,5 +1,7 @@
 ## vNEXT
 
+## v1.2.0
+
 * Meteor Application Performance Management tool activated
 * Ability to change opportunity status in mobile layout
 * Localized strings, dates, and numbers throughout the application
@@ -7,6 +9,7 @@
 * Translations added for English (United States), English (United Kingdom),
 French (Canada), French (France), and Korean
 * Upload custom avatars for users, customers, and companies
+* A number of mobile layout fixes and optimizations
 
 ## v1.1.0 – Mobile Layout
 
