@@ -8,7 +8,7 @@ describe('Login @watch', function() {
     expect(b.getTitle()).toBe('Agility CM');
   });
   it('defaults to login mode', () => {
-    b.waitForExist('#register-mode-button');
+    b.waitUntil(() => b.isExisting('#register-mode-button'), 5000);
     expect(b.elements('#register-mode-button').value.length).toBe(1);
     expect(b.elements('#login-submit-button').value.length).toBe(1);
     expect(b.elements('#login-mode-button').value.length).toBe(0);
