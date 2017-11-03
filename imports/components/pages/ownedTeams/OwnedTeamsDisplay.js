@@ -4,7 +4,7 @@ import { Translate, Localize } from 'react-redux-i18n';
 
 import TextField from '../../fields/textField/TextField';
 import CheckboxField from '../../fields/checkboxField/CheckboxField';
-import Grid from '../../fields/Grid';
+import DataTable from '../../sections/dataTable/DataTable';
 
 export const gridPageProps = props => ({
   noDataText: <Translate value="profile.noTeams" />,

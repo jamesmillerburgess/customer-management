@@ -9,6 +9,7 @@ import { setAppProp } from '../../../state/actions/appActionCreators';
 import { clearOverlayProps } from '../../../state/actions/overlayActionCreators';
 
 export const generateListPageProps = (singular, plural, collection) => ({
+  tableId: plural,
   path: `/${plural}`,
   subscription: `${singular}.user`,
   collection,
@@ -46,7 +47,7 @@ export const generateListPageProps = (singular, plural, collection) => ({
   }),
 });
 
-export const mapStateToProps = () => ({});
+export const mapStateToProps = (state, ownProps) => ({});
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   openOverlay: () => {

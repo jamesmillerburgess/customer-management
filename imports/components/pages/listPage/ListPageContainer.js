@@ -8,9 +8,21 @@ export const linkMeteorData = props => {
   if (!Meteor.userId()) {
     return { ...props, items: [] };
   }
+  const ownerFilter = {};
+  switch (props.tableId) {
+    case 'SELF':
+      ownerFilter.users = Meteor.userId();
+      break;
+    case 'TEAM':
+      ownerFilter.$in = [(Meteor.user().profile || {}).team || Meteor.userId()];
+      break;
+    case 'ANY':
+    default:
+      break;
+  }
   const items = props.collection
     .find({
-      users: Meteor.userId(),
+      ...ownerFilter,
       isArchived: false,
     })
     .fetch()

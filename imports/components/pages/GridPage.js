@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid from '../fields/Grid';
+import Grid from '../sections/dataTable/DataTable';
 import './GridPage.scss';
 
 import ListPageSidebar from '../sections/listPageSidebar/ListPageSidebar';
@@ -9,10 +9,7 @@ import ObjectLink from '../nav/ObjectLink';
 const GridPage = props => (
   <div className="section-body">
     <div className="sidebar">
-      <ListPageSidebar />
-      <ul>
-        <li className="sidebar-header">{props.sidebarHeader}</li>
-      </ul>
+      <ListPageSidebar tableId={props.tableId} />
     </div>
     <div className="content">
       <Grid

@@ -4,11 +4,23 @@ import { Meteor } from 'meteor/meteor';
 import SubscriptionManagerContainer from './SubscriptionManagerContainer';
 import { setAppProp } from '../../../state/actions/appActionCreators';
 
-export const mapStateToProps = ({ app, subscriptions }) => ({
-  loading: app.loading === false ? false : true,
+const getContacts = state => {
+  switch (state.filters.contacts) {
+    case 'SELF':
+      return ['contact.user'];
+    case 'TEAM':
+      return ['contact.team'];
+    case 'ANY':
+    default:
+      return ['contact.any'];
+  }
+};
+
+export const mapStateToProps = state => ({
+  loading: state.app.loading === false ? false : true,
   subscriptions: {
     configurations: ['configurations.all'],
-    constacts: ['contact.user'],
+    contacts: getContacts(state),
     companies: ['company.user'],
     opportunities: ['opportunity.user'],
     teams: [

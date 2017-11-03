@@ -12,6 +12,7 @@ const ListPageDisplay = props => (
       onClickAdd={props.openOverlay}
     />
     <GridPage
+      tableId={props.tableId}
       {...props.gridPageProps(props.items)}
       data={props.loading ? [] : props.items}
       match={props.match}
