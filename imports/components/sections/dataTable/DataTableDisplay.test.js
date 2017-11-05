@@ -8,7 +8,10 @@ import DataTableDisplay from './DataTableDisplay';
 
 describe('DataTableDisplay', () => {
   let wrapper;
-  beforeEach(() => (wrapper = shallow(<DataTableDisplay />)));
+  const props = {
+    gridPageProps: jest.fn(),
+  };
+  beforeEach(() => (wrapper = shallow(<DataTableDisplay {...props} />)));
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
 });

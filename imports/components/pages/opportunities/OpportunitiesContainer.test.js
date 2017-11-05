@@ -20,8 +20,35 @@ describe('OpportunitiesContainer Component', () => {
   it('returns no items if there is no user', () => {
     Meteor._userId = {};
     Opportunities.docs = [{}];
-    expect(linkMeteorData().opportunities).toEqual([{}]);
+    const props = { ownerFilter: '' };
+    expect(linkMeteorData(props).opportunities).toEqual([{}]);
     Meteor._userId = null;
-    expect(linkMeteorData().opportunities).toEqual([]);
+    expect(linkMeteorData(props).opportunities).toEqual([]);
+  });
+  it('switches between the ownerFilters', () => {
+    Meteor._userId = {};
+    Meteor.loggedInUser = { profile: { team: 'a' } };
+    Opportunities.docs = [{}];
+    const props = { ownerFilter: '' };
+    expect(linkMeteorData(props).opportunities).toEqual([{}]);
+    props.ownerFilter = 'SELF';
+    expect(linkMeteorData(props).opportunities).toEqual([{}]);
+    props.ownerFilter = 'TEAM';
+    expect(linkMeteorData(props).opportunities).toEqual([{}]);
+    props.ownerFilter = 'ANY';
+    expect(linkMeteorData(props).opportunities).toEqual([{}]);
+  });
+  it('handles incomplete user profiles', () => {
+    Meteor._userId = {};
+    Meteor.loggedInUser = { profile: { team: 'a' } };
+    Opportunities.docs = [{}];
+    const props = { ownerFilter: '' };
+    expect(() => linkMeteorData(props)).not.toThrow();
+    Meteor.loggedInUser = { profile: {} };
+    expect(() => linkMeteorData(props)).not.toThrow();
+    Meteor.loggedInUser = {};
+    expect(() => linkMeteorData(props)).not.toThrow();
+    Meteor.loggedInUser = null;
+    expect(() => linkMeteorData(props)).not.toThrow();
   });
 });

@@ -11,11 +11,11 @@ describe('ListPageSidebarConnect Component', () => {
 });
 describe('mapStateToProps Function', () => {
   it('selects the filter based on the match path', () => {
-    const state = { filters: { a: 'b' } };
-    const ownProps = { match: { path: 'a' } };
-    expect(mapStateToProps(state, ownProps).filter).toBe('b');
-    state.filters.a = undefined;
-    expect(mapStateToProps(state, ownProps).filter).toBe('SELF');
+    const state = { dataTables: { c: { ownerFilter: 'b' } } };
+    const ownProps = { match: { path: 'a' }, tableId: 'c' };
+    expect(mapStateToProps(state, ownProps).ownerFilter).toBe('b');
+    state.dataTables.c.ownerFilter = undefined;
+    expect(mapStateToProps(state, ownProps).ownerFilter).toBe('SELF');
   });
 });
 describe('mapDispatchToProps Function', () => {
@@ -23,6 +23,6 @@ describe('mapDispatchToProps Function', () => {
     const dispatch = jest.fn();
     const ownProps = { match: { path: 'a' } };
     const props = mapDispatchToProps(dispatch, ownProps);
-    expect(props.setFilter).not.toThrow();
+    expect(props.setOwnerFilter).not.toThrow();
   });
 });

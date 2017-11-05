@@ -19,17 +19,8 @@ describe('ListPageContainer Component', () => {
   it('returns no items if there is no user', () => {
     Meteor._userId = {};
     props.collection.docs = [{}];
-    expect(linkMeteorData(props).items).toEqual([{}]);
+    expect(linkMeteorData(props).data).toEqual([{}]);
     Meteor._userId = null;
-    expect(linkMeteorData(props).items).toEqual([]);
-  });
-});
-describe('sort Function', () => {
-  it('sorts by createdDate', () => {
-    const a = { createDate: new Date('January 1, 2017') };
-    const b = { createDate: new Date('January 2, 2017') };
-    expect(sort(a, b) > 0).toEqual(true);
-    expect(sort(b, a) < 0).toEqual(true);
-    expect(sort(a, a) === 0).toEqual(true);
+    expect(linkMeteorData(props).data).toEqual([]);
   });
 });

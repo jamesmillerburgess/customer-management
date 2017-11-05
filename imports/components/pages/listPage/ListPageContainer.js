@@ -6,7 +6,7 @@ import Teams from '../../../api/team/teamCollection';
 
 export const linkMeteorData = props => {
   if (!Meteor.userId()) {
-    return { ...props, items: [] };
+    return { ...props, data: [] };
   }
   const ownerQuery = {};
   switch (props.ownerFilter) {

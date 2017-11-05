@@ -75,10 +75,10 @@ describe('opportunity.single Meteor Publication', () => {
   });
 });
 describe('opportunity.team Meteor Publication', () => {
-  it('returns a cursor if there is a team', () => {
+  it('returns an array of cursors if there is a team', () => {
     Teams.docs = [{ members: [] }];
     expect(Meteor.publications['opportunity.team']('a').constructor.name).toBe(
-      'Object'
+      'Array'
     );
     Teams.docs = [{}];
     expect(Meteor.publications['opportunity.team']('a').constructor.name).toBe(

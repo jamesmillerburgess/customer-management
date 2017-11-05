@@ -16,14 +16,15 @@ describe('CompanyList Component', () => {
 });
 describe('gridPageProps Function', () => {
   it('renders a link in the name cells', () => {
-    const Cell = companyListProps
-      .gridPageProps([{ _id: 'a' }])
-      .columns[1].Cell({ index: 0 });
-    expect(Cell.props.to).toBe('/companies/a');
+    const Cell = companyListProps.gridPageProps({ data: [{ _id: 'a' }] })
+      .columns[1].Cell;
+    const wrapper = shallow(<Cell index={0} original={{ avatarURL: 'a' }} />);
+    expect(wrapper.find('Link').props().to).toBe('/companies/a');
   });
   it('renders a date in the create date cells', () => {
-    const Cell = companyListProps.gridPageProps().columns[2].Cell;
-    const wrapper = shallow(<Cell value="20170101" />);
+    const props = { data: [{ _id: 'a' }] };
+    const Cell = companyListProps.gridPageProps(props).columns[3].Cell;
+    const wrapper = shallow(<Cell value="20170101" index={0} />);
     expect(wrapper.find('Localize').name()).toBe('Localize');
   });
 });

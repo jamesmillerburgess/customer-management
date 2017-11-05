@@ -74,7 +74,7 @@ const OwnedTeamsDisplay = props => (
       </button>
     </div>
     <div className="input-group">
-      <Grid {...gridPageProps(props)} data={props.ownedTeams} />
+      <DataTable gridPageProps={gridPageProps} data={props.ownedTeams} />
       <div
         className={`button-footer ${props.areAnySelected
           ? 'expanded'

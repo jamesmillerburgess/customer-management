@@ -10,8 +10,20 @@ describe('ListPageConnect Component', () => {
 });
 describe('mapStateToProps Function', () => {
   it('maps state to props', () => {
-    const state = { other: 'b' };
-    expect(mapStateToProps(state)).toEqual({});
+    const state = {
+      dataTables: { c: { ownerFilter: 'a', pageNumber: 1 } },
+      other: 'b',
+    };
+    const ownProps = { tableId: 'c' };
+    expect(mapStateToProps(state, ownProps)).toEqual({
+      ownerFilter: 'a',
+      pageNumber: 1,
+    });
+    state.dataTables.c = {};
+    expect(mapStateToProps(state, ownProps)).toEqual({
+      ownerFilter: undefined,
+      pageNumber: 0,
+    });
   });
 });
 describe('mapDispatchToProps Function', () => {

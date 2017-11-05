@@ -10,7 +10,10 @@ describe('OpportunitiesConnect Component', () => {
 });
 describe('matchStateToProps Function', () => {
   it('returns an empty object', () => {
-    expect(mapStateToProps()).toEqual({});
+    const state = { dataTables: { opportunity: { ownerFilter: 'a' } } };
+    expect(mapStateToProps(state)).toEqual({ ownerFilter: 'a' });
+    state.dataTables.opportunity.ownerFilter = null;
+    expect(mapStateToProps(state)).toEqual({ ownerFilter: 'SELF' });
   });
 });
 describe('matchDispatchToProps Function', () => {
