@@ -12,9 +12,12 @@ const getPaginatedSubscription = (state, options) => {
   return [getSubscriptionName(state, options), pageNumber];
 };
 
+const getOwnerFilter = (state, prefix) =>
+  (((state || {}).dataTables || {})[prefix] || {}).ownerFilter;
+
 export const getSubscriptionName = (state, options = {}) => {
   const { prefix } = options;
-  switch ((((state || {}).dataTables || {})[prefix] || {}).ownerFilter) {
+  switch (getOwnerFilter(state, prefix)) {
     case 'ANY':
       return `${prefix}.any`;
     case 'TEAM':
