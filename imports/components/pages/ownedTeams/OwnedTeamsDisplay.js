@@ -5,37 +5,12 @@ import { Translate, Localize } from 'react-redux-i18n';
 import TextField from '../../fields/textField/TextField';
 import CheckboxField from '../../fields/checkboxField/CheckboxField';
 import DataTable from '../../sections/dataTable/DataTable';
+import { checkboxColumn } from '../listPage/ListPageConnect';
 
 export const gridPageProps = props => ({
   noDataText: <Translate value="profile.noTeams" />,
   columns: [
-    {
-      width: 45,
-      resizable: false,
-      sortable: false,
-      Header: cellProps => (
-        <CheckboxField
-          value={props.areAllSelected}
-          onChange={value =>
-            props.setAllRowSelection(
-              cellProps.data.reduce(
-                (prev, curr) => ({
-                  ...prev,
-                  [curr._original._id]: value,
-                }),
-                {}
-              )
-            )}
-        />
-      ),
-      Cell: cellProps => (
-        <CheckboxField
-          value={props.rowSelection[cellProps.original._id]}
-          onChange={value =>
-            props.setRowSelection(cellProps.original._id, value)}
-        />
-      ),
-    },
+    checkboxColumn(props),
     {
       Header: <Translate value="profile.nameColumn" />,
       id: 'name',

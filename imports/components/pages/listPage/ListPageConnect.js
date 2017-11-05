@@ -12,6 +12,33 @@ import AvatarField from '../../fields/avatarField/AvatarField';
 import CheckboxField from '../../fields/checkboxField/CheckboxField';
 import Teams from '../../../api/team/teamCollection';
 
+export const checkboxColumn = props => ({
+  width: 45,
+  resizable: false,
+  sortable: false,
+  Header: cellProps => (
+    <CheckboxField
+      value={props.areAllSelected}
+      onChange={value =>
+        props.setAllRowSelection(
+          cellProps.data.reduce(
+            (prev, curr) => ({
+              ...prev,
+              [curr._original._id]: value,
+            }),
+            {}
+          )
+        )}
+    />
+  ),
+  Cell: cellProps => (
+    <CheckboxField
+      value={props.rowSelection[cellProps.original._id]}
+      onChange={value => props.setRowSelection(cellProps.original._id, value)}
+    />
+  ),
+});
+
 export const generateListPageProps = (singular, plural, collection) => ({
   tableId: singular,
   path: `/${plural}`,
@@ -24,33 +51,7 @@ export const generateListPageProps = (singular, plural, collection) => ({
     sidebarHeader: <Translate value={`${plural}.allSidebarText`} />,
     noDataText: <Translate value={`${plural}.noDataText`} />,
     columns: [
-      {
-        width: 45,
-        resizable: false,
-        sortable: false,
-        Header: cellProps => (
-          <CheckboxField
-            value={props.areAllSelected}
-            onChange={value =>
-              props.setAllRowSelection(
-                cellProps.data.reduce(
-                  (prev, curr) => ({
-                    ...prev,
-                    [curr._original._id]: value,
-                  }),
-                  {}
-                )
-              )}
-          />
-        ),
-        Cell: cellProps => (
-          <CheckboxField
-            value={props.rowSelection[cellProps.original._id]}
-            onChange={value =>
-              props.setRowSelection(cellProps.original._id, value)}
-          />
-        ),
-      },
+      checkboxColumn(props),
       {
         Header: <Translate value={`${plural}.nameColumn`} />,
         id: 'name',
