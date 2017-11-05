@@ -44,6 +44,20 @@ export const team = (collection, pageNumber = 0) => {
   const team = Teams.findOne(((Meteor.user() || {}).profile || {}).team);
   const skip = getSkip(pageNumber);
   const limit = getLimit(pageNumber);
+  if (collection._name === 'Opportunities') {
+    console.log(team);
+    console.log(skip);
+    console.log(limit);
+    console.log(
+      collection
+        .find(
+          { 'users.0': Meteor.userId() },
+          { sort: { createDate: -1 }, skip, limit }
+        )
+        .fetch()
+    );
+  }
+
   if (team && team.members) {
     return [
       collection.find(

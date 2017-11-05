@@ -15,8 +15,9 @@ export const linkMeteorData = props => {
       break;
     case 'TEAM':
       ownerQuery['users.0'] = {
-        $in: (Teams.findOne((Meteor.user().profile || {}).team || {}) || {})
-          .members || [Meteor.userId()],
+        $in: (Teams.findOne(((Meteor.user() || {}).profile || {}).team || '') ||
+          {}
+        ).members || [Meteor.userId()],
       };
       break;
     case 'SELF':
@@ -24,13 +25,10 @@ export const linkMeteorData = props => {
       ownerQuery['users.0'] = { $in: [Meteor.userId()] };
       break;
   }
-  const opportunities = Opportunities.find(
-    {
-      ...ownerQuery,
-      isArchived: false,
-    },
-    { sort: { createDate: -1 }, limit: 10 }
-  ).fetch();
+  const opportunities = Opportunities.find({
+    ...ownerQuery,
+    isArchived: false,
+  }).fetch();
   return { ...props, opportunities };
 };
 

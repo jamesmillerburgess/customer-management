@@ -9,10 +9,10 @@ const getPageNumber = (state, tableId) =>
 
 const getPaginatedSubscription = (state, options) => {
   const pageNumber = getPageNumber(state, options.prefix);
-  return [getSubcriptionName(state, options), pageNumber];
+  return [getSubscriptionName(state, options), pageNumber];
 };
 
-const getSubcriptionName = (state, options) => {
+const getSubscriptionName = (state, options) => {
   const { prefix } = options;
   switch (((state.dataTables || {})[prefix] || {}).ownerFilter) {
     case 'ANY':
@@ -37,11 +37,11 @@ export const mapStateToProps = state => ({
   subscriptions: {
     configurations: ['configurations.all'],
     contacts: getSubscription(state, { prefix: 'contact', paginated: true }),
-    companies: getPaginatedSubscription(state, {
+    companies: getSubscription(state, {
       prefix: 'company',
       paginated: true,
     }),
-    opportunities: getPaginatedSubscription(state, { prefix: 'opportunity' }),
+    opportunities: getSubscription(state, { prefix: 'opportunity' }),
     teams: [
       'team.single',
       Meteor.user() && Meteor.user().profile ? Meteor.user().profile.team : '',

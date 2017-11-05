@@ -14,7 +14,7 @@ export const linkMeteorData = props => {
       break;
     case 'TEAM':
       ownerQuery['users.0'] = {
-        $in: (Teams.findOne((Meteor.user().profile || {}).team || {}) || {})
+        $in: (Teams.findOne((Meteor.user().profile || {}).team || '') || {})
           .members || [Meteor.userId()],
       };
       break;
