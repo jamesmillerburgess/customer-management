@@ -4,18 +4,17 @@ import ListPageDisplay from './ListPageDisplay';
 
 import Teams from '../../../api/team/teamCollection';
 
+export const getTeamMembers = () =>
+  (Teams.findOne(((Meteor.user() || {}).profile || {}).team || '') || {})
+    .members || [Meteor.userId()];
+
 export const getOwnerQuery = ownerFilter => {
   switch (ownerFilter) {
     case 'ANY':
       return {};
     case 'TEAM':
       return {
-        'users.0': {
-          $in: (Teams.findOne(
-            ((Meteor.user() || {}).profile || {}).team || ''
-          ) || {}
-          ).members || [Meteor.userId()],
-        },
+        'users.0': { $in: getTeamMembers() },
       };
     case 'SELF':
     default:
