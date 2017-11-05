@@ -6,8 +6,8 @@ import OpportunitiesContainer from './OpportunitiesContainer';
 import { setAppProp } from '../../../state/actions/appActionCreators';
 import { clearOverlayProps } from '../../../state/actions/overlayActionCreators';
 
-const getOwnerFilter = state =>
-  ((state.dataTables || {}).opportunity || {}).ownerFilter || 'SELF';
+export const getOwnerFilter = state =>
+  (((state || {}).dataTables || {}).opportunity || {}).ownerFilter || 'SELF';
 
 export const mapStateToProps = state => ({
   ownerFilter: getOwnerFilter(state),

@@ -95,24 +95,16 @@ export const generateListPageProps = (singular, plural, collection) => ({
           </div>
         ),
       },
-      {
-        Header: <Translate value={`${plural}.createDateColumn`} />,
-        id: 'createDate',
-        accessor: 'createDate',
-        Cell: props => (
-          <span>
-            <Localize value={props.value} dateFormat={`${plural}.dateFormat`} />
-          </span>
-        ),
-      },
     ],
   }),
 });
 
-const getOwnerFilter = (state, ownProps) =>
-  ((state.dataTables || {})[ownProps.tableId] || {}).ownerFilter;
-const getPageNumber = (state, ownProps) =>
-  ((state.dataTables || {})[ownProps.tableId] || {}).pageNumber || 0;
+export const getOwnerFilter = (state, ownProps) =>
+  (((state || {}).dataTables || {})[(ownProps || {}).tableId] || {})
+    .ownerFilter;
+export const getPageNumber = (state, ownProps) =>
+  (((state || {}).dataTables || {})[(ownProps || {}).tableId] || {})
+    .pageNumber || 0;
 
 export const mapStateToProps = (state, ownProps) => ({
   ownerFilter: getOwnerFilter(state, ownProps),

@@ -4,8 +4,9 @@ import { withRouter } from 'react-router';
 import ListPageSideBarDisplay from './ListPageSidebarDisplay';
 import { setDataTablesProp } from '../../../state/actions/dataTablesActionCreators';
 
-const getOwnerFilter = (state, ownProps) =>
-  ((state.dataTables || {})[ownProps.tableId] || {}).ownerFilter || 'SELF';
+export const getOwnerFilter = (state, ownProps) =>
+  (((state || {}).dataTables || {})[(ownProps || {}).tableId] || '')
+    .ownerFilter || 'SELF';
 
 export const mapStateToProps = (state, ownProps) => ({
   ownerFilter: getOwnerFilter(state, ownProps),

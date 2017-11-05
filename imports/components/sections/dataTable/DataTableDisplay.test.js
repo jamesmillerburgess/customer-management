@@ -6,7 +6,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 import DataTableDisplay from './DataTableDisplay';
 
-describe('DataTableDisplay', () => {
+describe('DataTableDisplay.js', () => {
   let wrapper;
   const props = {
     gridPageProps: jest.fn(),
@@ -14,6 +14,72 @@ describe('DataTableDisplay', () => {
   beforeEach(() => (wrapper = shallow(<DataTableDisplay {...props} />)));
   afterEach(() => wrapper.unmount());
   it('renders without error', () => {});
+  it('sets the button class to disabled if disablePrevButton is true', () => {
+    wrapper.setProps({ disablePrevButton: true });
+    expect(
+      wrapper
+        .find('.table-pagination button')
+        .at(0)
+        .hasClass('disabled')
+    ).toBe(true);
+    wrapper.setProps({ disablePrevButton: false });
+    expect(
+      wrapper
+        .find('.table-pagination button')
+        .at(0)
+        .hasClass('disabled')
+    ).toBe(false);
+  });
+  it('sets the button class to disabled if disableNextButton is true', () => {
+    wrapper.setProps({ disableNextButton: true });
+    expect(
+      wrapper
+        .find('.table-pagination button')
+        .at(1)
+        .hasClass('disabled')
+    ).toBe(true);
+    wrapper.setProps({ disableNextButton: false });
+    expect(
+      wrapper
+        .find('.table-pagination button')
+        .at(1)
+        .hasClass('disabled')
+    ).toBe(false);
+  });
+  it('calls viewPrevPage on click if disablePrevButton is false', () => {
+    const viewPrevPage = jest.fn();
+    wrapper.setProps({ disablePrevButton: false, viewPrevPage });
+    expect(viewPrevPage).toHaveBeenCalledTimes(0);
+    wrapper
+      .find('.table-pagination button')
+      .at(0)
+      .simulate('click');
+    expect(viewPrevPage).toHaveBeenCalledTimes(1);
+    wrapper.setProps({ disablePrevButton: true });
+    expect(viewPrevPage).toHaveBeenCalledTimes(1);
+    wrapper
+      .find('.table-pagination button')
+      .at(0)
+      .simulate('click');
+    expect(viewPrevPage).toHaveBeenCalledTimes(1);
+  });
+  it('calls viewNextPage on click if disableNextButton is false', () => {
+    const viewNextPage = jest.fn();
+    wrapper.setProps({ disableNextButton: false, viewNextPage });
+    expect(viewNextPage).toHaveBeenCalledTimes(0);
+    wrapper
+      .find('.table-pagination button')
+      .at(1)
+      .simulate('click');
+    expect(viewNextPage).toHaveBeenCalledTimes(1);
+    wrapper.setProps({ disableNextButton: true });
+    expect(viewNextPage).toHaveBeenCalledTimes(1);
+    wrapper
+      .find('.table-pagination button')
+      .at(1)
+      .simulate('click');
+    expect(viewNextPage).toHaveBeenCalledTimes(1);
+  });
   it('calls deleteRowSelection on click of the delete button', () => {
     const deleteRowSelection = jest.fn();
     wrapper.setProps({ deleteRowSelection });

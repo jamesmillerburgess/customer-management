@@ -21,10 +21,4 @@ describe('gridPageProps Function', () => {
     const wrapper = shallow(<Cell index={0} original={{ avatarURL: 'a' }} />);
     expect(wrapper.find('Link').props().to).toBe('/companies/a');
   });
-  it('renders a date in the create date cells', () => {
-    const props = { data: [{ _id: 'a' }] };
-    const Cell = companyListProps.gridPageProps(props).columns[3].Cell;
-    const wrapper = shallow(<Cell value="20170101" index={0} />);
-    expect(wrapper.find('Localize').name()).toBe('Localize');
-  });
 });

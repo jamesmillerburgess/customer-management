@@ -4,6 +4,11 @@ import { Mongo } from 'meteor/mongo';
 
 import Teams from '../team/teamCollection';
 
+describe('team Function', () => {
+  it('defaults pageNumber parameter to 0', () => {
+    expect(pubs.team(new Mongo.Collection()).docs).toEqual([]);
+  });
+});
 describe('configurations.all Meteor Publication', () => {
   it('does not throw without a user', () => {
     Meteor._userId = null;
@@ -74,6 +79,16 @@ describe('opportunity.single Meteor Publication', () => {
     expect(() => Meteor.publications['opportunity.single']('b')).not.toThrow();
   });
 });
+describe('contact.team Meteor Publication', () => {
+  it('does not throw', () => {
+    expect(() => Meteor.publications['contact.team']([])).not.toThrow();
+  });
+});
+describe('company.team Meteor Publication', () => {
+  it('does not throw', () => {
+    expect(() => Meteor.publications['company.team']([])).not.toThrow();
+  });
+});
 describe('opportunity.team Meteor Publication', () => {
   it('returns an array of cursors if there is a team', () => {
     Teams.docs = [{ members: [] }];
@@ -88,6 +103,11 @@ describe('opportunity.team Meteor Publication', () => {
     expect(Meteor.publications['opportunity.team']('a').constructor.name).toBe(
       'Object'
     );
+  });
+});
+describe('user.single Meteor Publication', () => {
+  it('does not throw', () => {
+    expect(() => Meteor.publications['user.single']('a')).not.toThrow();
   });
 });
 describe('team.single Meteor Publication', () => {
@@ -105,8 +125,18 @@ describe('team.list Meteor Publication', () => {
     expect(() => Meteor.publications['team.list']([])).not.toThrow();
   });
 });
-describe('user.single Meteor Publication', () => {
+describe('contact.any Meteor Publication', () => {
   it('does not throw', () => {
-    expect(() => Meteor.publications['user.single']('a')).not.toThrow();
+    expect(() => Meteor.publications['contact.any']([])).not.toThrow();
+  });
+});
+describe('company.any Meteor Publication', () => {
+  it('does not throw', () => {
+    expect(() => Meteor.publications['company.any']([])).not.toThrow();
+  });
+});
+describe('opportunity.any Meteor Publication', () => {
+  it('does not throw', () => {
+    expect(() => Meteor.publications['opportunity.any']([])).not.toThrow();
   });
 });
