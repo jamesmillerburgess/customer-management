@@ -2,8 +2,6 @@
   width: 173px;
   margin-right: 32px;
 }
-.siderbar .list-header {
-}
 .sidebar li {
   font-weight: 300;
   transition: background-color 0.2s linear;
@@ -14,6 +12,9 @@
   color: #33475b;
   font-weight: 400;
   border-radius: 3px;
+}
+.sidebar a li {
+  padding: 12px 12px 10px 8px;
 }
 .sidebar a {
   text-decoration: none;

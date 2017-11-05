@@ -36,9 +36,9 @@ const getNumSelectedRows = rowSelection =>
 
 // First, there should be at least one visible row. Second, there should be at
 // least one element of the array that is true
-const getAreAllSelected = (rowSelection, data) =>
-  (data || []).length > 0 &&
-  data.reduce((prev, curr, i) => prev && rowSelection[curr._id], true);
+const getAreAllSelected = (rowSelection, ownProps) =>
+  (ownProps.data || []).length > 0 &&
+  ownProps.data.reduce((prev, curr, i) => prev && rowSelection[curr._id], true);
 
 const getDisablePrevButton = pageNumber => pageNumber === 0;
 
