@@ -32,6 +32,33 @@ const DataTableDisplay = props => (
         <Translate value="dataTable.next" />
       </button>
     </div>
+    <div
+      className={`button-footer ${props.areAnySelected
+        ? 'expanded'
+        : 'expandable'}`}
+      style={{
+        height: props.areAnySelected ? '90px' : '0px',
+      }}
+    >
+      <div className="button-group">
+        <button
+          className="button-secondary"
+          onClick={() => props.deleteRowSelection(props.rowSelection)}
+        >
+          <Translate value="tableEditor.delete" />
+        </button>
+        <div className="edited-properties">
+          {props.numSelectedRows === 1 ? (
+            <Translate value="tableEditor.singularSelectedText" />
+          ) : (
+            <Translate
+              value="tableEditor.pluralSelectedText"
+              numSelectedRows={props.numSelectedRows}
+            />
+          )}
+        </div>
+      </div>
+    </div>
   </div>
 );
 

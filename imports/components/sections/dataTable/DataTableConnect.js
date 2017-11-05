@@ -36,9 +36,9 @@ const getNumSelectedRows = rowSelection =>
 
 // First, there should be at least one visible row. Second, there should be at
 // least one element of the array that is true
-const getAreAllSelected = (rowSelection, ownProps) =>
-  (ownProps.data || []).length > 0 &&
-  ownProps.data.reduce((prev, curr, i) => prev && rowSelection[curr._id], true);
+const getAreAllSelected = (rowSelection, visibleRows) =>
+  (visibleRows || []).length > 0 &&
+  visibleRows.reduce((prev, curr, i) => prev && rowSelection[curr._id], true);
 
 const getDisablePrevButton = pageNumber => pageNumber === 0;
 
@@ -63,7 +63,7 @@ export const mapStateToProps = (state, ownProps) => {
     rowSelection,
     areAnySelected: getAreAnySelected(rowSelection),
     numSelectedRows: getNumSelectedRows(rowSelection),
-    areAllSelected: getAreAllSelected(rowSelection, ownProps),
+    areAllSelected: getAreAllSelected(rowSelection, visibleRows),
     disablePrevButton: getDisablePrevButton(pageNumber),
     disableNextButton: getDisableNextButton(pageNumber, ownProps),
   };
@@ -83,14 +83,18 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
       ownProps.deleteRows(rowSelection, () =>
         dispatch(setDataTablesProp(rowSelectionPath, {}))
       ),
-    viewPrevPage: pageNumber =>
+    viewPrevPage: pageNumber => {
       dispatch(
         setDataTablesProp(`${ownProps.tableId}.pageNumber`, pageNumber - 1)
-      ),
-    viewNextPage: pageNumber =>
+      );
+      dispatch(setDataTablesProp(rowSelectionPath, {}));
+    },
+    viewNextPage: pageNumber => {
       dispatch(
         setDataTablesProp(`${ownProps.tableId}.pageNumber`, pageNumber + 1)
-      ),
+      );
+      dispatch(setDataTablesProp(rowSelectionPath, {}));
+    },
   };
 };
 
