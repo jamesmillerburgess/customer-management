@@ -16,6 +16,7 @@ const headerProps = {
   title: <Translate value="dashboard.title" />,
   searchPlaceholder: <Translate value="dashboard.searchPlaceholder" />,
   addButtonText: <Translate value="dashboard.addReport" />,
+  hideButtons: true,
 };
 
 const Dashboard = () => (

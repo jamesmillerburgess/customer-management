@@ -2,8 +2,9 @@
   width: 173px;
   margin-right: 32px;
 }
+.siderbar .list-header {
+}
 .sidebar li {
-  padding: 12px 12px 10px 8px;
   font-weight: 300;
   transition: background-color 0.2s linear;
   color: #33475b;
@@ -18,8 +19,4 @@
   text-decoration: none;
 }
 .sidebar a:visited {
-}
-.sidebar li:hover {
-  background-color: #eaf0f6;
-  transition: none;
 }

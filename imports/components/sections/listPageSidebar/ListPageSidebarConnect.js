@@ -2,17 +2,20 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import ListPageSideBarDisplay from './ListPageSidebarDisplay';
-import { setFiltersProp } from '../../../state/actions/filtersActionCreators';
+import { setDataTablesProp } from '../../../state/actions/dataTablesActionCreators';
 
-const getFilter = (state, ownProps) =>
-  state.filters[ownProps.tableId] || 'SELF';
+const getOwnerFilter = (state, ownProps) =>
+  ((state.dataTables || {})[ownProps.tableId] || {}).ownerFilter || 'SELF';
 
 export const mapStateToProps = (state, ownProps) => ({
-  filter: getFilter(state, ownProps),
+  ownerFilter: getOwnerFilter(state, ownProps),
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  setFilter: value => dispatch(setFiltersProp(ownProps.tableId, value)),
+  setOwnerFilter: value => {
+    dispatch(setDataTablesProp(`${ownProps.tableId}.ownerFilter`, value));
+    dispatch(setDataTablesProp(`${ownProps.tableId}.pageNumber`, 0));
+  },
 });
 
 const ListPageSidebarConnect = withRouter(

@@ -7,16 +7,19 @@ import { Translate, Localize } from 'react-redux-i18n';
 import ListPageContainer from './ListPageContainer';
 import { setAppProp } from '../../../state/actions/appActionCreators';
 import { clearOverlayProps } from '../../../state/actions/overlayActionCreators';
+import AvatarField from '../../fields/avatarField/AvatarField';
+import CheckboxField from '../../fields/checkboxField/CheckboxField';
+import Teams from '../../../api/team/teamCollection';
 
 export const generateListPageProps = (singular, plural, collection) => ({
-  tableId: plural,
+  tableId: singular,
   path: `/${plural}`,
   subscription: `${singular}.user`,
   collection,
   title: <Translate value={`${plural}.title`} />,
   searchPlaceholder: `Search for ${plural}`,
   addButtonText: <Translate value={`${plural}.addButtonText`} />,
-  gridPageProps: items => ({
+  gridPageProps: props => ({
     sidebarHeader: <Translate value={`${plural}.allSidebarText`} />,
     noDataText: <Translate value={`${plural}.noDataText`} />,
     columns: [
@@ -24,13 +27,71 @@ export const generateListPageProps = (singular, plural, collection) => ({
         width: 45,
         resizable: false,
         sortable: false,
+        Header: cellProps => (
+          <CheckboxField
+            value={props.areAllSelected}
+            onChange={value =>
+              props.setAllRowSelection(
+                cellProps.data.reduce(
+                  (prev, curr) => ({
+                    ...prev,
+                    [curr._original._id]: value,
+                  }),
+                  {}
+                )
+              )}
+          />
+        ),
+        Cell: cellProps => (
+          <CheckboxField
+            value={props.rowSelection[cellProps.original._id]}
+            onChange={value =>
+              props.setRowSelection(cellProps.original._id, value)}
+          />
+        ),
       },
       {
         Header: <Translate value={`${plural}.nameColumn`} />,
         id: 'name',
         accessor: 'name',
-        Cell: props => (
-          <Link to={`/${plural}/${items[props.index]._id}`}>{props.value}</Link>
+        Cell: cellProps => (
+          <div className="name-cell">
+            <AvatarField
+              className="avatar"
+              publicId={
+                cellProps.original.avatarURL ||
+                (plural === 'contacts'
+                  ? 'empty-profile-pic_wqnyvm.png'
+                  : 'empty-company-pic_uokzyz')
+              }
+              height={32}
+              width={32}
+            />
+            <Link to={`/${plural}/${props.data[cellProps.index]._id}`}>
+              {cellProps.value}
+            </Link>
+          </div>
+        ),
+      },
+      {
+        Header: <Translate value={`${plural}.owner`} />,
+        id: 'owner',
+        accessor: 'users.0',
+        Cell: cellProps => (
+          <div className="name-cell">
+            <AvatarField
+              className="avatar"
+              publicId={
+                ((Meteor.users.findOne(cellProps.value) || {}).profile || {})
+                  .avatarURL || 'empty-profile-pic_wqnyvm.png'
+              }
+              height={32}
+              width={32}
+            />
+            <Link to={`/${plural}/${props.data[cellProps.index]._id}`}>
+              {(Meteor.users.findOne(cellProps.value) || {}).username}
+            </Link>
+          </div>
         ),
       },
       {
@@ -47,7 +108,15 @@ export const generateListPageProps = (singular, plural, collection) => ({
   }),
 });
 
-export const mapStateToProps = (state, ownProps) => ({});
+const getOwnerFilter = (state, ownProps) =>
+  ((state.dataTables || {})[ownProps.tableId] || {}).ownerFilter;
+const getPageNumber = (state, ownProps) =>
+  ((state.dataTables || {})[ownProps.tableId] || {}).pageNumber || 0;
+
+export const mapStateToProps = (state, ownProps) => ({
+  ownerFilter: getOwnerFilter(state, ownProps),
+  pageNumber: getPageNumber(state, ownProps),
+});
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   openOverlay: () => {

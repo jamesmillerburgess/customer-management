@@ -230,6 +230,11 @@ const enus = {
     singularSelectedText: "You've selected 1 row",
     pluralSelectedText: "You've selected %{numSelectedRows} rows",
   },
+  dataTable: {
+    previous: 'Previous',
+    pagination: 'Page %{pageNumber}',
+    next: 'Next',
+  },
 };
 
 export default enus;

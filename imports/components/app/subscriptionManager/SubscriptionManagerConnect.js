@@ -4,25 +4,44 @@ import { Meteor } from 'meteor/meteor';
 import SubscriptionManagerContainer from './SubscriptionManagerContainer';
 import { setAppProp } from '../../../state/actions/appActionCreators';
 
-const getContacts = state => {
-  switch (state.filters.contacts) {
-    case 'SELF':
-      return ['contact.user'];
-    case 'TEAM':
-      return ['contact.team'];
+const getPageNumber = (state, tableId) =>
+  ((state.dataTables || {})[tableId] || {}).pageNumber || 0;
+
+const getPaginatedSubscription = (state, options) => {
+  const pageNumber = getPageNumber(state, options.prefix);
+  return [getSubcriptionName(state, options), pageNumber];
+};
+
+const getSubcriptionName = (state, options) => {
+  const { prefix } = options;
+  switch (((state.dataTables || {})[prefix] || {}).ownerFilter) {
     case 'ANY':
+      return `${prefix}.any`;
+    case 'TEAM':
+      return `${prefix}.team`;
+    case 'SELF':
     default:
-      return ['contact.any'];
+      return `${prefix}.user`;
   }
+};
+
+const getSubscription = (state, options) => {
+  if (options.paginated) {
+    return getPaginatedSubscription(state, options);
+  }
+  return [getSubscriptionName(state, options)];
 };
 
 export const mapStateToProps = state => ({
   loading: state.app.loading === false ? false : true,
   subscriptions: {
     configurations: ['configurations.all'],
-    contacts: getContacts(state),
-    companies: ['company.user'],
-    opportunities: ['opportunity.user'],
+    contacts: getSubscription(state, { prefix: 'contact', paginated: true }),
+    companies: getPaginatedSubscription(state, {
+      prefix: 'company',
+      paginated: true,
+    }),
+    opportunities: getPaginatedSubscription(state, { prefix: 'opportunity' }),
     teams: [
       'team.single',
       Meteor.user() && Meteor.user().profile ? Meteor.user().profile.team : '',

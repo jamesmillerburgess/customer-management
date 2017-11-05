@@ -36,7 +36,7 @@
   }
   .rt-tr-group {
     transition: all 0.15s ease-out;
-    height: 40px;
+    height: 46px;
   }
   .rt-tr-group:hover {
     background-color: rgba(0, 77, 128, 0.0392157);
@@ -47,7 +47,21 @@
     padding-left: 24px;
   }
   .rt-noData {
-    background-color: transparent;
-    top: 80%;
+    background-color: transparent !important;
+    top: 80% !important;
   }
+  .name-cell {
+    display: flex;
+    align-items: center;
+    line-height: 32px;
+  }
+  .name-cell .avatar {
+    margin: 0 10px 0 0;
+  }
+}
+.table-pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

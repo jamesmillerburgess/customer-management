@@ -6,7 +6,12 @@ import OpportunitiesContainer from './OpportunitiesContainer';
 import { setAppProp } from '../../../state/actions/appActionCreators';
 import { clearOverlayProps } from '../../../state/actions/overlayActionCreators';
 
-export const mapStateToProps = () => ({});
+const getOwnerFilter = state =>
+  ((state.dataTables || {}).opportunity || {}).ownerFilter || 'SELF';
+
+export const mapStateToProps = state => ({
+  ownerFilter: getOwnerFilter(state),
+});
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   openOverlay: () => {

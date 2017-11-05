@@ -2,32 +2,37 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import ListPageDisplay from './ListPageDisplay';
 
-export const sort = (a, b) => b.createDate - a.createDate;
+import Teams from '../../../api/team/teamCollection';
 
 export const linkMeteorData = props => {
   if (!Meteor.userId()) {
     return { ...props, items: [] };
   }
-  const ownerFilter = {};
-  switch (props.tableId) {
-    case 'SELF':
-      ownerFilter.users = Meteor.userId();
+  const ownerQuery = {};
+  switch (props.ownerFilter) {
+    case 'ANY':
       break;
     case 'TEAM':
-      ownerFilter.$in = [(Meteor.user().profile || {}).team || Meteor.userId()];
+      ownerQuery['users.0'] = {
+        $in: (Teams.findOne((Meteor.user().profile || {}).team || {}) || {})
+          .members || [Meteor.userId()],
+      };
       break;
-    case 'ANY':
+    case 'SELF':
     default:
+      ownerQuery['users.0'] = { $in: [Meteor.userId()] };
       break;
   }
-  const items = props.collection
-    .find({
-      ...ownerFilter,
-      isArchived: false,
-    })
-    .fetch()
-    .sort(sort);
-  return { ...props, items };
+  const data = props.collection
+    .find(
+      {
+        ...ownerQuery,
+        isArchived: false,
+      },
+      { sort: { createDate: -1 } }
+    )
+    .fetch();
+  return { ...props, data };
 };
 
 const ListPageContainer = createContainer(linkMeteorData, ListPageDisplay);

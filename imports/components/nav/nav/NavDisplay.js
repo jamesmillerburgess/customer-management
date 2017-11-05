@@ -87,7 +87,7 @@ const NavDisplay = props => (
     </div>
     {props.user && (
       <div className="button-group search-and-profile">
-        <NavSearchInput placeholder={I18n.t('nav.search')} />
+        {/* <NavSearchInput placeholder={I18n.t('nav.search')} /> */}
         <div>
           <button
             id="profile-button"

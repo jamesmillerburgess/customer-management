@@ -4,6 +4,7 @@ import { Translate } from 'react-redux-i18n';
 import './OpportunitiesDisplay.scss';
 import PageHeader from '../PageHeader';
 import OpportunityBoardConnect from './OpportunityBoardConnect';
+import ListPageSidebar from '../../sections/listPageSidebar/ListPageSidebar';
 
 const headerProps = {
   title: <Translate value="opportunities.title" />,
@@ -12,9 +13,16 @@ const headerProps = {
 };
 
 const OpportunitiesDisplay = props => (
-  <div>
+  <div className="opportunities">
     <PageHeader {...headerProps} onClickAdd={props.openOverlay} />
-    <OpportunityBoardConnect cards={props.opportunities} />
+    <div className="section-body">
+      <div className="sidebar">
+        <ListPageSidebar tableId="opportunity" />
+      </div>
+      <div className="content">
+        <OpportunityBoardConnect cards={props.opportunities} />
+      </div>
+    </div>
   </div>
 );
 

@@ -12,9 +12,9 @@ const ListPageSidebarDisplay = props => (
     <li className="list-header">Owner</li>
     <li>
       <OptionField
-        value={props.filter}
+        value={props.ownerFilter}
         options={options}
-        onChange={props.setFilter}
+        onChange={props.setOwnerFilter}
       />
     </li>
   </ul>
