@@ -61,7 +61,7 @@ describe('ListPageConnect.js', () => {
       let Cell = LPC.generateListPageProps('a', 'contacts').gridPageProps({
         data: [{ _id: 'a' }],
       }).columns[2].Cell;
-      let cellProps = { value: 'a', index: 0 };
+      let cellProps = { value: 'a', index: 0, original: { _id: 'a' } };
       Meteor.users.docs = [];
       let wrapper = shallow(<Cell {...cellProps} />);
       expect(wrapper.find('AvatarField').props().publicId).toBe(

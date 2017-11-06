@@ -69,7 +69,7 @@ export const generateListPageProps = (singular, plural, collection) => ({
               height={32}
               width={32}
             />
-            <Link to={`/${plural}/${props.data[cellProps.index]._id}`}>
+            <Link to={`/${plural}/${cellProps.original._id}`}>
               {cellProps.value}
             </Link>
           </div>
@@ -90,7 +90,7 @@ export const generateListPageProps = (singular, plural, collection) => ({
               height={32}
               width={32}
             />
-            <Link to={`/${plural}/${props.data[cellProps.index]._id}`}>
+            <Link to={`/${plural}/${cellProps.original._id}`}>
               {(Meteor.users.findOne(cellProps.value) || {}).username}
             </Link>
           </div>
