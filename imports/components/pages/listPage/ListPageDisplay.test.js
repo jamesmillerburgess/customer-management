@@ -26,11 +26,15 @@ describe('ListPageDisplay Component', () => {
     expect(openOverlay).toHaveBeenCalled();
   });
   it('passes empty data to GridPage if still loading', () => {
-    wrapper.setProps({ loading: true, items: ['a'] });
-    expect(wrapper.find('GridPage').props().data).toEqual([]);
+    wrapper.setProps({ loading: true, data: ['a'] });
+    expect(
+      wrapper.find('withRouter(Connect(DataTableDisplay))').props().data
+    ).toEqual([]);
   });
   it('passes items to GridPage if not still loading', () => {
-    wrapper.setProps({ loading: false, items: ['a'] });
-    expect(wrapper.find('GridPage').props().data).toEqual(['a']);
+    wrapper.setProps({ loading: false, data: ['a'] });
+    expect(
+      wrapper.find('withRouter(Connect(DataTableDisplay))').props().data
+    ).toEqual(['a']);
   });
 });

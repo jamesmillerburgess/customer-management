@@ -4,11 +4,13 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-import Grid from './Grid';
+import TimelineEntry from './TimelineEntry';
 
-describe('Grid', () => {
+describe('TimelineEntry Component', () => {
   let wrapper;
-  beforeEach(() => (wrapper = shallow(<Grid />)));
-  afterEach(() => wrapper.unmount());
+  const props = { fields: [] };
+  beforeEach(() => {
+    wrapper = shallow(<TimelineEntry {...props} />);
+  });
   it('renders without error', () => {});
 });

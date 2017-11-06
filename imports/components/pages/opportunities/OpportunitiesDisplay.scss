@@ -1,3 +1,17 @@
+.opportunities .section-body {
+  padding: 0;
+  margin-right: 0;
+  overflow: hidden;
+}
+.opportunities .content {
+  margin-bottom: 0;
+  width: calc(100vw - 230px);
+  // overflow-x: auto;
+}
+.opportunities .sidebar {
+  width: 150px;
+  margin-top: 48px;
+}
 .opportunities-board {
   display: flex;
   flex-direction: row;

@@ -219,11 +219,25 @@ const enus = {
     INACTIVE: 'Inactive',
     EXITED: 'Exited',
   },
+  ownerFilters: {
+    SELF: 'Self',
+    TEAM: 'Team',
+    ANY: 'Any',
+  },
   dateFieldFormat: 'DD MMM YYYY',
   tableEditor: {
     delete: 'Delete',
     singularSelectedText: "You've selected 1 row",
     pluralSelectedText: "You've selected %{numSelectedRows} rows",
+  },
+  dataTable: {
+    previous: 'Previous',
+    pagination: 'Page %{pageNumber}',
+    next: 'Next',
+  },
+  listPageSidebar: {
+    owner: 'Owner',
+    showArchived: 'Show archived',
   },
 };
 

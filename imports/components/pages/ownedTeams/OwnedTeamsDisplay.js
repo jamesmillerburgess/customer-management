@@ -4,38 +4,13 @@ import { Translate, Localize } from 'react-redux-i18n';
 
 import TextField from '../../fields/textField/TextField';
 import CheckboxField from '../../fields/checkboxField/CheckboxField';
-import Grid from '../../fields/Grid';
+import DataTable from '../../sections/dataTable/DataTable';
+import { checkboxColumn } from '../listPage/ListPageConnect';
 
 export const gridPageProps = props => ({
   noDataText: <Translate value="profile.noTeams" />,
   columns: [
-    {
-      width: 45,
-      resizable: false,
-      sortable: false,
-      Header: cellProps => (
-        <CheckboxField
-          value={props.areAllSelected}
-          onChange={value =>
-            props.setAllRowSelection(
-              cellProps.data.reduce(
-                (prev, curr) => ({
-                  ...prev,
-                  [curr._original._id]: value,
-                }),
-                {}
-              )
-            )}
-        />
-      ),
-      Cell: cellProps => (
-        <CheckboxField
-          value={props.rowSelection[cellProps.original._id]}
-          onChange={value =>
-            props.setRowSelection(cellProps.original._id, value)}
-        />
-      ),
-    },
+    checkboxColumn(props),
     {
       Header: <Translate value="profile.nameColumn" />,
       id: 'name',
@@ -74,34 +49,12 @@ const OwnedTeamsDisplay = props => (
       </button>
     </div>
     <div className="input-group">
-      <Grid {...gridPageProps(props)} data={props.ownedTeams} />
-      <div
-        className={`button-footer ${props.areAnySelected
-          ? 'expanded'
-          : 'expandable'}`}
-        style={{
-          height: props.areAnySelected ? '90px' : '0px',
-        }}
-      >
-        <div className="button-group">
-          <button
-            className="button-secondary"
-            onClick={() => props.deleteRowSelection(props.rowSelection)}
-          >
-            <Translate value="tableEditor.delete" />
-          </button>
-          <div className="edited-properties">
-            {props.numSelectedRows === 1 ? (
-              <Translate value="tableEditor.singularSelectedText" />
-            ) : (
-              <Translate
-                value="tableEditor.pluralSelectedText"
-                numSelectedRows={props.numSelectedRows}
-              />
-            )}
-          </div>
-        </div>
-      </div>
+      <DataTable
+        gridPageProps={gridPageProps}
+        data={props.ownedTeams}
+        tableId="ownedTeams"
+        deleteRows={props.deleteTeams}
+      />
     </div>
   </div>
 );

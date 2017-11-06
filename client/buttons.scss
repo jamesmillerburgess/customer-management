@@ -19,8 +19,11 @@ button:hover {
   color: white;
 }
 
-.button-primary.disabled {
+.button-primary.disabled,
+.button-secondary.disabled {
   background-color: #ccc;
+  color: white;
+  border-color: #ccc;
   cursor: auto;
 }
 

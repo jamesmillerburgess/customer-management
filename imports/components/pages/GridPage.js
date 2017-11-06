@@ -1,19 +1,22 @@
 import React from 'react';
-import Grid from '../fields/Grid';
+import Grid from '../sections/dataTable/DataTable';
 import './GridPage.scss';
 
+import ListPageSidebar from '../sections/listPageSidebar/ListPageSidebar';
 import SearchInput from '../fields/SearchInput';
 import ObjectLink from '../nav/ObjectLink';
 
-const GridPage = ({ sidebarHeader, noDataText, columns, data }) => (
+const GridPage = props => (
   <div className="section-body">
     <div className="sidebar">
-      <ul>
-        <li className="sidebar-header">{sidebarHeader}</li>
-      </ul>
+      <ListPageSidebar tableId={props.tableId} />
     </div>
     <div className="content">
-      <Grid data={data} columns={columns} noDataText={noDataText} />
+      <Grid
+        data={props.data}
+        columns={props.columns}
+        noDataText={props.noDataText}
+      />
     </div>
   </div>
 );

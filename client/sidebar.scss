@@ -3,10 +3,16 @@
   margin-right: 32px;
 }
 .sidebar li {
-  padding: 12px 12px 10px 8px;
   font-weight: 300;
   transition: background-color 0.2s linear;
   color: #33475b;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.sidebar .list-item-wrapper {
+  width: 100%;
 }
 .sidebar a.active li {
   background-color: #eaf0f6;
@@ -14,12 +20,12 @@
   font-weight: 400;
   border-radius: 3px;
 }
+.sidebar a li {
+  padding: 0 0 0 10px;
+}
 .sidebar a {
   text-decoration: none;
 }
-.sidebar a:visited {
-}
-.sidebar li:hover {
-  background-color: #eaf0f6;
-  transition: none;
+.sidebar .checkbox {
+  margin-right: 5px;
 }

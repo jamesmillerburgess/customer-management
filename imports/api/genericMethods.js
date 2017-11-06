@@ -57,6 +57,14 @@ export const create = (collection, object, activityId) => {
   return id;
 };
 
+export const archive = (collection, objects) => {
+  collection.update(
+    { _id: { $in: objects } },
+    { $set: { isArchived: true } },
+    { multi: true }
+  );
+};
+
 export const saveProperties = (
   collection,
   propertiesPage,
@@ -118,6 +126,7 @@ export const buildGenericMethods = (
 ) => ({
   [`${collectionName}.create`]: (object, activityId) =>
     create(collection, object, activityId),
+  [`${collectionName}.archive`]: objects => archive(collection, objects),
   [`${collectionName}.saveProperties`]: (objectId, object) =>
     saveProperties(collection, propertiesPage, objectId, object),
   [`${collectionName}.addNote`]: (objectId, note) =>
