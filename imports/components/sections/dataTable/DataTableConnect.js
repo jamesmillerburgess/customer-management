@@ -95,6 +95,10 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
       ownProps.deleteRows(rowSelection, () =>
         dispatch(setDataTablesProp(rowSelectionPath, {}))
       ),
+    archiveRowSelection: rowSelection =>
+      ownProps.archiveRows(rowSelection, () =>
+        dispatch(setDataTablesProp(rowSelectionPath, {}))
+      ),
     viewPrevPage: pageNumber => {
       dispatch(
         setDataTablesProp(`${ownProps.tableId}.pageNumber`, pageNumber - 1)

@@ -8,6 +8,8 @@ const sort = (a, b) => {
   return b.createDate - a.createDate;
 };
 
+export const getId = a => a._id;
+
 const OwnedTeamsContainer = createContainer(props => {
   const user = Meteor.user();
   let ownedTeams = [];
@@ -17,7 +19,15 @@ const OwnedTeamsContainer = createContainer(props => {
       .fetch()
       .sort(sort);
   }
-  return { ...props, ownedTeams };
+  const deleteTeams = (selectedTeams, cb) => {
+    Meteor.call('team.remove', Object.keys(selectedTeams), (err, res) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+    cb();
+  };
+  return { ...props, ownedTeams, deleteTeams };
 }, OwnedTeamsConnect);
 
 export default OwnedTeamsContainer;

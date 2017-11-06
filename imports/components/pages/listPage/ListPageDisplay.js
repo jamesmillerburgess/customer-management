@@ -20,9 +20,9 @@ const ListPageDisplay = props => (
       <div className="content">
         <DataTable
           data={props.loading ? [] : props.data}
-          match={props.match}
           gridPageProps={props.gridPageProps}
           tableId={props.tableId}
+          archiveRows={props.archiveObjects}
         />
       </div>
     </div>

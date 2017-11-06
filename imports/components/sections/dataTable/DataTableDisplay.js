@@ -41,12 +41,22 @@ const DataTableDisplay = props => (
       }}
     >
       <div className="button-group">
-        <button
-          className="button-secondary"
-          onClick={() => props.deleteRowSelection(props.rowSelection)}
-        >
-          <Translate value="tableEditor.delete" />
-        </button>
+        {props.deleteRows && (
+          <button
+            className="button-secondary"
+            onClick={() => props.deleteRowSelection(props.rowSelection)}
+          >
+            <Translate value="tableEditor.delete" />
+          </button>
+        )}
+        {props.archiveRows && (
+          <button
+            className="button-secondary"
+            onClick={() => props.archiveRowSelection(props.rowSelection)}
+          >
+            <Translate value="tableEditor.archive" />
+          </button>
+        )}
         <div className="edited-properties">
           {props.numSelectedRows === 1 ? (
             <Translate value="tableEditor.singularSelectedText" />

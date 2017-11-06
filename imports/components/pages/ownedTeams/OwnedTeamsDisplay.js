@@ -53,6 +53,7 @@ const OwnedTeamsDisplay = props => (
         gridPageProps={gridPageProps}
         data={props.ownedTeams}
         tableId="ownedTeams"
+        deleteRows={props.deleteTeams}
       />
     </div>
   </div>

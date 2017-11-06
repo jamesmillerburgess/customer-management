@@ -22,10 +22,7 @@ export const getOwnerQuery = ownerFilter => {
   }
 };
 
-export const linkMeteorData = props => {
-  if (!Meteor.userId()) {
-    return { ...props, data: [] };
-  }
+export const getData = props => {
   const ownerQuery = getOwnerQuery(props.ownerFilter);
   const data = props.collection
     .find(
@@ -36,7 +33,29 @@ export const linkMeteorData = props => {
       { sort: { createDate: -1 } }
     )
     .fetch();
-  return { ...props, data };
+  return data;
+};
+
+export const getArchiveObjects = props => (selectedObjects, cb) => {
+  Meteor.call(
+    `${props.tableId}.archive`,
+    Object.keys(selectedObjects),
+    (err, res) => {
+      if (err) {
+        console.error(err);
+      }
+    }
+  );
+  cb();
+};
+
+export const linkMeteorData = props => {
+  if (!Meteor.userId()) {
+    return { ...props, data: [] };
+  }
+  const data = getData(props);
+  const archiveObjects = getArchiveObjects(props);
+  return { ...props, data, archiveObjects };
 };
 
 const ListPageContainer = createContainer(linkMeteorData, ListPageDisplay);
