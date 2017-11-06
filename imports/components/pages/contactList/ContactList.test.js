@@ -19,7 +19,9 @@ describe('gridPageProps Function', () => {
   it('renders a link in the name cells', () => {
     const Cell = contactListProps.gridPageProps({ data: [{ _id: 'a' }] })
       .columns[1].Cell;
-    const wrapper = shallow(<Cell index={0} original={{ avatarURL: 'a' }} />);
+    const wrapper = shallow(
+      <Cell index={0} original={{ _id: 'a', avatarURL: 'a' }} />
+    );
     expect(wrapper.find('Link').props().to).toBe('/contacts/a');
   });
 });
