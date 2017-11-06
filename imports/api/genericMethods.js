@@ -8,6 +8,7 @@ import Activity from './activity/activityCollection';
 import { buildSearchRegExp } from './methodUtils';
 
 const CREATION = 'CREATION';
+const ARCHIVAL = 'ARCHIVAL';
 const NOTE = 'NOTE';
 const CALL = 'CALL';
 const EMAIL = 'EMAIL';
@@ -63,6 +64,17 @@ export const archive = (collection, objects) => {
     { $set: { isArchived: true } },
     { multi: true }
   );
+  const activity = {
+    type: ARCHIVAL,
+    timestamp: new Date(),
+    userId: Meteor.userId(),
+  };
+  objects.forEach(id => {
+    const activityId = addActivity(activity, collection, id);
+    collection.update(id, {
+      $push: { timeline: Activity.findOne(activityId) },
+    });
+  });
 };
 
 export const saveProperties = (

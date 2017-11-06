@@ -53,6 +53,7 @@ const makeTimelineMessage = (entry, type) => (
 
 export const TIMELINE_MESSAGES = {
   CREATION: entry => makeTimelineMessage(entry, 'creation'),
+  ARCHIVAL: entry => makeTimelineMessage(entry, 'archival'),
   NOTE: entry => makeTimelineMessage(entry, 'note'),
   CALL: entry => makeTimelineMessage(entry, 'call'),
   EMAIL: entry => makeTimelineMessage(entry, 'email'),
@@ -66,6 +67,7 @@ export const TIMELINE_MESSAGES = {
 
 const TIMELINE_ICONS = {
   CREATION: 'fa-plus',
+  ARCHIVAL: 'fa-archive',
   NOTE: 'fa-pencil',
   CALL: 'fa-phone',
   EMAIL: 'fa-envelope',
@@ -75,19 +77,6 @@ const TIMELINE_ICONS = {
   STATUS_CHANGE_BACKWARD: 'fa-angle-double-left',
   JOIN_TEAM: 'fa-plus',
   LEAVE_TEAM: 'fa-minus',
-};
-
-const TIMELINE_AVATARS = {
-  CREATION: '/empty-company-pic.png',
-  NOTE: 'empty-profile-pic_wqnyvm.png',
-  CALL: 'empty-profile-pic_wqnyvm.png',
-  EMAIL: 'empty-profile-pic_wqnyvm.png',
-  MEETING: 'empty-profile-pic_wqnyvm.png',
-  QUOTE: 'empty-profile-pic_wqnyvm.png',
-  STATUS_CHANGE_FORWARD: '/empty-profile-pic.png',
-  STATUS_CHANGE_BACKWARD: '/empty-profile-pic.png',
-  JOIN_TEAM: '/empty-profile-pic.png',
-  LEAVE_TEAM: '/empty-profile-pic.png',
 };
 
 const TimelineEntryDisplay = props => (
