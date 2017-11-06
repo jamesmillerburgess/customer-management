@@ -53,6 +53,7 @@ const enus = {
   },
   timeline: {
     creation: ['%{username} created ', ' '],
+    archival: ['%{username} archived ', ' '],
     note: ['%{username} left a note on ', ' '],
     call: ['%{username} logged a call to ', ' '],
     email: ['%{username} logged an email to ', ' '],

@@ -94,6 +94,7 @@ describe('TimelineEntryDisplay Component', () => {
   describe('TIMELINE_MESSAGES Object', () => {
     it('returns some functions', () => {
       expect(() => TIMELINE_MESSAGES.CREATION({})).not.toThrow();
+      expect(() => TIMELINE_MESSAGES.ARCHIVAL({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.NOTE({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.CALL({})).not.toThrow();
       expect(() => TIMELINE_MESSAGES.EMAIL({})).not.toThrow();
