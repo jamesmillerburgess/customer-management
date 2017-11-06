@@ -92,21 +92,35 @@ describe('ListPageConnect.js', () => {
       expect(LPC.getPageNumber()).toBe(0);
     });
   });
+  describe('getShowArchived Function', () => {
+    it('gets showArchived based on tableId from ownprops', () => {
+      const state = { dataTables: { a: { showArchived: true } } };
+      const ownProps = { tableId: 'a' };
+      expect(LPC.getShowArchived(state, ownProps)).toBe(true);
+    });
+    it('handles missing parameters and properties', () => {
+      expect(LPC.getShowArchived()).toBe(false);
+    });
+  });
   describe('mapStateToProps Function', () => {
     it('maps state to props', () => {
       const state = {
-        dataTables: { c: { ownerFilter: 'a', pageNumber: 1 } },
+        dataTables: {
+          c: { ownerFilter: 'a', pageNumber: 1, showArchived: true },
+        },
         other: 'b',
       };
       const ownProps = { tableId: 'c' };
       expect(LPC.mapStateToProps(state, ownProps)).toEqual({
         ownerFilter: 'a',
         pageNumber: 1,
+        showArchived: true,
       });
       state.dataTables.c = {};
       expect(LPC.mapStateToProps(state, ownProps)).toEqual({
         ownerFilter: undefined,
         pageNumber: 0,
+        showArchived: false,
       });
     });
   });

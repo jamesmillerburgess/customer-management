@@ -235,6 +235,10 @@ const enus = {
     pagination: 'Page %{pageNumber}',
     next: 'Next',
   },
+  listPageSidebar: {
+    owner: 'Owner',
+    showArchived: 'Show archived',
+  },
 };
 
 export default enus;

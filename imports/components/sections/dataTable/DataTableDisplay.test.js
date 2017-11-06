@@ -81,11 +81,20 @@ describe('DataTableDisplay.js', () => {
     expect(viewNextPage).toHaveBeenCalledTimes(1);
   });
   it('calls deleteRowSelection on click of the delete button', () => {
+    const deleteRows = jest.fn();
     const deleteRowSelection = jest.fn();
-    wrapper.setProps({ deleteRowSelection });
+    wrapper.setProps({ deleteRows, deleteRowSelection });
     expect(deleteRowSelection).toHaveBeenCalledTimes(0);
     wrapper.find('.button-group .button-secondary').simulate('click');
     expect(deleteRowSelection).toHaveBeenCalledTimes(1);
+  });
+  it('calls archiveRowSelection on click of the archive button', () => {
+    const archiveRows = jest.fn();
+    const archiveRowSelection = jest.fn();
+    wrapper.setProps({ archiveRows, archiveRowSelection });
+    expect(archiveRowSelection).toHaveBeenCalledTimes(0);
+    wrapper.find('.button-group .button-secondary').simulate('click');
+    expect(archiveRowSelection).toHaveBeenCalledTimes(1);
   });
   it('sets the pluralization of row/rows depending on numSelectedRows', () => {
     wrapper.setProps({ numSelectedRows: 1 });

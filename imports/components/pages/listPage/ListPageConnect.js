@@ -106,10 +106,13 @@ export const getOwnerFilter = (state, ownProps) =>
 export const getPageNumber = (state, ownProps) =>
   (((state || {}).dataTables || {})[(ownProps || {}).tableId] || {})
     .pageNumber || 0;
+export const getShowArchived = (state = {}, ownProps = {}) =>
+  ((state.dataTables || {})[ownProps.tableId] || '').showArchived || false;
 
 export const mapStateToProps = (state, ownProps) => ({
   ownerFilter: getOwnerFilter(state, ownProps),
   pageNumber: getPageNumber(state, ownProps),
+  showArchived: getShowArchived(state, ownProps),
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({

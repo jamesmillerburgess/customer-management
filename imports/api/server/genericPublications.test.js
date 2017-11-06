@@ -4,9 +4,74 @@ import { Mongo } from 'meteor/mongo';
 
 import Teams from '../team/teamCollection';
 
+describe('getSkip Function', () => {
+  it('returns undefined if pageNumber is undefined', () => {
+    expect(pubs.getSkip()).toBe(undefined);
+  });
+  it('returns at least zero', () => {
+    expect(pubs.getSkip(-1)).toBe(0);
+    expect(pubs.getSkip(0)).toBe(0);
+    expect(pubs.getSkip(1)).toBe(0);
+    expect(pubs.getSkip(2)).toBe(10);
+  });
+});
+describe('getLimit Function', () => {
+  it('returns undefined if pageNumber is undefined', () => {
+    expect(pubs.getLimit()).toBe(undefined);
+  });
+  it('returns at 20 if pageNumber is 0 and 30 otherwise', () => {
+    expect(pubs.getLimit(0)).toBe(20);
+    expect(pubs.getLimit(1)).toBe(30);
+    expect(pubs.getLimit(2)).toBe(30);
+  });
+});
+describe('user Function', () => {
+  it('handles showArchived param', () => {
+    Meteor._userId = {};
+    expect(
+      pubs.user(new Mongo.Collection(), {
+        showArchived: true,
+      }).docs
+    ).toEqual([]);
+    expect(
+      pubs.user(new Mongo.Collection(), {
+        showArchived: false,
+      }).docs
+    ).toEqual([]);
+  });
+});
 describe('team Function', () => {
   it('defaults pageNumber parameter to 0', () => {
     expect(pubs.team(new Mongo.Collection()).docs).toEqual([]);
+  });
+  it('handles showArchived param', () => {
+    expect(
+      pubs.team(new Mongo.Collection(), {
+        showArchived: true,
+      }).docs
+    ).toEqual([]);
+    expect(
+      pubs.team(new Mongo.Collection(), {
+        showArchived: false,
+      }).docs
+    ).toEqual([]);
+  });
+});
+describe('any Function', () => {
+  it('handles showArchived param', () => {
+    expect(
+      typeof pubs.any(new Mongo.Collection(), {
+        showArchived: true,
+      })
+    ).toBe('object');
+    expect(
+      typeof pubs.any(new Mongo.Collection(), {
+        showArchived: false,
+      })
+    ).toBe('object');
+  });
+  it('handles missing params', () => {
+    expect(typeof pubs.any(new Mongo.Collection())).toBe('object');
   });
 });
 describe('configurations.all Meteor Publication', () => {

@@ -23,15 +23,12 @@ export const getOwnerQuery = ownerFilter => {
 };
 
 export const getData = props => {
-  const ownerQuery = getOwnerQuery(props.ownerFilter);
+  const query = getOwnerQuery(props.ownerFilter);
+  if (!props.showArchived) {
+    query.isArchived = false;
+  }
   const data = props.collection
-    .find(
-      {
-        ...ownerQuery,
-        isArchived: false,
-      },
-      { sort: { createDate: -1 } }
-    )
+    .find(query, { sort: { createDate: -1 } })
     .fetch();
   return data;
 };

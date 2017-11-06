@@ -4,13 +4,13 @@ import { Meteor } from 'meteor/meteor';
 import SubscriptionManagerContainer from './SubscriptionManagerContainer';
 import { setAppProp } from '../../../state/actions/appActionCreators';
 
-const getPageNumber = (state, tableId) =>
-  ((state.dataTables || {})[tableId] || {}).pageNumber || 0;
+// const getPageNumber = (state, tableId) =>
+//   ((state.dataTables || {})[tableId] || {}).pageNumber || 0;
 
-const getPaginatedSubscription = (state, options) => {
-  const pageNumber = getPageNumber(state, options.prefix);
-  return [getSubscriptionName(state, options), pageNumber];
-};
+// const getPaginatedSubscription = (state, options) => {
+//   const pageNumber = getPageNumber(state, options.prefix);
+//   return [getSubscriptionName(state, options), pageNumber];
+// };
 
 const getOwnerFilter = (state, prefix) =>
   (((state || {}).dataTables || {})[prefix] || {}).ownerFilter;
@@ -28,11 +28,22 @@ export const getSubscriptionName = (state, options = {}) => {
   }
 };
 
-const getSubscription = (state, options) => {
-  if (options.paginated) {
-    return getPaginatedSubscription(state, options);
+export const getPageNumber = (state, options) => {
+  if (!options.paginated) {
+    return undefined;
   }
-  return [getSubscriptionName(state, options)];
+  return ((state.dataTables || {})[options.prefix] || {}).pageNumber || 0;
+};
+
+export const getShowArchived = (state = {}, options = {}) =>
+  ((state.dataTables || {})[options.prefix] || '').showArchived || false;
+
+export const getSubscription = (state, options) => {
+  const params = {
+    pageNumber: getPageNumber(state, options),
+    showArchived: getShowArchived(state, options),
+  };
+  return [getSubscriptionName(state, options), params];
 };
 
 export const mapStateToProps = state => ({

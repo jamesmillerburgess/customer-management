@@ -6,6 +6,13 @@
   font-weight: 300;
   transition: background-color 0.2s linear;
   color: #33475b;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.sidebar .list-item-wrapper {
+  width: 100%;
 }
 .sidebar a.active li {
   background-color: #eaf0f6;
@@ -14,8 +21,11 @@
   border-radius: 3px;
 }
 .sidebar a li {
-  padding: 12px 12px 10px 8px;
+  padding: 0 0 0 10px;
 }
 .sidebar a {
   text-decoration: none;
+}
+.sidebar .checkbox {
+  margin-right: 5px;
 }

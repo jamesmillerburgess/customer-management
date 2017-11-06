@@ -30,6 +30,27 @@ describe('ListPageContainer.js', () => {
       expect(LPC.getOwnerQuery('ANY')).toEqual({});
     });
   });
+  describe('getData Function', () => {
+    it('reads showArchived property', () => {
+      const props = { collection: new Mongo.Collection(), showArchived: false };
+      expect(() => LPC.getData(props)).not.toThrow();
+      props.showArchived = true;
+      expect(() => LPC.getData(props)).not.toThrow();
+    });
+  });
+  describe('getArchiveObjects Function', () => {
+    it('calls back', () => {
+      const cb = jest.fn();
+      expect(cb).toHaveBeenCalledTimes(0);
+      LPC.getArchiveObjects({})({}, cb);
+      expect(cb).toHaveBeenCalledTimes(1);
+    });
+    it('handles errors', () => {
+      const cb = jest.fn();
+      Meteor.err = 'err';
+      expect(() => LPC.getArchiveObjects({})({}, cb)).not.toThrow();
+    });
+  });
   describe('ListPageContainer Component', () => {
     let wrapper;
     const props = { collection: new Mongo.Collection() };

@@ -3,13 +3,23 @@ import ListPageSidebarConnect, * as LPSC from './ListPageSidebarConnect';
 
 describe('ListPageSidebarConnect.js', () => {
   describe('getOwnerFilter Function', () => {
-    it('gets the ownerFilter based on the tableId in ownProps', () => {
+    it('gets ownerFilter based on tableId in ownProps', () => {
       const state = { dataTables: { a: { ownerFilter: 'b' } } };
       const ownProps = { tableId: 'a' };
       expect(LPSC.getOwnerFilter(state, ownProps)).toBe('b');
     });
     it('handles missing parameters and properties', () => {
       expect(LPSC.getOwnerFilter()).toBe('SELF');
+    });
+  });
+  describe('getShowArchived Function', () => {
+    it('get showArchived based on tableId in ownProps', () => {
+      const state = { dataTables: { a: { showArchived: true } } };
+      const ownProps = { tableId: 'a' };
+      expect(LPSC.getShowArchived(state, ownProps)).toBe(true);
+    });
+    it('handles missing parameters and properties', () => {
+      expect(LPSC.getShowArchived()).toBe(false);
     });
   });
   describe('ListPageSidebarConnect Component', () => {
@@ -32,6 +42,7 @@ describe('ListPageSidebarConnect.js', () => {
       const ownProps = { match: { path: 'a' } };
       const props = LPSC.mapDispatchToProps(dispatch, ownProps);
       expect(props.setOwnerFilter).not.toThrow();
+      expect(props.setShowArchived).not.toThrow();
     });
   });
 });

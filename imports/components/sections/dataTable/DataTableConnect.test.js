@@ -189,11 +189,13 @@ describe('DataTableConnect', () => {
       const ownProps = {
         tableId: 'a',
         deleteRows: jest.fn().mockImplementation((x, cb) => cb()),
+        archiveRows: jest.fn().mockImplementation((x, cb) => cb()),
       };
       const props = DTC.mapDispatchToProps(dispatch, ownProps);
       expect(props.setAllRowSelection).not.toThrow();
       expect(props.setRowSelection).not.toThrow();
       expect(props.deleteRowSelection).not.toThrow();
+      expect(props.archiveRowSelection).not.toThrow();
       expect(props.viewPrevPage).not.toThrow();
       expect(props.viewNextPage).not.toThrow();
     });

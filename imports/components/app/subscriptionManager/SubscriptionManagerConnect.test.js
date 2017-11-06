@@ -16,6 +16,16 @@ describe('SubscriptionManagerConnect.js', () => {
       expect(SMC.getSubscriptionName()).toBe('undefined.user');
     });
   });
+  describe('getShowArchived Function', () => {
+    it('gets showArchived based on tableId from ownprops', () => {
+      const state = { dataTables: { a: { showArchived: true } } };
+      const options = { prefix: 'a' };
+      expect(SMC.getShowArchived(state, options)).toBe(true);
+    });
+    it('handles missing parameters and properties', () => {
+      expect(SMC.getShowArchived()).toBe(false);
+    });
+  });
   describe('SubscriptionManagerConnect Component', () => {
     it('connects', () => {
       expect(SubscriptionManagerConnect).toBeInstanceOf(Function);
