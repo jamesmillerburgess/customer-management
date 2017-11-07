@@ -5,7 +5,6 @@ Opportunities
 * Checkboxes and archive functionality added to Contacts and Companies
 * Team Activity subscription reduced to latest 20, alleviating biggest 
 performance bottleneck
-* Meteor version bumped to 1.6.1-beta.2
 
 ## v1.2.0
 
