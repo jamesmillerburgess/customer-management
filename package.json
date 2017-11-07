@@ -7,10 +7,8 @@
     "test": "jest --config=jest.config.json --coverage",
     "cover": "jest --config=jest.config.json --coverage --watchAll",
     "nocover": "jest --config=jest.config.json --watchAll",
-    "acceptance":
-      "chimp --browser=phantomjs --ddp=http://localhost:3000 --watch --jasmine --path=tests/acceptance",
-    "acceptance-ci":
-      "chimp --browser=phantomjs --ddp=http://localhost:3000 --jasmine --path=tests/acceptance",
+    "acceptance": "chimp --browser=phantomjs --ddp=http://localhost:3000 --watch --jasmine --path=tests/acceptance",
+    "acceptance-ci": "chimp --browser=phantomjs --ddp=http://localhost:3000 --jasmine --path=tests/acceptance",
     "unit-ci": "jest --config=jest.config.json --coverage --runInBand",
     "chimp-empty": "chimp --path empty",
     "codeclimate-test-reporter": "codeclimate-test-reporter"
@@ -55,8 +53,8 @@
     "chimp": "^0.50.2",
     "codeclimate": "0.0.32",
     "codeclimate-test-reporter": "^0.5.0",
-    "enzyme": "^3.1.0",
-    "enzyme-adapter-react-16": "^1.0.2",
+    "enzyme": "^3.1.1",
+    "enzyme-adapter-react-16": "^1.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "jsdom": "^11.3.0",
