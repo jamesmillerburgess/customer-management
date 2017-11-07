@@ -39,6 +39,7 @@
     "react-router-dom": "^4.2.2",
     "react-select": "^1.0.0-rc.10",
     "react-table": "^6.7.4",
+    "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
