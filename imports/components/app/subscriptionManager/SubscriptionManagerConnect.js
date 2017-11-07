@@ -60,10 +60,7 @@ export const mapStateToProps = state => ({
       'team.single',
       Meteor.user() && Meteor.user().profile ? Meteor.user().profile.team : '',
     ],
-    teamActivity: [
-      'activity.team',
-      Meteor.user() && Meteor.user().profile ? Meteor.user().profile.team : '',
-    ],
+    teamActivity: ['activity.team', { pageNumber: 0, showArchived: true }],
     opportunityForecast: [
       'opportunity.team',
       Meteor.user() && Meteor.user().profile ? Meteor.user().profile.team : '',

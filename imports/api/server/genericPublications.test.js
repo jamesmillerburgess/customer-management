@@ -170,6 +170,11 @@ describe('opportunity.team Meteor Publication', () => {
     );
   });
 });
+describe('activity.team Meteor Publication', () => {
+  it('does not throw', () => {
+    expect(() => Meteor.publications['activity.team']({})).not.toThrow();
+  });
+});
 describe('user.single Meteor Publication', () => {
   it('does not throw', () => {
     expect(() => Meteor.publications['user.single']('a')).not.toThrow();
