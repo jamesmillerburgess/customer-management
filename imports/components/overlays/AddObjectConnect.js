@@ -15,6 +15,8 @@ export const mapStateToProps = ({ app, overlay }, ownProps) => {
     fields: [],
   };
   return {
+    place: overlay.place,
+    parsedPlace: overlay.parsedPlace,
     fields: fields.map(
       field => ({ ...field, value: overlay[field.name] || field.default }),
       {}
@@ -27,11 +29,11 @@ export const mapStateToProps = ({ app, overlay }, ownProps) => {
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   setProp: (prop, value) => dispatch(setOverlayProp(prop, value)),
   closeOverlay: () => dispatch(setAppProp('isOverlayOpen', false)),
-  create: company => {
+  create: object => {
     try {
       const id = Meteor.apply(
         ownProps.createMethod,
-        [company, new Mongo.ObjectID()._str],
+        [object, new Mongo.ObjectID()._str],
         {
           returnStubValue: true,
           throwStubExceptions: true,

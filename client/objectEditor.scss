@@ -97,15 +97,20 @@
 }
 .sidebar-header.panel {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 16px;
+}
+.sidebar-header .avatar-group {
+  margin-bottom: 10px;
 }
 .sidebar-header .title {
   font-size: 24px;
   font-weight: 300;
-  max-width: calc(100% - 90px);
-  width: calc(100% - 90px);
-  word-wrap: break-word;
+  // word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .sidebar-header .avatar {
   min-width: 64px;
@@ -113,6 +118,20 @@
   height: 64px;
   border-radius: 100%;
   margin-right: 16px;
+}
+.sidebar-header .label {
+  font-weight: 300;
+  font-size: 13px;
+}
+.sidebar-header .lifecycle-stage,
+.sidebar-header .status {
+  padding-top: 3px;
+}
+
+.sidebar-header .address {
+  text-align: center;
+  width: 100%;
+  padding-top: 12px;
 }
 .sidebar-properties .title {
   font-weight: 700;

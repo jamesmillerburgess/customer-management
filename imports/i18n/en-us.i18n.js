@@ -173,7 +173,7 @@ const enus = {
     cancelButtonText: 'Cancel',
   },
   editProperties: {
-    aboutText: 'about %{name}',
+    edit: 'Edit',
     saveButtonText: 'Save',
     cancelButtonText: 'Cancel',
     singularPropertiesChangedText: "You've changed 1 property",
@@ -239,6 +239,9 @@ const enus = {
   listPageSidebar: {
     owner: 'Owner',
     showArchived: 'Show archived',
+  },
+  errors: {
+    notACompany: 'This place is not a company',
   },
 };
 

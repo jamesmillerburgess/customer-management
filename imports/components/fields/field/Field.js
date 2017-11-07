@@ -4,6 +4,7 @@ import NumberField from '../numberField/NumberField';
 import DateField from '../dateField/DateField';
 import CompanyField from '../companyField/CompanyField';
 import OptionField from '../optionField/OptionField';
+import PlaceField from '../placeField/PlaceField';
 import FieldOptions from '../../../api/fieldOptions/fieldOptionsCollection';
 
 const Field = props => {
@@ -20,6 +21,8 @@ const Field = props => {
       return <DateField {...props} />;
     case 'COMPANY':
       return <CompanyField {...props} />;
+    case 'PLACE':
+      return <PlaceField {...props} />;
     default:
       return <TextField {...props} />;
   }

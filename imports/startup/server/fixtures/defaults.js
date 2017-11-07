@@ -38,7 +38,6 @@ export const FIELD_OPTIONS = [
   {
     type: 'COMPANY_LIFECYCLE_STAGE',
     options: [
-      { value: '', label: '' },
       { value: 'PARTY', label: 'companyLifecycleStages.PARTY' },
       { value: 'LEAD', label: 'companyLifecycleStages.LEAD' },
       { value: 'PROSPECT', label: 'companyLifecycleStages.PROSPECT' },
@@ -48,7 +47,6 @@ export const FIELD_OPTIONS = [
   {
     type: 'COMPANY_STATUS',
     options: [
-      { value: '', label: '' },
       { value: 'ACTIVE', label: 'companyStatuses.ACTIVE' },
       { value: 'INACTIVE', label: 'companyStatuses.INACTIVE' },
       { value: 'EXITED', label: 'companyStatuses.EXITED' },
@@ -124,34 +122,16 @@ export const FIELD_LISTS = [
     page: 'ADD_COMPANY',
     fields: [
       {
-        name: 'name',
-        label: 'companies.fields.name',
-        type: 'TEXT',
-        default: '',
-      },
-      {
         name: 'lifecycleStage',
         label: 'companies.fields.lifecycleStage',
         type: 'COMPANY_LIFECYCLE_STAGE',
-        default: '',
+        default: 'LEAD',
       },
       {
         name: 'status',
         label: 'companies.fields.status',
         type: 'COMPANY_STATUS',
-        default: '',
-      },
-      {
-        name: 'website',
-        label: 'companies.fields.website',
-        type: 'TEXT',
-        default: '',
-      },
-      {
-        name: 'industry',
-        label: 'companies.fields.industry',
-        type: 'TEXT',
-        default: '',
+        default: 'ACTIVE',
       },
     ],
   },
@@ -259,36 +239,21 @@ export const FIELD_LISTS = [
         default: '',
       },
       {
-        name: 'industry',
-        label: 'companies.fields.industry',
-        type: 'TEXT',
-        default: '',
-      },
-      {
         name: 'phoneNumber',
         label: 'companies.fields.phoneNumber',
         type: 'TEXT',
         default: '',
       },
       {
-        name: 'streetAddress',
-        label: 'companies.fields.streetAddress',
+        name: 'address',
+        label: 'companies.fields.address',
         type: 'text',
       },
       {
-        name: 'city',
-        label: 'companies.fields.city',
+        name: 'industry',
+        label: 'companies.fields.industry',
         type: 'TEXT',
-      },
-      {
-        name: 'stateRegion',
-        label: 'companies.fields.stateRegion',
-        type: 'TEXT',
-      },
-      {
-        name: 'postalCode',
-        label: 'companies.fields.postalCode',
-        type: 'TEXT',
+        default: '',
       },
       {
         name: 'numberOfEmployees',

@@ -9,12 +9,15 @@ const AddObjectDisplay = props => (
     onSubmit={e => {
       e.preventDefault();
       props.create(
-        props.fields.reduce((prev, { name, value }) => {
-          return {
-            ...prev,
-            [name]: value,
-          };
-        }, {})
+        props.fields.reduce(
+          (prev, { name, value }) => {
+            return {
+              ...prev,
+              [name]: value,
+            };
+          },
+          { place: props.place, parsedPlace: props.parsedPlace }
+        )
       );
     }}
   >
@@ -30,17 +33,8 @@ const AddObjectDisplay = props => (
     </header>
     <div className="overlay-body">
       <div className="overlay-content">
-        {props.fields.map(field => (
-          <div className="input-group" key={field.name}>
-            <div className="input-label">
-              <Translate value={field.label} />
-            </div>
-            <Field
-              {...field}
-              onChange={val => props.setProp(field.name, val)}
-            />
-          </div>
-        ))}
+        {props.open &&
+          props.OverlayContent && <props.OverlayContent {...props} />}
       </div>
     </div>
     <footer className="overlay-footer">

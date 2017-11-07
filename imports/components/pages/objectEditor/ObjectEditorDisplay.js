@@ -13,8 +13,10 @@ const ObjectEditorDisplay = props => (
       <div className="sidebar">
         <SidebarHeader
           onDrop={props.handleDrop}
-          name={props.object.name}
           avatarURL={props.avatarURL}
+          object={props.object}
+          lat={props.object.lat}
+          lng={props.object.lng}
         />
         <PropertiesEditor
           properties={props.properties}

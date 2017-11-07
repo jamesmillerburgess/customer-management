@@ -11,8 +11,10 @@ import OpportunitiesConnect from '../components/pages/opportunities/Opportunitie
 import Contact from '../components/pages/contact/Contact';
 import Company from '../components/pages/company/Company';
 import Opportunity from '../components/pages/opportunity/Opportunity';
-
 import Profile from '../components/pages/profile/Profile';
+
+// Overlays
+import AddCompany from '../components/overlays/addCompany/AddCompany';
 
 const routes = [
   {
@@ -100,6 +102,7 @@ export const overlayRoutes = [
     pathPrefix: 'companies',
     createMethod: 'company.create',
     page: 'ADD_COMPANY',
+    OverlayContent: AddCompany,
     title: <Translate value="companies.addOverlayTitle" />,
     confirmLabel: <Translate value="companies.addOverlayConfirmButtonText" />,
     cancelButtonText: (
