@@ -6,6 +6,7 @@ import Contacts from '../contact/contactCollection';
 import Companies from '../company/companyCollection';
 import Opportunities from '../opportunity/opportunityCollection';
 import Teams from '../team/teamCollection';
+import Activity from '../activity/activityCollection';
 
 export const getSkip = pageNumber =>
   pageNumber === undefined ? undefined : Math.max(0, (pageNumber - 1) * 10);
@@ -29,7 +30,11 @@ export const user = function(collection, params = {}) {
   if (!params.showArchived) {
     query.isArchived = false;
   }
-  return collection.find(query, { sort: { createDate: -1 }, skip, limit });
+  return collection.find(query, {
+    sort: { createDate: -1, timestamp: -1 },
+    skip,
+    limit,
+  });
 };
 
 export const single = function(collection, id) {
@@ -47,18 +52,31 @@ export const team = (collection, params = {}) => {
   const team = Teams.findOne(((Meteor.user() || {}).profile || {}).team);
   const skip = getSkip(params.pageNumber);
   const limit = getLimit(params.pageNumber);
-  const query = { 'users.0': Meteor.userId() };
+  const query = {
+    $or: [{ 'users.0': Meteor.userId() }, { userId: Meteor.userId() }],
+  };
   if (!params.showArchived) {
     query.isArchived = false;
   }
   if (team && team.members) {
-    query['users.0'] = { $in: team.members };
+    query.$or = [
+      { 'users.0': { $in: team.members } },
+      { userId: { $in: team.members } },
+    ];
     return [
-      collection.find(query, { sort: { createDate: -1 }, skip, limit }),
+      collection.find(query, {
+        sort: { createDate: -1, timestamp: -1 },
+        skip,
+        limit,
+      }),
       Meteor.users.find({ _id: { $in: team.members } }),
     ];
   }
-  return collection.find(query, { sort: { createDate: -1 }, skip, limit });
+  return collection.find(query, {
+    sort: { createDate: -1, timestamp: -1 },
+    skip,
+    limit,
+  });
 };
 
 export const any = (collection, params = {}) => {
@@ -69,7 +87,11 @@ export const any = (collection, params = {}) => {
     query.isArchived = false;
   }
   return [
-    collection.find(query, { sort: { createDate: -1 }, skip, limit }),
+    collection.find(query, {
+      sort: { createDate: -1, timestamp: -1 },
+      skip,
+      limit,
+    }),
     Meteor.users.find(),
     Teams.find(),
   ];
@@ -86,6 +108,7 @@ Meteor.publish({
   'contact.team': params => team(Contacts, params),
   'company.team': params => team(Companies, params),
   'opportunity.team': params => team(Opportunities, params),
+  'activity.team': params => team(Activity, params),
   'user.single': id => single(Meteor.users, id),
   'team.single': id => single(Teams, id),
   'team.list': ids => list(Teams, ids),

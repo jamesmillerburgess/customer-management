@@ -37,9 +37,6 @@ describe('SubscriptionManagerConnect.js', () => {
       Meteor.loggedInUser = { profile: { team: 'a' } };
       expect(SMC.mapStateToProps(state).loading).toBe(true);
       expect(SMC.mapStateToProps(state).subscriptions.teams[1]).toBe('a');
-      expect(SMC.mapStateToProps(state).subscriptions.teamActivity[1]).toBe(
-        'a'
-      );
       expect(
         SMC.mapStateToProps(state).subscriptions.opportunityForecast[1]
       ).toBe('a');
@@ -47,7 +44,6 @@ describe('SubscriptionManagerConnect.js', () => {
       state.app.loading = false;
       expect(SMC.mapStateToProps(state).loading).toBe(false);
       expect(SMC.mapStateToProps(state).subscriptions.teams[1]).toBe('');
-      expect(SMC.mapStateToProps(state).subscriptions.teamActivity[1]).toBe('');
       expect(
         SMC.mapStateToProps(state).subscriptions.opportunityForecast[1]
       ).toBe('');
