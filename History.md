@@ -1,5 +1,11 @@
 ## vNEXT
 
+* Filtering by owner and archival status added to Contacts, Companies, and
+Opportunities
+* Checkboxes and archive functionality added to Contacts and Companies
+* Team Activity subscription reduced to latest 20, alleviating biggest 
+performance bottleneck
+
 ## v1.2.0
 
 * Meteor Application Performance Management tool activated
