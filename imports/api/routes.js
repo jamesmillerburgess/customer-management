@@ -14,7 +14,9 @@ import Opportunity from '../components/pages/opportunity/Opportunity';
 import Profile from '../components/pages/profile/Profile';
 
 // Overlays
+import AddContact from '../components/overlays/addContact/AddContact';
 import AddCompany from '../components/overlays/addCompany/AddCompany';
+import AddOpportunity from '../components/overlays/addOpportunity/AddOpportunity';
 
 const routes = [
   {
@@ -94,6 +96,7 @@ export const overlayRoutes = [
     pathPrefix: 'contacts',
     createMethod: 'contact.create',
     page: 'ADD_CONTACT',
+    OverlayContent: AddContact,
     title: <Translate value="contacts.addOverlayTitle" />,
     confirmLabel: <Translate value="contacts.addOverlayConfirmButtonText" />,
     cancelButtonText: <Translate value="contacts.addOverlayCancelButtonText" />,
@@ -113,6 +116,7 @@ export const overlayRoutes = [
     pathPrefix: 'opportunities',
     createMethod: 'opportunity.create',
     page: 'ADD_OPPORTUNITY',
+    OverlayContent: AddOpportunity,
     title: <Translate value="opportunities.addOverlayTitle" />,
     confirmLabel: (
       <Translate value="opportunities.addOverlayConfirmButtonText" />
