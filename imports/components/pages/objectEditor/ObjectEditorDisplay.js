@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import ObjectEditor from '../../sections/objectEditor/ObjectEditor';
-import SidebarHeader from '../../sections/sidebarHeader/SidebarHeader';
 import PropertiesEditor from '../../sections/propertiesEditor/PropertiesEditor';
 import InteractionMenu from '../../sections/interactionMenu/InteractionMenu';
 import Timeline from '../../sections/timeline/Timeline';
@@ -11,7 +10,7 @@ const ObjectEditorDisplay = props => (
   <ObjectEditor {...props.parentPage}>
     <div className="body">
       <div className="sidebar">
-        <SidebarHeader
+        <props.SidebarHeader
           onDrop={props.handleDrop}
           avatarURL={props.avatarURL}
           object={props.object}

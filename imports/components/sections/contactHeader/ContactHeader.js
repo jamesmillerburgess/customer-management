@@ -6,27 +6,18 @@ import AvatarField from '../../fields/avatarField/AvatarField';
 import MapField from '../../fields/mapField/MapField';
 import PlaceField from '../../fields/placeField/PlaceField';
 
-const SidebarHeader = props => (
+const ContactHeader = props => (
   <div className="panel sidebar-header">
     <div className="avatar-group">
       <div>
         <div className="title name">{props.object.name}</div>
         <div className="label lifecycle-stage">
-          <Translate
-            value={`companyLifecycleStages.${props.object.lifecycleStage}`}
-          />
+          {(props.object.company || {}).name}
         </div>
-        <div className="label status">
-          <Translate value={`companyStatuses.${props.object.status}`} />
-        </div>
+        <div className="label status">{props.object.position}</div>
       </div>
     </div>
-    <MapField
-      defaultCenter={{ lat: props.lat, lng: props.lng }}
-      markers={[{ lat: props.lat, lng: props.lng }]}
-    />
-    <div className="label address">{props.object.address}</div>
   </div>
 );
 
-export default SidebarHeader;
+export default ContactHeader;
