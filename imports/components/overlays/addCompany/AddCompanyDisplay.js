@@ -2,6 +2,7 @@ import React from 'react';
 import { Translate } from 'react-redux-i18n';
 import { Marker } from 'react-google-maps';
 
+import AddContactDisplay from '../addContact/AddContactDisplay';
 import AvatarField from '../../fields/avatarField/AvatarField';
 import PlaceField from '../../fields/placeField/PlaceField';
 import MapField from '../../fields/mapField/MapField';
@@ -53,19 +54,7 @@ const AddCompanyDisplay = props => (
       </div>
     )}
     {props.entryMode === 'MANUAL_ENTRY' && (
-      <div className="overlay-content">
-        {props.fields.map(field => (
-          <div className="input-group" key={field.name}>
-            <div className="input-label">
-              <Translate value={field.label} />
-            </div>
-            <Field
-              {...field}
-              onChange={val => props.setProp(field.name, val)}
-            />
-          </div>
-        ))}
-      </div>
+      <AddContactDisplay fields={props.fields} setProp={props.setProp} />
     )}
   </div>
 );

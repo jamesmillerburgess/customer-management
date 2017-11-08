@@ -45,10 +45,6 @@ describe('AddCompanyDisplay', () => {
     wrapper.setProps({
       entryMode: 'MANUAL_ENTRY',
     });
-    wrapper
-      .find('.overlay-content .input-group Field')
-      .props()
-      .onChange('c');
-    expect(setProp).toHaveBeenLastCalledWith('a', 'c');
+    expect(wrapper.find('AddContactDisplay').exists()).toBe(true);
   });
 });
