@@ -91,6 +91,7 @@ const enus = {
     title: 'Companies',
     addButtonText: 'Add company',
     addOverlayTitle: 'Add companies',
+    googlePlaces: 'Google Places',
     addOverlayConfirmButtonText: 'Create company',
     addOverlayCancelButtonText: 'Cancel',
     allSidebarText: 'All companies',
@@ -99,6 +100,7 @@ const enus = {
     dateFormat: 'MMM DD[,] YYYY',
     noDataText: 'No companies yet!',
     fields: {
+      searchGooglePlaces: 'Search Google Places',
       name: 'Name',
       lifecycleStage: 'Lifecycle stage',
       status: 'Status',
@@ -173,7 +175,7 @@ const enus = {
     cancelButtonText: 'Cancel',
   },
   editProperties: {
-    aboutText: 'about %{name}',
+    edit: 'Edit',
     saveButtonText: 'Save',
     cancelButtonText: 'Cancel',
     singularPropertiesChangedText: "You've changed 1 property",
@@ -239,6 +241,9 @@ const enus = {
   listPageSidebar: {
     owner: 'Owner',
     showArchived: 'Show archived',
+  },
+  errors: {
+    notACompany: 'This place is not a company',
   },
 };
 

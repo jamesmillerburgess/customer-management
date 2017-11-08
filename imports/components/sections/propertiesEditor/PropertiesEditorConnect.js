@@ -6,6 +6,7 @@ import { setObjectEditorProp } from '../../../state/actions/objectEditorActionCr
 
 export const mapStateToProps = ({ objectEditor }, ownProps) => {
   const props = {};
+  props.isExpanded = objectEditor.isExpanded;
   props.fields = ownProps.properties.map((property, index) => ({
     ...property,
     value: objectEditor[property.name] || '',
@@ -32,6 +33,7 @@ export const mapStateToProps = ({ objectEditor }, ownProps) => {
 };
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
+  setIsExpanded: value => dispatch(setObjectEditorProp('isExpanded', value)),
   setProperty: (property, value) =>
     dispatch(setObjectEditorProp(property, value)),
   setHasLoaded: value => dispatch(setObjectEditorProp('hasLoaded', value)),

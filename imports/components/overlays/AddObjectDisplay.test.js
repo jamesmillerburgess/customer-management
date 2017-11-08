@@ -36,15 +36,10 @@ describe('AddObjectDisplay', () => {
     wrapper.setProps({ show: false });
     expect(wrapper.hasClass('show')).toBe(false);
   });
-  it('calls setProp when one of the field values change', () => {
-    const setProp = jest.fn();
-    wrapper.setProps({ setProp });
-    expect(setProp).toHaveBeenCalledTimes(0);
-    wrapper
-      .find('.input-group')
-      .children()
-      .at(1)
-      .simulate('change', { target: { value: 'a' } });
-    expect(setProp).toHaveBeenCalledTimes(1);
+  it('renders overlayContent if open', () => {
+    wrapper.setProps({ open: true, OverlayContent: () => <div /> });
+    expect(wrapper.find('OverlayContent').exists()).toBe(true);
+    wrapper.setProps({ open: false });
+    expect(wrapper.find('OverlayContent').exists()).toBe(false);
   });
 });

@@ -5,6 +5,8 @@ import { Translate } from 'react-redux-i18n';
 import ObjectEditorConnect from '../objectEditor/ObjectEditorConnect';
 import ObjectEditorDisplay from '../objectEditor/ObjectEditorDisplay';
 import OpportunityDisplay from '../opportunity/OpportunityDisplay';
+import ContactHeader from '../../sections/contactHeader/ContactHeader';
+import CompanyHeader from '../../sections/companyHeader/CompanyHeader';
 
 // Collections
 import Contacts from '../../../api/contact/contactCollection';
@@ -29,6 +31,7 @@ export const generateObjectEditorProps = (singular, plural) => ({
 export const contactProps = () => ({
   ...generateObjectEditorProps('contact', 'contacts'),
   collection: Contacts,
+  SidebarHeader: ContactHeader,
   avatarURL: 'empty-profile-pic_wqnyvm.png',
   interactions: [
     'NEW_NOTE',
@@ -43,6 +46,7 @@ export const contactProps = () => ({
 export const companyProps = () => ({
   ...generateObjectEditorProps('company', 'companies'),
   collection: Companies,
+  SidebarHeader: CompanyHeader,
   avatarURL: 'empty-company-pic_uokzyz',
   interactions: [
     'NEW_NOTE',

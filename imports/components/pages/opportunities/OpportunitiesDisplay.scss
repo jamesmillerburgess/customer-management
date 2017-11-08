@@ -6,7 +6,6 @@
 .opportunities .content {
   margin-bottom: 0;
   width: calc(100vw - 230px);
-  // overflow-x: auto;
 }
 .opportunities .sidebar {
   width: 150px;
@@ -74,6 +73,17 @@
 }
 @media screen and (max-width: 750px) {
   .opportunities-board {
-    height: calc(100vh - 107px);
+    height: calc(100vh - 233px);
+  }
+  .opportunities .section-body {
+    margin: 0;
+  }
+  .opportunities .content {
+    margin-bottom: 0;
+    width: auto;
+  }
+  .opportunities .sidebar {
+    margin-top: 0;
+    padding: 10px;
   }
 }

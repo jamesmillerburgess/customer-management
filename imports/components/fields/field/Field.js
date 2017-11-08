@@ -4,6 +4,7 @@ import NumberField from '../numberField/NumberField';
 import DateField from '../dateField/DateField';
 import CompanyField from '../companyField/CompanyField';
 import OptionField from '../optionField/OptionField';
+import PlaceField from '../placeField/PlaceField';
 import FieldOptions from '../../../api/fieldOptions/fieldOptionsCollection';
 
 const Field = props => {
@@ -11,18 +12,14 @@ const Field = props => {
   if (options) {
     return <OptionField {...props} options={options.options} />;
   }
-  switch (props.type) {
-    case 'TEXT':
-      return <TextField {...props} />;
-    case 'NUMBER':
-      return <NumberField {...props} />;
-    case 'DATE':
-      return <DateField {...props} />;
-    case 'COMPANY':
-      return <CompanyField {...props} />;
-    default:
-      return <TextField {...props} />;
-  }
+  const fieldOptions = {
+    TEXT: <TextField {...props} />,
+    NUMBER: <NumberField {...props} />,
+    DATE: <DateField {...props} />,
+    COMPANY: <CompanyField {...props} />,
+    PLACE: <PlaceField {...props} />,
+  };
+  return fieldOptions[props.type] || <TextField {...props} />;
 };
 
 export default Field;

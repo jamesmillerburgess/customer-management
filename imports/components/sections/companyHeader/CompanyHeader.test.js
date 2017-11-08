@@ -4,12 +4,12 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-import SidebarHeader from './SidebarHeader';
+import CompanyHeader from './CompanyHeader';
 
-describe('SidebarHeader', () => {
+describe('CompanyHeader', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<SidebarHeader />);
+    wrapper = shallow(<CompanyHeader />);
   });
   afterEach(() => {
     wrapper.unmount();

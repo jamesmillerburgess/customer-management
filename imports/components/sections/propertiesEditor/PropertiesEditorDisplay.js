@@ -19,24 +19,30 @@ const PropertiesEditorDisplay = props => (
       );
     }}
   >
-    <div className="title">
-      <Translate
-        value="editProperties.aboutText"
-        name={props.loadedValues.name}
+    <div
+      className="title"
+      onClick={() => props.setIsExpanded(!props.isExpanded)}
+    >
+      <span
+        className={`fa fa-fw ${props.isExpanded
+          ? 'fa-caret-down'
+          : 'fa-caret-right'}`}
       />
+      <Translate value="editProperties.edit" />
     </div>
-    {props.fields.map(field => (
-      <div className="input-group" key={field.name}>
-        <div className="input-label">
-          <Translate value={field.label} />
+    {props.isExpanded &&
+      props.fields.map(field => (
+        <div className="input-group" key={field.name}>
+          <div className="input-label">
+            <Translate value={field.label} />
+          </div>
+          <Field
+            id={field.name}
+            {...field}
+            onChange={value => props.setProperty(field.name, value)}
+          />
         </div>
-        <Field
-          id={field.name}
-          {...field}
-          onChange={value => props.setProperty(field.name, value)}
-        />
-      </div>
-    ))}
+      ))}
     <div
       className={`button-footer ${props.isEditingProperties
         ? 'expanded'

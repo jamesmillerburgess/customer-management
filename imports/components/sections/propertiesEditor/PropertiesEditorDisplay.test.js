@@ -19,9 +19,27 @@ describe('PropertiesEditorDisplay', () => {
     wrapper.unmount();
   });
   it('renders without error', () => {});
+  it('calls setIsExpanded on click of the properties title', () => {
+    const setIsExpanded = jest.fn();
+    wrapper.setProps({ setIsExpanded });
+    wrapper.find('.title').simulate('click');
+    expect(setIsExpanded).toHaveBeenCalled();
+  });
+  it('sets the icon class based on isExpanded', () => {
+    wrapper.setProps({ isExpanded: true });
+    expect(wrapper.find('.title .fa').hasClass('fa-caret-down')).toBe(true);
+    wrapper.setProps({ isExpanded: false });
+    expect(wrapper.find('.title .fa').hasClass('fa-caret-right')).toBe(true);
+  });
+  it('renders the fields only if isExpanded', () => {
+    wrapper.setProps({ isExpanded: true });
+    expect(wrapper.find('.input-group').length).toBe(1);
+    wrapper.setProps({ isExpanded: false });
+    expect(wrapper.find('.input-group').length).toBe(0);
+  });
   it('calls setProperty on change of a property', () => {
     const setProperty = jest.fn();
-    wrapper.setProps({ setProperty });
+    wrapper.setProps({ setProperty, isExpanded: true });
     wrapper.find('#name').simulate('change', { target: { value: 'a' } });
     expect(setProperty).toHaveBeenCalled();
   });

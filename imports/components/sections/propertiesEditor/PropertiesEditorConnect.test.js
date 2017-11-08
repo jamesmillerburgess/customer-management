@@ -89,6 +89,7 @@ describe('mapDispatchToProps Function', () => {
     };
     const props = mapDispatchToProps(dispatch, ownProps);
     Meteor.err = null;
+    expect(props.setIsExpanded).not.toThrow();
     expect(props.setProperty).not.toThrow();
     expect(props.setHasLoaded).not.toThrow();
     expect(props.setLoadedValues).not.toThrow();

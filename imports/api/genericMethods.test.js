@@ -20,11 +20,11 @@ describe('create Function', () => {
     const collection = new Mongo.Collection();
     expect(() => GM.create(collection, null)).toThrow();
   });
-  it('throws if there is no name on the object', () => {
-    const collection = new Mongo.Collection();
-    expect(() => GM.create(collection, {})).toThrow();
-    expect(() => GM.create(collection, { name: null })).toThrow();
-  });
+  // it('throws if there is no name on the object', () => {
+  //   const collection = new Mongo.Collection();
+  //   expect(() => GM.create(collection, {})).toThrow();
+  //   expect(() => GM.create(collection, { name: null })).toThrow();
+  // });
 });
 describe('saveProperties Function', () => {
   it('does not throw', () => {

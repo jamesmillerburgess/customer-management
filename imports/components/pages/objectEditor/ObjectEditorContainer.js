@@ -70,7 +70,6 @@ export const linkMeteorData = props => {
         }
       )
       .then(response => {
-        console.log(response);
         const data = response.data;
         const avatarURL = data.public_id; // You should store this URL for future references in your app
         Meteor.call(

@@ -35,9 +35,9 @@ export const addActivity = (activity, collection, id) => {
 };
 
 export const create = (collection, object, activityId) => {
-  if (!object || !object.name) {
-    throw new Error('Missing required field: `Name`');
-  }
+  // if (!object || !object.name) {
+  //   throw new Error('Missing required field: `Name`');
+  // }
   const activity = {
     _id: activityId,
     id: activityId,
@@ -48,6 +48,8 @@ export const create = (collection, object, activityId) => {
   };
   const id = collection.insert({
     ...object,
+    parsedPlace: undefined,
+    ...object.parsedPlace,
     users: [Meteor.userId()],
     createDate: new Date(),
     isArchived: false,

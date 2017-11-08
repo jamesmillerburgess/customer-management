@@ -47,6 +47,7 @@ export const Overlays = ({ open, type }) => (
             {...routeProps}
             {...overlayRoute}
             show={type === overlayRoute.page}
+            open={open}
             label={overlayRoute.pathPrefix}
             confirmLabel={overlayRoute.confirmLabel}
           />

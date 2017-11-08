@@ -9,12 +9,26 @@ import FieldLists from '../../api/fieldList/fieldListCollection';
 import { setOverlayProp } from '../../state/actions/overlayActionCreators';
 import { setAppProp } from '../../state/actions/appActionCreators';
 
+export const getPage = entryMode => {
+  switch (entryMode) {
+    case 'GOOGLE_PLACES':
+      return 'ADD_COMPANY_GOOGLE_PLACES';
+    case 'MANUAL_ENTRY':
+      return 'COMPANY_PROPERTIES';
+    default:
+      return null;
+  }
+};
+
 export const mapStateToProps = ({ app, overlay }, ownProps) => {
   const { errorMessage, showErrorMessage } = overlay;
-  const { fields } = FieldLists.findOne({ page: ownProps.page }) || {
+  const page = getPage(overlay.entryMode) || ownProps.page;
+  const { fields } = FieldLists.findOne({ page }) || {
     fields: [],
   };
   return {
+    place: overlay.place,
+    parsedPlace: overlay.parsedPlace,
     fields: fields.map(
       field => ({ ...field, value: overlay[field.name] || field.default }),
       {}
@@ -27,11 +41,11 @@ export const mapStateToProps = ({ app, overlay }, ownProps) => {
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   setProp: (prop, value) => dispatch(setOverlayProp(prop, value)),
   closeOverlay: () => dispatch(setAppProp('isOverlayOpen', false)),
-  create: company => {
+  create: object => {
     try {
       const id = Meteor.apply(
         ownProps.createMethod,
-        [company, new Mongo.ObjectID()._str],
+        [object, new Mongo.ObjectID()._str],
         {
           returnStubValue: true,
           throwStubExceptions: true,
