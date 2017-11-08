@@ -13,38 +13,34 @@ import {
 } from '../../../state/actions/overlayActionCreators';
 import { setAppProp } from '../../../state/actions/appActionCreators';
 
-export const getEntryMode = overlay => overlay.entryMode || 'GOOGLE_PLACES';
-export const getFields = entryMode => {
+export const getEntryMode = (overlay = {}) =>
+  overlay.entryMode || 'GOOGLE_PLACES';
+export const getPage = entryMode => {
   switch (entryMode) {
-    case 'GOOGLE_PLACES':
-      return (
-        (FieldLists.findOne({ page: 'ADD_COMPANY_GOOGLE_PLACES' }) || {})
-          .fields || []
-      );
     case 'MANUAL_ENTRY':
-      return (
-        (FieldLists.findOne({ page: 'COMPANY_PROPERTIES' }) || {}).fields || []
-      );
+      return 'COMPANY_PROPERTIES';
+    case 'GOOGLE_PLACES':
     default:
-      return [];
+      return 'ADD_COMPANY_GOOGLE_PLACES';
   }
 };
-export const getLat = overlay => (overlay.parsedPlace || {}).lat;
-export const getLng = overlay => (overlay.parsedPlace || {}).lng;
+export const getLat = (overlay = {}) => (overlay.parsedPlace || {}).lat;
+export const getLng = (overlay = {}) => (overlay.parsedPlace || {}).lng;
 
-export const mapStateToProps = ({ app, overlay }, ownProps) => {
-  const { errorMessage, showErrorMessage } = overlay;
-  const entryMode = getEntryMode(overlay);
-  const fields = getFields(entryMode);
-  // const { fields } = FieldLists.findOne({ page: ownProps.page }) || {
-  //   fields: [],
-  // };
+export const mapStateToProps = state => {
+  const { errorMessage, showErrorMessage } = state.overlay;
+  const entryMode = getEntryMode(state.overlay);
+  const page = getPage(entryMode);
+  const fields = (FieldLists.findOne({ page }) || {}).fields || [];
   return {
     entryMode,
-    lat: getLat(overlay),
-    lng: getLng(overlay),
+    lat: getLat(state.overlay),
+    lng: getLng(state.overlay),
     fields: fields.map(
-      field => ({ ...field, value: overlay[field.name] || field.default }),
+      field => ({
+        ...field,
+        value: state.overlay[field.name] || field.default,
+      }),
       {}
     ),
     errorMessage,
@@ -70,7 +66,7 @@ export const parsePlace = place => {
   };
 };
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = dispatch => ({
   setEntryMode: entryMode => {
     dispatch(clearOverlayProps());
     dispatch(setOverlayProp('entryMode', entryMode));

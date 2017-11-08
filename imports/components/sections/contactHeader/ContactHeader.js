@@ -20,4 +20,8 @@ const ContactHeader = props => (
   </div>
 );
 
+ContactHeader.defaultProps = {
+  object: {},
+};
+
 export default ContactHeader;

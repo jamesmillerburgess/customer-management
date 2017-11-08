@@ -28,6 +28,12 @@ describe('Field Component', () => {
     wrapper.setProps({ type: 'COMPANY' });
     expect(wrapper.name()).toBe('withRouter(CompanyField)');
   });
+  it('returns PlaceField if type is PLACE', () => {
+    wrapper.setProps({ type: 'PLACE' });
+    expect(wrapper.name()).toBe(
+      'Connect(withProps(lifecycle(withScriptjs(InnerComponent))))'
+    );
+  });
   it('returns TextField if type is anything else', () => {
     wrapper.setProps({ type: 'SOMETHING_ELSE' });
     expect(wrapper.name()).toBe('TextField');

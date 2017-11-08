@@ -6,34 +6,25 @@ const {
   StandaloneSearchBox,
 } = require('react-google-maps/lib/components/places/StandaloneSearchBox');
 
-const PlaceFieldDisplay = compose(
-  withProps({
-    loadingElement: <div className="map-field-loading" />,
-    containerElement: <div className="map-field-container" />,
-  }),
-  lifecycle({
-    componentWillMount() {
-      const refs = {};
+export function onSearchBoxMounted(ref) {
+  this.setState({ refs: { searchBox: ref } });
+}
 
-      this.setState({
-        places: [],
-        onSearchBoxMounted: ref => {
-          refs.searchBox = ref;
-        },
-        onPlacesChanged: () => {
-          const places = refs.searchBox.getPlaces();
+export function onPlacesChanged() {
+  const places = this.state.refs.searchBox.getPlaces();
+  this.props.onChange(places[0]);
+}
 
-          // this.setState({
-          //   places,
-          // });
+export function componentWillMount() {
+  this.setState({
+    refs: {},
+    places: [],
+    onSearchBoxMounted: onSearchBoxMounted.bind(this),
+    onPlacesChanged: onPlacesChanged.bind(this),
+  });
+}
 
-          this.props.onChange(places[0]);
-        },
-      });
-    },
-  }),
-  withScriptjs
-)(props => (
+export const InnerComponent = props => (
   <StandaloneSearchBox
     ref={props.onSearchBoxMounted}
     bounds={props.bounds}
@@ -42,6 +33,15 @@ const PlaceFieldDisplay = compose(
   >
     <input type="text" placeholder="" />
   </StandaloneSearchBox>
-));
+);
+
+const PlaceFieldDisplay = compose(
+  withProps({
+    loadingElement: <div className="map-field-loading" />,
+    containerElement: <div className="map-field-container" />,
+  }),
+  lifecycle({ componentWillMount }),
+  withScriptjs
+)(InnerComponent);
 
 export default PlaceFieldDisplay;
