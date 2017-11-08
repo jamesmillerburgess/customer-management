@@ -16,7 +16,7 @@ class FieldList extends React.Component {
         <div className="input-label">
           <Translate value={field.label} />
         </div>
-        <FieldComponent field={field} setProp={this.setProp} />
+        <FieldComponent field={field} setProp={this.props.setProp} />
       </div>
     ));
   }
