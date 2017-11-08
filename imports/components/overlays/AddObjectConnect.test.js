@@ -4,6 +4,13 @@ import AddObjectConnect, * as AOC from './AddObjectConnect';
 import FieldLists from '../../api/fieldList/fieldListCollection';
 
 describe('AddObjectConnect.js', () => {
+  describe('getEntryMode Function', () => {
+    it('gets the entry mode or defaults to GOOGLE_PLACES', () => {
+      expect(AOC.getEntryMode({ entryMode: 'a' })).toBe('a');
+      expect(AOC.getEntryMode({})).toBe('GOOGLE_PLACES');
+      expect(AOC.getEntryMode()).toBe('GOOGLE_PLACES');
+    });
+  });
   describe('getPage Function', () => {
     it('switches on entryMode', () => {
       expect(AOC.getPage('GOOGLE_PLACES')).toBe('ADD_COMPANY_GOOGLE_PLACES');
@@ -20,9 +27,11 @@ describe('AddObjectConnect.js', () => {
     it('maps overlay state', () => {
       FieldLists.docs = [{ page: '', fields: [{ name: 'a', default: '' }] }];
       const state = { overlay: {}, other: 'b' };
-      const ownProps = {};
+      const ownProps = { page: 'ADD_COMPANY' };
       expect(AOC.mapStateToProps(state, ownProps).fields[0].value).toBe('');
       state.overlay.a = 'b';
+      expect(AOC.mapStateToProps(state, ownProps).fields[0].value).toBe('b');
+      ownProps.page = 'ADD_CONTACT';
       expect(AOC.mapStateToProps(state, ownProps).fields[0].value).toBe('b');
     });
     it('assumes no fields if no FieldList is found', () => {
