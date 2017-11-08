@@ -7,17 +7,42 @@ import { I18n } from 'react-redux-i18n';
 import AddCompanyDisplay from './AddCompanyDisplay';
 import FieldLists from '../../../api/fieldList/fieldListCollection';
 
-import { setOverlayProp } from '../../../state/actions/overlayActionCreators';
+import {
+  setOverlayProp,
+  clearOverlayProps,
+} from '../../../state/actions/overlayActionCreators';
 import { setAppProp } from '../../../state/actions/appActionCreators';
+
+export const getEntryMode = overlay => overlay.entryMode || 'GOOGLE_PLACES';
+export const getFields = entryMode => {
+  switch (entryMode) {
+    case 'GOOGLE_PLACES':
+      return (
+        (FieldLists.findOne({ page: 'ADD_COMPANY_GOOGLE_PLACES' }) || {})
+          .fields || []
+      );
+    case 'MANUAL_ENTRY':
+      return (
+        (FieldLists.findOne({ page: 'COMPANY_PROPERTIES' }) || {}).fields || []
+      );
+    default:
+      return [];
+  }
+};
+export const getLat = overlay => (overlay.parsedPlace || {}).lat;
+export const getLng = overlay => (overlay.parsedPlace || {}).lng;
 
 export const mapStateToProps = ({ app, overlay }, ownProps) => {
   const { errorMessage, showErrorMessage } = overlay;
-  const { fields } = FieldLists.findOne({ page: ownProps.page }) || {
-    fields: [],
-  };
+  const entryMode = getEntryMode(overlay);
+  const fields = getFields(entryMode);
+  // const { fields } = FieldLists.findOne({ page: ownProps.page }) || {
+  //   fields: [],
+  // };
   return {
-    lat: overlay.lat,
-    lng: overlay.lng,
+    entryMode,
+    lat: getLat(overlay),
+    lng: getLng(overlay),
     fields: fields.map(
       field => ({ ...field, value: overlay[field.name] || field.default }),
       {}
@@ -46,6 +71,10 @@ export const parsePlace = place => {
 };
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
+  setEntryMode: entryMode => {
+    dispatch(clearOverlayProps());
+    dispatch(setOverlayProp('entryMode', entryMode));
+  },
   setPlace: place => {
     let parsedPlace;
     try {

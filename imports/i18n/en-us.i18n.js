@@ -91,6 +91,7 @@ const enus = {
     title: 'Companies',
     addButtonText: 'Add company',
     addOverlayTitle: 'Add companies',
+    googlePlaces: 'Google Places',
     addOverlayConfirmButtonText: 'Create company',
     addOverlayCancelButtonText: 'Cancel',
     allSidebarText: 'All companies',
@@ -99,6 +100,7 @@ const enus = {
     dateFormat: 'MMM DD[,] YYYY',
     noDataText: 'No companies yet!',
     fields: {
+      searchGooglePlaces: 'Search Google Places',
       name: 'Name',
       lifecycleStage: 'Lifecycle stage',
       status: 'Status',

@@ -1,0 +1,29 @@
+.tab-group {
+  display: flex;
+}
+.tab {
+  background-color: transparent;
+  border-radius: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid #cbd6e2;
+  border-right: 1px solid #cbd6e2;
+}
+.tab:last-child {
+  border-right: 0;
+}
+.tab .fa {
+  font-size: 64px;
+  color: #33475b;
+}
+.tab.active {
+  background-color: rgba(#00a4bd, 0.3);
+}
+.tab:focus {
+  outline: none;
+}
+.tab .label {
+  font-size: 16px;
+}

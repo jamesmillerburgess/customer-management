@@ -32,10 +32,8 @@ const AddObjectDisplay = props => (
       </button>
     </header>
     <div className="overlay-body">
-      <div className="overlay-content">
-        {props.open &&
-          props.OverlayContent && <props.OverlayContent {...props} />}
-      </div>
+      {props.open &&
+        props.OverlayContent && <props.OverlayContent {...props} />}
     </div>
     <footer className="overlay-footer">
       <button className="button-primary" type="submit">

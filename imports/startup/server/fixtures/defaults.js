@@ -119,7 +119,7 @@ export const FIELD_LISTS = [
     ],
   },
   {
-    page: 'ADD_COMPANY',
+    page: 'ADD_COMPANY_GOOGLE_PLACES',
     fields: [
       {
         name: 'lifecycleStage',

@@ -4,3 +4,15 @@
   width: 100%;
   height: 125px;
 }
+.map-field {
+  border: 1px solid #cbd6e2;
+  border-radius: 3px;
+}
+.map-field > div {
+  background-color: #cbd6e2 !important;
+}
+.place-search-result .map-field-container,
+.place-search-result .map-field-loading,
+.place-search-result .map-field {
+  margin-bottom: 15px;
+}

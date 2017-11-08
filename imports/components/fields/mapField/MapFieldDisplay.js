@@ -5,14 +5,20 @@ import {
   GoogleMap,
   Marker,
 } from 'react-google-maps';
+import { Translate } from 'react-redux-i18n';
 
 const MapFieldDisplay = withScriptjs(
   withGoogleMap(props => {
     let defaultCenter = props.defaultCenter || {};
+    let loading = false;
     if (!props.defaultCenter.lat || !props.defaultCenter.lng) {
       defaultCenter = undefined;
+      loading = true;
     }
     const markers = props.markers.filter(marker => marker.lat && marker.lng);
+    if (loading) {
+      return <div className="map-field-loading" />;
+    }
     return (
       <GoogleMap {...props} defaultCenter={defaultCenter}>
         {markers.map(marker => <Marker key={marker} position={marker} />)}

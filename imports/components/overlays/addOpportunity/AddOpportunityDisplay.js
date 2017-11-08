@@ -4,7 +4,7 @@ import { Translate } from 'react-redux-i18n';
 import Field from '../../fields/field/Field';
 
 const AddOpportunityDisplay = props => (
-  <div>
+  <div className="overlay-content">
     {props.fields.map(field => (
       <div className="input-group" key={field.name}>
         <div className="input-label">
