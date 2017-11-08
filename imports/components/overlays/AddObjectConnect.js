@@ -9,6 +9,8 @@ import FieldLists from '../../api/fieldList/fieldListCollection';
 import { setOverlayProp } from '../../state/actions/overlayActionCreators';
 import { setAppProp } from '../../state/actions/appActionCreators';
 
+export const getEntryMode = (overlay = {}) =>
+  overlay.entryMode || 'GOOGLE_PLACES';
 export const getPage = entryMode => {
   switch (entryMode) {
     case 'GOOGLE_PLACES':
@@ -22,7 +24,9 @@ export const getPage = entryMode => {
 
 export const mapStateToProps = ({ app, overlay }, ownProps) => {
   const { errorMessage, showErrorMessage } = overlay;
-  const page = getPage(overlay.entryMode) || ownProps.page;
+  const entryMode = getEntryMode(overlay);
+  const page =
+    ownProps.page === 'ADD_COMPANY' ? getPage(entryMode) : ownProps.page;
   const { fields } = FieldLists.findOne({ page }) || {
     fields: [],
   };
