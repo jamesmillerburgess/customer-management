@@ -29,4 +29,6 @@ const CompanyHeader = props => (
   </div>
 );
 
+CompanyHeader.defaultProps = { object: {} };
+
 export default CompanyHeader;

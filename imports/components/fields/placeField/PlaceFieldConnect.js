@@ -6,8 +6,8 @@ const API_KEY = 'AIzaSyCcQFaLHUxSRI0uDJQN6eJn7yb0aoZAjEc';
 const URL_PREFIX =
   'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places';
 
-const getLocale = state => state.i18n.locale;
-const getGoogleMapURL = state =>
+export const getLocale = state => state.i18n.locale;
+export const getGoogleMapURL = state =>
   `${URL_PREFIX}&key=${API_KEY}&language=${getLocale(state)}`;
 
 export const mapStateToProps = (state, ownProps) => ({

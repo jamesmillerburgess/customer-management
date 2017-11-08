@@ -37,9 +37,9 @@ describe('AddObjectDisplay', () => {
     expect(wrapper.hasClass('show')).toBe(false);
   });
   it('renders overlayContent if open', () => {
-    wrapper.setProps({ open: true, OverlayContent: () => <div id="test" /> });
-    expect(wrapper.find('#test').exists()).toBe(true);
-    wrapper.setProps({ open: false, OverlayContent: () => <div id="test" /> });
-    expect(wrapper.find('#test').exists()).toBe(false);
+    wrapper.setProps({ open: true, OverlayContent: () => <div /> });
+    expect(wrapper.find('OverlayContent').exists()).toBe(true);
+    wrapper.setProps({ open: false });
+    expect(wrapper.find('OverlayContent').exists()).toBe(false);
   });
 });
