@@ -12,20 +12,14 @@ const Field = props => {
   if (options) {
     return <OptionField {...props} options={options.options} />;
   }
-  switch (props.type) {
-    case 'TEXT':
-      return <TextField {...props} />;
-    case 'NUMBER':
-      return <NumberField {...props} />;
-    case 'DATE':
-      return <DateField {...props} />;
-    case 'COMPANY':
-      return <CompanyField {...props} />;
-    case 'PLACE':
-      return <PlaceField {...props} />;
-    default:
-      return <TextField {...props} />;
-  }
+  const fieldOptions = {
+    TEXT: <TextField {...props} />,
+    NUMBER: <NumberField {...props} />,
+    DATE: <DateField {...props} />,
+    COMPANY: <CompanyField {...props} />,
+    PLACE: <PlaceField {...props} />,
+  };
+  return fieldOptions[props.type] || <TextField {...props} />;
 };
 
 export default Field;

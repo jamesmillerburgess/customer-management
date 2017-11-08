@@ -12,9 +12,9 @@ describe('AddOpportunityConnect.js', () => {
     });
   });
   describe('AddOpportunityConnect Component', () => {
-    it('connects AddOpportunityDisplay', () => {
+    it('connects AddContactDisplay', () => {
       expect(AddOpportunityConnect.displayName).toBe(
-        'Connect(AddOpportunityDisplay)'
+        'Connect(AddContactDisplay)'
       );
     });
   });
