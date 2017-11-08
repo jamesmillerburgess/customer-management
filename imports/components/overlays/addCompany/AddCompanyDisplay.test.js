@@ -37,14 +37,16 @@ describe('AddCompanyDisplay', () => {
       setProp,
       entryMode: 'GOOGLE_PLACES',
     });
-    wrapper
-      .find('.overlay-content .input-group Field')
-      .props()
-      .onChange('b');
-    expect(setProp).toHaveBeenLastCalledWith('a', 'b');
+    expect(wrapper.find('.overlay-content .place-search-result').exists()).toBe(
+      true
+    );
+    expect(wrapper.find('FieldList').exists()).toBe(true);
     wrapper.setProps({
       entryMode: 'MANUAL_ENTRY',
     });
-    expect(wrapper.find('AddContactDisplay').exists()).toBe(true);
+    expect(wrapper.find('.overlay-content .place-search-result').exists()).toBe(
+      false
+    );
+    expect(wrapper.find('FieldList').exists()).toBe(true);
   });
 });

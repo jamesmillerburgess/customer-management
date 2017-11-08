@@ -16,16 +16,4 @@ describe('AddContactDisplay', () => {
     wrapper.unmount();
   });
   it('renders without error', () => {});
-  it('maps the fields to input groups', () => {
-    const setProp = jest.fn();
-    wrapper.setProps({
-      fields: [{ name: 'a', label: 'b' }],
-      setProp,
-    });
-    wrapper
-      .find('.overlay-content .input-group Field')
-      .props()
-      .onChange('b');
-    expect(setProp).toHaveBeenLastCalledWith('a', 'b');
-  });
 });
