@@ -5,6 +5,10 @@ Opportunities
 * Checkboxes and archive functionality added to Contacts and Companies
 * Team Activity subscription reduced to latest 20, alleviating biggest 
 performance bottleneck
+* Google Maps and Google Places API integration with Companies
+* Option to add Companies using Google Places Search or Manual Entry
+* Full properties default to collapsed, so now the interaction menu is always
+visible on mobile - to encourage more quick input of interactions
 
 ## v1.2.0
 
