@@ -16,7 +16,7 @@ const AddObjectDisplay = props => (
               [name]: value,
             };
           },
-          { place: props.place, parsedPlace: props.parsedPlace }
+          { place: props.place, ...props.parsedPlace }
         )
       );
     }}
