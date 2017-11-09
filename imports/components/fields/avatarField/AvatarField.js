@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import { Image, Transformation } from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
 
 const AvatarField = props =>
   props.editable ? (
