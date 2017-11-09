@@ -8,6 +8,7 @@
       "statements": 100
     }
   },
+  "testMatch": ["**/?(*.)(testj).js?(x)"],
   "testPathIgnorePatterns": ["/node_modules/", "/.meteor/"],
   "transform": {
     "^.+\\.jsx?$": "babel-jest"
