@@ -191,6 +191,7 @@ const enus = {
     CONNECTED: 'Connected',
   },
   opportunityStatuses: {
+    undefined: ' ',
     APPOINTMENT_SCHEDULED: 'Appointment Scheduled',
     QUALIFIED_TO_BUY: 'Qualified to Buy',
     PRESENTATION_SCHEDULED: 'Presentation Scheduled',
@@ -200,10 +201,12 @@ const enus = {
     CLOSED_LOST: 'Closed Lost',
   },
   opportunityType: {
+    undefined: ' ',
     NEW_BUSINESS: 'New business',
     EXISTING_BUSINESS: 'Existing business',
   },
   contactTypes: {
+    undefined: ' ',
     ADMINISTRATION: 'Administration',
     DECISION_MAKER: 'Decision maker',
     FINANCE: 'Finance',
@@ -212,12 +215,14 @@ const enus = {
     OPERATIONS: 'Operations',
   },
   companyLifecycleStages: {
+    undefined: ' ',
     PARTY: 'Party',
     LEAD: 'Lead',
     PROSPECT: 'Prospect',
     CUSTOMER: 'Customer',
   },
   companyStatuses: {
+    undefined: ' ',
     ACTIVE: 'Active',
     INACTIVE: 'Inactive',
     EXITED: 'Exited',
