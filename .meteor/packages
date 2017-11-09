@@ -21,3 +21,4 @@ accounts-password@1.5.0
 react-meteor-data
 underscore@1.0.10
 mdg:meteor-apm-agent
+meteortesting:mocha
