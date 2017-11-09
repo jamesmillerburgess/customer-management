@@ -81,6 +81,11 @@ describe('logInteraction Function', () => {
     expect(() => GM.logInteraction(collection, 1, 'a', 'NOTE')).toThrow();
   });
 });
+describe('search Function', () => {
+  it('throws an error when the searchText is not a string', () => {
+    expect(() => GM.search(new Mongo.Collection(), null)).toThrow();
+  });
+});
 describe('buildGenericMethods Function', () => {
   it('builds each method', () => {
     const collection = new Mongo.Collection();

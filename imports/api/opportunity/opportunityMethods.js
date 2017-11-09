@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import validate from 'validate.js';
 
 import Opportunities from './opportunityCollection';
 import Companies from '../company/companyCollection';
@@ -47,7 +46,7 @@ export const getStatusDirection = (from, to) =>
     : STATUS_CHANGE_BACKWARD;
 
 export const updateStatus = (opportunityId, { status, id }) => {
-  if (!validate.isString(opportunityId)) {
+  if (typeof opportunityId !== 'string') {
     throw new Error('No opportunityId passed');
   }
   const opportunity = Opportunities.findOne(opportunityId);

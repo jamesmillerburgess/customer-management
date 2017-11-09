@@ -42,8 +42,7 @@
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1",
-    "validate.js": "^0.11.1"
+    "reselect": "^3.0.1"
   },
   "devDependencies": {
     "babel-jest": "^21.2.0",
