@@ -8,7 +8,7 @@ import PlaceField from '../../fields/placeField/PlaceField';
 
 const ContactHeader = props => (
   <div className="panel sidebar-header">
-    <div className="avatar-group">
+    <div className="header-top">
       <div>
         <div className="title name">{props.object.name}</div>
         <div className="label lifecycle-stage">
@@ -16,6 +16,12 @@ const ContactHeader = props => (
         </div>
         <div className="label status">{props.object.position}</div>
       </div>
+      <AvatarField
+        className="avatar"
+        publicId={props.avatarURL}
+        editable
+        onDrop={props.onDrop}
+      />
     </div>
   </div>
 );
