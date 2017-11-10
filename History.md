@@ -1,10 +1,15 @@
 ## vNEXT
 
+## v1.3.0
+
 * Filtering by owner and archival status added to Contacts, Companies, and
 Opportunities
 * Checkboxes and archive functionality added to Contacts and Companies
 * Team Activity subscription reduced to latest 20, alleviating biggest 
 performance bottleneck
+* Google Maps and Places integration is in place for adding and viewing 
+Companies
+* Jest tests and Meteor tests have been segregated in their respective runners
 
 ## v1.2.0
 
