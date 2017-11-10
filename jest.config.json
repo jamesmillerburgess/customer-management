@@ -1,5 +1,9 @@
 {
-  "collectCoverageFrom": ["imports/**/*.{js,jsx}", "!client/index.js"],
+  "collectCoverageFrom": [
+    "imports/**/*.{js,jsx}",
+    "!client/index.js",
+    "!imports/**/*.test.js"
+  ],
   "coverageThreshold": {
     "global": {
       "branches": 100,
