@@ -14,6 +14,7 @@ dependencies:
     - meteor npm install
 test:
   override:
+    - meteor test --driver-package meteortesting:mocha --once
     - meteor:
         background: true
     - meteor npm run unit-ci
