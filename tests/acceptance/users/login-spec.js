@@ -8,7 +8,7 @@ describe('Login @watch', function() {
     expect(b.getTitle()).toBe('Agility CM');
   });
   it('defaults to login mode', () => {
-    b.waitUntil(() => b.isExisting('#register-mode-button'), 5000);
+    b.waitUntil(() => b.isExisting('#register-mode-button'), 30000);
     expect(b.elements('#register-mode-button').value.length).toBe(1);
     expect(b.elements('#login-submit-button').value.length).toBe(1);
     expect(b.elements('#login-mode-button').value.length).toBe(0);
@@ -18,7 +18,7 @@ describe('Login @watch', function() {
     expect(b.elements('#password-again').value.length).toBe(0);
   });
   it('switches between register and login modes', () => {
-    b.waitUntil(() => b.isExisting('#register-mode-button'), 5000);
+    b.waitUntil(() => b.isExisting('#register-mode-button'), 30000);
     b.click('#register-mode-button');
     expect(b.elements('#login-mode-button').value.length).toBe(1);
     expect(b.elements('#register-submit-button').value.length).toBe(1);
@@ -42,11 +42,11 @@ describe('Login @watch', function() {
     const getErr = () => b.getText('.home .error-message');
     expect(getErr()).toBe('');
     b.click('#login-submit-button');
-    b.waitUntil(() => getErr() !== '', 5000);
+    b.waitUntil(() => getErr() !== '', 30000);
     expect(getErr()).toBe('Match failed');
   });
   it('validates registration submission', () => {
-    b.waitUntil(() => b.isExisting('#register-mode-button'), 5000);
+    b.waitUntil(() => b.isExisting('#register-mode-button'), 30000);
     b.click('#register-mode-button');
     b.setValue('#username', 'test');
     b.setValue('#password', 'test');
