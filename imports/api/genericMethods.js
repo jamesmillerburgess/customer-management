@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import _ from 'lodash/fp';
-import validate from 'validate.js';
 
 import FieldLists from './fieldList/fieldListCollection';
 import Activity from './activity/activityCollection';
@@ -35,9 +34,9 @@ export const addActivity = (activity, collection, id) => {
 };
 
 export const create = (collection, object, activityId) => {
-  // if (!object || !object.name) {
-  //   throw new Error('Missing required field: `Name`');
-  // }
+  if (!object || !object.name) {
+    throw new Error('Missing required field: `Name`');
+  }
   const activity = {
     _id: activityId,
     id: activityId,
@@ -48,8 +47,8 @@ export const create = (collection, object, activityId) => {
   };
   const id = collection.insert({
     ...object,
-    parsedPlace: undefined,
-    ...object.parsedPlace,
+    // parsedPlace: undefined,
+    // ...object.parsedPlace,
     users: [Meteor.userId()],
     createDate: new Date(),
     isArchived: false,
@@ -85,7 +84,7 @@ export const saveProperties = (
   objectId,
   object
 ) => {
-  if (!validate.isString(objectId)) {
+  if (typeof objectId !== 'string') {
     throw new Error('objectId must be a string');
   }
   if (!collection.findOne(objectId)) {
@@ -105,7 +104,7 @@ export const saveProperties = (
 };
 
 export const logInteraction = (collection, objectId, interaction, type) => {
-  if (!validate.isString(objectId)) {
+  if (typeof objectId !== 'string') {
     throw new Error('Parameter objectId must be a string');
   }
   const activity = {
@@ -127,7 +126,9 @@ export const logInteraction = (collection, objectId, interaction, type) => {
 };
 
 export const search = (collection, searchText) => {
-  validate.isString(searchText);
+  if (typeof searchText !== 'string') {
+    throw new Error('searchText must be a string');
+  }
   const query = { name: { $regex: buildSearchRegExp(searchText) } };
   const options = { fields: { _id: 1, name: 1, members: 1 }, limit: 10 };
   return { searchResults: collection.find(query, options).fetch(), searchText };

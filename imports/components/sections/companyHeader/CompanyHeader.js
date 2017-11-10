@@ -1,14 +1,12 @@
 import React from 'react';
 import { Translate } from 'react-redux-i18n';
-import _ from 'lodash';
 
 import AvatarField from '../../fields/avatarField/AvatarField';
 import MapField from '../../fields/mapField/MapField';
-import PlaceField from '../../fields/placeField/PlaceField';
 
 const CompanyHeader = props => (
   <div className="panel sidebar-header">
-    <div className="avatar-group">
+    <div className="header-top">
       <div>
         <div className="title name">{props.object.name}</div>
         <div className="label lifecycle-stage">
@@ -20,6 +18,12 @@ const CompanyHeader = props => (
           <Translate value={`companyStatuses.${props.object.status}`} />
         </div>
       </div>
+      <AvatarField
+        className="avatar"
+        publicId={props.avatarURL}
+        editable
+        onDrop={props.onDrop}
+      />
     </div>
     <MapField
       defaultCenter={{ lat: props.lat, lng: props.lng }}

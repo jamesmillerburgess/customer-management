@@ -101,27 +101,30 @@
   align-items: flex-start;
   padding: 16px;
 }
-.sidebar-header .avatar-group {
+.sidebar-header .header-top {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
   margin-bottom: 10px;
+  align-items: center;
 }
 .sidebar-header .title {
   font-size: 24px;
-  font-weight: 300;
-  // word-wrap: break-word;
+  font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 4px;
 }
 .sidebar-header .avatar {
   min-width: 64px;
   width: 64px;
   height: 64px;
   border-radius: 100%;
-  margin-right: 16px;
 }
 .sidebar-header .label {
   font-weight: 300;
-  font-size: 13px;
+  font-size: 14px;
 }
 .sidebar-header .lifecycle-stage,
 .sidebar-header .status {

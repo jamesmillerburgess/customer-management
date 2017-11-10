@@ -1,5 +1,7 @@
 ## vNEXT
 
+## v1.3.0
+
 * Filtering by owner and archival status added to Contacts, Companies, and
 Opportunities
 * Checkboxes and archive functionality added to Contacts and Companies
@@ -9,6 +11,7 @@ performance bottleneck
 * Option to add Companies using Google Places Search or Manual Entry
 * Full properties default to collapsed, so now the interaction menu is always
 visible on mobile - to encourage more quick input of interactions
+* Jest tests and Meteor tests have been segregated in their respective runners
 
 ## v1.2.0
 
