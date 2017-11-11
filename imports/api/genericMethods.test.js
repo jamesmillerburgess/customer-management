@@ -4,21 +4,26 @@ import StubCollections from 'meteor/hwillson:stub-collections';
 import expect from 'expect.js';
 
 import Activity from './activity/activityCollection';
+import FieldLists from './fieldList/fieldListCollection';
+
 import registerGenericMethods, * as GM from './genericMethods';
 
 describe('genericMethods.js Functional Tests', () => {
   const Coll = new Mongo.Collection('Coll');
+  before(() => {
+    registerGenericMethods('coll', Coll, 'PAGE');
+  });
   beforeEach(() => {
-    StubCollections.stub([Coll, Activity]);
-    Coll.remove();
-    Activity.remove();
+    StubCollections.stub([Coll, Activity, FieldLists]);
+    Coll.remove({});
+    Activity.remove({});
+    FieldLists.remove({});
   });
   afterEach(() => {
     StubCollections.restore();
   });
   describe('*.create Meteor Method', () => {
     it('inserts a document into the collection and inserts an Activity', () => {
-      registerGenericMethods('coll', Coll);
       expect(Coll.find().count()).to.be(0);
       expect(Activity.find().count()).to.be(0);
       Meteor.call('coll.create', { name: 'a' }, 'b');
@@ -36,6 +41,16 @@ describe('genericMethods.js Functional Tests', () => {
       Meteor.call('coll.archive', [id]);
       expect(Coll.findOne(id).isArchived).to.be(true);
       expect(Activity.find({ type: 'ARCHIVAL' }).count()).to.be(1);
+    });
+  });
+  describe('*.saveProperties Meteor Method', () => {
+    it('saves changes to the properties specified in the FieldList', () => {
+      FieldLists.insert({ page: 'PAGE', fields: [{ name: 'name' }] });
+      Meteor.call('coll.create', { name: 'a' }, 'b');
+      const id = Coll.findOne()._id;
+      expect(Coll.findOne(id).name).to.be('a');
+      Meteor.call('coll.saveProperties', id, { name: 'b' });
+      expect(Coll.findOne(id).name).to.be('b');
     });
   });
 });
