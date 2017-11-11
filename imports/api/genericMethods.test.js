@@ -15,11 +15,11 @@ describe('genericMethods.js Functional Tests', () => {
   });
   beforeEach(() => {
     StubCollections.stub([Coll, Activity, FieldLists]);
+  });
+  afterEach(() => {
     Coll.remove({});
     Activity.remove({});
     FieldLists.remove({});
-  });
-  afterEach(() => {
     StubCollections.restore();
   });
   describe('*.create Meteor Method', () => {
@@ -49,8 +49,15 @@ describe('genericMethods.js Functional Tests', () => {
       Meteor.call('coll.create', { name: 'a' }, 'b');
       const id = Coll.findOne()._id;
       expect(Coll.findOne(id).name).to.be('a');
-      Meteor.call('coll.saveProperties', id, { name: 'b' });
-      expect(Coll.findOne(id).name).to.be('b');
+      Meteor.call(
+        'coll.saveProperties',
+        id,
+        { name: 'b', notName: 'c' },
+        () => {
+          expect(Coll.findOne(id).name).to.be('b');
+          expect(Coll.findOne(id).notName).to.be(undefined);
+        }
+      );
     });
   });
 });
