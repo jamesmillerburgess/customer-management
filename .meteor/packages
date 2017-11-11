@@ -22,3 +22,4 @@ react-meteor-data
 underscore@1.0.10
 mdg:meteor-apm-agent
 meteortesting:mocha
+hwillson:stub-collections
