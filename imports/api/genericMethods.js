@@ -33,13 +33,11 @@ export const addActivity = (activity, collection, id) => {
   });
 };
 
-export const create = (collection, object, activityId) => {
+export const create = (collection, object) => {
   if (!object || !object.name) {
     throw new Error('Missing required field: `Name`');
   }
   const activity = {
-    _id: activityId,
-    id: activityId,
     type: CREATION,
     timestamp: new Date(),
     userId: Meteor.userId(),
@@ -47,14 +45,12 @@ export const create = (collection, object, activityId) => {
   };
   const id = collection.insert({
     ...object,
-    // parsedPlace: undefined,
-    // ...object.parsedPlace,
     users: [Meteor.userId()],
     createDate: new Date(),
     isArchived: false,
     timeline: [],
   });
-  addActivity(activity, collection, id);
+  const activityId = addActivity(activity, collection, id);
   collection.update(id, { $push: { timeline: Activity.findOne(activityId) } });
   return id;
 };
