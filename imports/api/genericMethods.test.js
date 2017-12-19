@@ -8,7 +8,7 @@ import FieldLists from './fieldList/fieldListCollection';
 
 import registerGenericMethods, * as GM from './genericMethods';
 
-describe('genericMethods.js Functional Tests', () => {
+describe('genericMethods.js Functional Tests', function() {
   const Coll = new Mongo.Collection('Coll');
   before(() => {
     registerGenericMethods('coll', Coll, 'PAGE');
@@ -60,4 +60,16 @@ describe('genericMethods.js Functional Tests', () => {
       );
     });
   });
+  // describe('*.addNote Meteor Method', () => {
+  //   it('records the interaction in the document and inserts an activity', function(done) {
+  //     Meteor.call('coll.create', { name: 'a' });
+  //     const id = Coll.findOne()._id;
+  //     expect(Coll.findOne(id).timeline.length).to.be(1);
+  //     Meteor.call('coll.addNote', id, {}, () => {
+  //       console.log('callback!');
+  //       expect(Coll.findOne(id).timeline.length).to.be(1);
+  //       done();
+  //     });
+  //   });
+  // });
 });

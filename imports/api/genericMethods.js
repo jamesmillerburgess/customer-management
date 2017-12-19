@@ -33,7 +33,7 @@ export const addActivity = (activity, collection, id) => {
   });
 };
 
-export const create = (collection, object, activityId) => {
+export const create = (collection, object) => {
   if (!object || !object.name) {
     throw new Error('Missing required field: `Name`');
   }
@@ -50,7 +50,7 @@ export const create = (collection, object, activityId) => {
     isArchived: false,
     timeline: [],
   });
-  addActivity(activity, collection, id);
+  const activityId = addActivity(activity, collection, id);
   collection.update(id, { $push: { timeline: Activity.findOne(activityId) } });
   return id;
 };
